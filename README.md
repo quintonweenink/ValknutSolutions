@@ -1,2 +1,2 @@
-# tenders
-Tenders for the COS 301 Main Project
+# ValKnutSolutions
+COS 301 Main Project
