@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Tender Document}
+\fancyfoot{}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+		
+			\line(1,0){300}\\
+			[6mm]
+			\huge{
+			Project Tender\\
+			}
+			
+			\line(1,0){300}\\
+			\huge{Project: Name\\
+			Client: Client} \\
+			\line(1,0){300}\\
+			\huge{Team: Valknut Solutions}
+			
+			\large
+			{
+			\begin{itemize}
+			
+				\item 13054903 - Charl Jansen van Vuuren 
+				\item 10297902 - Bernhard Schuld      
+				\item 		-	Kevin Heritage
+				\item 	- Quinton Weenink
+			\end{itemize}
+			}
+		\textsc{\large  Department of Computer Science, University of Pretoria}\\
+		[0.5cm]
+		\textsc{\large Date}	
+		\end{center}
+
+		%\begin{figure}[H]}
+		%\centering
+		%\includegraphics[{imagename}
+		%\end{figure}\
+			
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+	
+	\cleardoublepage
+	\section{The team}
+	\subsection{Team member name}
+	\subsection{Team member name}
+	\subsection{Team member name}
+	\subsection{Team member name}
+	
+	\section{Project Execution}
+	\subsection{Project }
+	\subsection{Project }
+	\subsection{Project }
+\end{document}
