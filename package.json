@@ -1,7 +1,7 @@
 {
   "name": "insuranceprofiling",
   "version": "1.0.0",
-  "description": "Insurance profiling ",
+  "description": "Insurance profiling from social media",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/QuintonWeenink/ValKnutSolutions.git"
   },
+  "keywords": [
+    "npm"
+  ],
   "author": "Valknut Solutions",
   "license": "ISC",
   "bugs": {

@@ -1,4 +1,4 @@
-# Insurance Profiling
+# Insurance profiling from social media
 Insurance profiling from social media
 
                                    /\
