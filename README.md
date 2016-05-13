@@ -24,8 +24,11 @@ You will need the following things properly installed on your computer.
 ## Testing
 
 ### Automated testing
+
 * [Travis CI](https://travis-ci.com/)
+
 ### Testing
+
 * `npm test`
 * `make test` makefile ! not completed yet
 
