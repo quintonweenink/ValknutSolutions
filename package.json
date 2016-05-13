@@ -1,0 +1,21 @@
+{
+  "name": "insuranceprofiling",
+  "version": "1.0.0",
+  "description": "Insurance profiling ",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuintonWeenink/ValKnutSolutions.git"
+  },
+  "author": "Valknut Solutions",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuintonWeenink/ValKnutSolutions/issues"
+  },
+  "homepage": "https://github.com/QuintonWeenink/ValKnutSolutions#readme"
+}
