@@ -76,7 +76,6 @@
 	\cleardoublepage
 \section{Introduction}
 This document contains information on the development of a system to generate insurance profiles based on social media inputs. The project is being developed for Retrorabbit as part of the COS301 module at the University Of Pretoria.
-(ADD MORE INFO)
 \section{Vision}
 The primary focus of this project is to generate quick, reliable insurance/risk profiles from user's social media information. The profile generated will be ideally used for portable possession insurance (cellphones, laptops, purses). Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project seek the means to eliminate the need for vast amounts of data gathering by using a user's social media information. A user would log into our system, provide the necessary permissions and our engine will generate a risk profile for that person based on certain criteria. The generated profile can assist insurers to create more accurate risk profiles or clients to get personally tailored quotes, instantly.
 \section{Scope of system}
@@ -87,6 +86,19 @@ The system will primarily be web-based. A user visiting the website will request
 	\subsection{Quality requirements}
 	\subsection{Integration requirements}
 	\subsection{Architecture Constraints}
+	The client limited our development stack technologies to:
+	\begin{itemize}
+		\item An ASP.net web solution with a Microsoft SQL Server database system.
+		\item A NodeJS web solution with a PostgreSQL database system.
+	\end{itemize}
+	Other constraints in terms of architecture include:
+	\begin{itemize}
+		\item Browser independent as to ensure any web-client can make use thereof.
+		\item Operating system independent.
+		\item The system should be as time efficient as possible to ensure a user gets a quote in less than 5 minutes -- (can state this in quality requirements -Performance, as per proposal pdf)
+
+		\item No PHP code as per client's request.
+	\end{itemize}
 
 \section{Functional Requirements}
 
