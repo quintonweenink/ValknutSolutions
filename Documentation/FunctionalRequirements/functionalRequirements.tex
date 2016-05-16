@@ -24,8 +24,7 @@
 \pagestyle{fancy}
 
 \rhead{COS301}
-\lhead{Functional Requirements}
-\fancyfoot{}
+\lhead{Non-Functional Requirements}
 \fancyfoot[R]{Page \thepage}
 
 \renewcommand{\headrulewidth}{2pt}
@@ -39,7 +38,7 @@
 			\line(1,0){300}\\
 			[6mm]
 			\huge{
-			Functional Requirements\\
+			Non-Functional Requirements\\
 			}
 			
 			\line(1,0){300}\\
@@ -72,8 +71,6 @@
 	\cleardoublepage
 	\tableofcontents
 	\cleardoublepage
-	\listoffigures
-	\cleardoublepage
 \section{Introduction}
 This document contains information on the development of a system to generate insurance profiles based on social media inputs. The project is being developed for Retrorabbit as part of the COS301 module at the University Of Pretoria.
 \section{Vision}
@@ -85,28 +82,54 @@ The system will primarily be web-based. A user visiting the website will request
 	\subsection{Access channel requirements}
 	
 	\subsection{Quality requirements}
-		--(CLIENT'S)
 		\subsubsection{Performance}
-		The user should be able to request a quote in less than 5 minutes, this is easily achieved by means of the Facebook login and will only be user-network dependent. Once the REST api call is made it saves the users data in our database, increasing the efficiency of future requests and processing of the data.
-		
-		(Save only temporary?)
+		\begin{itemize}
+			\item The user should be able to request a quote in less than 5 minutes, this is easily achieved by means of the Facebook login and will only be user-network dependent.
+			\item Once the REST API call is made it saves the users data in our database, increasing the efficiency of future requests and processing of the data.
+		\end{itemize}
+		 
 		\subsubsection{Security}
-		Security is our most important architectural requirement. User's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties. Only authorized persons will have access to the generated profile and access to the database will need to be restricted to the highest authority.
+		\begin{itemize}
+			\item Security is our most important architectural requirement. User's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties.
+			\item Only authorized persons will have access to the generated profile and access to the database will need to be restricted to the highest authority.
+		\end{itemize}
 		\subsubsection{Scalability}
-		Since this project is a web-solution the possibility of multiple concurrent users should be considered. The server should account for a vast amount of concurrent users.
+		\begin{itemize}
+			\item Since this project is a web-solution the possibility of multiple concurrent users should be considered.
+			\item The server should account for a vast amount of concurrent users.
+			\item As per integrability, The ability to change the risk analysis algorithm as needed should be considered to a future scalable solution.
+		\end{itemize}
+
+		
 		\subsubsection{Integrability}
-		The project will integrate with Facebook mainly as the primary data provider.
-		A Facebook approved login button on our website will allow access to the information requested. The ability to integrate with other social media should be considered and modularized accordingly as to ensure future integration of other social media platforms.
-		Further integration includes the connection from the website to the profiling engine and back to the website as a report.
-		\\
-		\\
-		--(Template recommends these further)
+		\begin{itemize}
+			\item The project will integrate with Facebook mainly as the primary data provider.
+			\item A Facebook approved login button on our website will allow access to the information requested. 
+			\item The ability to integrate with other social media should be considered and modularized accordingly as to ensure future integration of other social media platforms. 
+		\item The ability to change the risk analysis algorithm as needed should be considered.
+		\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
+		\end{itemize}		
 		\subsubsection{Reliability}
-		\subsubsection{Flexibility}
+		Since our platform is mainly web-based the platform as a service (PaaS) offered by Heroku hosting will ensure the website is always up to date and reliable.
 		\subsubsection{Maintainability}
+		The system will make use of a database with massive amounts of data, to ensure optimal performance this data will need to be maintained and normalised on a regular basis.
 		\subsubsection{Auditability}
+		\begin{itemize}
+			\item All actions performed in the system should be traceable to the user that performed them.
+			\item The user's IP  will be logged as to have a form of accountability in the persistence of the data.
+		\end{itemize}
 		\subsubsection{Cost}
+		The majority of our platform is open-source except for:
+		\begin{itemize}
+			\item Heroku hosting (as mentioned in constraints)
+			\item Travis CI (Commercial Version)		
+		\end{itemize}
 		\subsubsection{Usability}
+		\begin{itemize}
+			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
+			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to fill various fields in a form for example.
+		\end{itemize}
+		 
 
 		
 
@@ -120,11 +143,17 @@ The system will primarily be web-based. A user visiting the website will request
 	\end{itemize}
 	Other constraints in terms of architecture include:
 	\begin{itemize}
-		\item Browser independent as to ensure any web-client can make use thereof.
+		\item Browser independence as to ensure any web-client can make use thereof.
 		\item Operating system independent.
-		\item The system should be as time efficient as possible to ensure a user gets a quote in less than 5 minutes -- (can state this in quality requirements -Performance, as per proposal pdf)
-		\item No PHP code as per client's request.
-	\end{itemize}
+		\item The system should be as time efficient as possible to ensure a user gets a quote in less than 5 minutes.
+		\end{itemize}
+	Our client specifically constrained the use of:
+		\begin{itemize}
+		\item PHP code in any way.
+		\item MySQL, NoSQL database systems.
+		\item The use of a platform as a services (PaaS) hosting solution Heroku.
+		\end{itemize}
+	
 
 \section{Functional Requirements}
 
