@@ -95,18 +95,31 @@ The system will primarily be web-based. A user visiting the website will request
 		\subsubsection{Scalability}
 		Since this project is a web-solution the possibility of multiple concurrent users should be considered. The server should account for a vast amount of concurrent users.
 		\subsubsection{Integrability}
-		The project will integrate with Facebook mainly as the primary data provider.
-		A Facebook approved login button on our website will allow access to the information requested. The ability to integrate with other social media should be considered and modularized accordingly as to ensure future integration of other social media platforms.
-		Further integration includes the connection from the website to the profiling engine and back to the website as a report.
+		\begin{itemize}
+			\item The project will integrate with Facebook mainly as the primary data provider.
+			\item A Facebook approved login button on our website will allow access to the information requested. 
+			\item The ability to integrate with other social media should be considered and modularized accordingly as to ensure future integration of other social media platforms. 
+		\item The ability to change the risk analysis algorithm as needed should be considered.
+		\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
+		\end{itemize}
 		\\
 		\\
 		--(Template recommends these further)
+		
 		\subsubsection{Reliability}
-		\subsubsection{Flexibility}
+		Since our platform is mainly web-based the platform as a service (PaaS) offered by Heroku hosting will ensure the website is always up to date and reliable.
 		\subsubsection{Maintainability}
+		The system will make use of a database with massive amounts of data, to ensure optimal performance this data will need to be maintained and normalised on a regular basis.
 		\subsubsection{Auditability}
+		 All actions performed in the system should be traceable to the user that performed them and possibly if so, where they performed it from in terms of IP as to have a form of accountability in the persistence of the meta-data. This will be achieved by means of logging.
 		\subsubsection{Cost}
+		The majority of our platform is open-source except for:
+		\begin{itemize}
+			\item Heroku hosting
+			\item Travis CI (Commercial Version)		
+		\end{itemize}
 		\subsubsection{Usability}
+		The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use. The Facebook login aims to improve efficiency for the user as this eliminates the need to fill various fields in a form for example.
 
 		
 
