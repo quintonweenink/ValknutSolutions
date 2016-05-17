@@ -80,8 +80,22 @@ The system will primarily be web-based. A user visiting the website will request
 
 \section{Architectural requirements}
 	\subsection{Access channel requirements}
+	\begin{enumerate}
+		\item A user would log in to the system via a Facebook Login button hosted on a website. The Facebook login is achieved via a REST api call to Facebook's servers.
+		\item The login dialogue will ask the user to log into their Facebook account and will redirect to a permission request afterwards. The permission request specifies which data the system will gather from the user's Facebook account.
+		\item The necessary data will be gather and analysed (by the system).
+		\item A report will be generated which will be displayed to the user via a web page.
+	\end{enumerate}
+	Further access channel specification include:
+	\begin{itemize}
+		\item The website will be accessible and optimized for all web-browsers including mobile phone browsers.
+		\item The possibility of developing a mobile application will be considered as per the client's request.
+		\item The website will be accessible via the majority of operating system if such an operating system has access to a supported web-browser.
+	\end{itemize}
+	 
 	
-
+	
+	
 	\subsection{Quality requirements}
 		\subsubsection{Performance}
 		\begin{itemize}
