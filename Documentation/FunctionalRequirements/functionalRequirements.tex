@@ -81,6 +81,7 @@ The system will primarily be web-based. A user visiting the website will request
 \section{Architectural requirements}
 	\subsection{Access channel requirements}
 	
+
 	\subsection{Quality requirements}
 		\subsubsection{Performance}
 		\begin{itemize}
@@ -127,16 +128,28 @@ The system will primarily be web-based. A user visiting the website will request
 		\subsubsection{Usability}
 		\begin{itemize}
 			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
-			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to fill various fields in a form for example.
+			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to fill various fields into a form for example.
 		\end{itemize}
 		 
 
 		
 
 	\subsection{Integration requirements}
+		\subsubsection{API specifications}	
+		\subsubsection{Protocols}
+		The system will include the use of these protocols:
+		%(CAN POSSIBLY LINK THE RFC's TO LOOK FLASHY)
+		\begin{itemize}
+			\item HTTP/HTTPS - (Secure) Hypertext Transfer Protocol
+			\item TCP/IP - Transmission Control Protocol/ Internet Protocol
+			\item FTP(Possibly) - File Transfer Protocol
+			\item SSL - Secure Socket Layer 
+		\end{itemize}
+		\subsubsection{Integration Quality Requirements}
+
 	
 	\subsection{Architecture Constraints}
-	The client limited our development stack technologies to:
+	Our client limited our development stack technologies to:
 	\begin{itemize}
 		\item An ASP.net web solution with a Microsoft SQL Server database system.
 		\item A NodeJS web solution with a PostgreSQL database system.
