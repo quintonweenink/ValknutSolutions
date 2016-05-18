@@ -81,10 +81,11 @@ The system will primarily be web-based. A user visiting the website will request
 \section{Architectural requirements}
 	\subsection{Access channel requirements}
 	\begin{enumerate}
-		\item A user would log in to the system via a Facebook Login button hosted on a website. The Facebook login is achieved via a REST api call to Facebook's servers.
+		\item A user would log in to the system via a Facebook Login button hosted on our website. The Facebook login is achieved via a REST api call to Facebook's servers.
 		\item The login dialogue will ask the user to log into their Facebook account and will redirect to a permission request afterwards. The permission request specifies which data the system will gather from the user's Facebook account.
-		\item The necessary data will be gather and analysed (by the system).
+		\item The necessary data will be gathered and analysed (by the system).
 		\item A report will be generated which will be displayed to the user via a web page.
+		\item Further options will be accessible via this web page. 
 	\end{enumerate}
 	Further access channel specification include:
 	\begin{itemize}
@@ -93,8 +94,6 @@ The system will primarily be web-based. A user visiting the website will request
 		\item The website will be accessible via the majority of operating system if such an operating system has access to a supported web-browser.
 	\end{itemize}
 	 
-	
-	
 	
 	\subsection{Quality requirements}
 		\subsubsection{Performance}
@@ -152,12 +151,20 @@ The system will primarily be web-based. A user visiting the website will request
 		\subsubsection{API specifications}	
 		\subsubsection{Protocols}
 		The system will include the use of these protocols:
-		%(CAN POSSIBLY LINK THE RFC's TO LOOK FLASHY)
 		\begin{itemize}
 			\item HTTP/HTTPS - (Secure) Hypertext Transfer Protocol
 			\item TCP/IP - Transmission Control Protocol/ Internet Protocol
 			\item FTP(Possibly) - File Transfer Protocol
 			\item SSL - Secure Socket Layer 
+		\end{itemize}
+		The request for comment pages of these protocols can be accessed via:
+		\begin{itemize}
+			\item\href{https://tools.ietf.org/html/rfc2616}{HTTP}
+			\item\href{https://tools.ietf.org/html/rfc2660}{HTTPS}
+			\item\href{https://www.ietf.org/rfc/rfc793.txt}{TCP}
+			\item\href{http://www.ietf.org/rfc/rfc0791.txt}{IP}
+			\item\href{https://www.ietf.org/rfc/rfc959.txt}{FTP}
+			\item\href{https://tools.ietf.org/html/rfc6101}{SSL}
 		\end{itemize}
 		\subsubsection{Integration Quality Requirements}
 
