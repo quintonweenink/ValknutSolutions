@@ -144,6 +144,7 @@ The system will primarily be web-based. A user visiting the website will request
 		\begin{itemize}
 			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
 			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to fill various fields into a form for example.
+			\item Further integration with the Facebook ad system will increase usability even more as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 		\end{itemize}
 		 
 
@@ -170,23 +171,25 @@ The system will primarily be web-based. A user visiting the website will request
 
 	
 	\subsection{Architecture Constraints}
-	Our client limited our development stack technologies to:
+	Our client limited our technologies to:
 	\begin{itemize}
 		\item An ASP.net web solution with a Microsoft SQL Server database system.
 		\item A NodeJS web solution with a PostgreSQL database system.
+		\item The use of a platform as a services (PaaS) hosting solution, Heroku.
+		\item We have the freedom to use the Facebook SDK in any language except for PHP as mentioned below.
 	\end{itemize}
+	Our client specifically constrained the use of:
+		\begin{itemize}
+		\item PHP code in any way.
+		\item MySQL, NoSQL database systems.
+		\end{itemize}	
 	Other constraints in terms of architecture include:
 	\begin{itemize}
 		\item Browser independence as to ensure any web-client can make use thereof.
 		\item Operating system independent.
 		\item The system should be as time efficient as possible to ensure a user gets a quote in less than 5 minutes.
 		\end{itemize}
-	Our client specifically constrained the use of:
-		\begin{itemize}
-		\item PHP code in any way.
-		\item MySQL, NoSQL database systems.
-		\item The use of a platform as a services (PaaS) hosting solution Heroku.
-		\end{itemize}
+	
 	
 	\section{Initial Architecture Design}
 
