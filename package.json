@@ -1,12 +1,23 @@
 {
   "name": "insuranceprofiling",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "private": true,
   "description": "Insurance profiling from social media",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-handlebars": "^3.0.0",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Test\" && node index.js"
+    "test": "echo \"Test\" && node index.js",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
