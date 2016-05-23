@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Facebook Login JavaScript Example</title>
 <meta charset="UTF-8">
@@ -67,21 +67,31 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-	FB.api('me?fields=about,age_range,bio,birthday,email,first_name,gender,hometown,devices,education', function(response) {
-    document.getElementById('status').innerHTML = JSON.stringify(response);
+	FB.api('me?fields=about,age_range,bio,birthday,email,first_name,gender,hometown,devices,education,picture,cover,music{name}', function(response) {
+ //   document.getElementById('status').innerHTML = JSON.stringify(response);
 	console.log(response);
-	document.getElementById('status').innerHTML += '<h3> See console <\h3>';
-/*	document.getElementById('status').innerHTML += 'ID '+response.id
-	+'<br>Name '+ response.name 
-	+ '<br>Birthday '+ response.birthday 
-	+'<br>Bio '+ response.bio 
-	+ '<br>Email ' + response.email 
-	+ '<br>Age ' + response.age_range.min
-	+ '<br>Gender '+ response.gender 
-	+'<br>About '+ response.about
-	+ '<br>Devices ' + response.devices[0].os
-	+ '<br>Education ' + response.education 
-	+ '<br>Currency ' + response.currency; */
+//	document.getElementById('status').innerHTML += '<h3> See console <\h3>';
+	document.getElementById('status').innerHTML =
+	 'ID '+response.id
+	+ '<br>Name: '+ response.first_name 
+	+ '<br> <img src="'+ response.cover.source + '" width="200" height="128"">'
+	+ '<br> <img src="'+ response.picture.data.url +'">'
+	+ '<br>Birthday: '+ response.birthday 
+	+ '<br>Bio: '+ response.bio 
+	+ '<br>Email: ' + response.email 
+	+ '<br>Age: ' + response.age_range.min
+	+ '<br>Gender: '+ response.gender 
+	+ '<br>Devices: ' + response.devices[0].os
+	+ '<br>School: ' + response.education[0].school.name
+	+ '<br>Hometown: ' + response.hometown.name
+	+ '<br>Eduction continued: ' + response.education[1].school.name
+	 + '<br> Music: <br> ';
+	// 	for(var i=0;i<response.music.data.length;i++)
+	// {
+	//       document.getElementById('status').innerHTML +=
+	//       response.music.data[i].name + '<br>';
+	// }
+
 //https://developers.facebook.com/tools/explorer/145634995501895/
 	
 });
