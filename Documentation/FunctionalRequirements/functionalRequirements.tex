@@ -149,7 +149,10 @@ The system will primarily be web-based. A user visiting the website will request
 		 
 
 	\subsection{Integration requirements}
-		\subsubsection{API specifications}	
+		\subsubsection{API specifications}
+			The use of API will be the API provided by Facebook. Depending on which technology our client requires us to use we will use the Facebook API for that technology.\\
+			Facebook has APIs for almost every technology/language. If they do not have an API for that technology/language they refer you to third party plugins for the technology or language that you want to use.\\
+			There is always the method of using the standard HTTP web request to gain access to the Facebook servers. The only thing left in this method of interacting with the API will be to parse the JSON string that will be returned by the Facebook server. It is also possible to get the access token using this method (a string of characters giving you access to a persons facebook account with the permissions specified).
 		\subsubsection{Protocols}
 		The system will include the use of these protocols:
 		\begin{itemize}
