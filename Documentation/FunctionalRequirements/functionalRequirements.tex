@@ -9,6 +9,7 @@
 \usepackage{multicol}
 \usepackage{caption}
 \usepackage{hyperref}
+\usepackage{listings}
 
 \usepackage{titlesec}
 
@@ -161,19 +162,86 @@ The system will primarily be web-based. A user visiting the website will request
 			Regarding the access token a User Access Token should be used. This User Access Token should also have the longest lifetime possible to be able to update user data for as long as possible.
 
 			Seeing as we are using technologies that do not support the SDKs (Android, IOS, Javascript) we will be building a login flow with the use of \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow}{redirects}.\\
+
 			Building a login flow
 			\begin{itemize}
-				\item Check login status
-					Checking if the user is currently logged in or not
-				\item Logging peopole in
-					The method of how to log people in
-				\item Confirming identity
-					Making sure the identity of our application is correct to prevent cross site scripting
-				\item Storing access tokens \& login status
-					To be able to access the users account at a later time to update data to our database
-				\item Logging people out
-					Once we have updated our database we should log the user out.
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#checklogin}{Check login status}
+					\begin{itemize}
+						\item Have to create own way of checking if a user is logged in (ie. an indicator)
+						\item When there is no indicator user is presumed to be logged out.
+						\item If user is logged out it should ask them to log back in.
+					\end{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#login}{Logging peopole in}
+					\begin{itemize}
+						\item Invoking the login dialog
+							\begin{itemize}
+								\item
+									\begin{verbatim}
+									https://www.facebook.com/dialog/oauth?
+									client_id={app-id}
+									&redirect_uri={redirect-uri}
+									&response_type=code&state={app-generated-string}
+									\end{verbatim}
+								\item Extra parameter to look into will be to add the `state' parameter to guard against Cross-site Request Forgery.
+							\end{itemize}
+						\item Handling login dialog response
+							\begin{itemize}
+								\item The access token will be parameters appended to the redirect URL
+								\begin{verbatim}
+									{redirect-URI}#access_token=ACCESS_TOKEN...
+								\end{verbatim}
+								\item The access token is then read from the parameters and can be used to fetch the data
+							\end{itemize}
+						\item Canceled login
+							\begin{itemize}
+								\item When the user cancels the login process the redirect URI will have these parameteres
+								\begin{verbatim}
+									REDIRECT_URI?
+  									error_reason=user_denied
+  									&error=access_denied
+  									&error_description=The+user+denied+your+request.
+								\end{verbatim}
+							\end{itemize}
+					\end{itemize}
+
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#confirm}{Confirming identity}
+					\begin{itemize}
+						\item Because we are using redirects of URLs, the data could be tampered with on the client network (insecure WiFi network) \& made-up fragments or parameters can be recieved.
+						\item Need to confirm the response came from the same user we were talking to.
+						\item The 'code' that we recieve will have to be exchanged for an access token to the users profile.
+							\begin{verbatim}
+								https://graph.facebook.com/v2.3/oauth/access_token?
+    								client_id={app-id}
+   									&redirect_uri={redirect-uri}
+   									&client_secret={app-secret}
+   									&code={code-parameter}
+							\end{verbatim}
+						Response recieved if successful is:
+							\begin{verbatim}
+								{
+								  "access_token": {access-token}, 
+								  "token_type": 	{type},
+								  "expires_in":	{seconds-til-expiration}
+								}
+							\end{verbatim}
+					\end{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#token}{Storing access tokens \& login status}
+					\begin{itemize}
+						\item At this point we can make API calls on behalf of the user to retrieve their data from Facebook.
+						\item At this step we should save the users access token to be able to refresh their data at intervals.
+					\end{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#logout}{Logging people out}
+					\begin{itemize}
+						\item When we log out the user from Facebook for any reason we should delete the access token from the database as it will become useless to us.
+					\end{itemize}
 			\end{itemize}
+
+			Access Tokens
+			\begin{itemize}
+				\item The access tokens generated via web logins are short lived but one can convert them to long lived tokens.
+				\item Apps with Standard access to Facebook's Marketing API when using long-lived tokens will recieve long-lived tokens that don't have an expiry time.
+			\end{itemize}
+
 		\subsubsection{Protocols}
 		The system will include the use of these protocols:
 		\begin{itemize}
