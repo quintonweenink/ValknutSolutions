@@ -234,12 +234,22 @@ The system will primarily be web-based. A user visiting the website will request
 					\begin{itemize}
 						\item When we log out the user from Facebook for any reason we should delete the access token from the database as it will become useless to us.
 					\end{itemize}
+				\item On a side not we should never reveal our App-secret to the user. It should only be used on the server side.
 			\end{itemize}
 
-			Access Tokens
+			\href{https://developers.facebook.com/docs/facebook-login/access-tokens}{Access Tokens}
 			\begin{itemize}
 				\item The access tokens generated via web logins are short lived but one can convert them to long lived tokens.
 				\item Apps with Standard access to Facebook's Marketing API when using long-lived tokens will recieve long-lived tokens that don't have an expiry time.
+				\item For security to validate some data we may need to gain App access tokens. These tokens are only for the developers of the application not for general public.
+				\item To generate an app access token:
+					\begin{verbatim}
+						/oauth/access_token?
+					     client_id={app-id}
+					    &amp;client_secret={app-secret}
+					    &amp;grant_type=client_credentials
+					\end{verbatim}
+				\item Once again the app secret should be kept safe and hidden from users
 			\end{itemize}
 
 		\subsubsection{Protocols}
