@@ -6,6 +6,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//Facebook
+var FacebookTokenStrategy = require('passport-facebook-token');
+ 
+passport.use(new FacebookTokenStrategy({
+    clientID: 959936647438530,
+    clientSecret: a1b4088df1dc99305fee1fa09c2c6e61
+  }, function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({facebookId: profile.id}, function (error, user) {
+      return done(error, user);
+    });
+  }
+));
+
 var routes = require('./routes/routes');
 var users = require('./routes/users');
 
