@@ -45,7 +45,8 @@ jspm_packages
 *.fls
 *.out
 *.toc
-*.fmt
+*.fmt 
+*.pdf
 
 ## Intermediate documents:
 *.dvi
