@@ -72,78 +72,83 @@
 	\tableofcontents
 	\cleardoublepage
 \section{Introduction}
-This document contains information on the development of a system to generate insurance profiles based on social media inputs. The project is being developed for Retrorabbit as part of the COS301 module at the University Of Pretoria.
+This document contains information on the development of a system to generate insurance profiles based on social media inputs. The project is being developed for RetroRabbit as part of the COS301 module at the University Of Pretoria.
 \section{Vision}
-The primary focus of this project is to generate quick, reliable insurance/risk profiles from user's social media information. The profile generated will be ideally used for portable possession insurance (cellphones, laptops, purses). Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project seek the means to eliminate the need for vast amounts of data gathering by using a user's social media information. A user would log into our system, provide the necessary permissions and our engine will generate a risk profile for that person based on certain criteria. The generated profile can assist insurers to create more accurate risk profiles or clients to get personally tailored quotes, instantly.
+The primary focus of this project is to generate quick, reliable insurance profiles/risk analysis from a user's social media information. The profile generated will ideally be used for portable possession insurance (cellphones, laptops, purses). Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project aims to eliminate the need for vast amounts of data gathering by utilising a user's social media information. A user would be able to log into our system, provide the necessary permissions and our engine will generate a risk profile for that person based on certain criteria. The generated profile can assist insurers to create more accurate risk profiles or enable clients to get personally tailored quotes almost instantly.
 \section{Scope of system}
-The system will primarily be web-based. A user visiting the website will request a quote and be prompted to log into Facebook. A service will then acquire data from the user’s Facebook profile. This data will be fed into the profiling engine, which will process the data to create a risk profile. This risk profile will be used to generate a quote, which will then be displayed to the user on the website.
+The system will primarily be web-based. A user visiting the website will request a quote and be prompted to log into Facebook. A service will then gather data from the user’s Facebook profile. The profiling engine will then process the data in order to create a risk profile. This risk profile will be used to generate a quote, which will then be displayed to the user on the website.
 
-\section{Architectural requirements}
+\section{Architectural Requirements}
 	\subsection{Access channel requirements}
 	\begin{enumerate}
-		\item A user would log in to the system via a Facebook Login button hosted on our website. The Facebook login is achieved via a REST api call to Facebook's servers.
-		\item The login dialogue will ask the user to log into their Facebook account and will redirect to a permission request afterwards. The permission request specifies which data the system will gather from the user's Facebook account.
-		\item The necessary data will be gathered and analysed (by the system).
+		\item A user would log in to the system via a Facebook Login button hosted on our website. The Facebook login is achieved via a REST API call to Facebook's servers.
+		\item A login dialogue will ask the user to log into their Facebook account and will redirect to a permission request afterwards. The permission request specifies what data the system will gather from the user's Facebook account.
+		\item The necessary data will be gathered and analysed by the system.
 		\item A report will be generated which will be displayed to the user via a web page.
 		\item Further options will be accessible via this web page. 
-		\item The integration with Facebook advertisements will also be considered as this forms part of a different subset of access to the system, not through our website, but through the user's Facebook dashboard.
+		\item Integration with Facebook advertisements will also be considered, as this forms part of a different method of access to the system, not through our website, but through the user's Facebook dashboard.
 	\end{enumerate}
 	Further access channel specification include:
 	\begin{itemize}
-		\item The website will be accessible and optimized for all web-browsers including mobile phone browsers.
+		\item The website will be accessible from, and optimised for all web-browsers including mobile phone browsers.
 		\item The possibility of developing a mobile application will be considered as per the client's request.
-		\item The website will be accessible via the majority of operating system if such an operating system has access to a supported web-browser.
+		\item The website will be accessible via the majority of operating systems if such an operating system has access to a supported web-browser.
 		\item Facebook advertisement integration will be accessible via the normal Facebook access channels.
 	\end{itemize}
 	 
 	
-	\subsection{Quality requirements}
+	\subsection{Quality Requirements}
 		\subsubsection{Performance}
 		\begin{itemize}
-			\item The user should be able to request a quote in less than 5 minutes, this is easily achieved by means of the Facebook login and will only be user-network dependent.
-			\item Once the REST API call is made it saves the users data in our database, increasing the efficiency of future requests and processing of the data.
+			\item A user should be able to request a quote in less than 5 minutes. This is easily achieved by means of the Facebook login and will only be user-network dependent.
+			\item Once the REST API call is made, it saves the users data in our database, increasing the efficiency of future requests and processing of the data.
 		\end{itemize}
 		 
 		\subsubsection{Security}
 		\begin{itemize}
-			\item Security is our most important architectural requirement. User's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties.
-			\item Only authorized persons will have access to the generated profile and access to the database will need to be restricted to the highest authority.
+			\item Security is our most important architectural requirement. A user's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties, and properly secured.
+			\item Only authorised persons will have access to the generated profile and access to the database will need to be restricted to the highest authority.
 		\end{itemize}
 		\subsubsection{Scalability}
 		\begin{itemize}
-			\item Since this project is a web-solution the possibility of multiple concurrent users should be considered.
+			\item Since this project is a web-based solution, the possibility of multiple concurrent users should be considered.
 			\item The server should account for a vast amount of concurrent users.
-			\item As per integrability, The ability to change the risk analysis algorithm as needed should be considered to a future scalable solution.
+			\item As per integratability, the ability to change the risk analysis algorithm as needed should be considered for a future scalable solution.
 		\end{itemize}
 
-		\subsubsection{Integrability}
+		\subsubsection{Integratability}
 		\begin{itemize}
-			\item The project will integrate with Facebook mainly as the primary data provider.
+			\item The project will integrate with Facebook and utilise it as the primary data provider.
 			\item A Facebook approved login button on our website will allow access to the information requested. 
-			\item The ability to integrate with other social media should be considered and modularized accordingly as to ensure future integration of other social media platforms. 
-		\item The ability to change the risk analysis algorithm as needed should be considered.
-		\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
-		\item Further integration might include the use of Facebook's advertisements. Instead of logging into our website the user will be able to generate a report directly from their Facebook dashboard.
+			\item The ability to integrate with other social media platforms should be considered and modularized accordingly, to ensure seamless future integration. 
+			\item The ability to change the risk analysis algorithm as needed should be considered.
+			\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
+			\item Further integration might include the use of Facebook's advertisements. Instead of logging into our website the user will be able to generate a report directly from their Facebook dashboard.
 		\end{itemize}		
+
 		\subsubsection{Reliability}
-		Since our platform is mainly web-based the platform as a service (PaaS) offered by Heroku hosting will ensure the website is always up to date and reliable.
+			Since our solution is mainly web-based, the platform as a service (PaaS) offered by Heroku will ensure the website is always up to date and reliable.
+
 		\subsubsection{Maintainability}
-		The system will make use of a database with massive amounts of data, to ensure optimal performance this data will need to be maintained and normalised on a regular basis.
+			The system will make use of a database with massive amounts of data. To ensure optimal performance, this data will need to be maintained and normalised on a regular basis.
+
 		\subsubsection{Auditability}
 		\begin{itemize}
 			\item All actions performed in the system should be traceable to the user that performed them.
 			\item The user's IP  will be logged as to have a form of accountability in the persistence of the data.
 		\end{itemize}
+
 		\subsubsection{Cost}
-		The majority of our platform is open-source except for:
+			The majority of our platform is open-source, except for:
 		\begin{itemize}
 			\item Heroku hosting if the commercial version is used
 			\item Travis CI if commercial version is used
 		\end{itemize}
+
 		\subsubsection{Usability}
 		\begin{itemize}
 			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
-			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to fill various fields into a form for example.
+			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to manually fill in various fields on a form.
 			\item Further integration with the Facebook ad system will increase usability even more as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 		\end{itemize}
 		 
@@ -154,7 +159,7 @@ The system will primarily be web-based. A user visiting the website will request
 		The system will include the use of these protocols:
 		\begin{itemize}
 			\item HTTP/HTTPS - (Secure) Hypertext Transfer Protocol
-			\item TCP/IP - Transmission Control Protocol/ Internet Protocol
+			\item TCP/IP - Transmission Control Protocol/Internet Protocol
 			\item FTP(Possibly) - File Transfer Protocol
 			\item SSL - Secure Socket Layer 
 		\end{itemize}
@@ -185,8 +190,8 @@ The system will primarily be web-based. A user visiting the website will request
 		\end{itemize}	
 	Other constraints in terms of architecture include:
 	\begin{itemize}
-		\item Browser independence as to ensure any web-client can make use thereof.
-		\item Operating system independent.
+		\item Browser independence, to ensure any web-client can make use thereof.
+		\item Operating system independence.
 		\item The system should be as time efficient as possible to ensure a user gets a quote in less than 5 minutes.
 		\end{itemize}
 	
