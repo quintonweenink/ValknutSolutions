@@ -148,11 +148,32 @@ The system will primarily be web-based. A user visiting the website will request
 		\end{itemize}
 		 
 
+
+
 	\subsection{Integration requirements}
 		\subsubsection{API specifications}
-			The use of API will be the API provided by Facebook. Depending on which technology our client requires us to use we will use the Facebook API for that technology.\\
-			Facebook has APIs for almost every technology/language. If they do not have an API for that technology/language they refer you to third party plugins for the technology or language that you want to use.\\
+			The use of API will be the API provided by Facebook. Depending on which technology our client requires us to use we will use the Facebook API for that technology.
+
+			Facebook has APIs for almost every technology/language. If they do not have an API for that technology/language they refer you to third party plugins for the technology or language that you want to use.
+
 			There is always the method of using the standard HTTP web request to gain access to the Facebook servers. The only thing left in this method of interacting with the API will be to parse the JSON string that will be returned by the Facebook server. It is also possible to get the access token using this method (a string of characters giving you access to a persons facebook account with the permissions specified).
+
+			Regarding the access token a User Access Token should be used. This User Access Token should also have the longest lifetime possible to be able to update user data for as long as possible.
+
+			Seeing as we are using technologies that do not support the SDKs (Android, IOS, Javascript) we will be building a login flow with the use of \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow}{redirects}.\\
+			Building a login flow
+			\begin{itemize}
+				\item Check login status
+					Checking if the user is currently logged in or not
+				\item Logging peopole in
+					The method of how to log people in
+				\item Confirming identity
+					Making sure the identity of our application is correct to prevent cross site scripting
+				\item Storing access tokens \& login status
+					To be able to access the users account at a later time to update data to our database
+				\item Logging people out
+					Once we have updated our database we should log the user out.
+			\end{itemize}
 		\subsubsection{Protocols}
 		The system will include the use of these protocols:
 		\begin{itemize}
