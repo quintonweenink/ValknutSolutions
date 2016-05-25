@@ -21,13 +21,13 @@ module.exports = function(app, passport){
 	app.get('/auth/facebook',
 	  passport.authenticate('facebook', {scope: ['email']}));
 
-	//Fabook callback to application
+	//Fabook callback to application (not retruning to here)
 	app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/' }),
         function(req, res) {
         	console.log(res);
             res.send('#/info');
-        });
+    	});
  
 
 };
