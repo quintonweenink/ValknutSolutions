@@ -17,9 +17,11 @@ module.exports = function(app, passport){
 		res.send('Something happend');
 	});
 
+	//Facebook authentication
 	app.get('/auth/facebook',
 	  passport.authenticate('facebook', {scope: ['email']}));
 
+	//Fabook callback to application
 	app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/' }),
         function(req, res) {

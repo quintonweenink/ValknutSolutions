@@ -5,24 +5,19 @@ var configAuth = require('./auth');
 
 module.exports = function(passport){
 
-passport.serializeUser(function(user, done){
-		done(null, null);
-	});
 
-passport.deserializeUser(function(id, done){
-			done(err, done);
-	});
-
+//Added this working strategy
 passport.use(new FacebookStrategy({
     clientID: configAuth.fb.appId,
     clientSecret: configAuth.fb.appSecret,
     callbackURL: configAuth.fb.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
+  		//async request (non blocking)
   		process.nextTick(function(){
   			console.log("Access Token: " + accessToken + " Id: " + profile.id + " Last name: " + profile.displayName);
+  			return "Access Token: " + accessToken + " Id: " + profile.id + " Last name: " + profile.displayName;
   		});
-  		console.log("complete");
   }
 ));
 
