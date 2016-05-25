@@ -105,7 +105,7 @@ The system will primarily be web-based. A user visiting the website will request
 			\item Once the REST API call is made, it saves the users data in our database, increasing the efficiency of future requests and processing of the data.
 		\end{itemize}
 		 
-		\subsubsection{Security}
+		\subsubsection{Security}\label{subsubsec:security}
 		\begin{itemize}
 			\item Security is our most important architectural requirement. A user's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties, and properly secured.
 			\item Only authorised persons will have access to the generated profile and access to the database will need to be restricted to the highest authority.
@@ -117,7 +117,7 @@ The system will primarily be web-based. A user visiting the website will request
 			\item As per integratability, the ability to change the risk analysis algorithm as needed should be considered for a future scalable solution.
 		\end{itemize}
 
-		\subsubsection{Integratability}
+		\subsubsection{Integratability}\label{subsubsec:integratability}
 		\begin{itemize}
 			\item The project will integrate with Facebook and utilise it as the primary data provider.
 			\item A Facebook approved login button on our website will allow access to the information requested. 
@@ -152,9 +152,13 @@ The system will primarily be web-based. A user visiting the website will request
 			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to manually fill in various fields on a form.
 			\item Further integration with the Facebook ad system will increase usability even more as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 		\end{itemize}
+		\subsubsection{Flexibility}
+		\begin{itemize}
+			\item The system must be usable on any internet browser (including mobile phone browsers). 
+			\item The system must include the ability to change the risk analysis algorithm. Insurance profilers can use this to their advantage to generate more thorough risk profiles. 
+		\end{itemize}
+		
 		 
-
-
 
 	\subsection{Integration requirements}
 		\subsubsection{API specifications}
@@ -275,6 +279,14 @@ The system will primarily be web-based. A user visiting the website will request
 			\item\href{https://tools.ietf.org/html/rfc6101}{SSL}
 		\end{itemize}
 		\subsubsection{Integration Quality Requirements}
+		As mentioned in \ref{subsubsec:integratability}, integration with Facebook will be a major feature, as such this integration is subject to quality requirements in the form of:
+		\begin{itemize}
+			\item Reliability - The Facebook API server must be available at all times as this forms a major part of the system.
+			\item Auditability - The use of the Facebook developer application ID allows for auditability as to the use of the Facebook API in our system. The developer application ID allows Facebook to obtain information on the current use of their API with regards to our system.
+			\item Performance - Our system's performance in certain areas, are limited to the use of the Facebook API. The API system must respond before our system can analyse the data.
+			\item Security - Facebook's API has security measures in place to ensure the user's data isn't access without their consent. This consent is granted by means of a permission request to the user before we can obtain any information. The safeguard of this information is a major concern as mentioned in \ref{subsubsec:security}
+			\item Maintainability - The system must be maintained on a bi-yearly basis as to ensure the latest version of the API is used and no deprecated functions are used. The use of deprecated functions can cause problems in future use of the system.
+		\end{itemize}
 
 	
 	\subsection{Architecture Constraints}
