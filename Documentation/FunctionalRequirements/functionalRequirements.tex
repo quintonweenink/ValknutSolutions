@@ -9,6 +9,7 @@
 \usepackage{multicol}
 \usepackage{caption}
 \usepackage{hyperref}
+\usepackage{listings}
 
 \usepackage{titlesec}
 
@@ -54,7 +55,7 @@
 				\item 13054903 - Charl Jansen van Vuuren 
 				\item 10297902 - Bernhard Schuld      
 				\item 13044924 - Kevin Heritage
-				\item 	- Quinton Weenink
+				\item 13176545 - Quinton Weenink
 			\end{itemize}
 			}
 		\textsc{\large  Department of Computer Science, University of Pretoria}\\
@@ -101,10 +102,10 @@ The system will primarily be web-based. A user visiting the website will request
 		\subsubsection{Performance}
 		\begin{itemize}
 			\item A user should be able to request a quote in less than 5 minutes. This is easily achieved by means of the Facebook login and will only be user-network dependent.
-			\item Once the REST API call is made, it saves the users data in our database, increasing the efficiency of future requests and processing of the data.
+			\item Once the REST API call is made, it saves the user's data in our database, increasing the efficiency of future requests and processing of the data.
 		\end{itemize}
 		 
-		\subsubsection{Security}
+		\subsubsection{Security}\label{subsubsec:security}
 		\begin{itemize}
 			\item Security is our most important architectural requirement. A user's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties, and properly secured.
 			\item Only authorised persons will have access to the generated profile and access to the database will need to be restricted to the highest authority.
@@ -116,7 +117,7 @@ The system will primarily be web-based. A user visiting the website will request
 			\item As per integratability, the ability to change the risk analysis algorithm as needed should be considered for a future scalable solution.
 		\end{itemize}
 
-		\subsubsection{Integratability}
+		\subsubsection{Integratability}\label{subsubsec:integratability}
 		\begin{itemize}
 			\item The project will integrate with Facebook and utilise it as the primary data provider.
 			\item A Facebook approved login button on our website will allow access to the information requested. 
@@ -151,10 +152,115 @@ The system will primarily be web-based. A user visiting the website will request
 			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to manually fill in various fields on a form.
 			\item Further integration with the Facebook ad system will increase usability even more as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 		\end{itemize}
+		\subsubsection{Flexibility}
+		\begin{itemize}
+			\item The system must be usable on any internet browser (including mobile phone browsers). 
+			\item The system must include the ability to change the risk analysis algorithm. Insurance profilers can use this to their advantage to generate more thorough risk profiles. 
+		\end{itemize}
+		
 		 
 
 	\subsection{Integration requirements}
-		\subsubsection{API specifications}	
+		\subsubsection{API specifications}
+			The use of API will be the API provided by Facebook. Depending on which technology our client requires us to use we will use the Facebook API for that technology.
+
+			Facebook has APIs for almost every technology/language. If they do not have an API for that technology/language they refer you to third party plugins for the technology or language that you want to use.
+
+			There is always the method of using the standard HTTP web request to gain access to the Facebook servers. The only thing left in this method of interacting with the API will be to parse the JSON string that will be returned by the Facebook server. It is also possible to get the access token using this method (a string of characters giving you access to a persons facebook account with the permissions specified).
+
+			Regarding the access token, a User Access Token should be used. This User Access Token should also have the longest lifetime possible to be able to update user data for as long as possible.
+
+			Seeing as we are using technologies that do not support the SDKs (Android, IOS, Javascript) we will be building a login flow with the use of \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow}{redirects}.\\
+
+			Building a login flow
+			\begin{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#checklogin}{Check login status}
+					\begin{itemize}
+						\item We have to create our own way of checking if a user is logged in (ie. an indicator)
+						\item When there is no indicator, a user is presumed to be logged out.
+						\item If a user is logged out, the system should ask them to log back in.
+					\end{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#login}{Logging people in}
+					\begin{itemize}
+						\item Invoking the login dialog
+							\begin{itemize}
+								\item
+									\begin{verbatim}
+									https://www.facebook.com/dialog/oauth?
+									client_id={app-id}
+									&redirect_uri={redirect-uri}
+									&response_type=code&state={app-generated-string}
+									\end{verbatim}
+								\item An extra parameter to look into will be the `state' parameter, to guard against Cross-site Request Forgery.
+							\end{itemize}
+						\item Handling login dialog response
+							\begin{itemize}
+								\item The access token will be a parameter that is appended to the redirect URL
+								\begin{verbatim}
+									{redirect-URI}#access_token=ACCESS_TOKEN...
+								\end{verbatim}
+								\item The access token parameter is then read from the URL and can be used to fetch the data
+							\end{itemize}
+						\item Canceled login
+							\begin{itemize}
+								\item When the user cancels the login process the redirect URI will have these parameteres
+								\begin{verbatim}
+									REDIRECT_URI?
+  									error_reason=user_denied
+  									&error=access_denied
+  									&error_description=The+user+denied+your+request.
+								\end{verbatim}
+							\end{itemize}
+					\end{itemize}
+
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#confirm}{Confirming identity}
+					\begin{itemize}
+						\item Because we are using redirecting of URLs, the data could be tampered with on the client network (insecure WiFi network) \& made-up fragments or parameters can be recieved.
+						\item We need to confirm the response came from the same user we were talking to.
+						\item The 'code' that we recieve will have to be exchanged for an access token to the user's profile.
+							\begin{verbatim}
+								https://graph.facebook.com/v2.3/oauth/access_token?
+    								client_id={app-id}
+   									&redirect_uri={redirect-uri}
+   									&client_secret={app-secret}
+   									&code={code-parameter}
+							\end{verbatim}
+						Response recieved if successful:
+							\begin{verbatim}
+								{
+								  "access_token": {access-token}, 
+								  "token_type": 	{type},
+								  "expires_in":	{seconds-til-expiration}
+								}
+							\end{verbatim}
+					\end{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#token}{Storing access tokens \& login status}
+					\begin{itemize}
+						\item At this point we can make API calls on behalf of the user to retrieve their data from Facebook.
+						\item During this step we should save the users access token to be able to refresh their data at intervals.
+					\end{itemize}
+				\item \href{https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow#logout}{Logging people out}
+					\begin{itemize}
+						\item When the user is logged out from Facebook for any reason we should delete the access token from the database as it will become useless to us.
+					\end{itemize}
+				\item On a side note, we should never reveal our App-secret to the user. It should only be used on the server side.
+			\end{itemize}
+
+			\href{https://developers.facebook.com/docs/facebook-login/access-tokens}{Access Tokens}
+			\begin{itemize}
+				\item The access tokens generated via web logins are short-lived, but one can convert them to long-lived tokens.
+				\item Apps with Standard access to Facebook's Marketing API when using long-lived tokens will recieve long-lived tokens that don't have an expiry time.
+				\item For security to validate some data we may need to gain App access tokens. These tokens are only for the developers of the application not for general public.
+				\item To generate an app access token:
+					\begin{verbatim}
+						/oauth/access_token?
+					     client_id={app-id}
+					    &amp;client_secret={app-secret}
+					    &amp;grant_type=client_credentials
+					\end{verbatim}
+				\item Once again the app secret should be kept safe and hidden from users
+			\end{itemize}
+
 		\subsubsection{Protocols}
 		The system will include the use of these protocols:
 		\begin{itemize}
@@ -173,6 +279,14 @@ The system will primarily be web-based. A user visiting the website will request
 			\item\href{https://tools.ietf.org/html/rfc6101}{SSL}
 		\end{itemize}
 		\subsubsection{Integration Quality Requirements}
+		As mentioned in \ref{subsubsec:integratability}, integration with Facebook will be a major feature, as such this integration is subject to quality requirements in the form of:
+		\begin{itemize}
+			\item Reliability - The Facebook API server must be available at all times as this forms a major part of the system.
+			\item Auditability - The use of the Facebook developer application ID allows for auditability as to the use of the Facebook API in our system. The developer application ID allows Facebook to obtain information on the current use of their API with regards to our system.
+			\item Performance - Our system's performance in certain areas, is limited to the use of the Facebook API. The API system must respond before our system can analyse the data.
+			\item Security - Facebook's API has security measures in place to ensure that the user's data isn't accessed without their consent. This consent is granted by means of a permission request to the user before we can obtain any information. The safeguard of this information is a major concern as mentioned in \ref{subsubsec:security}
+			\item Maintainability - The system must be maintained on a bi-yearly basis as to ensure the latest version of the API is used and no deprecated functions are used. The use of deprecated functions can cause problems in future use of the system.
+		\end{itemize}
 
 	
 	\subsection{Architecture Constraints}
