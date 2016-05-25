@@ -26,7 +26,7 @@ module.exports = function(app, passport){
         passport.authenticate('facebook', { failureRedirect: '/' }),
         function(req, res) {
         	console.log(res);
-            //res.send('#/info');
+            res.send('#/info');
         });
  
 
