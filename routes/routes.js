@@ -10,7 +10,7 @@ module.exports = function(app, passport){
 
 	/* GET about page. */
 	app.get('/about', function(req, res, next) {
-	  res.render('about');
+	  res.render('about', {message: 'Victory'});
 	});
 
 	app.get('/info', function(req, res, next){

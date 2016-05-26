@@ -1,0 +1,25 @@
+{
+  "name": "insuranceprofiling",
+  "description": "Insurance profiling from social media",
+  "main": "app.js",
+  "authors": [
+    "Valknut Solutions"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "bower"
+  ],
+  "homepage": "https://github.com/QuintonWeenink/ValknutSolutions",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "Materialize": "materialize#^0.97.6"
+  }
+}
