@@ -35,32 +35,33 @@
 
 	\begin{titlepage}
 		\begin{center}
-		
-			\line(1,0){300}\\
-			[6mm]
+			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			[0.5cm]
 			\huge{
-			Non-Functional Requirements\\
+			Architectural Requirements, Initial Architecture Design and Non-Functional Requirements\\
 			}
 			
 			\line(1,0){300}\\
-			\huge{Project: Insurance profiling from social media\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
 			Client: RetroRabbit} \\
 			\line(1,0){300}\\
-			\huge{Team: Valknut Solutions}
-			
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
 			\large
 			{
 			\begin{itemize}
-			
 				\item 13054903 - Charl Jansen van Vuuren 
 				\item 10297902 - Bernhard Schuld      
 				\item 13044924 - Kevin Heritage
-				\item 13176545 - Quinton Weenink
+				\item 13176545 - Quinton Weenink\\
 			\end{itemize}
 			}
-		\textsc{\large  Department of Computer Science, University of Pretoria}\\
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
 		[0.5cm]
-		\textsc{\large Date}	
+		\textsc{\large \today}\\
 		\end{center}
 
 		%\begin{figure}[H]}
@@ -312,6 +313,84 @@ The system will primarily be web-based. A user visiting the website will request
 	
 	
 	\section{Initial Architecture Design}
+
+	The below mentioned architecture specifies an initial architecture design from a high-level and of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system. 
+
+	\subsection{Architectural tactics}
+
+	Due to the fact that the underlying architecture has of yet not been clearly specified and the investigation into the best suited tactics for this architecture for this architecture can not be concretely concluded. The following is by no means a representation of the implemented tactics but are currently what best helps the system achieve its quality requirements. The bellow listed tactics are currently the main tactics we aim to implements or will be the responsibility of our dependencies.
+	%Bernhard have a look at the above sentence i don't like how it is set out.
+		\subsubsection{Modifiability and Flexibility}
+
+		What is certain is that the above mentioned quality requirements will need to be addressed in a manner which allows for a system that is highly modular and configurable in order to allow the annalists of the data set to properly asses and tweak the tools that we aim to provide to them. 
+
+		\begin{itemize}
+
+			\item Flexibility support: automated builds, automated testing and automated environment configuration
+			\item Service provider flexibility: dependency injection
+			\item Process flexibility: pipes and filters, responsibility localization
+
+		\end{itemize}
+
+		\subsubsection{Accessibility and Integrability}
+
+		\begin{itemize}
+
+			\item Providing access: providing proxies, supporting standard communication protocols (REST calls)
+
+		\end{itemize}
+
+		\subsubsection{Security}
+
+		\begin{itemize}
+
+			\item Resisting attacks: authentication, authorization, minimizing access channels, minimize complexity and enforcing secure defaults
+			\item Detecting attacks: auditing, logging and integrity checking
+			\item Recovering: restore states, dropping
+
+		\end{itemize}
+
+		\subsubsection{Reliability}
+
+		\begin{itemize}
+
+			\item Preventing faults: resource locking, testing framework, contracts based
+			\item Detect faults: logging, deadlock detection and error/exception communication
+			\item Recovery: rollback, backups and passive redundancy
+
+		\end{itemize}
+
+		\subsection{Scalability}
+
+		\begin{itemize}
+
+			\item Resource demand: indexing, paging, query optimization
+
+		\end{itemize}
+
+	\subsection{Architectural components addressing architectural responsibilities}
+
+		\begin{itemize}
+
+		%\item that of providing an environment for specifying and executing reports to a reporting frame-work,
+		\item providing human access channels and external systems web access to the system services to a web services framework such as a custom REST api,
+		\item providing users access through a browser to a web application framework. Node.js has such a framework called express.js or on the other hand .NETs ASP,
+		\item in order to provide hosting for business logic processes an application server will be hosted by Heroku,
+		\item persistence of objects will be stored to a object-relational database management system called PostgreSQL, or in the case of .NET will be be managed by SQLSever,
+		\item the responsibility of providing access to the persistence provider to a persistence API such as node-postgres, or for .NET an EntityFrameworkModel.
+
+
+		\end{itemize}
+
+	\subsection{Infrastructure}
+
+	\subsubsection{Architectural (structural) patterns}
+
+	In order to promote flexibility as well as Testability the pipes and filters pattern will be used. This allows for future development to change up tactics (business logic tactics) and decoupling of different functions. This is crucial in order for the system to remain withing its architectural concern boundaries which will rely heavily on a modular configurable system. This in conjunction with a layered architectural pattern in order to add further access channels with regards to persistence other frameworks will make for a understandable and testable system.
+
+	\subsubsection{Concepts and constraints for application components}
+
+	Application components will not be deployed at the first level of granularity. Any application components will be hosted within the architectural components.
 
 %\section{Functional Requirements}
 
