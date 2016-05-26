@@ -19,6 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "postinstall": "bower install",
     "test": "echo \"Test\" ",
     "start": "node ./bin/www"
   },
