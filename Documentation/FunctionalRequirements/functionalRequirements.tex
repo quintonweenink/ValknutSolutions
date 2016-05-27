@@ -122,7 +122,7 @@ The system will primarily be web-based. A user visiting the website will request
 		\begin{itemize}
 			\item The project will integrate with Facebook and utilise it as the primary data provider.
 			\item A Facebook approved login button on our website will allow access to the information requested. 
-			\item The ability to integrate with other social media platforms should be considered and modularized accordingly, to ensure seamless future integration. 
+			\item The ability to integrate with other social media platforms should be considered and modularised accordingly, to ensure seamless future integration. 
 			\item The ability to change the risk analysis algorithm as needed should be considered.
 			\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
 			\item Further integration might include the use of Facebook's advertisements. Instead of logging into our website the user will be able to generate a report directly from their Facebook dashboard.
@@ -144,14 +144,14 @@ The system will primarily be web-based. A user visiting the website will request
 			The majority of our platform is open-source, except for:
 		\begin{itemize}
 			\item Heroku hosting if the commercial version is used
-			\item Travis CI if commercial version is used
+			\item Travis CI if the commercial version is used
 		\end{itemize}
 
 		\subsubsection{Usability}
 		\begin{itemize}
 			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
 			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to manually fill in various fields on a form.
-			\item Further integration with the Facebook ad system will increase usability even more as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
+			\item Further integration with the Facebook ad system will increase usability even more, as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 		\end{itemize}
 		\subsubsection{Flexibility}
 		\begin{itemize}
@@ -314,25 +314,25 @@ The system will primarily be web-based. A user visiting the website will request
 	
 	\section{Initial Architecture Design}
 
-	The below mentioned architecture specifies an initial architecture design from a high-level and of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system. 
+	The below mentioned architecture specifies an initial architecture design from a high-level, and of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system. 
 
 	\subsection{Architectural tactics}
 
-	Due to the fact that the underlying architecture has of yet not been clearly specified and the investigation into the best suited tactics for this architecture for this architecture can not be concretely concluded. The following is by no means a representation of the implemented tactics but are currently what best helps the system achieve its quality requirements. The bellow listed tactics are currently the main tactics we aim to implements or will be the responsibility of our dependencies.
-	%Bernhard have a look at the above sentence i don't like how it is set out.
+	Due to the fact that the underlying architecture has of yet not been clearly specified, the investigation into the best suited tactics for this architecture can not be concretely concluded. The following is by no means a representation of the implemented tactics but it is currently what best helps the system achieve its quality requirements. The below listed tactics are currently the main tactics we aim to implement or the responsibility of the dependencies we aim to utilise.
+	
 		\subsubsection{Modifiability and Flexibility}
 
-		What is certain is that the above mentioned quality requirements will need to be addressed in a manner which allows for a system that is highly modular and configurable in order to allow the annalists of the data set to properly asses and tweak the tools that we aim to provide to them. 
+		What is certain, is that the above mentioned quality requirements will need to be addressed in a manner which allows for a system that is both highly modular and configurable, in order to allow the analists of the data set to properly asses and tweak the tools that we aim to provide to them. 
 
 		\begin{itemize}
 
 			\item Flexibility support: automated builds, automated testing and automated environment configuration
 			\item Service provider flexibility: dependency injection
-			\item Process flexibility: pipes and filters, responsibility localization
+			\item Process flexibility: pipes and filters, responsibility localisation
 
 		\end{itemize}
 
-		\subsubsection{Accessibility and Integrability}
+		\subsubsection{Accessibility and Integratability}
 
 		\begin{itemize}
 
@@ -344,7 +344,7 @@ The system will primarily be web-based. A user visiting the website will request
 
 		\begin{itemize}
 
-			\item Resisting attacks: authentication, authorization, minimizing access channels, minimize complexity and enforcing secure defaults
+			\item Resisting attacks: authentication, authorisation, minimizing access channels, minimize complexity and enforcing secure defaults
 			\item Detecting attacks: auditing, logging and integrity checking
 			\item Recovering: restore states, dropping
 
@@ -364,7 +364,7 @@ The system will primarily be web-based. A user visiting the website will request
 
 		\begin{itemize}
 
-			\item Resource demand: indexing, paging, query optimization
+			\item Resource demand: indexing, paging, query optimisation
 
 		\end{itemize}
 
@@ -373,11 +373,11 @@ The system will primarily be web-based. A user visiting the website will request
 		\begin{itemize}
 
 		%\item that of providing an environment for specifying and executing reports to a reporting frame-work,
-		\item providing human access channels and external systems web access to the system services to a web services framework such as a custom REST api,
-		\item providing users access through a browser to a web application framework. Node.js has such a framework called express.js or on the other hand .NETs ASP,
-		\item in order to provide hosting for business logic processes an application server will be hosted by Heroku,
-		\item persistence of objects will be stored to a object-relational database management system called PostgreSQL, or in the case of .NET will be be managed by SQLSever,
-		\item the responsibility of providing access to the persistence provider to a persistence API such as node-postgres, or for .NET an EntityFrameworkModel.
+		\item Providing human access channels and external systems web access to the system services which in turn grants access to a web services framework such as a custom REST api,
+		\item Providing users access through a browser to a web application framework. Node.js has such a framework called express.js or .NETs ASP,
+		\item In order to provide hosting for business logic processes, an application server will be hosted by Heroku,
+		\item Persistence of objects will be stored in an object-relational database management system called PostgreSQL, or in the case of .NET, will be be managed by SQLSever,
+		\item The responsibility of providing the persistence provider access to a persistence API such as node-postgres, or for .NET, an EntityFrameworkModel.
 
 
 		\end{itemize}
@@ -386,7 +386,7 @@ The system will primarily be web-based. A user visiting the website will request
 
 	\subsubsection{Architectural (structural) patterns}
 
-	In order to promote flexibility as well as Testability the pipes and filters pattern will be used. This allows for future development to change up tactics (business logic tactics) and decoupling of different functions. This is crucial in order for the system to remain withing its architectural concern boundaries which will rely heavily on a modular configurable system. This in conjunction with a layered architectural pattern in order to add further access channels with regards to persistence other frameworks will make for a understandable and testable system.
+	In order to promote flexibility as well as testability, the pipes and filters pattern will be used. This allows for future development to change tactics (business logic tactics) and allows for the decoupling of different functions. This is crucial in order for the system to remain within its architectural concern boundaries, which will rely heavily on a modular configurable system. This, in conjunction with a layered architectural pattern (in order to add further access channels with regards to persistence other frameworks) will make for a understandable and testable system.
 
 	\subsubsection{Concepts and constraints for application components}
 
