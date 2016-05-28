@@ -1,5 +1,5 @@
 # Insurance profiling
-Insurance profiling from social media
+Insurance profiling from social media (facebook)
 
 ## Prerequisites
 
@@ -8,7 +8,6 @@ You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/) depending on how the first few weeks go we might need to use git flow
 * [Node.js](https://nodejs.org/en/) with [npm](https://www.npmjs.com/)
 * [Bower](http://bower.io/) ! not completed yet
-* [Materialize](http://materializecss.com/)
 
 ## Installation
 
@@ -18,8 +17,7 @@ You will need the following things properly installed on your computer.
 
 ## Running
 
-* `node index.js`
-* `make` makefile  ! not completed yet
+* `npm start`
 
 ## Testing
 
@@ -30,7 +28,6 @@ You will need the following things properly installed on your computer.
 ### Testing
 
 * `npm test`
-* `make test` makefile ! not completed yet
 
 #
                                    /\
