@@ -1,0 +1,39 @@
+{
+  "name": "insuranceprofiling",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Insurance profiling from social media",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "bower": "^1.7.9",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-handlebars": "^3.0.0",
+    "morgan": "~1.6.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "echo \"Test\" ",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuintonWeenink/ValKnutSolutions.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Valknut Solutions",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuintonWeenink/ValKnutSolutions/issues"
+  },
+  "homepage": "https://github.com/QuintonWeenink/ValKnutSolutions#readme"
+}
