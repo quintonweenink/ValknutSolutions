@@ -35,10 +35,9 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
-			[0.5cm]
+		
 			\huge{
-			insertsocialmedia parameter documentation\\
+			Facebook parameter documentation\\
 			}
 			
 			\line(1,0){300}\\
@@ -68,7 +67,133 @@
 	\cleardoublepage
 	\tableofcontents
 	\cleardoublepage
+
 \section{Introduction}
+This document includes information obtainable from the Instagram public API. This information is obtainable by means of a access token with the necessary permissions from the user.
+\section{Parameters obtainable}
+\begin{itemize}
+	\item basic - to read a user’s profile info and media.
+	\item public content - to read any public profile info and media on a user’s behalf
+	\item follower list - to read the list of followers and followed-by users
+	\item comments - to post and delete comments on a user’s behalf
+	\item relationships - to follow and unfollow accounts on a user’s behalf
+	\item likes - to like and unlike media on a user’s behalf
+\end{itemize}
+
+\subsection{User information}\label{userInfo}
+User information obtainable by means of user's info, followed by users, following users
+\begin{itemize}
+	\item Instagram ID
+	\item Username
+	\item Fullname
+	\item Profile Picture url
+	\item Bio
+	\item Website
+	\item Counts like :
+	\begin{itemize}
+		\item Media 
+		\item Follows 
+		\item Followed by
+	\end{itemize}
+	\item Relationship to other users
+	\begin{itemize}
+		\item Requested by
+		\item Followed by
+		\item Blocked by you
+		\item None
+	\end{itemize}
+\end{itemize}
+
+\subsection{Media information}\label{Media}
+Information pertaining to a media item on the user's profile, liked media and recent media
+\begin{itemize}
+	\item Comments (including comment count) see \ref{comment}
+	\item Caption
+	\begin{itemize}
+		\item Created time
+		\item Text
+		\item From which user (including basic user information as mentioned in \ref{userInfo}
+	\end{itemize}
+	\item Likes
+	\item Url to the media
+	\item User who posted image (including basic user information as mentioned in \ref{userInfo}
+	\item Created time
+	\item Low resolution information
+		\begin{itemize}
+		\item Url
+		\item Width
+		\item Height
+	\end{itemize}
+	\item Thumbnail
+	\begin{itemize}
+		\item Url
+		\item Width
+		\item Height
+	\end{itemize}
+	\item Standard resolution
+		\begin{itemize}
+		\item Url
+		\item Width
+		\item Height
+	\end{itemize}
+	\item Type of media
+	\begin{itemize}
+		\item Image
+		\item Video
+	\end{itemize}
+	\item Users tagged in media (including information in \ref{userInfo}
+	\item Filter
+	\item Tags
+	\item Media ID
+	\item Location
+	\begin{itemize}
+		\item Latitude
+		\item Longitude 
+		\item ID
+		\item Street Address
+		\item Name
+	\end{itemize}
+	
+\end{itemize}
+
+\subsection{Comments on Media}\label{comment}
+\begin{itemize}
+	\item Created time
+	\item Text
+	\item From user
+	\begin{itemize}
+		\item Username
+		\item Profile picture
+		\item ID
+		\item Full name
+	\end{itemize}
+\end{itemize}
+\subsection{Likes on Media}
+Information per like 
+\begin{itemize}
+	\item Username
+	\item First Name
+	\item Last name
+	\item Type (user)
+	\item Instagram ID
+\end{itemize}
+
+\subsection{Tags on Media}
+Information per tag
+\begin{itemize}
+	\item Media Count
+	\item Name of tag
+	\item Media information as per \ref{Media}
+\end{itemize}
+
+\subsection{Location information}
+Information per location (tagged or user location) or based on location search
+\begin{itemize}
+	\item Location ID
+	\item Name
+	\item Latitude 
+	\item Longitude
+\end{itemize}
 
 
 	
