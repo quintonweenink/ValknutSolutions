@@ -10,6 +10,8 @@
 \usepackage{caption}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{tabularx}
+
 
 \usepackage{titlesec}
 
@@ -69,24 +71,73 @@
 This document will indicate what information can be collected from Facebook via the Facebook Public API
 \section{Parameters}
 	\subsection{Users}
-		\begin{itemize}
-			\item Lorem
-			\item Ipsum
-		\end{itemize}
-
-	\begin{table}[H]
-	\centering
-	\caption{Truth Table}
-	\label{my-label}
-	\begin{tabular}{|l|l|l|l|l|}
-	\hline
-	$parameter$ & $description$ 	\\ \hline
-	id 				& This document will indicate what information can be collected from Facebook via the Facebook Public API \\
-	name 			& This document will indicate what information can be collected from Facebook via the Facebook Public API \\
-	details 		& This document will indicate what information can be collected from Facebook via the Facebook Public API	\\
-	profilepic 		& This document will indicate what information can be collected from Facebook via the Facebook Public API \\   \hline
-	\end{tabular}
-	\end{table}
+		\begin{table}[H]
+		\centering
+		\caption{User Parameters}
+		\label{my-label}
+		\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		$Parameter$ & $Description$ 	\\ \hline
+		id 				& The id of this person's user account. This ID is unique to each app and cannot be used across different apps \\ \hline
+		about 			& The About Me section of this person's profile \\ \hline
+		admin\textunderscore notes 		& Notes added by viewing page on this person	\\ \hline
+		age\textunderscore range 		& The age segment for this person expressed as a minimum and maximum age. For example, more than 18, less than 21 \\   \hline
+		bio 		& The person's bio \\   \hline
+		birthday 		& The person's birthday. This is a fixed format string, like MM/DD/YYYY. However, people can control who can see the year they were born separately from the month and day so this string can be only the year (YYYY) or the month + day (MM/DD) \\   \hline
+		context 		& Social context for this person \\   \hline
+		cover 		& The person's cover photo \\   \hline
+		currency 		& The person's local currency information \\   \hline
+		devices 			& The list of devices the person is using. This will return only iOS and Android devices \\ \hline
+		education 			& The person's education \\ \hline
+		email 			& The person's primary email address listed on their profile. This field will not be returned if no valid email address is available \\ \hline
+		favourite\textunderscore athletes 		& Athletes the person likes	\\ \hline
+		favourite\textunderscore teams 		& Sports teams the person likes	\\ \hline
+		first\textunderscore name 		& The person's first name	\\ \hline
+		gender 			& The gender selected by this person, male or female. This value will be omitted if the gender is set to a custom value
+ \\ \hline
+		hometown 			& The person's home town \\ \hline
+		inspirational\textunderscore people 		& The person's inspirational people	\\ \hline
+		install\textunderscore type 		& Install type	\\ \hline
+		installed 		& Is the app making the request installed?	\\ \hline
+		interested\textunderscore in 		& Genders the person is interested in	\\ \hline
+		is\textunderscore shared\textunderscore login 		& Is this a shared login (e.g. a gray user)	\\ \hline
+		is\textunderscore verified 		& People with large numbers of followers can have the authenticity of their identity manually verified by Facebook. This field indicates whether the person's profile is verified in this way. This is distinct from the verified field	\\ \hline
+		labels 		& Labels applied by viewing page on this person	\\ \hline
+		languages 		& Facebook Pages representing the languages this person knows\\ \hline
+		last\textunderscore name 		& The person's last name	\\ \hline
+		link 		& A link to the person's Timeline	\\ \hline
+		locale 		& The person's locale	\\ \hline
+		location 		& NThe person's current location as entered by them on their profile. This field is not related to check-ins	\\ \hline
+		meeting\textunderscore for 		& What the person is interested in meeting for	\\ \hline
+		middle\textunderscore name 		& The person's middle name	\\ \hline
+		name 		& The person's full name	\\ \hline
+		name\textunderscore format 		& The person's name formatted to correctly handle Chinese, Japanese, or Korean ordering	\\ \hline
+		payment\textunderscore pricepoints 		& The person's payment pricepoints	\\ \hline
+		political 		& The person's political views	\\ \hline
+		public\textunderscore key 		& The person's PGP public key	\\ \hline
+		quotes 		& The person's favourite quotes	\\ \hline
+		relationship\textunderscore status 		& The person's relationship status	\\ \hline
+		religion 		& The person's religion	\\ \hline
+		security\textunderscore settings 		& Security settings	\\ \hline
+		shared\textunderscore login\textunderscore upgrade\textunderscore required\textunderscore by 		& The time that the shared loginneeds to be upgraded to Business Manager by	\\ \hline
+		significant\textunderscore other 		& The person's significant other	\\ \hline
+		sports 		& Sports played by the person	\\ \hline
+		test\textunderscore group 		& Platform test group	\\ \hline
+		third\textunderscore party\textunderscore id 		& A string containing an anonymous, but unique identifier for the person. You can use this identifier with third parties	\\ \hline
+		timezone 		& The person's current timezone offset from UTC	\\ \hline
+		token\textunderscore for\textunderscore business 		& A token that is the same across a business's apps. Access to this token requires that the person be logged into your app. This token will change if the business owning the app changes	\\ \hline
+		updated\textunderscore time 		& Updated Time	\\ \hline
+		verified 		& Indicates whether the account has been verified. This is distinct from the is\textunderscore verified field. Someone is considered verified if they take any of the following actions:
+Register for mobile
+Confirm their account via SMS
+Enter a valid credit card	\\ \hline
+		video\textunderscore upload\textunderscore limits 		& Video upload limits	\\ \hline
+		viewer\textunderscore can\textunderscore send\textunderscore gift 		& Can the viewer send a gift to this person?	\\ \hline
+		website 		& The person's website	\\ \hline
+		work 		& Details of a person`s work experience	\\ \hline
+		
+		\end{tabularx}
+		\end{table}
 		
 	
 
