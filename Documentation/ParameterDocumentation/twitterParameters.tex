@@ -35,8 +35,8 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
-			[0.5cm]
+			%\includegraphics[width=10cm]{images/UP.jpg}  \\
+			%[0.5cm]
 			\huge{
 			Twitter parameter documentation\\
 			}
@@ -69,8 +69,134 @@
 	\tableofcontents
 	\cleardoublepage
 \section{Introduction}
+	This document includes information obtainable from the Twitter API. This information is obtainable by means of a access token with the necessary permissions from the user.
 
+\section{Twitter Parameters Obtainable}
+	What will follow is the parameters that are obtainable from Twitter's API.
+	Data gathered from \href{https://dev.twitter.com/rest/public}{here}.
 
-	
+	\subsubsection{Typical response}
+	\begin{itemize}
+		\item Coordinates of tweet
+		\item Favourited by user
+		\item Truncated
+		\item Creation time
+		\item ID of tweet
+		\item Entities within the tweet
+			\begin{itemize}
+				\item URLs
+				\item Hashtags
+				\item User Mentions
+				\item In reply to
+				\item Contributers
+				\item Text of tweet
+				\item Retweet count
+				\item Tweet id
+				\item Geo location of tweet
+				\item Retweeted
+				\item Place
+				\item User
+					\begin{itemize}
+						\item Profile sidebar fill color
+						\item Profile sidebar border color
+						\item Profile background title
+						\item Name
+						\item Profile image URL
+						\item Created at
+						\item Location
+						\item Profile link color
+						\item URLs in profile Description
+						\item Total Items favourited
+						\item Followers Count
+						\item Time zone
+						\item Profile Description
+						\item Tweet count
+						\item Follower count
+						\item Following count
+						\item Screen Name
+					\end{itemize}
+			\end{itemize}
+	\end{itemize}
+
+	\subsection{Statuses}
+		\subsubsection{Mentions Timeline}
+			Most recent tweets containing user's screen name.
+		
+		\subsubsection{Users Timeline}
+			Most recent tweets posted by the user.
+
+		\subsubsection{Home Timeline}
+			Most recent tweets \& retweets by the user.
+
+		\subsubsection{Retweets of the user}
+			Tweets of the user that other users have retweeted.
+
+		\subsubsection{Users Retweets}
+			Tweets that the user retweeted.
+
+		\subsubsection{Retweeters}
+			List of users who retweeted the user's tweets.
+
+	\subsection{Direct Messages}
+		\subsubsection{Sent}
+			Most recent sent direct messages of the user.
+
+		\subsubsection{Recieved}
+			Most recent recieved direct messages of the user.
+
+	\subsection{Friends}
+		\subsubsection{No retweets}
+			List of users that the user does not want to recieve retweets from.
+
+		\subsubsection{Following}
+			Collection of user IDs that the user is following.
+
+		\subsubsection{Followers}
+			Collection of user IDs that are following the user.
+
+		\subsubsection{Pending Followers}
+			Collection of users that requested to follow the user.
+
+		\subsubsection{Pending Following}
+			Collection of users that the user requeted to follow.
+
+		\subsubsection{Show}
+			Returns detailed information of the frendship beteen two users.
+
+	\subsection{Account}
+		\subsubsection{Settings}
+			Returns settings of the user account.
+
+		\subsubsection{Email}
+			To recieve the email our application needs to be whitelisted by twitter (span prevention).
+
+	\subsection{Blocked}
+		A collection of users/accounts that the user is blocking.
+
+	\subsection{User}
+		\subsubsection{Profile Banner}
+			Returns a variation of sizes of the specified user's profile banner if they uploaded a banner.
+
+		\subsubsection{Mutes}
+			A list of users/accounts the user has muted (Will not see tweets but is not blocking them).
+
+		\subsubsection{Suggestions}
+			List of twitter suggestions for the user.
+
+	\subsection{Favourites}
+		A list of tweets favourited by the user.
+
+	\subsection{Lists}
+		\subsubsection{List}
+			A list of lists the user is subscibed to including their own lists.
+
+		\subsubsection{Statuses}
+			A list of tweets authored by members of a specified list. Retweets are included.
+
+		\subsubsection{Memberships}
+			List of lists the user has been added to.
+
+		\subsubsection{Subscribers}
+			List of the subscribers of the specified list.
 
 \end{document}
