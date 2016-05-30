@@ -35,8 +35,6 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
-			[0.5cm]
 			\huge{
 			weChat parameter documentation\\
 			}
@@ -67,9 +65,124 @@
 	\end{titlepage}
 	\cleardoublepage
 	\tableofcontents
-	\cleardoublepage
-\section{Introduction}
+\section{Insider Developer API & weChat Android API documentation}
+\subsection{User profile}
+\begin{itemize}
+	\item "subscribe": 1, 
+	\item "openid": "o6bmjrPTlm62sgVt\_7hMZOPfL2M"
+	\item "nickname": "Band", 
+	\item "sex": 1, 
+	\item "language": "zhCN", 
+	\item "city": "Guangzhou", 
+	\item "province": "Guangdong", 
+	\item "country": "China", 
+	\item "headimgurl":    "http://wx.qlogo.cn/mmopen"
+	\item "subscribetime": 1382694957
+\end{itemize}
 
+\subsection{Follower List}
+\begin{itemize}
+	\item "total":23000,
+	\item "count":10000,
+	\item "data":{"
+     openid":[
+        "OPENID1",
+        "OPENID2",
+        ...,
+        "OPENID10000"
+     ]
+   },
+	\item  "nextopenid":"NEXTOPENID1"
+\end{itemize}
+
+
+\subsection{Name remarks}
+\begin{itemize}
+	\item "openid":"oDF3iY9ffA-hqb2vVvbr7qxf6A0Q",
+	\item "remark":"pangzi"
+\end{itemize}
+
+\subsection{Group}
+\begin{itemize}
+	\item "groups":23000,
+	\item "id":"pangzi"
+	\item "name":"Dope"
+	\item "count":"20"
+\end{itemize}
+
+\subsection{User Location}
+
+<ToUserName><![CDATA[toUser]]></ToUserName>\\
+<FromUserName><![CDATA[fromUser]]></FromUserName>\\
+<CreateTime>123456789</CreateTime>\\
+<MsgType><![CDATA[event]]></MsgType>\\
+<Event><![CDATA[LOCATION]]></Event>\\
+<Latitude>23.137466</Latitude>\\
+<Longitude>113.352425</Longitude>\\
+<Precision>119.385040</Precision>\\
+
+\section{}
+\subsection{User profile}
+\begin{itemize}
+	\item "subscribe": 1, 
+	\item "openid": "o6bmjrPTlm62sgVt\_7hMZOPfL2M"
+	\item "nickname": "Band", 
+	\item "sex": 1, 
+	\item "language": "zhCN", 
+	\item "city": "Guangzhou", 
+	\item "province": "Guangdong", 
+	\item "country": "China", 
+	\item "headimgurl":    "http://wx.qlogo.cn/mmopen"
+	\item "subscribetime": 1382694957
+\end{itemize}
+
+\subsection{Follower List}
+\begin{itemize}
+	\item "total":23000,
+	\item "count":10000,
+	\item "data":{"
+     openid":[
+        "OPENID1",
+        "OPENID2",
+        ...,
+        "OPENID10000"
+     ]
+   },
+	\item  "nextopenid":"NEXTOPENID1"
+\end{itemize}
+
+
+\subsection{Name remarks}
+\begin{itemize}
+	\item "openid":"oDF3iY9ffA-hqb2vVvbr7qxf6A0Q",
+	\item "remark":"pangzi"
+\end{itemize}
+
+\subsection{Group}
+\begin{itemize}
+	\item "groups":23000,
+	\item "id":"pangzi"
+	\item "name":"Dope"
+	\item "count":"20"
+\end{itemize}
+
+\subsection{User Location}
+
+<ToUserName><![CDATA[toUser]]></ToUserName>\\
+<FromUserName><![CDATA[fromUser]]></FromUserName>\\
+<CreateTime>123456789</CreateTime>\\
+<MsgType><![CDATA[event]]></MsgType>\\
+<Event><![CDATA[LOCATION]]></Event>\\
+<Latitude>23.137466</Latitude>\\
+<Longitude>113.352425</Longitude>\\
+<Precision>119.385040</Precision>\\
+
+\subsection{BaseReq}
+\begin{itemize}
+	\item String transaction - Transaction ID corresponding to this request. It is usually started by Req. Corresponding transaction ID should be populated in Resp. 
+	\item String username - weChat name
+	\item TAG
+\end{itemize}
 
 	
 
