@@ -1,0 +1,76 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Parameter Documentation}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			[0.5cm]
+			\huge{
+			Facebook parameter documentation\\
+			}
+			
+			\line(1,0){300}\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
+			Client: RetroRabbit} \\
+			\line(1,0){300}\\
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
+			\large
+			{
+			\begin{itemize}
+				\item 13054903 - Charl Jansen van Vuuren 
+				\item 10297902 - Bernhard Schuld      
+				\item 13044924 - Kevin Heritage
+				\item 13176545 - Quinton Weenink\\
+			\end{itemize}
+			}
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
+		[0.5cm]
+		\textsc{\large \today}\\
+		\end{center}
+
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+	\cleardoublepage
+\section{Introduction}
+
+
+	
+
+\end{document}
