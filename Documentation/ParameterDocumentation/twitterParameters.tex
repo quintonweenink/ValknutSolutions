@@ -35,8 +35,8 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
-			[0.5cm]
+			%\includegraphics[width=10cm]{images/UP.jpg}  \\
+			%[0.5cm]
 			\huge{
 			Twitter parameter documentation\\
 			}
@@ -69,8 +69,56 @@
 	\tableofcontents
 	\cleardoublepage
 \section{Introduction}
+	This document includes information obtainable from the Twitter API. This information is obtainable by means of a access token with the necessary permissions from the user.
 
-
-	
+\section{Parameters Obtainable}
+	What will follow is the parameters that are obtainable from Twitter's API.
+	Data gathered from \href{https://dev.twitter.com/rest/public}{here}.
+	\begin{itemize}
+		\item Statuses
+			\begin{itemize}
+				\item Mentions Timeline - Most recent tweets containing user's screen name
+				\item Users Timeline - Most recent tweets posted by the user
+				\item Home Timeline - Most recent tweets \& retweets by the user
+				\item Retweets of the user - Tweets of the user that other users have retweeted
+				\item Users Retweets - Tweets that the user retweeted
+				\item Retweeters - List of users who retweeted the user's tweets
+			\end{itemize}
+		\item Direct Messages
+			\begin{itemize}
+				\item Sent - Most recent sent direct messages of the user
+				\item Recieved - Most recent recieved direct messages of the user
+			\end{itemize}
+		\item Friends
+			\begin{itemize}
+				\item No Retweets - List of users that the user does not want to recieve retweets from
+				\item Following - Collection of user IDs that the user is following
+				\item Followers - Collection of user IDs that are following the user
+				\item Pending Followers - Collection of users that requested to follow the user
+				\item Pending Following - Collection of users that the user requeted to follow
+				\item Show - Returns detailed information of the frendship beteen two users
+			\end{itemize}
+		\item Account
+			\begin{itemize}
+				\item Settins - Returns settings of the user account
+				\item Email - To recieve the email our application needs to be whitelisted by twitter (span prevention)
+				\
+			\end{itemize}
+		\item Blocked - A collection of users/accounts that the user is blocking
+		\item User
+			\begin{itemize}
+				\item Profile Banner - Returns a variation of sizes of the specified user's profile banner if they uploaded a banner
+				\item Mutes - A list of users/accounts the user has muted (Will not see tweets but is not blocking them)
+				\item Suggestion - List of twitter suggestions for the user
+			\end{itemize}
+		\item Favourites - A list of tweets favourited by the user
+		\item Lists
+			\begin{itemize}
+				\item List - A list of lists the user is subscibed to including their own lists
+				\item Statuses - A list of tweets authored by members of a specified list. Retweets are included.
+				\item Memberships - List of lists the user has been added to.
+				\item Subscribers - List of the subscribers of the specified list
+			\end{itemize}
+	\end{itemize}
 
 \end{document}
