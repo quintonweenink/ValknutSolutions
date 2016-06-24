@@ -33,6 +33,12 @@
 				templateUrl : 'views/pages/signup.html',
 				controller  : 'signupController'
 			})
+
+			.when('/valuables',
+			{
+				templateUrl : 'views/pages/valuables.html',
+				controller  : 'valuablesController'
+			})
 			
 			;
 	});
@@ -59,3 +65,19 @@
 		$scope.message = '';
 	});
 	
+	InsuranceProfiling.controller('valuablesController', function($scope) {
+		$scope.message = '';
+		$scope.valuables = 
+		[{
+          name: 'Handbag',
+          type: 'Gucci'
+        },
+        {
+          name: 'Mobile phone',
+          type: 'Android'
+        }, 
+        {
+          name: 'Tablet',
+          type: 'iPad'
+        }];
+	}); 
