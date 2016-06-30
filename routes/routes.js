@@ -2,12 +2,12 @@ var express = require('express');
 
 
 module.exports = function(app, passport){
-	
-	//--------------Facebook authentication-----------//
+
+//--------------Facebook authentication-----------//
 	app.get('/auth/facebook',
 	  passport.authenticate('facebook', {scope: ['email']}));
 
-	//Facebook callback to application (not retruning to here)
+//Facebook callback to application (not retruning to here)
 	app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/' }),
         function(req, res) {
@@ -15,12 +15,54 @@ module.exports = function(app, passport){
             res.send('#/info');
     	});
  
+//---------Logging Middleware-------------------//
+//Authentication middleware to be added here
+		 app.use(function(req, res, next) {
+			console.log('Some loggin');
+			next(); 
+		});
 
 
-	//------------Our API routes------------------//
-	app.get('/api/something', function(req,res){
-		res.json({ message: 'hooray! welcome to our api!' });  
+//------------API routes------------------//
+	app.route('/api/user')
+	//User Post route
+    .post(function(req, res) {
+		res.json({ message: 'Post Test for /user' });
+		//Logic for adding user
+    })
+	//User Get route
+    .get(function(req, res) {
+        res.json({ message: 'Get Test for /user' });
+		//Logic for returning all users
+    });
+	
+	
+	//User Specific ID route
+	app.route('/api/user/:user_id')
+	
+	//User ID Get route
+    .get(function(req, res) {
+        res.json({ message: 'Get Test for /user', 
+					ID: req.params.user_id });
+		//Logic for display specified user
+    })
+	
+	//User ID update route
+	.put(function(req, res) {
+        res.json({ message: 'User updated!', 
+					ID: req.params.user_id });
+		//Logic for updating a user	
+    })
+	
+	//User ID delete route
+	.delete(function(req, res) {
+		res.json({ message: 'User deleted!', 
+					ID: req.params.user_id });
+		//Logic for updating a user	
 	});
+	
+	
+	
 
 	//-------------Angular Routes-----------------//
 	  app.get('*', function(req, res) {
