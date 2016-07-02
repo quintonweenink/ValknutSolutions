@@ -27,7 +27,7 @@
 				templateUrl : 'views/pages/login_form.html',
 				controller  : 'loginFormController'
 			})
-			
+
 			.when('/signup',
 			{
 				templateUrl : 'views/pages/signup.html',
@@ -39,14 +39,14 @@
 				templateUrl : 'views/pages/valuables.html',
 				controller  : 'valuablesController'
 			})
-			
+
 			;
 	});
 
 	// create the controller and inject Angular's $scope
 	InsuranceProfiling.controller('mainController', function($scope) {
 		// create a message to display in our view
-		$scope.message = 'Everyone come and see how good I look!';
+		$scope.message = 'Main Controller';
 	});
 
 	InsuranceProfiling.controller('aboutController', function($scope) {
@@ -56,18 +56,18 @@
 	InsuranceProfiling.controller('loginController', function($scope) {
 		$scope.message = 'Login Page My friends';
 	});
-	
+
 	InsuranceProfiling.controller('loginFormController', function($scope) {
 		$scope.message = 'Error will be shown here my friends';
 	});
-	
+
 	InsuranceProfiling.controller('signupController', function($scope) {
 		$scope.message = '';
 	});
-	
+
 	InsuranceProfiling.controller('valuablesController', function($scope) {
 		$scope.message = '';
-		$scope.valuables = 
+		$scope.valuables =
 		[{
           name: 'Handbag',
           type: 'Gucci'
@@ -75,9 +75,9 @@
         {
           name: 'Mobile phone',
           type: 'Android'
-        }, 
+        },
         {
           name: 'Tablet',
           type: 'iPad'
         }];
-	}); 
+	});

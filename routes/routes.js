@@ -1,8 +1,8 @@
 var express = require('express');
 
+var models = require("../models");
 
 module.exports = function(app, passport){
-
 //--------------Facebook authentication-----------//
 	app.get('/auth/facebook',
 	  passport.authenticate('facebook', {scope: ['email']}));
@@ -14,12 +14,12 @@ module.exports = function(app, passport){
         	console.log(res);
             res.send('#/info');
     	});
- 
+
 //---------Logging Middleware-------------------//
 //Authentication middleware to be added here
 		 app.use(function(req, res, next) {
 			console.log('Some loggin');
-			next(); 
+			next();
 		});
 
 
@@ -27,42 +27,56 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-		res.json({ message: 'Post Test for /user' });
-		//Logic for adding user
-    })
+			models.User.create({
+			        // firstName: req.body.text,
+			        // lastname: req.body.done,
+							// age : req.body.age,
+							// location : req.body.location
+							firstName: 'Test',
+							lastName: 'Test',
+							age : '12',
+							location : 'Test'
+			    }).then(function(users){
+        res.json(users.dataValues);
+    }).catch(function(error){
+        console.log("ops: " + error);
+        res.status(500).json({ error: 'error' });
+    });
+	})
 	//User Get route
     .get(function(req, res) {
-        res.json({ message: 'Get Test for /user' });
+			models.User.findAll().then(function(users){
+		res.json(users);
+		});
 		//Logic for returning all users
     });
-	
-	
+
+
 	//User Specific ID route
 	app.route('/api/user/:user_id')
-	
+
 	//User ID Get route
     .get(function(req, res) {
-        res.json({ message: 'Get Test for /user', 
+        res.json({ message: 'Get Test for /user',
 					ID: req.params.user_id });
-		//Logic for display specified user
     })
-	
+
 	//User ID update route
 	.put(function(req, res) {
-        res.json({ message: 'User updated!', 
+        res.json({ message: 'User updated!',
 					ID: req.params.user_id });
-		//Logic for updating a user	
+		//Logic for updating a user
     })
-	
+
 	//User ID delete route
 	.delete(function(req, res) {
-		res.json({ message: 'User deleted!', 
+		res.json({ message: 'User deleted!',
 					ID: req.params.user_id });
-		//Logic for updating a user	
+		//Logic for updating a user
 	});
-	
-	
-	
+
+
+
 
 	//-------------Angular Routes-----------------//
 	  app.get('*', function(req, res) {
@@ -70,9 +84,9 @@ module.exports = function(app, passport){
     });
 
 
-	
+
 	function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
@@ -83,4 +97,3 @@ module.exports = function(app, passport){
 
 
 };
-

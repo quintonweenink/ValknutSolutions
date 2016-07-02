@@ -13,7 +13,11 @@ var session = require('express-session');
 var flash = require('connect-flash');
 
 
+var models = require("./models");
+models.sequelize.sync().then(function()
+{
 
+});
 var app = express();
 
 // view engine setup
@@ -33,7 +37,7 @@ app.use('/public',  express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({ secret: 'secretsecretsecretbro' }));
-app.use(flash()); 
+app.use(flash());
 require('./config/passport')(passport);
 
 app.use(passport.initialize());
