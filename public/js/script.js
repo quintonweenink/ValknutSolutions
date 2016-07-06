@@ -1,4 +1,3 @@
-	// create the module and name it scotchApp
 	var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute']);
 
 	// configure our routes
@@ -22,18 +21,19 @@
 				templateUrl : 'views/pages/login.html',
 				controller  : 'loginController'
 			})
+			//route for login_form
 			.when('/login_form',
 			{
 				templateUrl : 'views/pages/login_form.html',
 				controller  : 'loginFormController'
 			})
-
+			//signup route
 			.when('/signup',
 			{
 				templateUrl : 'views/pages/signup.html',
 				controller  : 'signupController'
 			})
-
+			//"valuables" test route
 			.when('/valuables',
 			{
 				templateUrl : 'views/pages/valuables.html',

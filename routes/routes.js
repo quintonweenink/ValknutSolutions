@@ -54,11 +54,11 @@ module.exports = function(app, passport){
 
 	//User Specific ID route
 	app.route('/api/user/:user_id')
-
 	//User ID Get route
     .get(function(req, res) {
-        res.json({ message: 'Get Test for /user',
-					ID: req.params.user_id });
+		models.User.findById(req.params.user_id).then(function(user){
+		res.json(user);
+		});
     })
 
 	//User ID update route
