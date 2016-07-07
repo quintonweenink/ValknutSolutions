@@ -7,10 +7,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //Passport
 var passport = require('passport');
+//Session
+var session = require('express-session');
+//Flash for passing session data
+var flash = require('connect-flash');
 
 
+var models = require("./models");
+models.sequelize.sync().then(function()
+{
 
-
+});
 var app = express();
 
 // view engine setup
@@ -27,7 +34,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/public',  express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
+app.use(session({ secret: 'secretsecretsecretbro' }));
+app.use(flash());
 require('./config/passport')(passport);
 
 app.use(passport.initialize());
