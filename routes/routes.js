@@ -35,7 +35,8 @@ module.exports = function(app, passport){
 							firstName: 'Test',
 							lastName: 'Test',
 							age : '12',
-							location : 'Test'
+							location : 'Test',
+							email : 'Test@test.com'
 			    }).then(function(users){
         res.json(users.dataValues);
     }).catch(function(error){

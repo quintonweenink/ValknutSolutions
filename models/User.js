@@ -16,6 +16,9 @@ var User = sequelize.define('User', {
   location : {
     type: DataTypes.STRING,
     allowNull : true
+  }, email : {
+    type: DataTypes.STRING,
+    allowNull : true
   }
 });
 return User;
