@@ -34,7 +34,11 @@ module.exports = function(app, passport){
 							// location : req.body.location
 							firstName: 'Test',
 							lastName: 'Test',
-							age : '12',
+							contactNumber : '012121212',
+							mobileNumber : '08200000',
+							maritalStatus : 'Married',
+							dateOfBirth : '1994/03/07 01:00',
+							gender : 'male',
 							location : 'Test',
 							email : 'Test@test.com'
 			    }).then(function(users){
@@ -47,7 +51,7 @@ module.exports = function(app, passport){
 	//User Get route
     .get(function(req, res) {
 			models.User.findAll().then(function(users){
-		res.json(users);
+				res.json(users);
 		});
 		//Logic for returning all users
     });

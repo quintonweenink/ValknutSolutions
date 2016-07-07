@@ -9,8 +9,24 @@ var User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull : false
   },
-  age: {
-    type: DataTypes.INTEGER,
+  contactNumber : {
+    type : DataTypes.STRING,
+    allowNull : false
+  },
+  mobileNumber : {
+    type : DataTypes.STRING,
+    allowNull : false
+  },
+  maritalStatus : {
+    type : DataTypes.STRING,
+    allowNull : false
+  },
+  dateOfBirth : {
+    type : DataTypes.DATE,
+    allowNull : false
+  },
+  gender : {
+    type : DataTypes.STRING,
     allowNull : false
   },
   location : {
@@ -18,7 +34,7 @@ var User = sequelize.define('User', {
     allowNull : true
   }, email : {
     type: DataTypes.STRING,
-    allowNull : true
+    allowNull : false
   }
 });
 return User;
