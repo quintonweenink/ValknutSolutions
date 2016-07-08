@@ -6,7 +6,7 @@ var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + '/../config/config.json')[env];
 
-if (env == "deploy")
+if (env != "development")
 {
   var pg = require('pg');
   pg.defaults.ssl = true;
