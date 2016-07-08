@@ -2,7 +2,7 @@ var express = require('express');
 
 var models = require("../models");
 
-var userController = require("../DBControllers/userController");
+var userController = require("../DBControllers/UserController");
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
