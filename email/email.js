@@ -13,8 +13,8 @@ emailer : function createUser(newUser)
           }
       });
 var mailOptions = {
-    from: '"Lel" <u13054903@tuks.co.za>', // sender address
-    to: 'charljvv@gmail.com', // list of receivers
+    from: '"Lel" <Test@test.com>', // sender address
+    to: 'test@test.com', // list of receivers
     subject: 'Hello', // Subject line
     text: 'Hello world', // plaintext body
     html: '<b>Hello world</b>' // html body
