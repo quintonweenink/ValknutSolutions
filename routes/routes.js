@@ -2,7 +2,7 @@ var express = require('express');
 
 var models = require("../models");
 
-var userController = require("../DBControllers/userController.js");
+var userController = require("../DBControllers/userController");
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
@@ -28,7 +28,6 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			console.log(req.body.x);
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
