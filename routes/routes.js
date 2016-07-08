@@ -66,7 +66,7 @@ module.exports = function(app, passport){
 				res.json(users);
 		});
 		//Logic for returning all users
-    });
+	});
 
 
 	//User Specific ID route
@@ -87,6 +87,20 @@ module.exports = function(app, passport){
 
 	//User ID delete route
 	.delete(function(req, res) {
+		// var deletedUser =
+		//  {firstName: 'Test',
+		// 	lastName: 'lelelel',
+		// 	contactNumber : '0121212',
+		// 	mobileNumber : '09312123',
+		// 	maritalStatus : 'Married',
+		// 	dateOfBirth : '1994/01/01 20:00',
+		// 	gender : 'male',
+		// 	location : 'Test',
+		// 	email : 'email@email.com'};
+
+			var id = req.params.user_id;
+			console.log(id);
+	userController.deleteUserByID(id).then(function(user){
 		res.json({ message: 'User deleted!',
 					ID: req.params.user_id });
 		//Logic for updating a user
