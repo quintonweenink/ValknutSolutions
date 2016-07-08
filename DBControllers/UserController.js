@@ -15,6 +15,7 @@ createUser : function createUser(newUser)
 							location : newUser.location,
 							email : newUser.email
 		});
+		console.log("JSON" + JSON.parse(new_user));
 		return new_user;
 },
 deleteUserByID : function deleteUserByID(id)

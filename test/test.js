@@ -2,7 +2,7 @@ var userController = require("../DBControllers/UserController");
 
 var assert = require('chai').assert;
 describe('User test', function() {
-  describe('Testing creat user()', function() {
+  describe('Testing creatUser(User)', function() {
     it('should return user when all values not present', function() {
       var newUser = {
 				firstName: 'Unit',
@@ -15,9 +15,9 @@ describe('User test', function() {
 				location : 'Test',
 				email : 'email@email.com'
 		};
-			userController.createUser(newUser);
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
+			var addedUser = userController.createUser(newUser);
+      console.log("after createUser: " + newUser.firstName);
+      //assert.equal(addedUser.dataValues, newUser.dataValues);
     });
   });
 });
