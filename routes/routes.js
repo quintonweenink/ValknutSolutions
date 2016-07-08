@@ -36,7 +36,7 @@ module.exports = function(app, passport){
 			}*/
 
 			res.json(false);
-			/*var newUser = {
+			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
 				contactNumber : '0121212',
@@ -53,22 +53,26 @@ module.exports = function(app, passport){
     }) .catch(function(error){
          console.log("ops: " + error);
          res.status(500).json({ error: 'error' });
-     });*/
+     });
 	})
 	//User Get route
     .get(function(req, res) {
-			/*if (req.params.hub_verify_token == 'bleepBlop123')
+			console.log(req.query.hub_verify_token);
+			console.log(req.query.verify_token);
+			if (req.query.verify_token == 'bleepBlop123')
 			{
 				console.log('Token verified');
-				res.write(req.params.hub_challenge);
-			}*/
+				res.send(req.query.challenge);
+			} else {
+
 			models.User.findAll().then(function(users){
 				res.json(users);
 		});
+		}
 		//Logic for returning all users
 	});
 
-
+	app.route('/api/user/:mode')
 	//User Specific ID route
 	app.route('/api/user/:user_id')
 	//User ID Get route
@@ -87,22 +91,13 @@ module.exports = function(app, passport){
 
 	//User ID delete route
 	.delete(function(req, res) {
-		// var deletedUser =
-		//  {firstName: 'Test',
-		// 	lastName: 'lelelel',
-		// 	contactNumber : '0121212',
-		// 	mobileNumber : '09312123',
-		// 	maritalStatus : 'Married',
-		// 	dateOfBirth : '1994/01/01 20:00',
-		// 	gender : 'male',
-		// 	location : 'Test',
-		// 	email : 'email@email.com'};
 
 			var id = req.params.user_id;
 			console.log(id);
 	userController.deleteUserByID(id).then(function(user){
 		res.json({ message: 'User deleted!',
 					ID: req.params.user_id });
+				});
 		//Logic for updating a user
 	});
 
