@@ -28,12 +28,12 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			var verify = req.body.hub_verify_token;
+			/*var verify = req.body.hub_verify_token;
 			var challenge = req.body.hub_challenge;
 			if (verify == 'abc123')
 			{
 				res.write(challenge);
-			}
+			}*/
 
 			res.json(false);
 			/*var newUser = {
@@ -57,6 +57,11 @@ module.exports = function(app, passport){
 	})
 	//User Get route
     .get(function(req, res) {
+			/*if (req.params.hub_verify_token == 'bleepBlop123')
+			{
+				console.log('Token verified');
+				res.write(req.params.hub_challenge);
+			}*/
 			models.User.findAll().then(function(users){
 				res.json(users);
 		});
