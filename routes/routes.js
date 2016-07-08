@@ -28,16 +28,14 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			var object = req.body.object;
-			var fields = req.body.fields;
-			var verify = req.body.verify_token;
-			var callback = req.body.callback;
-			console.log('object: ' + object);
-			console.log('fields: ' + fields);
-			console.log('verify: ' + verify);
-			console.log('callback: ' + callback);
+			var verify = req.body.hub_verify_token;
+			var challenge = req.body.hub_challenge;
+			if (verify == 'abc123')
+			{
+				res.write(challenge);
+			}
 
-			res.json(true);
+			res.json(false);
 			/*var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
