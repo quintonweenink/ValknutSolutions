@@ -57,12 +57,10 @@ module.exports = function(app, passport){
 	})
 	//User Get route
     .get(function(req, res) {
-			console.log(req.query.hub_verify_token);
-			console.log(req.query.verify_token);
-			if (req.query.verify_token == 'bleepBlop123')
+			if (req.query['hub.verify_token'] == 'bleepBlop123')
 			{
 				console.log('Token verified');
-				res.send(req.query.challenge);
+				res.send(req.query['hub.challenge']);
 			} else {
 
 			models.User.findAll().then(function(users){
