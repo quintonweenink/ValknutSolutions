@@ -38,7 +38,7 @@ module.exports = function(app, passport){
 			console.log('callback: ' + callback);
 
 			res.json(true);
-			var newUser = {
+			/*var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
 				contactNumber : '0121212',
@@ -55,7 +55,7 @@ module.exports = function(app, passport){
     }) .catch(function(error){
          console.log("ops: " + error);
          res.status(500).json({ error: 'error' });
-     });
+     });*/
 	})
 	//User Get route
     .get(function(req, res) {
