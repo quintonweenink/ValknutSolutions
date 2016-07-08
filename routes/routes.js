@@ -24,6 +24,7 @@ module.exports = function(app, passport){
 
 
 //------------API routes------------------//
+//Need to test here
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
