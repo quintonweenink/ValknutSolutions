@@ -2,6 +2,8 @@ var express = require('express');
 
 var models = require("../models");
 
+var userController = require("../DBControllers/userController");
+
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
 	app.get('/auth/facebook',
@@ -18,35 +20,32 @@ module.exports = function(app, passport){
 //---------Logging Middleware-------------------//
 //Authentication middleware to be added here
 		 app.use(function(req, res, next) {
-			console.log('Some loggin');
+			console.log('Middleware LOG');
 			next();
 		});
-
-
 //------------API routes------------------//
+//Need to test here
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			models.User.create({
-			        // firstName: req.body.text,
-			        // lastname: req.body.done,
-							// age : req.body.age,
-							// location : req.body.location
-							firstName: 'Test',
-							lastName: 'Test',
-							contactNumber : '012121212',
-							mobileNumber : '08200000',
-							maritalStatus : 'Married',
-							dateOfBirth : '1994/03/07 01:00',
-							gender : 'male',
-							location : 'Test',
-							email : 'Test@test.com'
-			    }).then(function(users){
+			var newUser = {
+				firstName: 'Charl',
+				lastName: 'lelelel',
+				contactNumber : '0121212',
+				mobileNumber : '09312123',
+				maritalStatus : 'Married',
+				dateOfBirth : '1994/01/01 20:00',
+				gender : 'male',
+				location : 'Test',
+				email : 'email@email.com'
+		};
+			userController.createUser(newUser)
+			.then(function(users){
         res.json(users.dataValues);
-    }).catch(function(error){
-        console.log("ops: " + error);
-        res.status(500).json({ error: 'error' });
-    });
+    }) .catch(function(error){
+         console.log("ops: " + error);
+         res.status(500).json({ error: 'error' });
+     });
 	})
 	//User Get route
     .get(function(req, res) {
