@@ -3,6 +3,7 @@ var express = require('express');
 var models = require("../models");
 
 var userController = require("../DBControllers/UserController");
+var email = require("../email/email");
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
@@ -23,6 +24,11 @@ module.exports = function(app, passport){
 			console.log('Middleware LOG');
 			next();
 		});
+
+//Emailer code
+// email.emailer();
+
+
 //------------API routes------------------//
 //Need to test here
 	app.route('/api/user')
