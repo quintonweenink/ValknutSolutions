@@ -1,0 +1,189 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Parameter Documentation}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+			\huge{
+			weChat parameter documentation\\
+			}
+			
+			\line(1,0){300}\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
+			Client: RetroRabbit} \\
+			\line(1,0){300}\\
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
+			\large
+			{
+			\begin{itemize}
+				\item 13054903 - Charl Jansen van Vuuren 
+				\item 10297902 - Bernhard Schuld      
+				\item 13044924 - Kevin Heritage
+				\item 13176545 - Quinton Weenink\\
+			\end{itemize}
+			}
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
+		[0.5cm]
+		\textsc{\large \today}\\
+		\end{center}
+
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+\section{Insider Developer API & weChat Android API documentation}
+\subsection{User profile}
+\begin{itemize}
+	\item "subscribe": 1, 
+	\item "openid": "o6bmjrPTlm62sgVt\_7hMZOPfL2M"
+	\item "nickname": "Band", 
+	\item "sex": 1, 
+	\item "language": "zhCN", 
+	\item "city": "Guangzhou", 
+	\item "province": "Guangdong", 
+	\item "country": "China", 
+	\item "headimgurl":    "http://wx.qlogo.cn/mmopen"
+	\item "subscribetime": 1382694957
+\end{itemize}
+
+\subsection{Follower List}
+\begin{itemize}
+	\item "total":23000,
+	\item "count":10000,
+	\item "data":{"
+     openid":[
+        "OPENID1",
+        "OPENID2",
+        ...,
+        "OPENID10000"
+     ]
+   },
+	\item  "nextopenid":"NEXTOPENID1"
+\end{itemize}
+
+
+\subsection{Name remarks}
+\begin{itemize}
+	\item "openid":"oDF3iY9ffA-hqb2vVvbr7qxf6A0Q",
+	\item "remark":"pangzi"
+\end{itemize}
+
+\subsection{Group}
+\begin{itemize}
+	\item "groups":23000,
+	\item "id":"pangzi"
+	\item "name":"Dope"
+	\item "count":"20"
+\end{itemize}
+
+\subsection{User Location}
+
+<ToUserName><![CDATA[toUser]]></ToUserName>\\
+<FromUserName><![CDATA[fromUser]]></FromUserName>\\
+<CreateTime>123456789</CreateTime>\\
+<MsgType><![CDATA[event]]></MsgType>\\
+<Event><![CDATA[LOCATION]]></Event>\\
+<Latitude>23.137466</Latitude>\\
+<Longitude>113.352425</Longitude>\\
+<Precision>119.385040</Precision>\\
+
+\section{}
+\subsection{User profile}
+\begin{itemize}
+	\item "subscribe": 1, 
+	\item "openid": "o6bmjrPTlm62sgVt\_7hMZOPfL2M"
+	\item "nickname": "Band", 
+	\item "sex": 1, 
+	\item "language": "zhCN", 
+	\item "city": "Guangzhou", 
+	\item "province": "Guangdong", 
+	\item "country": "China", 
+	\item "headimgurl":    "http://wx.qlogo.cn/mmopen"
+	\item "subscribetime": 1382694957
+\end{itemize}
+
+\subsection{Follower List}
+\begin{itemize}
+	\item "total":23000,
+	\item "count":10000,
+	\item "data":{"
+     openid":[
+        "OPENID1",
+        "OPENID2",
+        ...,
+        "OPENID10000"
+     ]
+   },
+	\item  "nextopenid":"NEXTOPENID1"
+\end{itemize}
+
+
+\subsection{Name remarks}
+\begin{itemize}
+	\item "openid":"oDF3iY9ffA-hqb2vVvbr7qxf6A0Q",
+	\item "remark":"pangzi"
+\end{itemize}
+
+\subsection{Group}
+\begin{itemize}
+	\item "groups":23000,
+	\item "id":"pangzi"
+	\item "name":"Dope"
+	\item "count":"20"
+\end{itemize}
+
+\subsection{User Location}
+
+<ToUserName><![CDATA[toUser]]></ToUserName>\\
+<FromUserName><![CDATA[fromUser]]></FromUserName>\\
+<CreateTime>123456789</CreateTime>\\
+<MsgType><![CDATA[event]]></MsgType>\\
+<Event><![CDATA[LOCATION]]></Event>\\
+<Latitude>23.137466</Latitude>\\
+<Longitude>113.352425</Longitude>\\
+<Precision>119.385040</Precision>\\
+
+\subsection{BaseReq}
+\begin{itemize}
+	\item String transaction - Transaction ID corresponding to this request. It is usually started by Req. Corresponding transaction ID should be populated in Resp. 
+	\item String username - weChat name
+	\item TAG
+\end{itemize}
+
+	
+
+\end{document}

@@ -1,0 +1,201 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Parameter Documentation}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+		
+			\huge{
+			Instagram parameter documentation\\
+			}
+			
+			\line(1,0){300}\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
+			Client: RetroRabbit} \\
+			\line(1,0){300}\\
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
+			\large
+			{
+			\begin{itemize}
+				\item 13054903 - Charl Jansen van Vuuren 
+				\item 10297902 - Bernhard Schuld      
+				\item 13044924 - Kevin Heritage
+				\item 13176545 - Quinton Weenink\\
+			\end{itemize}
+			}
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
+		[0.5cm]
+		\textsc{\large \today}\\
+		\end{center}
+
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+	\cleardoublepage
+
+\section{Introduction}
+This document includes information obtainable from the Instagram public API. This information is obtainable by means of a access token with the necessary permissions from the user.
+\section{Parameters obtainable}
+\begin{itemize}
+	\item basic - to read a user’s profile info and media.
+	\item public content - to read any public profile info and media on a user’s behalf
+	\item follower list - to read the list of followers and followed-by users
+	\item comments - to post and delete comments on a user’s behalf
+	\item relationships - to follow and unfollow accounts on a user’s behalf
+	\item likes - to like and unlike media on a user’s behalf
+\end{itemize}
+
+\subsection{User information}\label{userInfo}
+User information obtainable by means of user's info, followed by users, following users
+\begin{itemize}
+	\item Instagram ID
+	\item Username
+	\item Fullname
+	\item Profile Picture url
+	\item Bio
+	\item Website
+	\item Counts like :
+	\begin{itemize}
+		\item Media 
+		\item Follows 
+		\item Followed by
+	\end{itemize}
+	\item Relationship to other users
+	\begin{itemize}
+		\item Requested by
+		\item Followed by
+		\item Blocked by you
+		\item None
+	\end{itemize}
+\end{itemize}
+
+\subsection{Media information}\label{Media}
+Information pertaining to a media item on the user's profile, liked media and recent media
+\begin{itemize}
+	\item Comments (including comment count) see \ref{comment}
+	\item Caption
+	\begin{itemize}
+		\item Created time
+		\item Text
+		\item From which user (including basic user information as mentioned in \ref{userInfo}
+	\end{itemize}
+	\item Likes
+	\item Url to the media
+	\item User who posted image (including basic user information as mentioned in \ref{userInfo}
+	\item Created time
+	\item Low resolution information
+		\begin{itemize}
+		\item Url
+		\item Width
+		\item Height
+	\end{itemize}
+	\item Thumbnail
+	\begin{itemize}
+		\item Url
+		\item Width
+		\item Height
+	\end{itemize}
+	\item Standard resolution
+		\begin{itemize}
+		\item Url
+		\item Width
+		\item Height
+	\end{itemize}
+	\item Type of media
+	\begin{itemize}
+		\item Image
+		\item Video
+	\end{itemize}
+	\item Users tagged in media (including information in \ref{userInfo}
+	\item Filter
+	\item Tags
+	\item Media ID
+	\item Location
+	\begin{itemize}
+		\item Latitude
+		\item Longitude 
+		\item ID
+		\item Street Address
+		\item Name
+	\end{itemize}
+	
+\end{itemize}
+
+\subsection{Comments on Media}\label{comment}
+\begin{itemize}
+	\item Created time
+	\item Text
+	\item From user
+	\begin{itemize}
+		\item Username
+		\item Profile picture
+		\item ID
+		\item Full name
+	\end{itemize}
+\end{itemize}
+\subsection{Likes on Media}
+Information per like 
+\begin{itemize}
+	\item Username
+	\item First Name
+	\item Last name
+	\item Type (user)
+	\item Instagram ID
+\end{itemize}
+
+\subsection{Tags on Media}
+Information per tag
+\begin{itemize}
+	\item Media Count
+	\item Name of tag
+	\item Media information as per \ref{Media}
+\end{itemize}
+
+\subsection{Location information}
+Information per location (tagged or user location) or based on location search
+\begin{itemize}
+	\item Location ID
+	\item Name
+	\item Latitude 
+	\item Longitude
+\end{itemize}
+
+
+	
+
+\end{document}

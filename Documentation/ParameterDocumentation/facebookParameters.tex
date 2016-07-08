@@ -1,0 +1,193 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{tabularx}
+
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Parameter Documentation}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+			\huge{
+			Facebook parameter documentation\\
+			}
+			
+			\line(1,0){300}\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
+			Client: RetroRabbit} \\
+			\line(1,0){300}\\
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
+			\large
+			{
+			\begin{itemize}
+				\item 13054903 - Charl Jansen van Vuuren 
+				\item 10297902 - Bernhard Schuld      
+				\item 13044924 - Kevin Heritage
+				\item 13176545 - Quinton Weenink\\
+			\end{itemize}
+			}
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
+		[0.5cm]
+		\textsc{\large \today}\\
+		\end{center}
+
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+\section{Introduction}
+This document will indicate what information can be collected from Facebook via the Facebook Graph API
+\section{Parameters}
+	\subsection{Users}
+	\subsubsection{Fields}
+		\begin{table}[H]
+		\centering
+		\caption{User Fields}
+		\label{my-label}
+		\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		$Parameter$ & $Description$ 	\\ \hline
+		id 				& The id of this person's user account. This ID is unique to each app and cannot be used across different apps \\ \hline
+		about 			& The About Me section of this person's profile \\ \hline
+		age\textunderscore range 		& The age segment for this person expressed as a minimum and maximum age. For example, more than 18, less than 21 \\   \hline
+		bio 		& The person's bio \\   \hline
+		birthday 		& The person's birthday. This is a fixed format string, like MM/DD/YYYY. However, people can control who can see the year they were born separately from the month and day so this string can be only the year (YYYY) or the month + day (MM/DD) \\   \hline
+		context 		& Social context for this person \\   \hline
+		cover 		& The person's cover photo \\   \hline
+		currency 		& The person's local currency information \\   \hline
+		devices 			& The list of devices the person is using. This will return only iOS and Android devices \\ \hline
+		education 			& The person's education \\ \hline
+		email 			& The person's primary email address listed on their profile. This field will not be returned if no valid email address is available \\ \hline
+		favorite\textunderscore athletes 		& Athletes the person likes	\\ \hline
+		favorite\textunderscore teams 		& Sports teams the person likes	\\ \hline
+		first\textunderscore name 		& The person's first name	\\ \hline
+		gender 			& The gender selected by this person, male or female. This value will be omitted if the gender is set to a custom value
+ \\ \hline
+		hometown 			& The person's home town \\ \hline
+		inspirational\textunderscore people 		& The person's inspirational people	\\ \hline
+		install\textunderscore type 		& Install type	\\ \hline
+		installed 		& Is the app making the request installed?	\\ \hline
+		interested\textunderscore in 		& Genders the person is interested in	\\ \hline
+		is\textunderscore shared\textunderscore login 		& Is this a shared login (e.g. a gray user)	\\ \hline
+		is\textunderscore verified 		& People with large numbers of followers can have the authenticity of their identity manually verified by Facebook. This field indicates whether the person's profile is verified in this way. This is distinct from the verified field	\\ \hline		
+		languages 		& Facebook Pages representing the languages this person knows\\ \hline
+		last\textunderscore name 		& The person's last name	\\ \hline
+		link 		& A link to the person's Timeline	\\ \hline
+		locale 		& The person's locale	\\ \hline
+		location 		& The person's current location as entered by them on their profile. This field is not related to check-ins	\\ \hline
+		meeting\textunderscore for 		& What the person is interested in meeting for	\\ \hline
+		middle\textunderscore name 		& The person's middle name	\\ \hline
+		name 		& The person's full name	\\ \hline
+		name\textunderscore format 		& The person's name formatted to correctly handle Chinese, Japanese, or Korean ordering	\\ \hline
+		payment\textunderscore pricepoints 		& The person's payment pricepoints	\\ \hline
+		political 		& The person's political views	\\ \hline
+		public\textunderscore key 		& The person's PGP public key	\\ \hline
+		quotes 		& The person's favorite quotes	\\ \hline
+		relationship\textunderscore status 		& The person's relationship status	\\ \hline
+		religion 		& The person's religion	\\ \hline
+		security\textunderscore settings 		& Security settings	\\ \hline
+		shared\textunderscore login\textunderscore upgrade\textunderscore required\textunderscore by 		& The time that the shared login needs to be upgraded to Business Manager by	\\ \hline
+		significant\textunderscore other 		& The person's significant other	\\ \hline
+		sports 		& Sports played by the person	\\ \hline
+		test\textunderscore group 		& Platform test group	\\ \hline
+		third\textunderscore party\textunderscore id 		& A string containing an anonymous, but unique identifier for the person. You can use this identifier with third parties	\\ \hline
+		timezone 		& The person's current timezone offset from UTC	\\ \hline
+		token\textunderscore for\textunderscore business 		& A token that is the same across a business's apps. Access to this token requires that the person be logged into your app. This token will change if the business owning the app changes	\\ \hline
+		updated\textunderscore time 		& Updated Time	\\ \hline
+		verified 		& Indicates whether the account has been verified. This is distinct from the is\textunderscore verified field. Someone is considered verified if they take any of the following actions:
+Register for mobile
+Confirm their account via SMS
+Enter a valid credit card	\\ \hline
+		video\textunderscore upload\textunderscore limits 		& Video upload limits	\\ \hline
+		viewer\textunderscore can\textunderscore send\textunderscore gift 		& Can the viewer send a gift to this person?	\\ \hline
+		website 		& The person's website	\\ \hline
+		work 		& Details of a person`s work experience	\\ \hline
+		
+		\end{tabularx}
+		\end{table}
+		
+	\subsubsection{Edges / Connections}
+		\begin{table}[H]
+		\centering
+		\caption{User Connections}
+		\label{my-label}
+		\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		$Parameter$ & $Description$ 	\\ \hline
+		accounts 				& Facebook Pages this person administers/is an admin for \\ \hline
+		achievements 				& Achievements made in Facebook games \\ \hline
+		adaccountgroups 				& Ad account groups \\ \hline
+		adaccounts 				& The advertising accounts to which this person has access \\ \hline
+		adcontracts 				& The person's ad contracts \\ \hline
+		admined\textunderscore groups 				& Groups the user admins \\ \hline
+		adnetworkanalytics 				& Insights data for the person's Audience Network apps \\ \hline
+		albums 				& The photo albums this person has created \\ \hline
+		apprequestformerrecipients 				& App requests \\ \hline
+		apprequests 				& This person's pending requests from an app \\ \hline
+		books 				& The books listed on this person's profile \\ \hline
+		domains 				& The domains the user admins \\ \hline
+		events 				& Events for this person. By default this does not include events the person has declined or not replied to \\ \hline
+		family 				& This person's family relationships. \\ \hline
+		favorite\textunderscore requests 				& Developers' favorite requests to the Graph API \\ \hline
+		friendlists 				& The person's custom friend lists \\ \hline
+		friends 				& A person's friends. \\ \hline
+		games 				& Games this person likes \\ \hline
+		groups 				& The Facebook Groups that the person belongs to \\ \hline
+		ids\textunderscore for\textunderscore business 				& Business entities can claim ownership of multiple apps using the Business Manager. This edge returns the list of IDs that this user has in any of those other apps \\ \hline
+		invitable\textunderscore friends 				& A list of friends that can be invited to install a Facebook Canvas app \\ \hline
+		leadgen\textunderscore forms 				& A list of lead generation forms belonging to Pages that the user has advertiser permissions on \\ \hline
+		likes 				& All the Pages this person has liked \\ \hline
+		movies 				& Movies this person likes \\ \hline
+		music 				& Music this person likes \\ \hline
+		page\textunderscore status\textunderscore cards 				& Page status card of the user who made appointment at the Page \\ \hline
+		permissions 				& The permissions that the person has granted this app \\ \hline
+		personal\textunderscore ad\textunderscore accounts 				& The advertising accounts to which this person has personal access \\ \hline
+		photos 				& Photos the person is tagged in or has uploaded \\ \hline
+		picture 				& The person's profile picture \\ \hline
+		promotable\textunderscore domains 				& All the domains user can promote \\ \hline
+		promotable\textunderscore events 				& All the events which user can promote. \\ \hline
+		request\textunderscore history 				& Developers' Graph API request history \\ \hline
+		tagged\textunderscore places 				& List of tagged places for this person. It can include tags on videos, posts, statuses or links \\ \hline
+		television 				& TV shows this person likes \\ \hline
+		video\textunderscore broadcasts 				& Video broadcasts from this person \\ \hline
+		videos 				& Videos the person is tagged in or uploaded \\ \hline
+		feed 				& The feed of posts (including status updates) and links published by this person. \\ \hline
+		scores 				& The scores this person has received from Facebook Games that they've played. \\ \hline
+		
+		\end{tabularx}
+		\end{table}
+	
+
+\end{document}
