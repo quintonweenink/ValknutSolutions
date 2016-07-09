@@ -17,7 +17,14 @@ window.fbAsyncInit = function() {
 //------- FB Javascript SDK end ------//
 
 function subscribeApp(page_id, page_access_token){
-  console.log('Subscribing page to app!' + page_id)
+  console.log('Subscribing page to app!' + page_id);
+  FB.api(
+    '/' + page_id + '/subscribed_apps',
+    'post',
+    {access_token: page_access_token},
+    function(res) {
+    console.log('Subscribed to app', res);
+  })
 }
 
 //------- FB login button ------//
