@@ -11,8 +11,13 @@ var passport = require('passport');
 var session = require('express-session');
 //Flash for passing session data
 var flash = require('connect-flash');
-
-
+//Json web token for authentication
+var jwt = require('jsonwebtoken');
+//config include for secret etc..
+var configAuth = require('./config/auth');
+//morgan for logging
+var morgan = require('morgan');
+//includes models for database
 var models = require("./models");
 models.sequelize.sync().then(function()
 {
@@ -36,9 +41,11 @@ app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/public',  express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 
-app.use(session({ secret: 'secretsecretsecretbro' }));
 app.use(flash());
 require('./config/passport')(passport);
+
+//Set secret = secret in configAuth file
+app.set('datSecret', configAuth.secret);
 
 app.use(passport.initialize());
 app.use(passport.session());

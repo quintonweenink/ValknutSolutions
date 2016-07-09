@@ -7,5 +7,6 @@ module.exports = {
       'emailAuth': {
           'user': 'user@email.com',
           'pass': 'password'
-      }
+      },
+      'secret': 'secretsecretsecretbro'
 }

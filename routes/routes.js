@@ -3,7 +3,9 @@ var express = require('express');
 var models = require("../models");
 
 var userController = require("../DBControllers/UserController");
+var adminController = require("../DBControllers/AdminController");
 var email = require("../email/email");
+var jwt = require('jsonwebtoken');
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
@@ -18,12 +20,77 @@ module.exports = function(app, passport){
             res.send('#/info');
     	});
 
+			app.route('/api/authenticate')
+			//User Post route
+		  .post(function(req, res) {
+				models.Admin.find({
+					where: {
+				        email: req.body.email
+				     }
+			}).then(function(admin){
+				if (!admin)
+				{
+				      res.json({ success: false, message: 'Authentication failed. User not found.' });
+				}
+				else if(admin)
+				{
+					if(admin.password!= req.body.password)
+					{
+						res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+					}
+					else
+					{
+
+						var tempUser = { userName: admin.email};
+						var token = jwt.sign(tempUser, app.get('datSecret'), {
+						expiresIn: '1000h' // expires in 24 hours
+						});
+		        // return the information including token as JSON
+		        	res.json({
+		          	success: true,
+		          	token: token
+		        	});
+					}
+				}
+			});
+
+			});
+
+
 //---------Logging Middleware-------------------//
-//Authentication middleware to be added here
-		 app.use(function(req, res, next) {
-			console.log('Middleware LOG');
-			next();
-		});
+app.use(function(req, res, next) {
+console.log('Authentication will be done here');
+next();
+});
+// app.use(function(req, res, next) {
+//   // check header or url parameters or post parameters for token
+//   var token = req.body.token || req.query.token || req.headers['x-access-token'];
+//
+//   // decode token
+//   if (token) {
+//
+//     // verifies secret and checks exp
+//     jwt.verify(token, app.get('datSecret'), function(err, decoded) {
+//       if (err) {
+//         return res.json({ success: false, message: 'Failed to authenticate token.' });
+//       } else {
+//         // if everything is good, save to request for use in other routes
+//         req.decoded = decoded;
+//         next();
+//       }
+//     });
+//
+//   } else {
+//
+//     // if there is no token
+//     // return an error
+//     return res.status(403).send({
+//         success: false,
+//         message: 'No token provided.'
+//     });
+//
+//   }
+// });
 
 //Emailer code
 // email.emailer();
@@ -80,17 +147,6 @@ module.exports = function(app, passport){
 
 	//User ID delete route
 	.delete(function(req, res) {
-		// var deletedUser =
-		//  {firstName: 'Test',
-		// 	lastName: 'lelelel',
-		// 	contactNumber : '0121212',
-		// 	mobileNumber : '09312123',
-		// 	maritalStatus : 'Married',
-		// 	dateOfBirth : '1994/01/01 20:00',
-		// 	gender : 'male',
-		// 	location : 'Test',
-		// 	email : 'email@email.com'};
-
 			var id = req.params.user_id;
 			console.log(id);
 	userController.deleteUserByID(id).then(function(user){
@@ -98,6 +154,32 @@ module.exports = function(app, passport){
 			ID: req.params.user_id });
 	});
 	});
+
+
+	app.route('/api/admin')
+	//User Post route
+    .post(function(req, res) {
+			var newAdmin = {
+				email: 'a',
+				password: 'lelelel'
+		};
+			adminController.createAdmin(newAdmin)
+			.then(function(admin){
+        res.json(admin.dataValues);
+    }) .catch(function(error){
+         console.log("ops: " + error);
+         res.status(500).json({ error: 'error' });
+     });
+	})
+	//User Get route
+    .get(function(req, res) {
+			models.Admin.findAll().then(function(users){
+				res.json(users);
+		});
+		//Logic for returning all users
+	});
+
+
 
 
 
