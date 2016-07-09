@@ -28,14 +28,9 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			/*var verify = req.body.hub_verify_token;
-			var challenge = req.body.hub_challenge;
-			if (verify == 'abc123')
-			{
-				res.write(challenge);
-			}*/
+			console.log(req);
 
-			res.json(false);
+			res.end();
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
