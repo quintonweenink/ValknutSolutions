@@ -2,12 +2,11 @@
 Insurance profiling from social media (facebook)
 
 ## Prerequisites
-
 You will need the following things properly installed on your computer.
 
-* [Git](http://git-scm.com/) depending on how the first few weeks go we might need to use git flow
+* [Git](http://git-scm.com/)
 * [Node.js](https://nodejs.org/en/) with [npm](https://www.npmjs.com/)
-* [Bower](http://bower.io/) ! not completed yet
+* [Bower](http://bower.io/)
 
 ## Installation
 
@@ -27,7 +26,8 @@ You will need the following things properly installed on your computer.
 
 ### Testing
 
-* `npm test`
+* [Mocha](https://mochajs.org/) via [Chai](http://chaijs.com/)
+* 'mocha'
 
 #
                                    /\
