@@ -41,7 +41,6 @@ module.exports = function(app, passport){
 		};
 			userController.createUser(newUser)
 			.then(function(users){
-				console.log("THis is user dataValues" + users.dataValues);
         res.json(users.dataValues);
     }) .catch(function(error){
          console.log("ops: " + error);
