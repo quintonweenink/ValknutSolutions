@@ -1,0 +1,219 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Requirements Specification}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			[0.5cm]
+			\huge{
+			Software Requirements Specification and
+			Technology Neutral Process Design\\
+			}
+
+			\line(1,0){300}\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
+			Client: RetroRabbit} \\
+			\line(1,0){300}\\
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
+			\large
+			{
+			\begin{itemize}
+				\item 13054903 - Charl Jansen van Vuuren
+				\item 10297902 - Bernhard Schuld
+				\item 13044924 - Kevin Heritage
+				\item 13176545 - Quinton Weenink\\
+			\end{itemize}
+			}
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
+		[0.5cm]
+		\textsc{\large \today}\\
+		\end{center}
+
+		%\begin{figure}[H]}
+		%\centering
+		%\includegraphics[{imagename}
+		%\end{figure}\
+
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+	\cleardoublepage
+\section{Introduction}
+\section{Vision}
+\section{Background}
+
+\section{Functional requirements and application design}
+	\subsection{User subsystem}
+		\subsubsection{Use cases}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+		\caption{Use Case Diagram : Publications}
+		\end{figure}
+
+			\begin{flushleft}
+			\textbf{Critical}
+				\begin{itemize}
+	  				\item addPublication
+	  				\item editPublication
+	  				\item getPublication
+	  				\item addPublicationStatus
+	  				\item getPublicationStatus
+	  				\item assignGoal
+	  				\item unassignGoal
+	  				\item accreditResearcher
+	  				\item unaccreditResearcher
+	  				\item linkGroup
+	  				\item unlinkGroup
+				\end{itemize}
+
+			\textbf{Important}
+				\begin{itemize}
+	  				\item editPublicationStatus
+	  				\item getPublicationProgression
+	  				\item editPublicationProgression
+	  				\item editPublicationStatus
+				\end{itemize}
+
+			\textbf{Nice-To-Have}
+				\begin{itemize}
+	  				\item getDepartmentPublications
+	  				\item getGroupPublications
+				\end{itemize}
+		\end{flushleft}
+
+		\subsubsection{Services Contracts}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+		\caption{Use Case Diagram : Publications}
+		\end{figure}
+
+		\subsubsection{Required Functionality}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+		\caption{Use Case Diagram : Publications}
+		\end{figure}
+
+		\subsubsection{Process specifications}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+		\caption{Use Case Diagram : Publications}
+		\end{figure}
+
+
+	\subsection{Admin}
+
+	\subsubsection{Use cases}
+
+	\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+	\caption{Use Case Diagram : Publications}
+	\end{figure}
+
+		\begin{flushleft}
+		\textbf{Critical}
+			\begin{itemize}
+					\item addPublication
+					\item editPublication
+					\item getPublication
+					\item addPublicationStatus
+					\item getPublicationStatus
+					\item assignGoal
+					\item unassignGoal
+					\item accreditResearcher
+					\item unaccreditResearcher
+					\item linkGroup
+					\item unlinkGroup
+			\end{itemize}
+
+		\textbf{Important}
+			\begin{itemize}
+					\item editPublicationStatus
+					\item getPublicationProgression
+					\item editPublicationProgression
+					\item editPublicationStatus
+			\end{itemize}
+
+		\textbf{Nice-To-Have}
+			\begin{itemize}
+					\item getDepartmentPublications
+					\item getGroupPublications
+			\end{itemize}
+	\end{flushleft}
+
+	\subsubsection{Services Contracts}
+
+	\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+	\caption{Use Case Diagram : Publications}
+	\end{figure}
+
+	\subsubsection{Required Functionality}
+
+	\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+	\caption{Use Case Diagram : Publications}
+	\end{figure}
+
+	\subsubsection{Process specifications}
+
+	\begin{figure}[H]
+	\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+	\caption{Use Case Diagram : Publications}
+	\end{figure}
+
+
+\subsection{Domain model}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{images/UP.jpg}  \\
+\caption{Use Case Diagram : Publications}
+\end{figure}
+
+\subsection{Open Issues}
+
+
+
+
+
+
+\end{document}
