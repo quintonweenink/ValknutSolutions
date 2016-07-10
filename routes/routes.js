@@ -93,8 +93,15 @@ next();
 // });
 
 //Emailer code
-//email.emailer();
+/*
+var emailSettings = {
+	to: 'charljvv@gmail.com', // recipient
+	subject: 'Test mail bro', // Subject line
+	text: 'Test body mail', // plaintext body
+};
 
+email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
+*/
 
 //------------API routes------------------//
 //Need to test here
