@@ -101,8 +101,11 @@ next();
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
+			console.log(req);
+
+			res.end();
 			var newUser = {
-				firstName: 'Test',
+				firstName: 'Charl',
 				lastName: 'lelelel',
 				contactNumber : '0121212',
 				mobileNumber : '09312123',
@@ -122,13 +125,20 @@ next();
 	})
 	//User Get route
     .get(function(req, res) {
+			if (req.query['hub.verify_token'] == 'bleepBlop123')
+			{
+				console.log('Token verified');
+				res.send(req.query['hub.challenge']);
+			} else {
+
 			models.User.findAll().then(function(users){
 				res.json(users);
 		});
+		}
 		//Logic for returning all users
 	});
 
-
+	app.route('/api/user/:mode')
 	//User Specific ID route
 	app.route('/api/user/:user_id')
 	//User ID Get route
@@ -151,8 +161,9 @@ next();
 			console.log(id);
 	userController.deleteUserByID(id).then(function(user){
 		res.json({ message: 'User deleted!',
-			ID: req.params.user_id });
-	});
+					ID: req.params.user_id });
+				});
+		//Logic for updating a user
 	});
 
 
