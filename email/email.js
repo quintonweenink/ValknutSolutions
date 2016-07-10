@@ -6,7 +6,7 @@ module.exports = {
 emailer : function createUser(newUser)
 {
   var transporter = nodemailer.createTransport("SMTP", {
-          service: 'Gmail',
+          service: 'webmail',
           auth: {
               user: configAuth.emailAuth.user,
               pass: configAuth.emailAuth.pass
