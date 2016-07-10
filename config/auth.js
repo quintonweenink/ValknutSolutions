@@ -5,8 +5,8 @@ module.exports = {
         'callbackURL': 'localhost'
     },
       'emailAuth': {
-          'user': 'user@email.com',
-          'pass': 'password'
+          'user': 'valknutsolutions@webmail.co.za',
+          'pass': 'testtest'
       },
       'secret': 'secretsecretsecretbro'
 }
