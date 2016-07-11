@@ -15,7 +15,6 @@
     "jquery": "^2.2.4",
     "Materialize": "materialize#^0.97.6",
     "angular": "^1.5.7",
-    "angular-route": "^1.5.7",
-    "material-design-icons": "^2.2.3"
+    "angular-route": "^1.5.7"
   }
 }
