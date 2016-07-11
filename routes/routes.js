@@ -115,7 +115,7 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 /*Post req body:  { entry:
              { ad_id: 6052031692189,
                 leadgen_id: 1743060585951007,
-        time: 1468247310 } ],*/
+        time: 1468247310 }}*/
 
 			/*Data returned from an api call to fb api through graph api explorer
 			{
