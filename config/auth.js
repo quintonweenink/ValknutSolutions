@@ -5,8 +5,10 @@ module.exports = {
         'callbackURL': 'localhost'
     },
       'emailAuth': {
-          'user': 'user@email.com',
-          'pass': 'password'
+          'user': 'valknutsolutions7@gmail.com',
+          'pass': 'BleepBlop'
       },
-      'secret': 'secretsecretsecretbro'
+      'secret': 'secretsecretsecretbro',
+      'emailUri' : 'smtps://valknutsolutions7:BleepBlop@smtp.gmail.com',
+      'emailFrom' : 'Test@servername.com'
 }
