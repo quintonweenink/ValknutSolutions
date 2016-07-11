@@ -1,4 +1,3 @@
-var userController = require("../DBControllers/UserController");
 var request = require("supertest");
 var assert = require('chai').assert;
 
