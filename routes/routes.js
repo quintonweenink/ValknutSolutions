@@ -109,7 +109,7 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			console.log(req.body);
+			console.log('Post request body: ', req.body);
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
@@ -131,6 +131,7 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 	})
 	//User Get route
     .get(function(req, res) {
+			console.log('Get request query', req.query);
 			if (req.query['hub.verify_token'] == 'bleepBlop123')
 			{
 				console.log('Token verified');
