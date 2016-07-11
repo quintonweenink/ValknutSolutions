@@ -24,29 +24,53 @@ function subscribeApp(page_id, page_access_token){
     {access_token: page_access_token},
     function(res) {
     console.log('Subscribed to app', res);
-  })
+    $('#pagesList').hide(100);
+  });
+}
+
+function getPageImage(img, page_id)
+{
+  FB.api(
+    '/' + page_id + '/picture',
+    function(res){
+      if (res && !res.error){
+        img.attr('src', res.data.url);
+      }
+    }
+  );
 }
 
 //------- FB login button ------//
- function myFacebookButton()
+ function facebookLoginLeads()
  {
    FB.login(function(res){
      console.log('Successfully logged in', res);
+     $('#facebookLoginButtonLeads').hide(100);
      FB.api('/me/accounts',function(response){
        console.log('Successfully retrieved pages', response);
        var pages = response.data;
-       var ul = document.getElementById('list');
+       var ul = $('ul#pagesList');
 
        for (var i = 0; i < pages.length; i++)
        {
          var page = pages[i];
-         var li = document.createElement('li');
-         var a = document.createElement('a');
+         var img = $('<img alt="' + page.name + '"></img>');
+         getPageImage(img,page.id);
+         var li = $('<li></li>');
+         var div = $('<div class="chip"></div>');
+         var a = $('<a></a>');
+
          a.herf = '#';
-         a.onclick = subscribeApp.bind(this, page.id, page.access_token);
-         a.innerHTML = page.name
-         li.appendChild(a);
-         ul.appendChild(li);
+         a.on('click', subscribeApp.bind(this, page.id, page.access_token));
+         a.text(page.name);
+
+
+
+         div.append(img);
+         div.css({"cursor": "pointer"});
+         div.append(a);
+         li.append(div);
+         ul.append(li);
        }
      })
    },{scope: 'manage_pages'});
