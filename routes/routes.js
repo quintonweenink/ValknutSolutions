@@ -110,10 +110,10 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 //API/leads
 app.route('/api/leads')
 	.post(function(req, res){
-		console.log('Post req body: ', util.inspect(req.body, {showHidden: false, depth: null}));
-		//var body = req.body;
-		//console.log(body);
-		res.send(req.body);
+		console.log(req.body[0].object);
+		console.log('Post req body: ', req.body);
+
+		res.send('');
 		//fbControllers.getLeadData(req.body['entry.leadgen_id'], "EAANpDqrgoMIBAGpGcnnxn5mre6PlnZAs1yHZB4KboGiwJwEOP0uXmtZCHRNap1L5QRgvQI4mr30BmWijCVO7wQJZCj5F78FKAuiEZCFOGZB1sCKYOYJ0N6elJLEFQZAoWqm6o9iCwKmaHenVG8OwOIlAOgtzLFlvit4b9ZBmksBeYZCHsSIGhjyje");
 /*Post req body:  { entry:
 					 { ad_id: 6052031692189,
