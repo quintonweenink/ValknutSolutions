@@ -111,6 +111,67 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 	//User Post route
     .post(function(req, res) {
 			console.log('Post req body: ', util.inspect(req.body, {showHidden: false, depth: null}));
+
+/*Post req body:  { entry:
+             { ad_id: 6052031692189,
+                leadgen_id: 1743060585951007,
+        time: 1468247310 } ],*/
+
+			/*Data returned from an api call to fb api through graph api explorer
+			{
+  "created_time": "2016-07-11T14:28:29+0000",
+  "id": "1743060585951007",
+  "field_data": [
+    {
+      "name": "first_name",
+      "values": [
+        "Kevin"
+      ]
+    },
+    {
+      "name": "last_name",
+      "values": [
+        "Heritage"
+      ]
+    },
+    {
+      "name": "email",
+      "values": [
+        "kheritage222@gmail.com"
+      ]
+    },
+    {
+      "name": "city",
+      "values": [
+        "Pretoria"
+      ]
+    },
+    {
+      "name": "date_of_birth",
+      "values": [
+        "06/06/1994"
+      ]
+    },
+    {
+      "name": "gender",
+      "values": [
+        "male"
+      ]
+    },
+    {
+      "name": "marital_status",
+      "values": [
+        "sin"
+      ]
+    },
+    {
+      "name": "phone_number",
+      "values": [
+        "+27767405640"
+      ]
+    }
+  ]
+}*/
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
