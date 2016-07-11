@@ -146,7 +146,6 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 		//Logic for returning all users
 	});
 
-	app.route('/api/user/:mode')
 	//User Specific ID route
 	app.route('/api/user/:user_id')
 	//User ID Get route
