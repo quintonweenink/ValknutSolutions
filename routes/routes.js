@@ -7,6 +7,7 @@ var adminController = require("../DBControllers/AdminController");
 var analystController = require("../DBControllers/AnalystController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
+var util = require('util');
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
@@ -109,7 +110,7 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			console.log('Post request body: ', req.body);
+			console.log('Post req body: ', util.inspect(req.body, {showHidden: false, depth: null}));
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
