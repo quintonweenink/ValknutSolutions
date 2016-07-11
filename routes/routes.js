@@ -101,9 +101,6 @@ next();
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-			console.log(req);
-
-			res.end();
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
