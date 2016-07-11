@@ -1,50 +1,79 @@
 var userController = require("../DBControllers/UserController");
-var request = require("request");
-
-function httpRequest(done)
-{
-
-    request('http://www.google.com', function (error, response, body, done) {
-    if (!error && response.statusCode == 200) {
-    console.log(body); // Show the HTML for the Google homepage.
-    done(body);
-    }
-    else {
-      console.log("error");
-      done("error");
-    }
-    });
-console.log("done"); // Show the HTML for the Google homepage.
-}
-
-function completed(comp)
-{
-    console.log(comp);
-}
-
+var request = require("supertest");
 var assert = require('chai').assert;
-describe('User test', function() {
-  describe('Testing creatUser(User)', function() {
-    it('should not insert due to no connection', function() {
-      httpRequest(completed);
-    });
-  });
 
-  describe('Testing creatUser(User)', function() {
-    it('should return exc', function() {
-      var newUser = {
-				firstName: 'Unit',
-				lastName: 'Test',
-				contactNumber : '0121212',
-				mobileNumber : '09312123',
-				maritalStatus : 'Married',
-				dateOfBirth : '1994/01/01 20:00',
-				gender : 'male',
-				location : 'Test',
-				email : 'email@email.com'
-		};
-			var addedUser = userController.createUser(newUser);
-      console.log("Exception: User not added due to no db connection")
+var assert = require('assert');
+
+var env = process.env.NODE_ENV || "development";
+
+var url;
+var path;
+var currentUser;
+
+if (env != "development")
+{
+  url = "https://insuranceprofiling.herokuapp.com";
+}
+else {
+  url = "localhost";
+}
+
+describe("Testing API", function() {
+
+  path = "/api/user/";
+  describe("URL: " + url + path, function() {
+
+    describe('POST : /api/user/', function() {
+      it('should insert and return the inserted user', function(done) {
+        	//POST request
+        request(url)
+      	.post(path)
+      	.send('')
+      	.end(function(err, res) {
+                if (err) {
+                  console.log("error");
+                  throw err;
+                }
+                currentUser = res.body;
+                done();
+        });
+      });
     });
+
+    describe("GET : /api/user/:currentUser", function() {
+      it('should get user with id', function(done) {
+        	//DELETE request
+        request(url)
+      	.get(path + currentUser.id)
+      	.send('')
+      	.end(function(err, res) {
+                if (err) {
+                  console.log("error");
+                  throw err;
+                }
+                assert.equal(res.body.id, currentUser.id);
+                done();
+        });
+      });
+    });
+
+    describe('DELETE : /api/user/:currentUser', function() {
+      it('should delete the just inserted user', function(done) {
+        	//DELETE request
+        request(url)
+      	.delete('/api/user/' + currentUser.id)
+      	.send('')
+      	.end(function(err, res) {
+                if (err) {
+                  console.log("error");
+                  throw err;
+                }
+                assert.equal(res.body.ID, currentUser.id);
+                done();
+        });
+      });
+    });
+
+
   });
 });
