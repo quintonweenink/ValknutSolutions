@@ -119,12 +119,14 @@ app.route('/api/leads')
 			var changes = entry[ent].changes;
 			for (var ch in changes)
 			{
-				var value = changes[ch].value.leadgen_id;
-				console.log(JSON.stringify(value));
+				var value = changes[ch].value;
+				console.log(JSON.stringify(value.leadgen_id));
+				// Use leadgen id to do api request to facebook to extract the lead ads data and add it to database
+				var leadData = fbControllers.getLeadData(value.leadgen_id, "EAANpDqrgoMIBAI1qdSvZAEXilbUJt3D26m83v619XOnIhFkqnqzDm6mPcDx280fzIuOtjyKZAfswZAf02asxDzE4LX0QR6d9wfNYMXZBit7Bc5di5R4kjSUNK3K4sxWUDCg37qkU5TTPEB2Ylc1xGETZBkAtBZBEDFZBTXLy2QfZCwZDZD");
+				console.log("Lead Data", JSON.stringify(leadData));
 			}
 		}
-		//console.log(JSON.stringify(entry[0].changes[0].value.leadgen_id));
-		res.send('200: OK');
+		res.send('{"success" : true}');
 	})
 	.get(function(req, res){
 		if (req.query['hub.verify_token'] == 'bleepBlop123')

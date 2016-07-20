@@ -15,7 +15,8 @@ module.exports = {
           console.log(!res ? 'error occured':res.error);
           return;
         }
-        console.log('Lead body: ', util.inspect(res, {showHidden: false, depth: null}));
+        console.log('Lead body: ', JSON.stringify(res));
+        //Now add this data to the database
       }
     );
   }
