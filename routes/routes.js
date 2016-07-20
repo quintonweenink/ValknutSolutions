@@ -111,7 +111,7 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 //API/leads
 app.route('/api/leads')
 	.post(function(req, res){
-		fs.writeFileSync('./lead.json', util.inspect(req.body,{showHidden: false, depth: null}), 'utf-8');
+		fs.writeFileSync('./lead.json', JSON.stringify(req.body), 'utf-8');
 		res.send('200: OK');
 		//fbControllers.getLeadData(req.body['entry.leadgen_id'], "EAANpDqrgoMIBAGpGcnnxn5mre6PlnZAs1yHZB4KboGiwJwEOP0uXmtZCHRNap1L5QRgvQI4mr30BmWijCVO7wQJZCj5F78FKAuiEZCFOGZB1sCKYOYJ0N6elJLEFQZAoWqm6o9iCwKmaHenVG8OwOIlAOgtzLFlvit4b9ZBmksBeYZCHsSIGhjyje");
 /*Post req body:  { entry:
