@@ -178,6 +178,12 @@ app.route('/api/leads')
 	.get(function(req, res){
 		if (req.query['hub.verify_token'] == 'bleepBlop123')
 			res.send(req.query['hub.challenge']);
+		else {
+			fs.readFile('./lead.json', function(err, data){
+				if (err) throw err;
+				res.send(data);
+			});
+		}
 	});
 
 //Need to test here
