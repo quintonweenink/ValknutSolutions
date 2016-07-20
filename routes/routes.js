@@ -8,6 +8,7 @@ var analystController = require("../DBControllers/AnalystController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
+var fs = require('fs');
 var fbControllers = require("../fbControllers/fbController.js");
 
 module.exports = function(app, passport){
@@ -110,10 +111,8 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 //API/leads
 app.route('/api/leads')
 	.post(function(req, res){
-		console.log(req.body[0].object);
-		console.log('Post req body: ', req.body);
-
-		res.send('');
+		fs.writeFileSync('./lead.json', util.inspect(req.body), 'utf-8');
+		res.send('200: OK');
 		//fbControllers.getLeadData(req.body['entry.leadgen_id'], "EAANpDqrgoMIBAGpGcnnxn5mre6PlnZAs1yHZB4KboGiwJwEOP0uXmtZCHRNap1L5QRgvQI4mr30BmWijCVO7wQJZCj5F78FKAuiEZCFOGZB1sCKYOYJ0N6elJLEFQZAoWqm6o9iCwKmaHenVG8OwOIlAOgtzLFlvit4b9ZBmksBeYZCHsSIGhjyje");
 /*Post req body:  { entry:
 					 { ad_id: 6052031692189,
