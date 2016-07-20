@@ -114,7 +114,16 @@ app.route('/api/leads')
 		console.log('Received lead from Facebook');
 		fs.writeFileSync('./lead.json', JSON.stringify(req.body), 'utf-8');
 		var entry = req.body.entry;
-		console.log(JSON.stringify(entry[0].changes[0].value.leadgen_id));
+		for (var ent in entry)
+		{
+			var changes = entry[ent].changes;
+			for (var ch in changes)
+			{
+				var value = changes[ch].value.leadgen_id;
+				console.log(JSON.stringify(value));
+			}
+		}
+		//console.log(JSON.stringify(entry[0].changes[0].value.leadgen_id));
 		res.send('200: OK');
 	})
 	.get(function(req, res){
