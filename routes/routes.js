@@ -5,6 +5,7 @@ var models = require("../models");
 var userController = require("../DBControllers/UserController");
 var adminController = require("../DBControllers/AdminController");
 var analystController = require("../DBControllers/AnalystController");
+var pageController = require("../DBControllers/PageController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
@@ -108,6 +109,25 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 */
 
 //------------API routes------------------//
+//API/pageAccessToken
+app.route('/api/pageAccessToken')
+	.post(function(req,res){
+		console.log('Creating page with its access token');
+		var page = {
+			page_id : req.body.page_id,
+			page_name : req.body.page_name,
+			page_access_token : req.body.page_access_token
+		};
+		var newPage = pageController.createPage(page)
+		.then(function(pages){
+			res.json(pages.dataValues);// NOTE: Should be changed to just return the status code
+	}).catch(function(error){
+			 console.log("ops: " + error);
+			 res.status(500).json({ error: 'error' });
+	 });
+		console.log('Page created', JSON.stringify(newPage));
+		res.status(200);
+	});
 //API/leads
 app.route('/api/leads')
 	.post(function(req, res){
@@ -122,6 +142,7 @@ app.route('/api/leads')
 				var value = changes[ch].value;
 				console.log(JSON.stringify(value.leadgen_id));
 				// Use leadgen id to do api request to facebook to extract the lead ads data and add it to database
+				// NOTE: use page id to get the access token from db
 				var leadData = fbControllers.getLeadData(value.leadgen_id, "EAANpDqrgoMIBAI1qdSvZAEXilbUJt3D26m83v619XOnIhFkqnqzDm6mPcDx280fzIuOtjyKZAfswZAf02asxDzE4LX0QR6d9wfNYMXZBit7Bc5di5R4kjSUNK3K4sxWUDCg37qkU5TTPEB2Ylc1xGETZBkAtBZBEDFZBTXLy2QfZCwZDZD");
 				console.log("Lead Data", JSON.stringify(leadData));
 			}

@@ -25,5 +25,4 @@ deleteUserByID : function deleteUserByID(id)
   }});
   return delete_user;
 }
-
 };
