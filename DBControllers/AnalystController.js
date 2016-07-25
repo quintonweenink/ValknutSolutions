@@ -2,9 +2,9 @@ var models = require("../models");
 var express = require('express');
 
 module.exports = {
-createAdmin : function createAdmin(newUser)
+createAnalyst : function createAnalyst(newUser)
 {
-			var new_user = models.Admin.create({
+			var new_user = models.Analyst.create({
 							email: newUser.email,
 							password: newUser.password,
 		});

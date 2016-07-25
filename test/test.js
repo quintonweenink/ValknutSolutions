@@ -1,9 +1,78 @@
+var request = require("supertest");
 var assert = require('chai').assert;
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
+
+var assert = require('assert');
+
+var env = process.env.NODE_ENV || "development";
+
+var url;
+var path;
+var currentUser;
+
+if (env != "development")
+{
+  url = "https://insuranceprofiling.herokuapp.com";
+}
+else {
+  url = "localhost";
+}
+
+describe("Testing API", function() {
+
+  path = "/api/user/";
+  describe("URL: " + url + path, function() {
+
+    describe('POST : /api/user/', function() {
+      it('should insert and return the inserted user', function(done) {
+        	//POST request
+        request(url)
+      	.post(path)
+      	.send('')
+      	.end(function(err, res) {
+                if (err) {
+                  console.log("error");
+                  throw err;
+                }
+                currentUser = res.body;
+                done();
+        });
+      });
     });
+
+    describe("GET : /api/user/:currentUser", function() {
+      it('should get user with id', function(done) {
+        	//DELETE request
+        request(url)
+      	.get(path + currentUser.id)
+      	.send('')
+      	.end(function(err, res) {
+                if (err) {
+                  console.log("error");
+                  throw err;
+                }
+                assert.equal(res.body.id, currentUser.id);
+                done();
+        });
+      });
+    });
+
+    describe('DELETE : /api/user/:currentUser', function() {
+      it('should delete the just inserted user', function(done) {
+        	//DELETE request
+        request(url)
+      	.delete('/api/user/' + currentUser.id)
+      	.send('')
+      	.end(function(err, res) {
+                if (err) {
+                  console.log("error");
+                  throw err;
+                }
+                assert.equal(res.body.ID, currentUser.id);
+                done();
+        });
+      });
+    });
+
+
   });
 });
