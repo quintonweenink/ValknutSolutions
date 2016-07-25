@@ -6,6 +6,8 @@ var userController = require("../DBControllers/UserController");
 var adminController = require("../DBControllers/AdminController");
 var analystController = require("../DBControllers/AnalystController");
 var pageController = require("../DBControllers/PageController");
+var advertisementCotroller = require("../DBControllers/AdvertisementController");
+var leadController = require("../DBControllers/LeadController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
@@ -143,12 +145,17 @@ app.route('/api/leads')
 				var value = changes[ch].value;
 				console.log(JSON.stringify(value.leadgen_id));
 				// Use leadgen id to do api request to facebook to extract the lead ads data and add it to database
-				// NOTE: use page id to get the access token from db
+				// TODO: add ad id to db
 				models.Page.findOne({
 					where: {pageID : '' + value.page_id + ''}
 				})
 					.then(function(page){
 						var leadData = fbControllers.getLeadData(value.leadgen_id, page.pageAccessToken);
+						var advertisement = {
+							page_id: page.id,
+							advertisement_id: '' + value.ad_id + ''
+						};
+						var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement);
 					});
 			}
 		}

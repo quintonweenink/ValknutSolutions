@@ -16,7 +16,9 @@ module.exports = {
           return;
         }
         console.log('Lead body: ', JSON.stringify(res));
-        //Now add this data to the database
+        // TODO: add data to user model
+        // TODO: add data to lead model
+
         return res;
       }
     );
