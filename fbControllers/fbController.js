@@ -17,6 +17,7 @@ module.exports = {
         }
         console.log('Lead body: ', JSON.stringify(res));
         //Now add this data to the database
+        return res;
       }
     );
   }

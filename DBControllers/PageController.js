@@ -11,5 +11,4 @@ createPage : function createPage(page)
 	});
 	return new_page;
 }
-
 };

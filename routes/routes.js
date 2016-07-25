@@ -128,6 +128,7 @@ app.route('/api/pageAccessToken')
 		console.log('Page created', JSON.stringify(newPage));
 		res.status(200);
 	});
+
 //API/leads
 app.route('/api/leads')
 	.post(function(req, res){
@@ -143,8 +144,12 @@ app.route('/api/leads')
 				console.log(JSON.stringify(value.leadgen_id));
 				// Use leadgen id to do api request to facebook to extract the lead ads data and add it to database
 				// NOTE: use page id to get the access token from db
-				var leadData = fbControllers.getLeadData(value.leadgen_id, "EAANpDqrgoMIBAI1qdSvZAEXilbUJt3D26m83v619XOnIhFkqnqzDm6mPcDx280fzIuOtjyKZAfswZAf02asxDzE4LX0QR6d9wfNYMXZBit7Bc5di5R4kjSUNK3K4sxWUDCg37qkU5TTPEB2Ylc1xGETZBkAtBZBEDFZBTXLy2QfZCwZDZD");
-				console.log("Lead Data", JSON.stringify(leadData));
+				models.Page.findOne({
+					where: {pageID : '' + value.page_id + ''}
+				})
+					.then(function(page){
+						var leadData = fbControllers.getLeadData(value.leadgen_id, page.pageAccessToken);
+					});
 			}
 		}
 		res.send('{"success" : true}');
