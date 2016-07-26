@@ -88,7 +88,7 @@ The items included in this test document includes:
 \end{itemize} 
 
 \section{Features to be Tested}
-These features are rated based on the level or risk namely, High (H), Medium (M) and Low (L).
+These include features to be tested are rated based on the level or risk associated namely, High (H), Medium (M) and Low (L).
 
 \begin{itemize}
 \item API calls to do:
@@ -101,11 +101,104 @@ These features are rated based on the level or risk namely, High (H), Medium (M)
 	\begin{itemize}
 	\item Integration test to determine the current environment (development or deployment) to react accordingly (M)
 	\end{itemize}
-\item Deployment testing
+\item Deployment/Build testing including Compatibility
 		\begin{itemize}
 	\item Automated testing by the Travis CI framework to ensure the current feature is compatible with different versions of the NodeJS framework. (H)
 	\end{itemize}
 \end{itemize}
+
+\section{Features not to be Tested}
+\begin{itemize}
+	\item Email functionality
+	\begin{itemize}
+		\item This feature didn't form part of the previous sprint and is not yet in use.
+		\item Testing is not yet needed or this feature
+	\end{itemize}
+	\item The ability to receive data from a Facebook lead ad cannot be tested but this data has been mocked to ensure proper integration testing.
+	\item Front-end features including:
+	\begin{itemize}
+		\item Analyst login
+		\item Authentication
+	\end{itemize}
+\end{itemize}
+
+\section{Approach (Strategy)}
+\begin{itemize}
+	\item The testing framework Mocha will be used to run unit tests at compilation time or per request.
+	\item Deployment and compatibility testing is done with the automated framework Travis CI. Travis ensures all changes made to a branch is compatible with the different versions of NodeJS and the current environment (development or deployment).
+	\item A number of developed unit tests will be run with Mocha as can be seen in \ref{figurename}.
+	\item The testing of Facebook lead data was mocked out for testing purposes.
+	\item The use of Postman to test API routes manually, ie. to make POST requests. Postman is a browser extension developed for API 
+\end{itemize}
+
+\section{Item Pass/Fail Criteria for Tests}
+If the specified Pre-condition is not met the test will Fail. \\
+If the specified Post-condition is met the test will Pass
+\begin{itemize}
+\item Test creating row in Database - POST : /api/user/
+	\begin{itemize}
+	\item Pre-conditions:
+		\begin{itemize}
+		\item Database is connected and created
+		\item The following values are specified:  
+		\begin{itemize}
+		\item firstName
+  		\item lastName
+  		\item mobileNumber 
+  		\item maritalStatus 
+  		\item dateOfBirth 
+ 		\item gender
+  		\item location 
+ 		\item email
+ 		\end{itemize} 
+		\end{itemize}
+	\item Post-condition - The row gets persisted
+	\end{itemize}
+	
+\item Test retrieving row in Database based on currentUser - GET : /api/user/:currentUser
+	\begin{itemize}
+	\item Pre-condition - The currentUser exists
+	\item Post-condition - The currentUser is retrieved 
+	\end{itemize}
+	
+\item Test removing row in Database based on currentUser - DELETE : /api/user/:currentUser
+	\begin{itemize}
+	\item Pre-condition - The currentUser exists
+	\item Post-condition - The currentUser is removed 
+	\end{itemize}	
+\end{itemize}
+
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\textwidth]{images/tests.png}
+  \caption{Output of Mocha tests}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\textwidth]{images/tests.png}
+  \caption{Travis interface}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\textwidth]{images/5_11.png}
+  \caption{Output of Travis tests for Node version 5.11}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\textwidth]{images/6_2.png}
+  \caption{Output of Travis tests for Node version 6.2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\textwidth]{images/failed.png}
+  \caption{Output of failed Travis test for illustration purposes}
+\end{figure}
+
 
 
 \end{document}
