@@ -107,6 +107,7 @@ These include features to be tested are rated based on the level or risk associa
 	\end{itemize}
 \end{itemize}
 
+\cleardoublepage
 \section{Features not to be Tested}
 \begin{itemize}
 	\item Email functionality
@@ -126,16 +127,19 @@ These include features to be tested are rated based on the level or risk associa
 \begin{itemize}
 	\item The testing framework Mocha will be used to run unit tests at compilation time or per request.
 	\item Deployment and compatibility testing is done with the automated framework Travis CI. Travis ensures all changes made to a branch is compatible with the different versions of NodeJS and the current environment (development or deployment).
-	\item A number of developed unit tests will be run with Mocha as can be seen in \ref{figurename}.
-	\item The testing of Facebook lead data was mocked out for testing purposes.
-	\item The use of Postman to test API routes manually, ie. to make POST requests. Postman is a browser extension developed for API 
+	\item A number of developed unit tests will be run with Mocha as can be seen in Figure \ref{fig:MochaTests}.
+	\item The testing of Facebook lead data was mocked out to be testable. 
+	\item The use of Postman to test API routes manually, ie. to make POST requests. Postman is a browser extension developed for API testing.
+	\item The current compatibility tests include Node version 6.2 and 5.11 
 \end{itemize}
 
 \section{Item Pass/Fail Criteria for Tests}
-If the specified Pre-condition is not met the test will Fail. \\
-If the specified Post-condition is met the test will Pass
+If the specified Pre-condition is not met the test will fail. \\
+If the specified Post-condition is met the test will pass.
+\section{Tests}
+\subsection{The following tests all passed as intended:}
 \begin{itemize}
-\item Test creating row in Database - POST : /api/user/
+\item Creating row in Database - POST : /api/user/ 
 	\begin{itemize}
 	\item Pre-conditions:
 		\begin{itemize}
@@ -153,50 +157,88 @@ If the specified Post-condition is met the test will Pass
  		\end{itemize} 
 		\end{itemize}
 	\item Post-condition - The row gets persisted
+	\item Figure \ref{fig:MochaTests}
 	\end{itemize}
 	
-\item Test retrieving row in Database based on currentUser - GET : /api/user/:currentUser
+	
+\item Retrieving row in Database based on currentUser - GET : /api/user/:currentUser
 	\begin{itemize}
 	\item Pre-condition - The currentUser exists
 	\item Post-condition - The currentUser is retrieved 
+	\item Figure \ref{fig:MochaTests}
 	\end{itemize}
 	
-\item Test removing row in Database based on currentUser - DELETE : /api/user/:currentUser
+\item Removing row in Database based on currentUser - DELETE : /api/user/:currentUser
 	\begin{itemize}
 	\item Pre-condition - The currentUser exists
 	\item Post-condition - The currentUser is removed 
+	\item Figure \ref{fig:MochaTests}
+	\end{itemize}	
+
+
+
+\item Travis CI build test for Node version 5.11
+	\begin{itemize}
+	\item Pre-condition - The changes to the branch are compatible with version 5.11
+	\item Post-condition - The build will pass successfully 
+	\item Figure \ref{fig:5_11}
+	\end{itemize}	
+	
+\item Travis CI build test for Node version 6.2
+	\begin{itemize}
+	\item Pre-condition - The changes to the branch are compatible with version 6.2
+	\item Post-condition - The build will pass successfully 
+	\item Figure \ref{fig:6_2}
 	\end{itemize}	
 \end{itemize}
 
+\cleardoublepage
+\subsection{The following tests failed as intended:}
+\begin{itemize}
+	\item Travis CI build, running Mocha when a branch was merged.
+	\begin{itemize}
+	\item Pre-condition - Heroku server is online.
+	\item Post-condition - The build will pass successfully 
+	\item Figure \ref{fig:failed}
+	\end{itemize}
+	\item This build failed as a result of the hosting server being offline, not fulfilling the Pre-condition. 
+	\item The error stating a timeout proves this failure.
+\end{itemize}
 
+\cleardoublepage
+\section{Figures}
 \begin{figure}[H]
   \centering
       \includegraphics[width=\textwidth]{images/tests.png}
   \caption{Output of Mocha tests}
+  \label{fig:MochaTests}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
-      \includegraphics[width=\textwidth]{images/tests.png}
+      \includegraphics[width=\textwidth]{images/TravisInterface.png}
   \caption{Travis interface}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
       \includegraphics[width=\textwidth]{images/5_11.png}
   \caption{Output of Travis tests for Node version 5.11}
+  \label{fig:5_11}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
       \includegraphics[width=\textwidth]{images/6_2.png}
   \caption{Output of Travis tests for Node version 6.2}
+  \label{fig:6_2}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
       \includegraphics[width=\textwidth]{images/failed.png}
-  \caption{Output of failed Travis test for illustration purposes}
+  \caption{Output of failed Travis test}
+  \label{fig:failed}
 \end{figure}
 
 
