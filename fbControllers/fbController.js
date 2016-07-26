@@ -2,6 +2,29 @@ var FB = require('fb');
 var leadController = require("../DBControllers/LeadController");
 
 var auth = require('../config/auth.js');
+
+function extractUser(lead)
+{
+  console.log("ExtractedLead: " + JSON.stringify(lead[0].name));
+  var user = {
+    first_name : "",
+    last_name : "",
+    phone_number : "",
+    marital_status : "",
+    date_of_birth : "",
+    gender : "",
+    city : "",
+    email : ""
+  }
+  for (i = 0; i < lead.length; i++)
+  {
+    console.log("Setting " + lead[i].name + " to " + lead[i].values[0]);
+    user[lead[i].name] = lead[i].values[0];
+  }
+  console.log("ExtractedUser : " + JSON.stringify(user));
+  return user;
+}
+
 module.exports = {
   //var fbApp = FB.extend({appId: auth.fb.appId, appSecret: auth.fb.appSecret});
   getLeadData : function getLeadData(value, page_access_token)
@@ -16,14 +39,7 @@ module.exports = {
           console.log(!res ? 'error occured':res.error);
           return;
         }
-        console.log('Lead body: ', JSON.stringify(res));
-        var lead = res.body;
-        var newLead = {
-          lead_id : '' + lead.id,
-          ad_id : value.ad_id,
-          lead_data : lead
-        }
-        leadController.createLead(newLead);
+        var user = extractUser(res.field_data);
 
         return res;
       }

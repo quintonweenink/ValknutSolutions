@@ -176,7 +176,7 @@ app.route('/api/leads')
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-
+			/*
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
@@ -194,7 +194,7 @@ app.route('/api/leads')
     }) .catch(function(error){
          console.log("ops: " + error);
          res.status(500).json({ error: 'error' });
-     });
+     });*/
 	})
 	//User Get route
     .get(function(req, res) {
