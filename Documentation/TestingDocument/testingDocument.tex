@@ -1,0 +1,111 @@
+\documentclass{article}
+
+\usepackage[margin=2.5cm,left=2cm,includefoot]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[space]{grffile}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{COS301}
+\lhead{Testing Document}
+\fancyfoot[R]{Page \thepage}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			[0.5cm]
+			\huge{
+			Testing Document\\
+			}
+			
+			\line(1,0){300}\\
+			[0.2cm]
+			\LARGE{Project: Insurance profiling from social media\\
+			Client: RetroRabbit} \\
+			\line(1,0){300}\\
+			\LARGE{Team: Valknut Solutions}\\
+			[1.0cm]
+			\large
+			{
+			\begin{itemize}
+				\item 13054903 - Charl Jansen van Vuuren 
+				\item 10297902 - Bernhard Schuld      
+				\item 13044924 - Kevin Heritage
+				\item 13176545 - Quinton Weenink\\
+			\end{itemize}
+			}
+			\textsc{\large}\\
+		[3.0cm]
+		\textsc{\large  Department of Computer Science}\\
+		[0.5cm]
+		\textsc{\large \today}\\
+		\end{center}
+			
+	\end{titlepage}
+	\cleardoublepage
+	\tableofcontents
+	\cleardoublepage
+\section{Introduction}
+This document contains information related to Testing of the Insurance Profiling project that is being developed for RetroRabbit as part of the COS301 module at the University Of Pretoria. \\
+This document is based on the IEEE 829 Standard for Testing Documentation \href{http://www.fit.vutbr.cz/study/courses/ITS/public/ieee829.html}{IEEE 829}
+
+\section{References to other documentation}
+\begin{itemize}
+	\item{Requirements specifications as per 29 July 2016}
+	\item{Architecture Design as per 29 July 2016}
+\end{itemize}
+
+\section{Test items}
+The items included in this test document includes:
+\begin{itemize}
+	\item Backend API calls
+	\item Database management functions
+	\item Environmental tests 
+	\item Deployment and compatibility tests
+\end{itemize} 
+
+\section{Features to be Tested}
+These features are rated based on the level or risk namely, High (H), Medium (M) and Low (L).
+
+\begin{itemize}
+\item API calls to do:
+	\begin{itemize}
+	\item Database insertions (H)
+	\item Database deletions (H)
+	\item Database retrievals (L)
+	\end{itemize}
+\item Environmental test
+	\begin{itemize}
+	\item Integration test to determine the current environment (development or deployment) to react accordingly (M)
+	\end{itemize}
+\item Deployment testing
+		\begin{itemize}
+	\item Automated testing by the Travis CI framework to ensure the current feature is compatible with different versions of the NodeJS framework. (H)
+	\end{itemize}
+\end{itemize}
+
+
+\end{document}
