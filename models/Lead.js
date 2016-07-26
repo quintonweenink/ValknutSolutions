@@ -9,10 +9,6 @@ var Lead = sequelize.define('Lead', {
     type: DataTypes.INTEGER,
     allowNull : false
   },
-  userID: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
   leadData: {
     type: DataTypes.JSON,
     allowNull: false

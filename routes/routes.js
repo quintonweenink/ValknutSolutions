@@ -150,7 +150,7 @@ app.route('/api/leads')
 					where: {pageID : '' + value.page_id + ''}
 				})
 					.then(function(page){
-						var leadData = fbControllers.getLeadData(value.leadgen_id, page.pageAccessToken);
+						var leadData = fbControllers.getLeadData(value, page.pageAccessToken);
 						var advertisement = {
 							page_id: page.id,
 							advertisement_id: '' + value.ad_id + ''
