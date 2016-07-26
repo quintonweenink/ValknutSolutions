@@ -1,11 +1,11 @@
 var FB = require('fb');
 var leadController = require("../DBControllers/LeadController");
+var userController = require("../DBControllers/UserController");
 
 var auth = require('../config/auth.js');
 
 function extractUser(lead)
 {
-  console.log("ExtractedLead: " + JSON.stringify(lead[0].name));
   var user = {
     first_name : "",
     last_name : "",
@@ -18,10 +18,8 @@ function extractUser(lead)
   }
   for (i = 0; i < lead.length; i++)
   {
-    console.log("Setting " + lead[i].name + " to " + lead[i].values[0]);
     user[lead[i].name] = lead[i].values[0];
   }
-  console.log("ExtractedUser : " + JSON.stringify(user));
   return user;
 }
 
@@ -40,7 +38,12 @@ module.exports = {
           return;
         }
         var user = extractUser(res.field_data);
-
+        var userID = function(addedUser){
+          console.log("Added user data: " + JSON.stringify(addedUser));
+          return addedUser;
+        }(userController.createUser(user));
+        // TODO: Add user to the database
+        // TODO: Add lead to db and link with user
         return res;
       }
     );
