@@ -142,6 +142,10 @@ These include features to be tested are rated based on the level or risk associa
 	\item The current compatibility tests include Node version 6.2 and 5.11 
 \end{itemize}
 
+
+\section{Running tests}
+Tests can be ran with the command "npm test" which will run Mocha, if this test is run locally it will connect to the local database.
+Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility.
 \section{Item Pass/Fail Criteria for Tests}
 If the specified Pre-condition is not met the test will fail. \\
 If the specified Post-condition is met the test will pass.
