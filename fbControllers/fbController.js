@@ -38,7 +38,7 @@ module.exports = {
           return;
         }
         var user = extractUser(res.field_data);
-        var userID = function(addedUser){
+        userID = function(addedUser){
           console.log("Added user data: " + JSON.stringify(addedUser));
           return addedUser;
         }(userController.createUser(user));

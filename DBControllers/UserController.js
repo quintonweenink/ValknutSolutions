@@ -17,22 +17,14 @@ createUser : function createUser(user)
 		},
 		defaults : {}
 	})
-	.spread(function(new_lead, created){
-		console.log("New user :" + JSON.stringify(new_lead.get({plain: true})));
+	.spread(function(new_user, created){
+		console.log("New user :" + JSON.stringify(new_user.get({plain:true})));
 		console.log("Created field: " + JSON.stringify(created));
-	});/*
-			var new_user = models.User.create({
-							firstName: newUser.firstName,
-							lastName: newUser.lastName,
-							contactNumber : newUser.contactNumber,
-							mobileNumber : newUser.mobileNumber,
-							maritalStatus : newUser.maritalStatus,
-							dateOfBirth : newUser.dateOfBirth,
-							gender : newUser.gender,
-							location : newUser.location,
-							email : newUser.email
-		});
-		return new_user;*/
+		userID = new_user.id;
+		return new_lead.id;
+	});
+
+	return userID;
 },
 deleteUserByID : function deleteUserByID(id)
 {
