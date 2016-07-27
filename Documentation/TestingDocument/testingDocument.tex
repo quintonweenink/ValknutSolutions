@@ -10,7 +10,7 @@
 \usepackage{caption}
 \usepackage{hyperref}
 \usepackage{listings}
-
+\usepackage{vhistory}
 \usepackage{titlesec}
 
 \setcounter{secnumdepth}{4}
@@ -48,6 +48,8 @@
 			\line(1,0){300}\\
 			\LARGE{Team: Valknut Solutions}\\
 			[1.0cm]
+			\large{Version: 1.0}\\
+			[1.0cm]
 			\large
 			{
 			\begin{itemize}
@@ -63,11 +65,18 @@
 		[0.5cm]
 		\textsc{\large \today}\\
 		\end{center}
-			
 	\end{titlepage}
+	
+	\cleardoublepage
+	% Start of the revision history table
+	\begin{versionhistory}
+  		\vhEntry{1.0}{27.7.2016}{CJvV,KH,QW}{created}
+	\end{versionhistory}	
+	
 	\cleardoublepage
 	\tableofcontents
 	\cleardoublepage
+	
 \section{Introduction}
 This document contains information related to Testing of the Insurance Profiling project that is being developed for RetroRabbit as part of the COS301 module at the University Of Pretoria. \\
 This document is based on the IEEE 829 Standard for Testing Documentation \href{http://www.fit.vutbr.cz/study/courses/ITS/public/ieee829.html}{IEEE 829}
@@ -136,6 +145,7 @@ These include features to be tested are rated based on the level or risk associa
 \section{Item Pass/Fail Criteria for Tests}
 If the specified Pre-condition is not met the test will fail. \\
 If the specified Post-condition is met the test will pass.
+\cleardoublepage
 \section{Tests}
 \subsection{The following tests all passed as intended:}
 \begin{itemize}
@@ -200,10 +210,29 @@ If the specified Post-condition is met the test will pass.
 	\item Pre-condition - Heroku server is online.
 	\item Post-condition - The build will pass successfully 
 	\item Figure \ref{fig:failed}
-	\end{itemize}
-	\item This build failed as a result of the hosting server being offline, not fulfilling the Pre-condition. 
+	\item This test failed as a result of the hosting server being offline, not fulfilling the Pre-condition. 
 	\item The error stating a timeout proves this failure.
+	\end{itemize}
+	
+	\item Database connection test based on Mocha test
+	\begin{itemize}
+	\item Pre-conditions
+	\begin{itemize}
+		\item The database exists and is created
+		\item The database accepts connections
+	\end{itemize}
+	\item Post-condition - The test will pass
+	\item Figure \ref{fig:DBFailed}
+	\item This test failed as a the Pre-conditions did not hold. 
+	\item The database was not initialized at that time.
+	\end{itemize}		
 \end{itemize}
+
+\section{Test Summary}
+This project follows a Continous Integration model with regards to testing. Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
+The amount of tests are limited in the current version of the system, this is as a result of the complexity involved in testing external API calls, on which our system heavily relies.\\
+Future versions will include more tests based on these complexities.
+
 
 \cleardoublepage
 \section{Figures}
@@ -239,6 +268,13 @@ If the specified Post-condition is met the test will pass.
       \includegraphics[width=\textwidth]{images/failed.png}
   \caption{Output of failed Travis test}
   \label{fig:failed}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+      \includegraphics[width=\textwidth]{images/DBConnectionFailed.png}
+  \caption{Database connection test}
+  \label{fig:DBFailed}
 \end{figure}
 
 
