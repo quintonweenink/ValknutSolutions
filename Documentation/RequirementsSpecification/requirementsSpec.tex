@@ -10,6 +10,12 @@
 \usepackage{caption}
 \usepackage{hyperref}
 \usepackage{listings}
+\newcommand{\nexists}{\not\exists}
+\newcommand\tab[1][0.5cm]{\hspace*{#1}}
+
+\usepackage{tabulary}
+\newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
+
 
 \usepackage{titlesec}
 
@@ -74,8 +80,30 @@
 	\cleardoublepage
 	\tableofcontents
 	\cleardoublepage
+\section{Version table}	
+
+	\begin{table}[H]
+	\centering
+	\caption{Version Table}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|l|l|}
+	\hline
+	version 	& build 	& description 		\\ \hline
+	0.0.1		& \#45 		& Basic handlebars implementation with no api					\\
+	0.0.2		& \#81 		& API routes and persistence working Facebook data still being implemented	\\ \hline
+	\end{tabular}
+	\end{table}
+
 \section{Introduction}
+
+	Insurance profiling as it is currently specified is an application that will allow insurance companies to get data from lead data provided via lead advertisements on Facebook. This data will be used to charge the uses for the insurance that they have signed up for while also providing the application with some basic data that can later be used to Analise the users and the data they provided in order to give the insurance company with a risk profile they can use to charge and adapt their sale and costs.\\
+
+	The application would also provide the insurance companies access through API calls to the insurance profiling server. 
+
 \section{Vision}
+
+	As the project is currently specified the ambition is to allow the annalist the ability to get the best indication of the risk associated with each user. 
+	
 \section{Background}
 
 \section{Functional requirements and application design}
@@ -87,34 +115,22 @@
 		\caption{Use Case Diagram : Publications}
 		\end{figure}
 
-			\begin{flushleft}
+		\begin{flushleft}
 			\textbf{Critical}
 				\begin{itemize}
-	  				\item addPublication
-	  				\item editPublication
-	  				\item getPublication
-	  				\item addPublicationStatus
-	  				\item getPublicationStatus
-	  				\item assignGoal
-	  				\item unassignGoal
-	  				\item accreditResearcher
-	  				\item unaccreditResearcher
-	  				\item linkGroup
-	  				\item unlinkGroup
+	  				\item validateUser
+	  				\item createUser
+	  				\item getUser
 				\end{itemize}
-
 			\textbf{Important}
 				\begin{itemize}
-	  				\item editPublicationStatus
-	  				\item getPublicationProgression
-	  				\item editPublicationProgression
-	  				\item editPublicationStatus
+	  				\item validateUser
 				\end{itemize}
 
 			\textbf{Nice-To-Have}
 				\begin{itemize}
-	  				\item getDepartmentPublications
-	  				\item getGroupPublications
+	  				\item getAnalyst
+	  				\item analiseUser
 				\end{itemize}
 		\end{flushleft}
 
@@ -137,7 +153,7 @@
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
 		\caption{Use Case Diagram : Publications}
-		\end{figure}
+		\end{figure}git 
 
 
 	\subsection{Admin}
