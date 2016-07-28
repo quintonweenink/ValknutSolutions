@@ -10,6 +10,7 @@
 \usepackage{caption}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{vhistory}
 \newcommand{\nexists}{\not\exists}
 \newcommand\tab[1][0.5cm]{\hspace*{#1}}
 
@@ -80,18 +81,11 @@
 	\tableofcontents
 	\cleardoublepage
 \section{Version table}	
-
-	\begin{table}[H]
-	\centering
-	\caption{Version Table}
-	\label{my-label}
-	\begin{tabular}{|l|l|l|l|l|}
-	\hline
-	version 	& build 	& description 		\\ \hline
-	0.0.1		& \#45 		& Basic handlebars implementation with no api					\\
-	0.0.2		& \#81 		& API routes and persistence working Facebook data still being implemented	\\ \hline
-	\end{tabular}
-	\end{table}
+	% Start of the revision history table
+	\begin{versionhistory}
+  		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Architectural requirements}
+  		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Added Functional requirements}
+	\end{versionhistory}	
 
 \section{Functional requirements and application design}
 	\subsection{User subsystem}
