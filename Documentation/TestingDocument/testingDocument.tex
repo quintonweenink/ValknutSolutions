@@ -145,7 +145,7 @@ These include features to be tested are rated based on the level or risk associa
 
 \section{Running tests}
 Tests can be ran with the command "npm test" which will run Mocha, if this test is run locally it will connect to the local database.
-Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility.
+Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility with all versions of Node.
 \section{Item Pass/Fail Criteria for Tests}
 If the specified Pre-condition is not met the test will fail. \\
 If the specified Post-condition is met the test will pass.
@@ -173,8 +173,7 @@ If the specified Post-condition is met the test will pass.
 	\item Post-condition - The row gets persisted
 	\item Figure \ref{fig:MochaTests}
 	\end{itemize}
-	
-	
+
 \item Retrieving row in Database based on currentUser - GET : /api/user/:currentUser
 	\begin{itemize}
 	\item Pre-condition - The currentUser exists
@@ -188,7 +187,12 @@ If the specified Post-condition is met the test will pass.
 	\item Post-condition - The currentUser is removed 
 	\item Figure \ref{fig:MochaTests}
 	\end{itemize}	
-
+	\begin{figure}[H]
+  	\centering
+      \includegraphics[width=\textwidth]{images/tests.png}
+  	\caption{Output of Mocha tests}
+  	\label{fig:MochaTests}
+	\end{figure}
 
 
 \item Travis CI build test for Node version 5.11
@@ -198,6 +202,14 @@ If the specified Post-condition is met the test will pass.
 	\item Figure \ref{fig:5_11}
 	\end{itemize}	
 	
+	\begin{figure}[h]
+  	\centering
+      \includegraphics[width=\textwidth]{images/5_11.png}
+  	\caption{Output of Travis tests for Node version 5.11}
+  	\label{fig:5_11}
+	\end{figure}
+
+\cleardoublepage
 \item Travis CI build test for Node version 6.2
 	\begin{itemize}
 	\item Pre-condition - The changes to the branch are compatible with version 6.2
@@ -205,6 +217,14 @@ If the specified Post-condition is met the test will pass.
 	\item Figure \ref{fig:6_2}
 	\end{itemize}	
 \end{itemize}
+
+\begin{figure}[h]
+  \centering
+      \includegraphics[width=\textwidth]{images/6_2.png}
+  \caption{Output of Travis tests for Node version 6.2}
+  \label{fig:6_2}
+\end{figure}
+
 
 \cleardoublepage
 \subsection{The following tests failed as intended:}
@@ -217,7 +237,15 @@ If the specified Post-condition is met the test will pass.
 	\item This test failed as a result of the hosting server being offline, not fulfilling the Pre-condition. 
 	\item The error stating a timeout proves this failure.
 	\end{itemize}
+
+	\begin{figure}[h]
+  	\centering
+      \includegraphics[width=\textwidth]{images/failed.png}
+  	\caption{Output of failed Travis test}
+  	\label{fig:failed}
+	\end{figure}	
 	
+	\cleardoublepage
 	\item Database connection test based on Mocha test
 	\begin{itemize}
 	\item Pre-conditions
@@ -229,58 +257,29 @@ If the specified Post-condition is met the test will pass.
 	\item Figure \ref{fig:DBFailed}
 	\item This test failed as a the Pre-conditions did not hold. 
 	\item The database was not initialized at that time.
-	\end{itemize}		
+	\end{itemize}
+
+
+	\begin{figure}[h]
+  	\centering
+      \includegraphics[width=\textwidth]{images/DBConnectionFailed.png}
+  	\caption{Database connection test}
+  	\label{fig:DBFailed}
+	\end{figure}	
+	
+	
+	\begin{figure}[h]
+  	\centering
+      \includegraphics[width=\textwidth]{images/TravisInterface.png}
+  	\caption{Travis interface used for test logs}
+	\end{figure}
+
 \end{itemize}
 
-\section{Test Summary}
-This project follows a Continous Integration model with regards to testing. Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
-The amount of tests are limited in the current version of the system, this is as a result of the complexity involved in testing external API calls, on which our system heavily relies.\\
-Future versions will include more tests based on these complexities.
-
-
 \cleardoublepage
-\section{Figures}
-\begin{figure}[H]
-  \centering
-      \includegraphics[width=\textwidth]{images/tests.png}
-  \caption{Output of Mocha tests}
-  \label{fig:MochaTests}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-      \includegraphics[width=\textwidth]{images/TravisInterface.png}
-  \caption{Travis interface}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-      \includegraphics[width=\textwidth]{images/5_11.png}
-  \caption{Output of Travis tests for Node version 5.11}
-  \label{fig:5_11}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-      \includegraphics[width=\textwidth]{images/6_2.png}
-  \caption{Output of Travis tests for Node version 6.2}
-  \label{fig:6_2}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-      \includegraphics[width=\textwidth]{images/failed.png}
-  \caption{Output of failed Travis test}
-  \label{fig:failed}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-      \includegraphics[width=\textwidth]{images/DBConnectionFailed.png}
-  \caption{Database connection test}
-  \label{fig:DBFailed}
-\end{figure}
-
-
+\section{Test Summary}
+This project follows a Continous Integration model with regards to testing. \\ Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
+The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls,such as Facebook, on which our system heavily relies.\\
+Future versions will include more tests based on these complexities.
 
 \end{document}
