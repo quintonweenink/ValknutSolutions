@@ -25,7 +25,7 @@
 \pagestyle{fancy}
 
 \rhead{COS301}
-\lhead{Non-Functional Requirements}
+\lhead{Architecture Requirements}
 \fancyfoot[R]{Page \thepage}
 
 \renewcommand{\headrulewidth}{2pt}
@@ -73,6 +73,20 @@
 	\cleardoublepage
 	\tableofcontents
 	\cleardoublepage
+
+%Quinton addition (Maybe just have a look at this and see if you can use it) This should be slightly more revised
+
+\section{Introduction}
+
+	Insurance profiling as it is currently specified is an application that will allow insurance companies to get data from lead data provided via lead advertisements on Facebook. This data will be used to charge the uses for the insurance that they have signed up for while also providing the application with some basic data that can later be used to Analise the users and the data they provided in order to give the insurance company with a risk profile they can use to charge and adapt their sale and costs.\\
+
+	The application would also provide the insurance companies access through API calls to the insurance profiling server. 
+
+\section{Vision}
+
+	As the project is currently specified the ambition is to allow the annalist the ability to get the best indication of the risk associated with each user. 
+
+
 \section{Introduction}
 This document contains information on the development of a system to generate insurance profiles based on social media inputs. The project is being developed for RetroRabbit as part of the COS301 module at the University Of Pretoria.
 \section{Vision}
@@ -391,16 +405,6 @@ The system will primarily be web-based. A user visiting the website will request
 	\subsubsection{Concepts and constraints for application components}
 
 	Application components will not be deployed at the first level of granularity. Any application components will be hosted within the architectural components.
-
-%\section{Functional Requirements}
-
-%	\subsection{Use case name}
-%		\subsubsection{Use case prioritization}
-%		\subsubsection{Use case service contracts}
-%		\subsubsection{Process specification}
-	
-%	\subsection{Domain model}
-%	\subsection{Open Issues}
 
 
 	
