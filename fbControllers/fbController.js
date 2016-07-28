@@ -25,7 +25,7 @@ function extractUser(lead)
 
 module.exports = {
   //var fbApp = FB.extend({appId: auth.fb.appId, appSecret: auth.fb.appSecret});
-  getLeadData : function getLeadData(value, page_access_token)
+  getLeadData : function getLeadData(value, page_access_token, adId)
   {
     //var FB.options({version: auth.fb.version});
     FB.api(
@@ -38,12 +38,13 @@ module.exports = {
           return;
         }
         var user = extractUser(res.field_data);
-        userID = function(addedUser){
-          console.log("Added user data: " + JSON.stringify(addedUser));
-          return addedUser;
-        }(userController.createUser(user));
-        // TODO: Add user to the database
-        // TODO: Add lead to db and link with user
+        userController.createUser(user, function(userId){
+          leadController.createLead({
+            lead_id : '' + value.leadgen_id + '',
+            ad_id : adId,
+            user_id : userId
+          });
+        });
         return res;
       }
     );

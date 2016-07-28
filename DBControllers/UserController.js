@@ -1,8 +1,8 @@
 var models = require("../models");
 var express = require('express');
-
+var user_id;
 module.exports = {
-createUser : function createUser(user)
+createUser : function createUser(user, callback)
 {
 	models.User.findOrCreate({
 		where: {
@@ -18,13 +18,11 @@ createUser : function createUser(user)
 		defaults : {}
 	})
 	.spread(function(new_user, created){
-		console.log("New user :" + JSON.stringify(new_user.get({plain:true})));
-		console.log("Created field: " + JSON.stringify(created));
-		userID = new_user.id;
-		return new_lead.id;
+		//console.log("New user :" + JSON.stringify(new_user.get({plain:true})));
+		//console.log("Created field: " + JSON.stringify(created));
+		callback(new_user.id);
+		return new_user.id;
 	});
-
-	return userID;
 },
 deleteUserByID : function deleteUserByID(id)
 {

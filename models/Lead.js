@@ -12,11 +12,11 @@ var Lead = sequelize.define('Lead', {
   userID : {
     type: DataTypes.INTEGER,
     allowNull: false
-  },
+  }/*,
   createdTime : {
     type: DataTypes.DATE,
     allowNull: false
-  }
+  }*/
 });
 return Lead;
 };

@@ -135,7 +135,7 @@ app.route('/api/pageAccessToken')
 app.route('/api/leads')
 	.post(function(req, res){
 		console.log('Received lead from Facebook');
-		fs.writeFileSync('./lead.json', JSON.stringify(req.body), 'utf-8');
+		//fs.writeFileSync('./lead.json', JSON.stringify(req.body), 'utf-8');
 		var entry = req.body.entry;
 		for (var ent in entry)
 		{
@@ -150,12 +150,13 @@ app.route('/api/leads')
 					where: {pageID : '' + value.page_id + ''}
 				})
 					.then(function(page){
-						var leadData = fbControllers.getLeadData(value, page.pageAccessToken);
 						var advertisement = {
 							page_id: page.id,
 							advertisement_id: '' + value.ad_id + ''
 						};
-						var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement);
+						var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id){
+							fbControllers.getLeadData(value, page.pageAccessToken, id);
+						});
 					});
 			}
 		}
@@ -176,6 +177,24 @@ app.route('/api/leads')
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
+			var user = {
+				first_name : "Kevin",
+				last_name : "Heritage",
+				phone_number : "+27767405640",
+				marital_status : "single",
+				date_of_birth : "1994-06-06 00:00:00+02",
+				gender : "male",
+				city : "Pretoria",
+				email : "kheritage222@gmail.com"
+			};
+			var fun = (function(id){
+				console.log();
+			});
+			var testing = "hello there simpson";
+			var output = JSON.stringify(userController.createUser(user, function(id){
+				console.log(testing);
+				//res.send({success : id});
+			}));
 			/*
 			var newUser = {
 				firstName: 'Charl',
