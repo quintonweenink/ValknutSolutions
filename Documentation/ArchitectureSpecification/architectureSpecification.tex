@@ -40,7 +40,7 @@
 			\huge{
 			Architectural Requirements, Initial Architecture Design and Non-Functional Requirements\\
 			}
-			
+
 			\line(1,0){300}\\
 			[0.2cm]
 			\LARGE{Project: Insurance profiling from social media\\
@@ -51,8 +51,8 @@
 			\large
 			{
 			\begin{itemize}
-				\item 13054903 - Charl Jansen van Vuuren 
-				\item 10297902 - Bernhard Schuld      
+				\item 13054903 - Charl Jansen van Vuuren
+				\item 10297902 - Bernhard Schuld
 				\item 13044924 - Kevin Heritage
 				\item 13176545 - Quinton Weenink\\
 			\end{itemize}
@@ -68,17 +68,17 @@
 		%\centering
 		%\includegraphics[{imagename}
 		%\end{figure}\
-			
+
 	\end{titlepage}
 	\cleardoublepage
 	\tableofcontents
 	\cleardoublepage
-	
+
 		% Start of the revision history table
 	\begin{versionhistory}
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Created}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Grammar errors, Introduction, Scope, Vision, Access channel, Quality requirements, Integration Requirements (API, Protocols, API Quality requirements), Architectural tactics(Security) and Architectural pattern changes}
-	\end{versionhistory}	
+	\end{versionhistory}
 
 
 %Quinton addition (Maybe just have a look at this and see if you can use it) This should be slightly more revised
@@ -86,7 +86,7 @@
 \section{Introduction}
  Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project aims to eliminate the need for vast amounts of data gathering by utilising a user's social media information, based on advertisement form.
 
-\section{Scope of system} 
+\section{Scope of system}
 The project as it is currently specified is an application that will allow insurance companies the ability to get data from lead data provided via lead advertisements on Facebook.
 A user would fill in a Facebook advertisement to purchase short term insurance based on Facebook's advertisement analytics. \\
 This data will be used to charge the users for the insurance that they have signed up for while also providing the application with some basic data that can later be used to analyse the users and the data they provided. \\
@@ -100,7 +100,7 @@ The primary focus of this project is to generate risk statistics based on social
 
 \section{Architectural Requirements}
 	\subsection{Access channel requirements}
-	User: 
+	User:
 	\begin{enumerate}
 		\item A user will fill in an advertisement form on our Facebook with the information specified and submit this data.
 		\item The necessary data will be gathered and saved in the database.
@@ -108,7 +108,7 @@ The primary focus of this project is to generate risk statistics based on social
 		\item A sales person will contact the specified user with further instructions.
 	\end{enumerate}
 	\clearpage
-	Analyst: 
+	Analyst:
 	\begin{enumerate}
 		\item An analyst would log into the system with a required username and password authorization
 		\item Selection criteria to generate a report will be presented to the analyst.
@@ -122,8 +122,8 @@ The primary focus of this project is to generate risk statistics based on social
 		\item The website will be accessible via the majority of operating systems if such an operating system has access to a supported web-browser.
 		\item Facebook advertisement integration will be accessible via the normal Facebook access channels.
 	\end{itemize}
-	 
-	
+
+
 	\subsection{Quality Requirements}
 		\subsubsection{Performance}
 		\begin{itemize}
@@ -131,7 +131,7 @@ The primary focus of this project is to generate risk statistics based on social
 			\item Once the REST API call is made, it saves the user's data in our database, increasing the efficiency of future requests and processing of the data.
 			\item The need to do external API calls will be minimized, increasing performance.
 		\end{itemize}
-		 
+
 		\subsubsection{Security}\label{subsubsec:security}
 		\begin{itemize}
 			\item Security is our most important architectural requirement. A user's personal information is used to generate these risk profiles and as a result the user will trust that this information is not shared with other parties, and properly secured.
@@ -148,17 +148,17 @@ The primary focus of this project is to generate risk statistics based on social
 		\subsubsection{Integratability}\label{subsubsec:integratability}
 		\begin{itemize}
 			\item The project will integrate with Facebook and utilise it as the primary data provider.
-			\item The ability to integrate with other social media platforms should be considered and modularised accordingly, to ensure seamless future integration. 
+			\item The ability to integrate with other social media platforms should be considered and modularised accordingly, to ensure seamless future integration.
 			\item The ability to change the risk analysis algorithm as needed should be considered.
 			\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
 			\item Integration with Facebook's advertisements API forms a major part of this release.
-		\end{itemize}		
+		\end{itemize}
 
 		\subsubsection{Reliability}
 		\begin{itemize}
 			\item Since our solution is mainly web-based, the platform as a service (PaaS) offered by Heroku will ensure the website is always up to date and reliable.
 		\end{itemize}
-		
+
 		\subsubsection{Maintainability}
 			The system will make use of a database with massive amounts of data.\\ To ensure optimal performance, this data will need to be maintained and normalised on a regular basis.
 
@@ -184,18 +184,18 @@ The primary focus of this project is to generate risk statistics based on social
 			\item The Facebook login API aims to improve efficiency for the user as this eliminates the need to manually fill in various fields on a form.
 			\item Further integration with the Facebook ad system will increase usability even more, as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 		\end{itemize}
-		
+
 		\subsubsection{Flexibility}
 		\begin{itemize}
-			\item The system must be usable on any internet browser (including mobile phone browsers). 
-			\item The system must include the ability to change the risk analysis algorithm. Insurance profilers can use this to their advantage to generate more thorough risk profiles. 
+			\item The system must be usable on any internet browser (including mobile phone browsers).
+			\item The system must include the ability to change the risk analysis algorithm. Insurance profilers can use this to their advantage to generate more thorough risk profiles.
 		\end{itemize}
-		
+
 		\subsubsection{Compatibility}
 		\begin{itemize}
 			\item The use of Travis CI tests ensures the latest features are compatible with the specified versions of NodeJS.
 			\item Unit tests constantly test the system's compatibility as part of the continuous integration model.
-		\end{itemize} 
+		\end{itemize}
 
 	\subsection{Integration requirements}
 		\subsubsection{API specifications}
@@ -221,7 +221,7 @@ The primary focus of this project is to generate risk statistics based on social
 					\end{verbatim}
 				\item Once again the app secret should be kept safe and hidden from users
 			\end{itemize}
-			
+
 			%ADD PAGE API CALLS MAYBE%
 
 		\subsubsection{Protocols}
@@ -230,7 +230,7 @@ The primary focus of this project is to generate risk statistics based on social
 			\item HTTP/HTTPS - (Secure) Hypertext Transfer Protocol
 			\item TCP/IP - Transmission Control Protocol/Internet Protocol
 			\item FTP(Possibly) - File Transfer Protocol
-			\item SSL - Secure Socket Layer 
+			\item SSL - Secure Socket Layer
 			\item SMTP - Simple Mail Transfer Protocol(with  SSL)
 		\end{itemize}
 		The request for comment pages of these protocols can be accessed via:
@@ -243,8 +243,8 @@ The primary focus of this project is to generate risk statistics based on social
 			\item\href{https://tools.ietf.org/html/rfc6101}{SSL}
 			\item\href{https://tools.ietf.org/html/rfc821}{SMTP}
 		\end{itemize}
-		
-		
+
+
 		\subsubsection{Integration Quality Requirements}
 		As mentioned in \ref{subsubsec:integratability}, integration with Facebook will be a major feature, as such this integration is subject to quality requirements in the form of:
 		\begin{itemize}
@@ -255,7 +255,7 @@ The primary focus of this project is to generate risk statistics based on social
 			\item Maintainability - The system must be maintained on a bi-yearly basis as to ensure the latest version of the API is used and no deprecated functions are used. The use of deprecated functions can cause problems in future use of the system.
 		\end{itemize}
 
-	
+
 	\subsection{Architecture Constraints}
 	Our client limited our technologies to:
 	\begin{itemize}
@@ -268,25 +268,25 @@ The primary focus of this project is to generate risk statistics based on social
 		\begin{itemize}
 		\item PHP code in any way.
 		\item MySQL, NoSQL database systems.
-		\end{itemize}	
+		\end{itemize}
 	Other constraints in terms of architecture include:
 	\begin{itemize}
 		\item Browser independence, to ensure any web-client can make use thereof.
 		\item Operating system independence.
 		\item The system should be as time efficient as possible to ensure a user gets a quote in less than 5 minutes.
 		\end{itemize}
-	
-	
+
+
 	\section{Initial Architecture Design}
 
-	The below mentioned architecture specifies an initial architecture design from a high-level, and of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system. 
+	The below mentioned architecture specifies an initial architecture design from a high-level, and of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system.
 
 	\subsection{Architectural tactics}
 
 	Due to the fact that the underlying architecture has of yet not been clearly specified, the investigation into the best suited tactics for this architecture can not be concretely concluded. The following is by no means a representation of the implemented tactics but it is currently what best helps the system achieve its quality requirements. The below listed tactics are currently the main tactics we aim to implement or the responsibility of the dependencies we aim to utilise.
-	
+
 		\subsubsection{Modifiability and Flexibility}
-		What is certain, is that the above mentioned quality requirements will need to be addressed in a manner which allows for a system that is both highly modular and configurable, in order to allow the analysts of the data set to properly assess and tweak the tools that we aim to provide to them. 
+		What is certain, is that the above mentioned quality requirements will need to be addressed in a manner which allows for a system that is both highly modular and configurable, in order to allow the analysts of the data set to properly assess and tweak the tools that we aim to provide to them.
 
 		\begin{itemize}
 			\item Flexibility support: automated builds, automated testing and automated environment configuration
@@ -334,11 +334,11 @@ The primary focus of this project is to generate risk statistics based on social
 	\subsection{Infrastructure}
 
 	\subsubsection{Architectural (structural) patterns}
-	In order to promote flexibility as well as testability, the layered architectural pattern will be used. This allows for future development to change tactics (business logic tactics) and allows for the decoupling of different functions. This is crucial in order for the system to remain within its architectural concern boundaries, which will rely heavily on a modular configurable system. This, in conjunction with the Model-View-Controller pattern will make for a understandable and testable system, with proper modularization. MVC includes the ability to generate new views for the web based front-end efficiently. 
+	In order to promote flexibility as well as testability, the layered architectural pattern will be used. This allows for future development to change tactics (business logic tactics) and allows for the decoupling of different functions. This is crucial in order for the system to remain within its architectural concern boundaries, which will rely heavily on a modular configurable system. This, in conjunction with the Model-View-Controller pattern will make for a understandable and testable system, with proper modularization. MVC includes the ability to generate new views for the web based front-end efficiently.
 
 	\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/obj__Tech_stack.jpg}  \\
-		\caption{Use Case Diagram : Insurance Profiling}
+		\caption{Tech Stack : Insurance Profiling}
 		\end{figure}
 
 	\subsubsection{Concepts and constraints for application components}
@@ -346,6 +346,6 @@ The primary focus of this project is to generate risk statistics based on social
 	Application components will not be deployed at the first level of granularity. Any application components will be hosted within the architectural components.
 
 
-	
+
 
 \end{document}
