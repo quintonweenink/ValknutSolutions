@@ -9,11 +9,7 @@ var User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull : false
   },
-  contactNumber : {
-    type : DataTypes.STRING,
-    allowNull : false
-  },
-  mobileNumber : {
+  phoneNumber : {
     type : DataTypes.STRING,
     allowNull : false
   },
@@ -29,10 +25,11 @@ var User = sequelize.define('User', {
     type : DataTypes.STRING,
     allowNull : false
   },
-  location : {
+  city : {
     type: DataTypes.STRING,
     allowNull : true
-  }, email : {
+  },
+  email : {
     type: DataTypes.STRING,
     allowNull : false
   }

@@ -5,9 +5,13 @@ var models = require("../models");
 var userController = require("../DBControllers/UserController");
 var adminController = require("../DBControllers/AdminController");
 var analystController = require("../DBControllers/AnalystController");
+var pageController = require("../DBControllers/PageController");
+var advertisementCotroller = require("../DBControllers/AdvertisementController");
+var leadController = require("../DBControllers/LeadController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
+var fs = require('fs');
 var fbControllers = require("../fbControllers/fbController.js");
 
 module.exports = function(app, passport){
@@ -107,85 +111,91 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 */
 
 //------------API routes------------------//
+//API/pageAccessToken
+app.route('/api/pageAccessToken')
+	.post(function(req,res){
+		console.log('Creating page with its access token');
+		var page = {
+			page_id : req.body.page_id,
+			page_name : req.body.page_name,
+			page_access_token : req.body.page_access_token
+		};
+		var newPage = pageController.createPage(page)
+		.then(function(pages){
+			res.json(pages.dataValues);// NOTE: Should be changed to just return the status code
+	}).catch(function(error){
+			 console.log("ops: " + error);
+			 res.status(500).json({ error: 'error' });
+	 });
+		console.log('Page created', JSON.stringify(newPage));
+		res.status(200);
+	});
+
 //API/leads
 app.route('/api/leads')
 	.post(function(req, res){
-		console.log(req.body[0].object);
-		console.log('Post req body: ', req.body);
-
-		res.send('');
-		//fbControllers.getLeadData(req.body['entry.leadgen_id'], "EAANpDqrgoMIBAGpGcnnxn5mre6PlnZAs1yHZB4KboGiwJwEOP0uXmtZCHRNap1L5QRgvQI4mr30BmWijCVO7wQJZCj5F78FKAuiEZCFOGZB1sCKYOYJ0N6elJLEFQZAoWqm6o9iCwKmaHenVG8OwOIlAOgtzLFlvit4b9ZBmksBeYZCHsSIGhjyje");
-/*Post req body:  { entry:
-					 { ad_id: 6052031692189,
-							leadgen_id: 1743060585951007,
-			time: 1468247310 },]*/
-
-		/*Data returned from an api call to fb api through graph api explorer
+		console.log('Received lead from Facebook');
+		//fs.writeFileSync('./lead.json', JSON.stringify(req.body), 'utf-8');
+		var entry = req.body.entry;
+		for (var ent in entry)
 		{
-"created_time": "2016-07-11T14:28:29+0000",
-"id": "1743060585951007",
-"field_data": [
-	{
-		"name": "first_name",
-		"values": [
-			"Kevin"
-		]
-	},
-	{
-		"name": "last_name",
-		"values": [
-			"Heritage"
-		]
-	},
-	{
-		"name": "email",
-		"values": [
-			"kheritage222@gmail.com"
-		]
-	},
-	{
-		"name": "city",
-		"values": [
-			"Pretoria"
-		]
-	},
-	{
-		"name": "date_of_birth",
-		"values": [
-			"06/06/1994"
-		]
-	},
-	{
-		"name": "gender",
-		"values": [
-			"male"
-		]
-	},
-	{
-		"name": "marital_status",
-		"values": [
-			"sin"
-		]
-	},
-	{
-		"name": "phone_number",
-		"values": [
-			"+27767405640"
-		]
-	}
-]
-}*/
+			var changes = entry[ent].changes;
+			for (var ch in changes)
+			{
+				var value = changes[ch].value;
+				console.log(JSON.stringify(value.leadgen_id));
+				// Use leadgen id to do api request to facebook to extract the lead ads data and add it to database
+				// TODO: add ad id to db
+				models.Page.findOne({
+					where: {pageID : '' + value.page_id + ''}
+				})
+					.then(function(page){
+						var advertisement = {
+							page_id: page.id,
+							advertisement_id: '' + value.ad_id + ''
+						};
+						var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id){
+							fbControllers.getLeadData(value, page.pageAccessToken, id);
+						});
+					});
+			}
+		}
+		res.send('{"success" : true}');
 	})
 	.get(function(req, res){
 		if (req.query['hub.verify_token'] == 'bleepBlop123')
 			res.send(req.query['hub.challenge']);
+		else {
+			fs.readFile('./lead.json', function(err, data){
+				if (err) throw err;
+				res.send(data);
+			});
+		}
 	});
 
 //Need to test here
 	app.route('/api/user')
 	//User Post route
     .post(function(req, res) {
-
+			var user = {
+				first_name : "Kevin",
+				last_name : "Heritage",
+				phone_number : "+27767405640",
+				marital_status : "single",
+				date_of_birth : "1994-06-06 00:00:00+02",
+				gender : "male",
+				city : "Pretoria",
+				email : "kheritage222@gmail.com"
+			};
+			var fun = (function(id){
+				console.log();
+			});
+			var testing = "hello there simpson";
+			var output = JSON.stringify(userController.createUser(user, function(id){
+				console.log(testing);
+				//res.send({success : id});
+			}));
+			/*
 			var newUser = {
 				firstName: 'Charl',
 				lastName: 'lelelel',
@@ -203,7 +213,7 @@ app.route('/api/leads')
     }) .catch(function(error){
          console.log("ops: " + error);
          res.status(500).json({ error: 'error' });
-     });
+     });*/
 	})
 	//User Get route
     .get(function(req, res) {
