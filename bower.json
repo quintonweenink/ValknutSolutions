@@ -17,6 +17,7 @@
     "angular": "^1.5.7",
     "angular-route": "^1.5.7",
     "Chart.js": "chartjs#^2.2.1",
-    "angular-chart.js": "^1.0.0"
+    "angular-chart.js": "^1.0.0",
+    "angular-material": "^1.0.9"
   }
 }
