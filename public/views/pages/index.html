@@ -4,8 +4,8 @@
 <html ng-app="InsuranceProfiling">
 
 <head>
-<!--Google Icon Font
-<link rel="stylesheet" href="public/libs/material-design-icons"/>
+  <!--Google Icon Font
+  <link rel="stylesheet" href="public/libs/material-design-icons"/>
 -->
 <!--Materialize-->
 <link rel="stylesheet" href="public/libs/Materialize/dist/css/materialize.min.css"/>
@@ -55,41 +55,43 @@ $(document).ready(function(){
 <body ng-controller="mainController">
   <script src="js/facebook.js"></script>
 
-<!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
-<!--<div ng-include="'public/views/partials/navbar.html'">
+  <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
+  <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
 
 <nav class="grey">
-    <div class="nav-wrapper">
-      <a href="#/" class="brand-logo">    Insurance profiling</a>
-      <a href="" data-activates="mobile-demo" class="button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul class="right hide-on-med-and-down">
+  <div class="nav-wrapper">
+    <a href="#/" class="brand-logo">    Insurance profiling</a>
+    <a href="" data-activates="mobile-demo" class="button-collapse">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down">
       <li><a href="#/">Home</a></li>
-        <li><a href="#about">About</a></li>
-    <li><a href="#login">Login</a></li>
-    <li><a href="#signup">Sign Up</a></li>
-    <li><a href="#graph">Graphs </a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#filter">Report</a></li>
+      <li><a href="#login">Login</a></li>
+      <li><a href="#signup">Sign Up</a></li>
+      <li><a href="#graph">Graphs </a></li>
 
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-     <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-    <li><a href="#login">Login</a></li>
-    <li><a href="#signup">Sign Up</a></li>
-        <li><a href="#graph">Graphs </a></li>
-      </ul>
-    </div>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#filter">Report</a></li>
+      <li><a href="#login">Login</a></li>
+      <li><a href="#signup">Sign Up</a></li>
+      <li><a href="#graph">Graphs </a></li>
+    </ul>
+  </div>
 </nav>
 
 
 
-  <div id="main">
-	<!-- Injected View's Output-->
+<div id="main">
+  <!-- Injected View's Output-->
   <div ng-view></div>
 
-  </div>
+</div>
 
 
 </body>
