@@ -70,6 +70,24 @@ InsuranceProfiling.controller('graphController', function($scope) {
 });
 
 
+InsuranceProfiling.controller('SelectedTextController', function($scope) {
+      $scope.items = ["Location", "Age"];
+      $scope.selectedItem;
+      $scope.getSelectedText = function() {
+        if ($scope.selectedItem !== undefined) {
+          return "You have selected:" + $scope.selectedItem;
+        } else {
+          return "Please select a filter";
+        }
+      };
+    });
+
+ InsuranceProfiling.controller("PieCtrl",
+		   function ($scope) {
+						$scope.labels = ["Age", "Time"];
+						$scope.data = [20, 100];
+	 });
+
 InsuranceProfiling.controller("BubbleCtrl",
   function ($scope) {
     $scope.series = ['Lelelelele A', 'Series B'];
@@ -88,11 +106,7 @@ InsuranceProfiling.controller("BubbleCtrl",
     ];
 });
 
-InsuranceProfiling.controller("PieCtrl",
-  function ($scope) {
-  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.data = [300, 500, 100];
-});
+
 
 InsuranceProfiling.controller("LineCtrl",
   function ($scope) {
