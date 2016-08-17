@@ -70,14 +70,36 @@ InsuranceProfiling.controller('signupController', function($scope) {
 	$scope.message = '';
 });
 
-InsuranceProfiling.controller('filterController',function($scope)
+InsuranceProfiling.controller('filterController',function($scope, $http)
 {
-	$scope.message = '';
+ var totalMale = 0;
+	var totalFemale = 0;
+	$http.get("/api/user")
+	.then(function(response){
+
+				var users = response.data;
+				for (var i = 0; i < users.length; i++)
+				{
+				var user = users[i];
+
+				if(user.gender == "male")
+					{totalMale++;
+				// /	$scope.message = totalMale;
+					}
+				if(user.gender == "female")
+					{totalFemale++;}
+				}
+
+		});
+
+	$scope.message = ""
 	$scope.data = {};
 	$scope.data.cb1 = false;
 	$scope.data.cb2 = false;
 
 	$scope.submit = function(){
+
+		$scope.message = "Total male: "+ totalMale +" Total Female: " +totalFemale;
 
 		if($scope.data.cb1==true && $scope.data.cb2==false)
 		{
@@ -87,15 +109,14 @@ InsuranceProfiling.controller('filterController',function($scope)
 
 		if($scope.data.cb1==false && $scope.data.cb2==true)
 		{
-			$scope.labels = ["Location"];
-			$scope.data = [20];
+			$scope.labels = ["Male","Female"];
+			$scope.data = [totalMale,totalFemale];
 		}
 
 		if($scope.data.cb1==true && $scope.data.cb2==true)
 		{
-			$scope.labels = ["Age","Location"];
+			$scope.labels = ["Age","Gender"];
 			$scope.data = [20,20];
-
 		}
 
 	};

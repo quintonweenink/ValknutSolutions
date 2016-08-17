@@ -13,8 +13,8 @@
       </div>
       <div layout="column" layout-wrap layout-gt-sm="row" >
         <div flex-xs flex="50">
-          <md-checkbox ng-model="data.cb2" aria-label="Age">
-            Location : {{ data.cb2}}
+          <md-checkbox ng-model="data.cb2" aria-label="Gender">
+            Gender : {{ data.cb2}}
           </md-checkbox>
         </div>
       </div>
@@ -24,6 +24,7 @@
     </fieldset>
 
     <div>
+      {{message}}
       <md-content class="md-padding">
         <h1 class="md-display-2">Pie Chart Example</h1>
         <canvas id="pie" class="chart chart-pie"
