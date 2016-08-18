@@ -23,6 +23,23 @@ function extractUser(lead)
   return user;
 }
 
+function facebookLeadCallback(res){
+    if (!res || res.error)
+    {
+      console.log(!res ? 'error occured':res.error);
+      return;
+    }
+    var user = extractUser(res.field_data);
+    userController.createUser(user, function(userId){
+      leadController.createLead({
+        lead_id : '' + value.leadgen_id + '',
+        ad_id : adId,
+        user_id : userId
+      });
+    });
+    return res;
+}
+
 module.exports = {
   //var fbApp = FB.extend({appId: auth.fb.appId, appSecret: auth.fb.appSecret});
   getLeadData : function getLeadData(value, page_access_token, adId)
@@ -32,20 +49,7 @@ module.exports = {
       '/' + value.leadgen_id,
       {access_token : page_access_token},
       function(res){
-        if (!res || res.error)
-        {
-          console.log(!res ? 'error occured':res.error);
-          return;
-        }
-        var user = extractUser(res.field_data);
-        userController.createUser(user, function(userId){
-          leadController.createLead({
-            lead_id : '' + value.leadgen_id + '',
-            ad_id : adId,
-            user_id : userId
-          });
-        });
-        return res;
+        return facebookLeadCallback(res);
       }
     );
   }

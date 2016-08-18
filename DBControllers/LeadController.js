@@ -4,7 +4,7 @@ var express = require('express');
 module.exports = {
 createLead : function createLead(lead)
 {
-	console.log("CHECK THIS FILE: " + JSON.stringify(lead.lead_data));
+	//console.log("CHECK THIS FILE: " + JSON.stringify(lead.lead_data));
 	models.Lead.findOrCreate({
 		where: {
 			leadID : lead.lead_id,
