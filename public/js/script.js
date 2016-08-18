@@ -70,53 +70,122 @@ InsuranceProfiling.controller('signupController', function($scope) {
 	$scope.message = '';
 });
 
+function getAge(dateString)
+{
+		var today = new Date();
+		var birthDate = new Date(dateString);
+		var age = today.getFullYear() - birthDate.getFullYear();
+		var m = today.getMonth() - birthDate.getMonth();
+		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+		{
+				age--;
+		}
+		return age;
+}
+
 InsuranceProfiling.controller('filterController',function($scope, $http)
 {
- var totalMale = 0;
+	var totalMale = 0;
 	var totalFemale = 0;
+	var totalOther = 0;
+	var Ages = [0,0];
+	var cities = [];
+	var cityCount = [];
 	$http.get("/api/user")
 	.then(function(response){
 
-				var users = response.data;
-				for (var i = 0; i < users.length; i++)
-				{
-				var user = users[i];
+		var users = response.data;
+		for (var i = 0; i < users.length; i++)
+		{
+			var user = users[i];
+			//GENDER GRAPH
+			if(user.gender == "male")
+			{
+				totalMale++;
+			}
+			if(user.gender == "female")
+			{
+				totalFemale++;
+			}
+			if(user.gender != "male" && user.gender != "female")
+			{
+				totalOther++;
+			}
+			//CITY GRAPh
+			if(cities.indexOf(user.city) == -1)
+			{
+				cities.push(user.city);
+				cityCount.push(1);
+			}
+			else
+			{
+				cityCount[cities.indexOf(user.city)]++;
+			}
+			//AGE GRAPH
+			var Age = getAge(user.dateOfBirth);
+			if(Age < 25 && Age >=18)
+			{
+				Ages[0]++;
+			}
+			else if(Age >=25)
+			{
+				Ages[1]++;
+			}
 
-				if(user.gender == "male")
-					{totalMale++;
-				// /	$scope.message = totalMale;
-					}
-				if(user.gender == "female")
-					{totalFemale++;}
-				}
+		}
+	});
 
-		});
-
-	$scope.message = ""
-	$scope.data = {};
-	$scope.data.cb1 = false;
-	$scope.data.cb2 = false;
+	$scope.message = "";
+	$scope.data = [];
+	$scope.labels = [];
+	$scope.data.group1 = "Age";
 
 	$scope.submit = function(){
+		$scope.message = "";
+		//$scope.message = $scope.data.group1;
 
-		$scope.message = "Total male: "+ totalMale +" Total Female: " +totalFemale;
+		// $scope.message = "Total male: "+ totalMale +" Total Female: " +totalFemale
+		// + "Cities: " + cities[1] + "City count:" + cityCount[1];
 
-		if($scope.data.cb1==true && $scope.data.cb2==false)
+		//	$scope.message = "CITIES "+ JSON.stringify(cities) + "COUNT "+JSON.stringify(cityCount);
+
+		// if($scope.data.cb1==true && $scope.data.cb2==false)
+		// {
+		// 	$scope.labels = ["Age"];
+		// 	$scope.data = [10]
+		// }
+		//
+		// if($scope.data.cb1==false && $scope.data.cb2==true)
+		// {
+		// 	$scope.labels = ["Male","Female"];
+		// 	$scope.data = [totalMale,totalFemale];
+		// }
+		//
+		// if($scope.data.cb1==true && $scope.data.cb2==true)
+		// {
+		// 	$scope.labels = ["Age","Gender"];
+		// 	$scope.data = [20,20];
+		// }
+		//
+		//  if($scope.data.cb3==true && $scope.data.cb2==false && $scope.data.cb1==false)
+		// {
+		// 	$scope.labels = ["Age","Lel"];
+		// 	$scope.data = [30]
+		// }
+		if($scope.data.group1=="Age")
 		{
-			$scope.labels = ["Age"];
-			$scope.data = [20]
+			$scope.labels = ["18-25",">25"];
+			$scope.data = Ages;
 		}
-
-		if($scope.data.cb1==false && $scope.data.cb2==true)
+		if($scope.data.group1=="Gender")
 		{
-			$scope.labels = ["Male","Female"];
-			$scope.data = [totalMale,totalFemale];
+			$scope.labels = ["Male","Female","Other"];
+			$scope.data = [totalMale,totalFemale,totalOther];
 		}
-
-		if($scope.data.cb1==true && $scope.data.cb2==true)
+		if($scope.data.group1=="Location")
 		{
-			$scope.labels = ["Age","Gender"];
-			$scope.data = [20,20];
+			$scope.labels = cities;
+			$scope.data = cityCount;
 		}
 
 	};
