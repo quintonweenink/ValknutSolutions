@@ -132,7 +132,7 @@ app.route('/api/pageAccessToken')
 	});
 
 //API/leads
-function leadPageFound(page){
+function leadPageFound(page, value){
 	var advertisement = {
 		page_id: page.id,
 		advertisement_id: '' + value.ad_id + ''
@@ -147,9 +147,9 @@ function leadPageFound(page){
 
 function processLead(lead)
 {
-	for (var ent in entry)
+	for (var ent in lead)
 	{
-		var changes = entry[ent].changes;
+		var changes = lead[ent].changes;
 		for (var ch in changes)
 		{
 			var value = changes[ch].value;
@@ -159,7 +159,8 @@ function processLead(lead)
 				where: {pageID : '' + value.page_id + ''}
 			})
 				.then(function(page){
-					leadPageFound(page);
+					console.log("Page found: " + JSON.stringify(page));
+					leadPageFound(page, value);
 				});
 		}
 	}

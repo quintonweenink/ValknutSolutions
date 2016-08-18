@@ -1,6 +1,7 @@
 var FB = require('fb');
 var leadController = require("../DBControllers/LeadController");
 var userController = require("../DBControllers/UserController");
+var email = require("../email/email")
 
 var auth = require('../config/auth.js');
 
@@ -23,7 +24,7 @@ function extractUser(lead)
   return user;
 }
 
-function facebookLeadCallback(res){
+function facebookLeadCallback(res, value, adId){
     if (!res || res.error)
     {
       console.log(!res ? 'error occured':res.error);
@@ -36,7 +37,11 @@ function facebookLeadCallback(res){
         ad_id : adId,
         user_id : userId
       });
+      console.log(user.email);
+      email.emailer("" + user.email + "", "Valknut Testing",
+        "You have completed one of our Facebook lead ads");
     });
+
     return res;
 }
 
@@ -49,7 +54,7 @@ module.exports = {
       '/' + value.leadgen_id,
       {access_token : page_access_token},
       function(res){
-        return facebookLeadCallback(res);
+        return facebookLeadCallback(res, value, adId);
       }
     );
   }
