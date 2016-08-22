@@ -90,6 +90,8 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 	var totalOther = 0;
 	var Ages = [0,0];
 	var cities = [];
+	var maritalStatusses = [];
+	var maritalCount = [];
 	var cityCount = [];
 	$http.get("/api/user")
 	.then(function(response){
@@ -132,7 +134,17 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 				Ages[1]++;
 			}
 
-			//TODO:  Add grah types
+			//Marital Status
+			if(maritalStatusses.indexOf(user.maritalStatus.toUpperCase()) == -1)
+			{
+				maritalStatusses.push(user.maritalStatus.toUpperCase());
+				maritalCount.push(1);
+			}
+			else
+			{
+				maritalCount[maritalStatusses.indexOf(user.maritalStatus.toUpperCase())]++;
+			}
+
 		}
 	});
 
@@ -311,6 +323,50 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 				}
 			};
 		}
+
+		if($scope.data.group1=="Marital")
+		{
+			$scope.labels = maritalStatusses;
+			$scope.labels1 = maritalStatusses;
+			$scope.data = maritalCount;
+			$scope.data1= maritalCount;
+			$scope.options = {
+				title: {
+					display: true,
+					text:  "Marital Status"
+				},
+				legend: {
+					display: true,
+					labels: {
+						fontColor: 'rgb(255, 99, 132)'
+					}
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
+
+			$scope.options1 = {
+				title: {
+					display: true,
+					text:  "Marital Status"
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
+		}
+
 
 
 	};
