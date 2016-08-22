@@ -72,15 +72,15 @@ InsuranceProfiling.controller('signupController', function($scope) {
 
 function getAge(dateString)
 {
-		var today = new Date();
-		var birthDate = new Date(dateString);
-		var age = today.getFullYear() - birthDate.getFullYear();
-		var m = today.getMonth() - birthDate.getMonth();
-		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-		{
-				age--;
-		}
-		return age;
+	var today = new Date();
+	var birthDate = new Date(dateString);
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+	{
+		age--;
+	}
+	return age;
 }
 
 InsuranceProfiling.controller('filterController',function($scope, $http)
@@ -132,6 +132,7 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 				Ages[1]++;
 			}
 
+			//TODO:  Add grah types
 		}
 	});
 
@@ -139,9 +140,22 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 	$scope.data = [];
 	$scope.labels = [];
 	$scope.data.group1 = "Age";
+	$scope.data.graphType = "Pie";
 
 	$scope.submit = function(){
 		$scope.message = "";
+		if($scope.data.graphType == "Pie")
+		{
+		$scope.showPie = true;
+		$scope.showBar = false;
+		}
+		else
+		if($scope.data.graphType == "Bar")
+		{
+		$scope.showBar = true;
+		$scope.showPie = false;
+		}
+
 		//$scope.message = $scope.data.group1;
 
 		// $scope.message = "Total male: "+ totalMale +" Total Female: " +totalFemale
@@ -175,20 +189,132 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 		if($scope.data.group1=="Age")
 		{
 			$scope.labels = ["18-25",">25"];
+			$scope.labels1 = ["18-25",">25"];
 			$scope.data = Ages;
+			$scope.data1 = Ages;
+			$scope.options = {
+				title: {
+					display: true,
+					text:  "Age"
+				},
+				legend: {
+					display: true,
+					labels: {
+						fontColor: 'rgb(255, 99, 132)'
+					}
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
+			$scope.options1 = {
+				title: {
+					display: true,
+					text:  "Age"
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
 		}
 		if($scope.data.group1=="Gender")
 		{
 			$scope.labels = ["Male","Female","Other"];
+			$scope.labels1 = ["Male","Female","Other"];
 			$scope.data = [totalMale,totalFemale,totalOther];
+			$scope.data1 = [totalMale,totalFemale,totalOther];
+			$scope.options = {
+				title: {
+					display: true,
+					text:  "Gender"
+				},
+				legend: {
+					display: true,
+					labels: {
+						fontColor: 'rgb(255, 99, 132)'
+					}
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
+			$scope.options1 = {
+				title: {
+					display: true,
+					text:  "Gender"
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
 		}
+
 		if($scope.data.group1=="Location")
 		{
 			$scope.labels = cities;
+			$scope.labels1 = cities;
 			$scope.data = cityCount;
+			$scope.data1= cityCount;
+			$scope.options = {
+				title: {
+					display: true,
+					text:  "Location"
+				},
+				legend: {
+					display: true,
+					labels: {
+						fontColor: 'rgb(255, 99, 132)'
+					}
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
+
+			$scope.options1 = {
+				title: {
+					display: true,
+					text:  "Location"
+				},
+				scales: {
+					yAxes: [{
+						display: true,
+						ticks: {
+							suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+						}
+					}]
+				}
+			};
 		}
 
+
 	};
+
 });
 
 InsuranceProfiling.controller('graphController', function($scope) {
