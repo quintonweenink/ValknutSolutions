@@ -122,7 +122,7 @@ app.route('/api/pageAccessToken')
 		};
 		var newPage = pageController.createPage(page)
 		.then(function(pages){
-			res.json(pages.dataValues);// NOTE: Should be changed to just return the status code
+			res.status(200).json(pages);
 	}).catch(function(error){
 			 console.log("ops: " + error);
 			 res.status(500).json({ error: 'error' });
@@ -138,10 +138,10 @@ function leadPageFound(page, value){
 		advertisement_id: '' + value.ad_id + ''
 	};
 	var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id){
-		fbControllers.getLeadData(value, page.pageAccessToken, id);
+		fbControllers.getLeadData(value, page.pageAccessToken, id, fbControllers.facebookLeadCallback, fbControllers.userAddedCallback);
 
 	//Debugging
-	console.log(JSON.stringify(newAdvertisement));
+	//console.log(JSON.stringify(newAdvertisement));
 	});
 }
 
@@ -159,7 +159,7 @@ function processLead(lead)
 				where: {pageID : '' + value.page_id + ''}
 			})
 				.then(function(page){
-					console.log("Page found: " + JSON.stringify(page));
+					//console.log("Page found: " + JSON.stringify(page));
 					leadPageFound(page, value);
 				});
 		}
@@ -168,7 +168,7 @@ function processLead(lead)
 
 app.route('/api/leads')
 	.post(function(req, res){
-		console.log('Received lead from Facebook');
+		//console.log('Received lead from Facebook');
 
 		processLead(req.body.entry);
 
