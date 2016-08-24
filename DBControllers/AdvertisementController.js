@@ -11,8 +11,8 @@ createAdvertisement : function createAdvertisement(advertisement, callback)
 		},
 		defaults : {}})
 		.spread(function(new_advertisement, created){
-			console.log("New created advertisement : " + JSON.stringify(new_advertisement.get({plain: true})));
-			console.log("Created field: " + JSON.stringify(created));
+			//console.log("New created advertisement : " + JSON.stringify(new_advertisement.get({plain: true})));
+			//console.log("Created field: " + JSON.stringify(created));
 			callback(new_advertisement.id);
 		});/*
 	var new_advertisement = models.Advertisement.create({

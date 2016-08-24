@@ -5,7 +5,13 @@ var email = require("../email/email")
 
 var auth = require('../config/auth.js');
 
+
 module.exports = {
+  userAddedCallback : function userAddedCallback(user)
+  {
+    //Any functions to perform after the lead was captured from facebook and successfully added to the database
+    email.sendMail(user.email, "Valknut Testing", "You have completed one of our Facebook lead ads");
+  },
   extractUser : function extractUser(lead)
   {
     var user = {
@@ -24,7 +30,7 @@ module.exports = {
     }
     return user;
   },
-  facebookLeadCallback : function facebookLeadCallback(res, value, adId){
+  facebookLeadCallback : function facebookLeadCallback(res, value, adId, callback){
       if (!res || res.error)
       {
         console.log(!res ? 'error occured':res.error);
@@ -37,21 +43,19 @@ module.exports = {
           ad_id : adId,
           user_id : userId
         });
-        console.log(user.email);
-        email.sendMail(user.email, "Valknut Testing",
-          "You have completed one of our Facebook lead ads");
+        callback(user);
       });
 
       return res;
   },
-  getLeadData : function getLeadData(value, page_access_token, adId)
+  getLeadData : function getLeadData(value, page_access_token, adId, callback, completeCallback)
   {
     //var FB.options({version: auth.fb.version});
     FB.api(
       '/' + value.leadgen_id,
       {access_token : page_access_token},
       function(res){
-        return facebookLeadCallback(res, value, adId);
+        callback(res, value, adId, completeCallback);
       }
     );
   }
