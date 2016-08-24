@@ -12,7 +12,7 @@ var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
-var fbControllers = require("../fbControllers/fbController.js");
+var fbControllers = require("../fbControllers/fbController");
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
