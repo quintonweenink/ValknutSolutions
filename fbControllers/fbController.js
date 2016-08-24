@@ -9,14 +9,14 @@ module.exports = {
   extractUser : function extractUser(lead)
   {
     var user = {
-      "first_name" : "",
-      "last_name" : "",
-      "phone_number" : "",
-      "marital_status" : "",
-      "date_of_birth" : "",
-      "gender" : "",
-      "city" : "",
-      "email" : ""
+      first_name : "",
+      last_name : "",
+      phone_number : "",
+      marital_status : "",
+      date_of_birth : "",
+      gender : "",
+      city : "",
+      email : ""
     }
     for (i = 0; i < lead.length; i++)
     {
