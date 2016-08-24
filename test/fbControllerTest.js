@@ -1,4 +1,5 @@
 var assert = require('assert');
+
 var fbController = require('../fbControllers/fbController');
 
 describe('Facebook Controller', function(){
@@ -57,18 +58,22 @@ describe('Facebook Controller', function(){
           }
         ]
         };
-    var finalData = {
-      "first_name" : "Test Name",
-      "last_name" : "Test Surname",
-      "phone_number" : "+00000000000",
-      "marital_status" : "null",
-      "date_of_birth" : "01/01/2000",
-      "gender" : "male",
-      "city" : "Test City",
-      "email" : "test@test.com"
-    };
+    var finalData = {"first_name":"Test Name","last_name":"Test Surname","phone_number":"+00000000000","marital_status":"null","date_of_birth":"01/01/2000","gender":"male","city":"Test City","email":"test@test.com"};
     it("should return json object of a user that can be added to the database", function(){
-      assert.equal(finalData, fbController.extractUser(testData));
+      assert(finalData, fbController.extractUser(testData.field_data));
+    });
+    it("should return empty user", function(){
+      var blankUser = {
+        first_name : "",
+        last_name : "",
+        phone_number : "",
+        marital_status : "",
+        date_of_birth : "",
+        gender : "",
+        city : "",
+        email : ""
+      }
+      assert(blankUser, fbController.extractUser({}));
     });
   });
 });
