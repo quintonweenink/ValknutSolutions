@@ -1,11 +1,13 @@
 var models = require("../models");
 var express = require('express');
 var bcrypt = require('bcrypt');
-var user_id;
+
 module.exports = {
-	createUser : function createUser(user, callback)
+	createUser : function createUser(newUser)
 	{
-		newUser.password = hash;
+		var new_user = models.User.create(newUser);
+		return new_user;
+		/* 
 		models.User.findOrCreate({
 			where: {
 				firstName : user.first_name,
@@ -24,7 +26,7 @@ module.exports = {
 			//console.log("Created field: " + JSON.stringify(created));
 			callback(new_user.id);
 			return new_user.id;
-		});
+		});*/
 	},
 	deleteUserByID : function deleteUserByID(id)
 	{

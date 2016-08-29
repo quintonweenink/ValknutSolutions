@@ -1,13 +1,11 @@
 var models = require("../models");
 var express = require('express');
+var bcrypt = require('bcrypt');
 
 module.exports = {
-createAdmin : function createAdmin(newUser)
-{
-			var new_user = models.Admin.create({
-							email: newUser.email,
-							password: newUser.password,
-		});
-		return new_user;
-}
+	createAdmin : function createAdmin(newAdmin)
+	{
+		var new_admin = models.Admin.create(newAdmin);
+		return new_admin;
+	}
 };

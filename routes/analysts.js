@@ -2,12 +2,7 @@ var express = require('express');
 
 var models = require("../models");
 
-var userController = require("../DBControllers/UserController");
-var adminController = require("../DBControllers/AdminController");
 var analystController = require("../DBControllers/AnalystController");
-var pageController = require("../DBControllers/PageController");
-var advertisementCotroller = require("../DBControllers/AdvertisementController");
-var leadController = require("../DBControllers/LeadController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
