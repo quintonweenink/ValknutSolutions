@@ -46,7 +46,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var routes = require('./routes/routes')(app, passport);
-var users = require('./routes/users');
+var users = require('./routes/users')(app, passport);
+var admins = require('./routes/admins')(app, passport);
+var analysts = require('./routes/analysts')(app, passport);
 
 //app.use('/', routes);
 //app.use('/users', users);

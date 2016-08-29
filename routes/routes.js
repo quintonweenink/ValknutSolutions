@@ -15,7 +15,7 @@ var fs = require('fs');
 var fbControllers = require("../fbControllers/fbController.js");
 
 module.exports = function(app, passport){
-//--------------Facebook authentication-----------//
+//--------------Facebook lead authentication-----------//
 	app.get('/auth/facebook',
 	  passport.authenticate('facebook', {scope: ['email']}));
 
