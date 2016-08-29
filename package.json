@@ -5,6 +5,7 @@
   "description": "Insurance profiling from social media",
   "main": "index.js",
   "dependencies": {
+    "bcrypt": "*",
     "body-parser": "~1.13.2",
     "bower": "^1.7.9",
     "chai": "^3.5.0",
