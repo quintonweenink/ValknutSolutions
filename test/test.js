@@ -11,7 +11,7 @@ if (env != "development")
   url = "https://insuranceprofiling.herokuapp.com";
 }
 else {
-  url = "localhost";
+  url = "localhost:3000";
 }
 
 describe("Testing API", function() {

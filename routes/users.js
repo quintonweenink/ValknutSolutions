@@ -14,6 +14,7 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
+	  			//var models.User
 				var newUser = {
 					firstName : 'Kevin',
 					lastName : 'Heritage',
