@@ -35,5 +35,14 @@ module.exports = {
 	    id: id
 	  }});
 	  return delete_user;
+	},
+	getUserById : function getUserById(id)
+	{
+		var get_user = models.User.findById(id);
+		if(get_user)
+			return get_user;
+		else
+			return null;
+
 	}
 };
