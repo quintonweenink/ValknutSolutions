@@ -195,7 +195,7 @@ app.route('/api/leads')
 				first_name : "Kevin",
 				last_name : "Heritage",
 				phone_number : "+27767405640",
-				marital_status : "single",
+				marital_status : "SINGLE",
 				date_of_birth : "1994-06-06 00:00:00+02",
 				gender : "male",
 				city : "Pretoria",
