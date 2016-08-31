@@ -172,12 +172,6 @@ module.exports = function(app, passport){
 			}
 		});
 
-	//-------------Angular Routes-----------------//
-	  app.get('*', function(req, res) {
-        res.sendfile('./public/views/pages/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-    });
-
-
 
 	function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on

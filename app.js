@@ -49,9 +49,8 @@ var users = require('./routes/users')(app, passport);
 var admins = require('./routes/admins')(app, passport);
 var analysts = require('./routes/analysts')(app, passport);
 var routes = require('./routes/routes')(app, passport);
+var angular = require('./routes/angular')(app, passport);
 
-//app.use('/', routes);
-//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

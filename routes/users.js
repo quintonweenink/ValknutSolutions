@@ -14,7 +14,6 @@ module.exports = function(app, passport){
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
-	  			//var models.User
 				var newUser = {
 					firstName : 'Kevin',
 					lastName : 'Heritage',
@@ -25,6 +24,20 @@ module.exports = function(app, passport){
 					city : 'Pretoria',
 					email : 'kheritage222@gmail.com'
 				};
+
+				//Auto insert data according to passed data
+				if(req.body.firstName)
+				{
+					newUser.firstName = req.body.firstName;
+					newUser.lastName = req.body.lastName;
+					newUser.phoneNumber = req.body.phoneNumber;
+					newUser.maritalStatus = req.body.maritalStatus;
+					newUser.dateOfBirth = req.body.dateOfBirth;
+					newUser.gender = req.body.gender;
+					newUser.city = req.body.city;
+					newUser.email = req.body.email;
+				}
+
 				userController.createUser(newUser)
 				.then(function(user){
 	        		res.json(user.dataValues);
