@@ -14,8 +14,8 @@
   "dependencies": {
     "jquery": "^2.2.4",
     "Materialize": "materialize#^0.97.6",
-    "angular": "1.5.7",
-    "angular-route": "1.5.7",
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
     "angular-chart.js": "^1.0.0",
     "angular-material": "^1.0.9",
     "chart.js": "npm:chart.js#^2.2.1"

@@ -35,7 +35,7 @@
   "devDependencies": {},
   "scripts": {
     "postinstall": "bower install",
-    "test": "mocha",
+    "test": "mocha test/test.js",
     "start": "node ./bin/www"
   },
   "repository": {
