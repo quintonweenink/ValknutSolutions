@@ -4,7 +4,7 @@ var express = require('express');
 var configAuth = require('../config/auth');
 
 module.exports = {
-  emailer: function sendMail(_to,_subject,_text)
+  sendMail: function sendMail(_to,_subject,_text)
   {
     //setup smtp connection with config uri
     var transporter = nodemailer.createTransport(

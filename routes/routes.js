@@ -12,7 +12,7 @@ var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
-var fbControllers = require("../fbControllers/fbController.js");
+var fbControllers = require("../fbControllers/fbController");
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
@@ -122,7 +122,7 @@ app.route('/api/pageAccessToken')
 		};
 		var newPage = pageController.createPage(page)
 		.then(function(pages){
-			res.json(pages.dataValues);// NOTE: Should be changed to just return the status code
+			res.status(200).json(pages);
 	}).catch(function(error){
 			 console.log("ops: " + error);
 			 res.status(500).json({ error: 'error' });
@@ -132,37 +132,51 @@ app.route('/api/pageAccessToken')
 	});
 
 //API/leads
+function leadPageFound(page, value){
+	var advertisement = {
+		page_id: page.id,
+		advertisement_id: '' + value.ad_id + ''
+	};
+	var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id){
+		fbControllers.getLeadData(value, page.pageAccessToken, id, fbControllers.facebookLeadCallback, fbControllers.userAddedCallback);
+
+	//Debugging
+	//console.log(JSON.stringify(newAdvertisement));
+	});
+}
+
+function processLead(lead)
+{
+	for (var ent in lead)
+	{
+		var changes = lead[ent].changes;
+		for (var ch in changes)
+		{
+			var value = changes[ch].value;
+			//console.log(JSON.stringify(value.leadgen_id));
+
+			models.Page.findOne({
+				where: {pageID : '' + value.page_id + ''}
+			})
+				.then(function(page){
+					//console.log("Page found: " + JSON.stringify(page));
+					leadPageFound(page, value);
+				});
+		}
+	}
+}
+
 app.route('/api/leads')
 	.post(function(req, res){
-		console.log('Received lead from Facebook');
-		//fs.writeFileSync('./lead.json', JSON.stringify(req.body), 'utf-8');
-		var entry = req.body.entry;
-		for (var ent in entry)
-		{
-			var changes = entry[ent].changes;
-			for (var ch in changes)
-			{
-				var value = changes[ch].value;
-				console.log(JSON.stringify(value.leadgen_id));
-				// Use leadgen id to do api request to facebook to extract the lead ads data and add it to database
-				// TODO: add ad id to db
-				models.Page.findOne({
-					where: {pageID : '' + value.page_id + ''}
-				})
-					.then(function(page){
-						var advertisement = {
-							page_id: page.id,
-							advertisement_id: '' + value.ad_id + ''
-						};
-						var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id){
-							fbControllers.getLeadData(value, page.pageAccessToken, id);
-						});
-					});
-			}
-		}
+		//console.log('Received lead from Facebook');
+
+		processLead(req.body.entry);
+
 		res.send('{"success" : true}');
 	})
 	.get(function(req, res){
+		//Function to verify that this server is the one that needs to talk to Facebook
+		//was only used once
 		if (req.query['hub.verify_token'] == 'bleepBlop123')
 			res.send(req.query['hub.challenge']);
 		else {
