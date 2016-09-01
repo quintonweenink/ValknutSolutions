@@ -1,7 +1,7 @@
 function receivedMessage(messagingEvent)
 {
 	console.log(messagingEvent.message);
-}
+};
 
 module.exports = function(app, passport){
 	app.route('/messenger/webhook')
@@ -30,6 +30,9 @@ module.exports = function(app, passport){
 		          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
 		        }
 		      });
+		     });
+		     res.sendStatus(200);
+  		}
 	})
     .get(function(req, res) {
     	console.log("get");
