@@ -13,6 +13,11 @@ function sendTextMessage(recipientId, messageText) {
   callSendAPI(messageData);
 }
 
+function receivedDeliveryConfirmation(event)
+{
+	console.log('message was successfully delivered');
+}
+
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
