@@ -1,21 +1,35 @@
-var express = require('express');
-
-var models = require("../models");
-
-var userController = require("../DBControllers/UserController");
-var email = require("../email/email");
-var jwt = require('jsonwebtoken');
-var util = require('util');
-var fs = require('fs');
-var fbControllers = require("../fbControllers/fbController.js");
+function receivedMessage(messagingEvent)
+{
+	console.log(messagingEvent.message);
+}
 
 module.exports = function(app, passport){
-
-
 	app.route('/messenger/webhook')
 	.post(function(req, res) {
-		console.log('post');
-		res.send('Hello world');
+		var data = req.body;
+
+		  // Make sure this is a page subscription
+		  if (data.object == 'page') {
+		    // Iterate over each entry
+		    // There may be multiple if batched
+		    data.entry.forEach(function(pageEntry) {
+		      var pageID = pageEntry.id;
+		      var timeOfEvent = pageEntry.time;
+
+		      // Iterate over each messaging event
+		      pageEntry.messaging.forEach(function(messagingEvent) {
+		        if (messagingEvent.optin) {
+		          receivedAuthentication(messagingEvent);
+		        } else if (messagingEvent.message) {
+		          receivedMessage(messagingEvent);
+		        } else if (messagingEvent.delivery) {
+		          receivedDeliveryConfirmation(messagingEvent);
+		        } else if (messagingEvent.postback) {
+		          receivedPostback(messagingEvent);
+		        } else {
+		          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
+		        }
+		      });
 	})
     .get(function(req, res) {
     	console.log("get");
