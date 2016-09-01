@@ -60,26 +60,28 @@ module.exports = function(app, passport){
 	app.route('/api/user/:user_id')
 	//User ID Get route
     .get(function(req, res) {
-		models.User.findById(req.params.user_id).then(function(user){
-		res.json(user);
+		userController.getUserById(req.params.user_id).then(function(user){
+			res.json(user);
 		});
     })
 
 	//User ID update route
 	.put(function(req, res) {
         res.json({ message: 'User updated!',
-					ID: req.params.user_id });
+			ID: req.params.user_id 
+		});
 		//Logic for updating a user
     })
 
 	//User ID delete route
 	.delete(function(req, res) {
-			var id = req.params.user_id;
-			console.log(id);
-	userController.deleteUserByID(id).then(function(user){
-		res.json({ message: 'User deleted!',
-					ID: req.params.user_id });
-				});
+		var id = req.params.user_id;
+		console.log(id);
+		userController.deleteUserByID(id).then(function(user){
+				res.json({ message: 'User deleted!',
+				ID: req.params.user_id 
+			});
+		});
 		//Logic for updating a user
 	});
 

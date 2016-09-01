@@ -37,7 +37,7 @@ function sendPageAccessToken(page_id, page_access_token, page_name)
     {
         "page_id" : page_id,
         "page_access_token" : page_access_token,
-        "page_name" : page_name;
+        "page_name" : page_name
     },
     accessTokenAdded(data,status)
   );
