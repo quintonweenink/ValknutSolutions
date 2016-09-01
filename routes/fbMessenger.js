@@ -1,7 +1,7 @@
 function receivedMessage(messagingEvent)
 {
 	console.log(messagingEvent.message);
-};
+}
 
 module.exports = function(app, passport){
 	app.route('/messenger/webhook')
