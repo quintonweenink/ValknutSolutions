@@ -45,6 +45,7 @@ app.set('datSecret', configAuth.secret);
 app.use(passport.initialize());
 app.use(passport.session());
 
+var fbMessenger = require('./routes/fbMessenger')(app, passport);
 var users = require('./routes/users')(app, passport);
 var admins = require('./routes/admins')(app, passport);
 var analysts = require('./routes/analysts')(app, passport);
