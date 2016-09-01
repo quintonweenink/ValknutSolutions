@@ -4,22 +4,48 @@
 <html ng-app="InsuranceProfiling">
 
 <head>
-<!--Google Icon Font
-<link rel="stylesheet" href="public/libs/material-design-icons"/>
--->
+  <!--Google Icon Font
+  <link rel="stylesheet" href="public/libs/material-design-icons"/>
+  -->
 <!--Materialize-->
 <link rel="stylesheet" href="public/libs/Materialize/dist/css/materialize.min.css"/>
+
 <!--Custom-->
 <link rel="stylesheet" href="public/stylesheets/navbar.css"/>
+
+<!-- Angular material design stylesheet-->
+<link rel="stylesheet" href="public/libs/angular-material/angular-material.min.css"/>
 
 <!-- Angular -->
 <script src="libs/angular/angular.min.js"></script>
 <script src="libs/angular-route/angular-route.min.js"></script>
-<script src="js/script.js"></script>
 
-<!--Footer includes-->
+<!-- Angular controllers -->
+<script type="text/javascript" src="js/AngularConfig.js"></script>
+<script type="text/javascript" src='js/AboutController.js'></script>
+<script type="text/javascript" src='js/FilterController.js'></script>
+<script type="text/javascript" src='js/LoginController.js'></script>
+<script type="text/javascript" src='js/LoginForm.js'></script>
+<script type="text/javascript" src='js/MainController.js'></script>
+<script type="text/javascript" src='js/SignupController.js'></script>
+<script type="text/javascript" src='js/MarketingController.js'></script>
+
+<!--<script src="js/script.js"></script>-->
+
+<!-- Chart dependency for Angular Chart-->
+<script src="libs/chart.js/dist/Chart.min.js"></script>
+
+<!-- Angular Chart-->
+<script src="libs/angular-chart.js/dist/angular-chart.min.js"></script>
+
+<!-- Angular material design-->
+<script src="libs/angular-aria/angular-aria.js"></script>
+<script src="libs/angular-animate/angular-animate.js"></script>
+<script src="libs/angular-material/angular-material.js"></script>
+
 <!--Jquery-->
 <script src="libs/jquery/dist/jquery.min.js"></script>
+
 <!--Materialize-->
 <script src="libs/Materialize/dist/js/materialize.min.js"></script>
 <script>
@@ -27,7 +53,6 @@ $(document).ready(function(){
   $(".button-collapse").sideNav();
 })
 </script>
-<!--End of Footer block-->
 
 
 <!--Let browser know website is optimized for mobile-->
@@ -39,39 +64,41 @@ $(document).ready(function(){
 <body ng-controller="mainController">
   <script src="js/facebook.js"></script>
 
-<!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
-<!--<div ng-include="'public/views/partials/navbar.html'">
+  <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
+  <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
 
 <nav class="grey">
-    <div class="nav-wrapper">
-      <a href="#/" class="brand-logo">    Insurance profiling</a>
-      <a href="" data-activates="mobile-demo" class="button-collapse">
-        <i class="material-icons">menu</i>
-      </a>
-      <ul class="right hide-on-med-and-down">
+  <div class="nav-wrapper">
+    <a href="#/" class="brand-logo">    Insurance profiling</a>
+    <a href="" data-activates="mobile-demo" class="button-collapse">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down">
       <li><a href="#/">Home</a></li>
-        <li><a href="#about">About</a></li>
-    <li><a href="#login">Login</a></li>
-    <li><a href="#signup">Sign Up</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#filter">Report</a></li>
+      <li><a href="#login">Login</a></li>
+      <li><a href="#signup">Sign Up</a></li>
 
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-     <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-    <li><a href="#login">Login</a></li>
-    <li><a href="#signup">Sign Up</a></li>
-      </ul>
-    </div>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#filter">Report</a></li>
+      <li><a href="#login">Login</a></li>
+      <li><a href="#signup">Sign Up</a></li>
+    </ul>
+  </div>
 </nav>
 
 
 
-  <div id="main">
-	<!-- Injected View's Output-->
+<div id="main">
+  <!-- Injected View's Output-->
   <div ng-view></div>
 
-  </div>
+</div>
 
 
 </body>

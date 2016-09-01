@@ -1,0 +1,75 @@
+
+<h2>Generate a report </h2>
+<div class="container">
+
+  <div  class="md-padding" ng-cloak>
+    <div >
+      <fieldset class="standard"ng-hide="showForm" >
+        <legend>Generate a report</legend>
+        <fieldset>
+        <legend>Choose the information to display</legend>
+        <md-radio-group ng-model="data.group1">
+          <md-radio-button value="Age" class="md-primary">Age</md-radio-button>
+          <md-radio-button value="Gender"> Gender </md-radio-button>
+          <md-radio-button value="Location">Location</md-radio-button>
+          <md-radio-button value="Marital">Marital Status</md-radio-button>
+        </md-radio-group>
+      </fieldset>
+      <fieldset
+      <legend>Choose the type of graph to display</legend>
+      <md-radio-group ng-model="data.graphType">
+        <md-radio-button value="Pie" class="md-primary">Pie Chart</md-radio-button>
+        <md-radio-button value="Bar"> Bar Chart </md-radio-button>
+      </md-radio-group>
+    </fieldset>
+
+
+        <!--
+        <div  layout="column" layout-wrap layout-gt-sm="row" >
+        <div flex-xs flex="50">
+        <md-checkbox ng-model="data.cb1" aria-label="Age">
+        Age : {{ data.cb1 }}
+      </md-checkbox>
+    </div>
+  </div>
+  <div layout="column" layout-wrap layout-gt-sm="row" >
+  <div flex-xs flex="50">
+  <md-checkbox ng-model="data.cb2" aria-label="Gender">
+  Gender : {{ data.cb2}}
+</md-checkbox>
+</div>
+</div>
+<div layout="column" layout-wrap layout-gt-sm="row" >
+<div flex-xs flex="50">
+<md-checkbox ng-model="data.cb3" aria-label="City">
+City : {{ data.cb3}}
+</md-checkbox>
+</div>
+</div> -->
+
+<md-button ng-click="submit();" type="submit" class="md-raised">Generate Report</md-button>
+{{message}}
+</fieldset>
+
+<div ng-show="showPie">
+  {{message}}
+  <md-content class="md-padding">
+    <h1 class="md-display-2">Pie Chart Example</h1>
+    <canvas id="pie" class="chart chart-pie"
+    chart-data="data" chart-labels="labels" chart-options="options">
+  </canvas>
+</md-content>
+</div>
+<div ng-show="showBar">
+  <md-content class="md-padding">
+    <h1 class="md-display-2">Bar chart Example</h1>
+  <canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data"
+  chart-labels="labels1" chart-series="series1" chart-options="options1"
+  style="display: block; width: 359px; height: 179px;" width="359" height="179"></canvas>
+</md-content>
+</div>
+
+</div>
+</div>
+
+</div>

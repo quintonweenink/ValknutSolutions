@@ -16,7 +16,7 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 //------- FB Javascript SDK end ------//
 
-function subscribeApp(page_id, page_access_token){
+function subscribeApp(page_id, page_access_token, page_name){
   console.log('Subscribing page to app!' + page_id);
   FB.api(
     '/' + page_id + '/subscribed_apps',
@@ -25,7 +25,28 @@ function subscribeApp(page_id, page_access_token){
     function(res) {
     console.log('Subscribed to app', res);
     $('#pagesList').hide(100);
+    sendPageAccessToken(page_id, page_access_token, page_name);
+    console.log("After sending page access token");
   });
+}
+
+function sendPageAccessToken(page_id, page_access_token, page_name)
+{
+  console.log("Sending access token");
+  $.post("localhost/api/pageAccessToken",
+    {
+        "page_id" : page_id,
+        "page_access_token" : page_access_token,
+        "page_name" : page_name
+    },
+    accessTokenAdded(data,status)
+  );
+  console.log()
+}
+
+function accessTokenAdded(data, status)
+{
+  console.log("Data: " + data + " Status: " + status);
 }
 
 function getPageImage(img, page_id)
@@ -61,7 +82,7 @@ function getPageImage(img, page_id)
          var a = $('<a></a>');
 
          a.herf = '#';
-         a.on('click', subscribeApp.bind(this, page.id, page.access_token));
+         a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name));
          a.text(page.name);
 
 
