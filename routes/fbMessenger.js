@@ -1,3 +1,5 @@
+var request = require('request');
+
 function sendTextMessage(recipientId, messageText) {
   var messageData = {
     recipient: {
