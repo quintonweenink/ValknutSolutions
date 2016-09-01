@@ -4,23 +4,24 @@ var assert = require('chai').assert;
 var assert = require('assert');
 
 var env = process.env.NODE_ENV || "development";
-
 var url;
-var path;
-var currentUser;
 
 if (env != "development")
 {
   url = "https://insuranceprofiling.herokuapp.com";
 }
 else {
-  url = "localhost";
+  url = "localhost:3000";
 }
 
 describe("Testing API", function() {
+  //Local testing variables
+  var path;
 
   path = "/api/user/";
   describe("URL: " + url + path, function() {
+    //Local testing variables
+    var currentUser;
 
     describe('POST : /api/user/', function() {
       it('should insert and return the inserted user', function(done) {
