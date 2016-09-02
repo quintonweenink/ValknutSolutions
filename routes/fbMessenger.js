@@ -7,14 +7,18 @@ var messageList = {
 	2:'Please reply with your email address:'
 };//Another hash table
 
+var mno = 0;
+console.log(messageList[mno]);
+
 
 function sendTextMessage(recipientId, messageNumber, messageText) {
+	var mno = 0;
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: 'Default message'
+      text: messageList[mno]
     }
   };
 
