@@ -31,7 +31,7 @@ function receivedDeliveryConfirmation(event)
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: 'EAAZAXI4LkwOMBAPZAN7Pr33U8FDQqrCyFZAfMvJUcJSMZA5Qd9gfwpNtOu8d7YZCJ03avMJdRTZAWFcb5GbhLW27R8HyRuQzt4jHMu81B9gZAAl09ySShMUatJ3cCTgSC9le7vfs2GiHk6nre5TnwSyZCDZAInrGAJwGUxetKzcSX6QZDZD' },
+    qs: { access_token: 'EAAZAXI4LkwOMBACAqWIb2wLilLkp4floeTjoZBHIn4LgvunjdBFK0I2FWxWWmkms8POqZCsou77H6A6bPQphqdtEest5GFjCK9oWYzP45AIi7bs0NXOZAZAKCqJGMfK3NFkD2W6PvM8vP3GM1uUQhMd1TRZAiHnryNrRgl2MW8uQZDZD' },
     method: 'POST',
     json: messageData
 
