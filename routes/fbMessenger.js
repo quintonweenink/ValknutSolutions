@@ -14,7 +14,7 @@ function sendTextMessage(recipientId, messageNumber, messageText) {
       id: recipientId
     },
     message: {
-      text: messageList[messageNumber]
+      text: 'Default message'
     }
   };
 
