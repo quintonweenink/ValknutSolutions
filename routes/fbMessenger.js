@@ -7,6 +7,7 @@ var messageList = {
 	2:'Please reply with your email address:'
 };//Another hash table
 
+
 function sendTextMessage(recipientId, messageNumber, messageText) {
   var messageData = {
     recipient: {
@@ -64,7 +65,7 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
 
   if(activeUsers[senderID])
-  	activeUsers.senderID = 0;
+  	activeUsers[senderID] = 0;
   else
   	activeUsers[senderID]++;
 
