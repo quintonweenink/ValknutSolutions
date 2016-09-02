@@ -7,6 +7,33 @@ var messageList = {
 	2:'Please reply with your email address:'
 };//Another hash table
 
+var senderID = 'asdfa35sdf253js345ajf';
+
+  if(senderID in activeUsers)
+  {
+  	if(activeUsers.senderID > 2)
+  		activeUsers.senderID = 0; //Reset so you don't go outside has table
+  	else
+  		activeUsers.senderID++; //Go to next message
+  }
+  else
+  	activeUsers.senderID = 0;
+
+  	console.log(activeUsers.senderID);
+
+  	
+  if(senderID in activeUsers)
+  {
+  	if(activeUsers.senderID > 2)
+  		activeUsers.senderID = 0; //Reset so you don't go outside has table
+  	else
+  		activeUsers.senderID++; //Go to next message
+  }
+  else
+  	activeUsers.senderID = 0;
+
+  	console.log(activeUsers.senderID);
+
 
 function sendTextMessage(recipientId, messageNumber, messageText) {
 	console.log('message id: ' + messageNumber);
@@ -65,13 +92,15 @@ function receivedMessage(event) {
   var messageText = message.text;
   var messageAttachments = message.attachments;
 
-  if(!(senderID in activeUsers))
-  	activeUsers.senderID = 0;
-  else
+  if(senderID in activeUsers)
+  {
   	if(activeUsers.senderID > 2)
-  		activeUsers.senderID = 0;
+  		activeUsers.senderID = 0; //Reset so you don't go outside has table
   	else
-  		activeUsers.senderID++;
+  		activeUsers.senderID++; //Go to next message
+  }
+  else
+  	activeUsers.senderID = 0;
 
   if (messageText) {
 
