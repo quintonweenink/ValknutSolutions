@@ -77,15 +77,17 @@ function receivedMessage(event) {
 
   console.log('Sender Id: '+senderID);
 
-  if(activeUsers.senderID === undefined)
-  	activeUsers.senderID = 0;
-  else
-  	if(activeUsers.senderID > 2)
-  		activeUsers.senderID = 0; //Reset so you don't go outside has table
-  	else
-  		activeUsers.senderID++; //Go to next message
 
-  if (messageText) {
+  if (messageText && message.is_echo === undefined) {
+
+  	if(activeUsers.senderID === undefined)
+	  	activeUsers.senderID = 0;
+	else
+	  	if(activeUsers.senderID > 2)
+	  		activeUsers.senderID = 0; //Reset so you don't go outside has table
+	  	else
+	  		activeUsers.senderID++; //Go to next message
+
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
