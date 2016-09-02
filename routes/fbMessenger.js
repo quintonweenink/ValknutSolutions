@@ -67,7 +67,10 @@ function receivedMessage(event) {
   if(activeUsers[senderID])
   	activeUsers[senderID] = 0;
   else
-  	activeUsers[senderID]++;
+  	if(activeUsers[senderID] > 2)
+  		activeUsers[senderID] = 0;
+  	else
+  		activeUsers[senderID]++;
 
   if (messageText) {
 
