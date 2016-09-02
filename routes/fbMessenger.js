@@ -8,7 +8,6 @@ var messageList = {
 };//Another hash table
 
 
-
 function sendTextMessage(recipientId, messageNumber, messageText) {
 	console.log('message id: ' + messageNumber);
   var messageData = {
@@ -66,13 +65,13 @@ function receivedMessage(event) {
   var messageText = message.text;
   var messageAttachments = message.attachments;
 
-  if(activeUsers[senderID])
-  	activeUsers[senderID] = 0;
+  if(!(senderID in activeUsers))
+  	activeUsers.senderID = 0;
   else
-  	if(activeUsers[senderID] > 2)
-  		activeUsers[senderID] = 0;
+  	if(activeUsers.senderID > 2)
+  		activeUsers.senderID = 0;
   	else
-  		activeUsers[senderID]++;
+  		activeUsers.senderID++;
 
   if (messageText) {
 
