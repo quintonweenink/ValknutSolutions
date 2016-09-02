@@ -7,15 +7,13 @@ var messageList = {
 	2:'Please reply with your email address:'
 };//Another hash table
 
-
-
 function sendTextMessage(recipientId, messageNumber, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: messageList.messageNumber
+      text: messageList[messageNumber]
     }
   };
 
@@ -65,10 +63,10 @@ function receivedMessage(event) {
   var messageText = message.text;
   var messageAttachments = message.attachments;
 
-  if(activeUsers.senderID)
+  if(activeUsers[senderID])
   	activeUsers.senderID = 0;
   else
-  	activeUsers.senderID++;
+  	activeUsers[senderID]++;
 
   if (messageText) {
 
@@ -93,7 +91,7 @@ function receivedMessage(event) {
       //   break;
 
       default:
-        sendTextMessage(senderID, activeUsers.senderID, messageText);
+        sendTextMessage(senderID, activeUsers[senderID], messageText);
     }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
