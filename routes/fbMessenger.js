@@ -10,6 +10,7 @@ var messageList = {
 
 
 function sendTextMessage(recipientId, messageNumber, messageText) {
+	console.log('message id: ' + messageNumber);
   var messageData = {
     recipient: {
       id: recipientId
