@@ -44,7 +44,7 @@ function callSendAPI(messageData) {
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
-      console.error(response);
+      //console.error(response);
       console.error(error);
     }
   });  
@@ -65,6 +65,8 @@ function receivedMessage(event) {
   // You may get a text or attachment but not both
   var messageText = message.text;
   var messageAttachments = message.attachments;
+
+  console.log('Sender Id: '+senderID);
 
   if(activeUsers.senderID === undefined)
   	activeUsers.senderID = 0;
