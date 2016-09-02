@@ -1,12 +1,21 @@
 var request = require('request');
 
-function sendTextMessage(recipientId, messageText) {
+var activeUsers = {};//Hash table
+var messageList = {
+	0:'Please reply with your Name:',
+	1:'Please reply with your Surname:',
+	2:'Please reply with your email address:'
+};//Another hash table
+
+
+
+function sendTextMessage(recipientId, messageNumber, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: messageText
+      text: messageList.messageNumber
     }
   };
 
@@ -56,33 +65,38 @@ function receivedMessage(event) {
   var messageText = message.text;
   var messageAttachments = message.attachments;
 
+  if(activeUsers.senderID)
+  	activeUsers.senderID = 0;
+  else
+  	activeUsers.senderID++;
+
   if (messageText) {
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'image':
-        sendImageMessage(senderID);
-        break;
+      // case 'image':
+      //   sendImageMessage(senderID);
+      //   break;
 
-      case 'button':
-        sendButtonMessage(senderID);
-        break;
+      // case 'button':
+      //   sendButtonMessage(senderID);
+      //   break;
 
-      case 'generic':
-        sendGenericMessage(senderID);
-        break;
+      // case 'generic':
+      //   sendGenericMessage(senderID);
+      //   break;
 
-      case 'receipt':
-        sendReceiptMessage(senderID);
-        break;
+      // case 'receipt':
+      //   sendReceiptMessage(senderID);
+      //   break;
 
       default:
-        sendTextMessage(senderID, messageText);
+        sendTextMessage(senderID, activeUsers.senderID, messageText);
     }
   } else if (messageAttachments) {
-    sendTextMessage(senderID, "Message with attachment received");
+    //sendTextMessage(senderID, "Message with attachment received");
   }
 }
 
