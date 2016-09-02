@@ -5,6 +5,10 @@ window.fbAsyncInit = function() {
     xfbml      : true,
     version    : 'v2.6'
   });
+
+  $('#facebookLoading').hide(100);
+  $('#facebookLoginButtonLeads').show(100);
+  $('#loginInstructions').show(100);
 };
 
 (function(d, s, id){
@@ -16,18 +20,24 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 //------- FB Javascript SDK end ------//
 
-function subscribeApp(page_id, page_access_token, page_name){
-    // FB.ui(
-    //   {
-    //     method: 'lead_gen_tos',
-    //     page_id: page_id,
-    //     display: 'popup'
-    //   },
-    //   function(response)
-    //   {
-    //     consol.log(response);
-    //   }
-    // );
+function termsOfService(page_id)
+{
+  FB.ui(
+    {
+      method: 'lead_gen_tos',
+      page_id: page_id,
+      display: 'popup'
+    },
+    function(response)
+    {
+      consol.log(response);
+    }
+  );
+}
+
+function subscribeApp(page_id, page_access_token, page_name)
+{
+  termsOfService(page_id);
   console.log('Subscribing page to app!' + page_id);
   FB.api(
     '/' + page_id + '/subscribed_apps',
