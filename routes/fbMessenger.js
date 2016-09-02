@@ -20,12 +20,21 @@ function sendTextMessage(recipientId, messageNumber, messageText) {
     }
   };
 
+  console.log('Trying to send this message back to facebook: '+ messageData)
+
   callSendAPI(messageData);
 }
 
 function receivedDeliveryConfirmation(event)
 {
-	console.log('message was successfully delivered');
+	  var senderID = event.sender.id;
+	  var recipientID = event.recipient.id;
+	  var timeOfMessage = event.timestamp;
+	  var message = event.message;
+
+	  console.log("Successfully sent message for user %d and page %d at %d with message:", 
+	    senderID, recipientID, timeOfMessage);
+	  console.log(JSON.stringify(message));
 }
 
 function callSendAPI(messageData) {
