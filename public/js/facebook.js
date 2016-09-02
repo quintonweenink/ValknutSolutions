@@ -17,6 +17,17 @@ window.fbAsyncInit = function() {
 //------- FB Javascript SDK end ------//
 
 function subscribeApp(page_id, page_access_token, page_name){
+    // FB.ui(
+    //   {
+    //     method: 'lead_gen_tos',
+    //     page_id: page_id,
+    //     display: 'popup'
+    //   },
+    //   function(response)
+    //   {
+    //     consol.log(response);
+    //   }
+    // );
   console.log('Subscribing page to app!' + page_id);
   FB.api(
     '/' + page_id + '/subscribed_apps',
@@ -33,15 +44,20 @@ function subscribeApp(page_id, page_access_token, page_name){
 function sendPageAccessToken(page_id, page_access_token, page_name)
 {
   console.log("Sending access token");
-  $.post("localhost/api/pageAccessToken",
+  var hostname = window.location.hostname;
+  var protocol = window.location.protocol + "//";
+  var port = (location.port ? ':' + location.port: '');
+  var destination = "api/pageAccessToken";
+  var address = protocol + hostname + port + "/api/pageAccessToken";
+  $.post(address,
     {
         "page_id" : page_id,
         "page_access_token" : page_access_token,
         "page_name" : page_name
-    },
-    accessTokenAdded(data,status)
+    }
+    //accessTokenAdded(data,status)
   );
-  console.log()
+  //console.log(address);
 }
 
 function accessTokenAdded(data, status)
@@ -84,8 +100,6 @@ function getPageImage(img, page_id)
          a.herf = '#';
          a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name));
          a.text(page.name);
-
-
 
          div.append(img);
          div.css({"cursor": "pointer"});
