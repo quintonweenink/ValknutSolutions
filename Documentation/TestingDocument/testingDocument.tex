@@ -38,7 +38,7 @@
 			\includegraphics[width=10cm]{images/UP.jpg}  \\
 			[0.5cm]
 			\huge{
-			Testing Document\\
+			Test Plan and Report\\
 			}
 			
 			\line(1,0){300}\\
@@ -48,13 +48,12 @@
 			\line(1,0){300}\\
 			\LARGE{Team: Valknut Solutions}\\
 			[1.0cm]
-			\large{Version: 1.0}\\
+			\large{Version: 1.1}\\
 			[1.0cm]
 			\large
 			{
 			\begin{itemize}
-				\item 13054903 - Charl Jansen van Vuuren 
-				\item 10297902 - Bernhard Schuld      
+				\item 13054903 - Charl Jansen van Vuuren    
 				\item 13044924 - Kevin Heritage
 				\item 13176545 - Quinton Weenink\\
 			\end{itemize}
@@ -71,6 +70,7 @@
 	% Start of the revision history table
 	\begin{versionhistory}
   		\vhEntry{1.0}{27.7.2016}{CJvV,KH,QW}{created}
+  		\vhEntry{1.1}{04.9.2016}{CJvV,KH,QW}{Updated format based on template on CS web, added new test information}
 	\end{versionhistory}	
 	
 	\cleardoublepage
@@ -80,15 +80,59 @@
 \section{Introduction}
 This document contains information related to Testing of the Insurance Profiling project that is being developed for RetroRabbit as part of the COS301 module at the University Of Pretoria. \\
 This document is based on the IEEE 829 Standard for Testing Documentation \href{http://www.fit.vutbr.cz/study/courses/ITS/public/ieee829.html}{IEEE 829}
-
-\section{References to other documentation}
+The structure of this document includes an initial scope and purpose, a Unit test plan and the final Unit test report.
+\subsection{Purpose}
+This document combines the unit test plan and report into a single coherent artefact. The overall purpose of the system is to allow the analysis of different social media inputs (Facebook in particular) by means of a marketing and risk analysis standpoint.
+Test driven development is crucial to our system as it ensures every added feature is compatible with the current version of the system and that feature is working as intended.
+\subsection{Scope}
+The scope of this document is structured as follows. The features that are considered for testing are listed as per section \ref{sec:testItems}. \\
+Tests that have been identified from the requirements are
+discussed in detail in section \ref{sec:FeaturesTest}.\\
+Furthermore, this document outlines the test environment and the risks involved in the testing approaches that will be followed as per section \ref{subsec:testEnvironment}. Assumptions and dependencies of this test plan will also be mentioned as per section \ref{subsec:assumptions} . Section ... , ... and ...  outlines, discusses and concludes on the results of the tests, respectively.
+\subsection{Test Environment}\label{subsec:testEnvironment}
+The testing environment is mainly software based and includes:
 \begin{itemize}
-	\item{Requirements specifications as per 29 July 2016}
-	\item{Architecture Design as per 29 July 2016}
+	\item Programming languages:
+	\begin{itemize}
+		\item Javascript 
+	\end{itemize}
+	\item Testing Frameworks:
+	\begin{itemize}
+		\item MochaJS - Unit tests
+		\item Travis CI - Continuous integration for deployment
+	\end{itemize}
+	\item Coding Environment:
+	\begin{itemize}
+		\item NodeJS based web server
+		\item ExpressJS
+		\item PostgreSQL database with Sequelize ORM
+		\item Terminal based test outputs
+	\end{itemize}
+	\item Operating system:
+	\begin{itemize}
+		\item Ubuntu Linux
+		\item Microsoft Windows 10
+	\end{itemize}
+	\item Internet Browsers:
+	\begin{itemize}
+		\item Mozilla Firefox
+		\item Chrome web browser
+	\end{itemize}
 \end{itemize}
 
-\section{Test items}
-The items included in this test document includes:
+\subsection{Assumptions and Dependencies}\label{subsec:assumptions}
+Assumptions:
+\begin{itemize}
+	\item 
+\end{itemize}
+Dependencies:
+\begin{itemize}
+	\item
+\end{itemize}
+
+
+\section{Test items}\label{sec:testItems}
+\subsection{The items included in this test document includes:}
 \begin{itemize}
 	\item Backend API calls
 	\item Database management functions
@@ -96,61 +140,81 @@ The items included in this test document includes:
 	\item Deployment and compatibility tests
 \end{itemize} 
 
-\section{Features to be Tested}
-These include features to be tested are rated based on the level or risk associated namely, High (H), Medium (M) and Low (L).
-
+\section{Functional Features to be Tested}\label{sec:FeaturesTest}
+Test estimation can be categorized as fast (nearly instant tests) or slow (timely tests with external dependencies) for our system. \\ 
+\subsection{Overall approach with regards to adequate testing of :} 
 \begin{itemize}
+\item Feature unit tests:
+\begin{itemize}
+	\item Mocking out the non essential dependencies to be able to test the feature
+	\item Include the essential dependencies that cannot be mocked out
+	\item Estimation of this feature group can be concluded as "fast".
+\end{itemize}
+\item Backend API tests:
+\begin{itemize}
+	\item Estimation of this feature group can be concluded as "slow" as it is dependent on the external server.
+\end{itemize}
+\item Environmental tests:
+\begin{itemize}
+	\item Estimation of this feature group can be concluded as "fast" as it is a simple check for current environment.
+\end{itemize}
+\item Deployment tests:
+\begin{itemize}
+	\item Estimation of this feature group can be concluded as "slow" as it is dependent on the external Travis CI server.
+\end{itemize}
+\end{itemize}
+
+\subsection{The included features to be tested:}
+\begin{itemize}
+\item Feature unit tests:
+	\begin{itemize}
+	\item The ability to receive data from a Facebook lead ad and save this data in the database.
+	\item The ability to receive data from any other integration point as per the specified format.
+	\item These feature relates to the getLeadData use case in the Functional requirements documentation
+	\end{itemize}
 \item API calls to do:
 	\begin{itemize}
-	\item Database insertions (H)
-	\item Database deletions (H)
-	\item Database retrievals (L)
+	\item Database insertions 
+	\item Database deletions 
+	\item Database retrievals 
+	\item This test relates to the Analysis use case in the Functional requirements documentation, it forms the underlying persistence with regards to the data analysis is done on.
 	\end{itemize}
 \item Environmental test
 	\begin{itemize}
-	\item Integration test to determine the current environment (development or deployment) to react accordingly (M)
+	\item Integration test to determine the current environment (development or deployment) to react accordingly 
 	\end{itemize}
 \item Deployment/Build testing including Compatibility
 		\begin{itemize}
-	\item Automated testing by the Travis CI framework to ensure the current feature is compatible with different versions of the NodeJS framework. (H)
+	\item Automated testing by the Travis CI framework to ensure the current feature is compatible with different versions of the NodeJS framework. 
 	\end{itemize}
 \end{itemize}
 
-\cleardoublepage
-\section{Features not to be Tested}
-\begin{itemize}
-	\item Email functionality
-	\begin{itemize}
-		\item This feature didn't form part of the previous sprint and is not yet in use.
-		\item Testing is not yet needed or this feature
-	\end{itemize}
-	\item The ability to receive data from a Facebook lead ad cannot be tested but this data has been mocked to ensure proper integration testing.
-	\item Front-end features including:
-	\begin{itemize}
-		\item Analyst login
-		\item Authentication
-	\end{itemize}
-\end{itemize}
-
-\section{Approach (Strategy)}
-\begin{itemize}
-	\item The testing framework Mocha will be used to run unit tests at compilation time or per request.
-	\item Deployment and compatibility testing is done with the automated framework Travis CI. Travis ensures all changes made to a branch is compatible with the different versions of NodeJS and the current environment (development or deployment).
-	\item A number of developed unit tests will be run with Mocha as can be seen in Figure \ref{fig:MochaTests}.
-	\item The testing of Facebook lead data was mocked out to be testable. 
-	\item The use of Postman to test API routes manually, ie. to make POST requests. Postman is a browser extension developed for API testing.
-	\item The current compatibility tests include Node version 6.2 and 5.11 
-\end{itemize}
+\begin{table}[]
+\centering
+\caption{Test cases}
+\label{test_table}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Feature ID & RDS Source                            & Summary                                    & Test Case ID \\ \hline \hline
+1          & Functional requirements - getLeadData & Receive data from a Facebook lead ad       & 1            \\ \hline
+2          & Functional requirements - getLeadData    & Receive data from other integration source & 2            \\ \hline
+3          & Functional requirements - Analysis    & Database insertions                        & 3            \\ \hline
+4          & Functional requirements - Analysis    & Database deletions                         & 4            \\ \hline
+5          & Functional requirements - Analysis    & Database retrievals                        & 5            \\ \hline
+6          &  Architecture design - Section 5      & Environmental test                         & 6            \\ \hline
+7          &  Architecture design - Section 5.1.1  & Deployment test                            & 7            \\ \hline
+\end{tabular}
+\end{table}
 
 
-\section{Running tests}
+\section{Test instructions} %TODO : onwards %
 Tests can be ran with the command "npm test" which will run Mocha, if this test is run locally it will connect to the local database.
 Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility with all versions of Node.
 \section{Item Pass/Fail Criteria for Tests}
 If the specified Pre-condition is not met the test will fail. \\
 If the specified Post-condition is met the test will pass.
 \cleardoublepage
-\section{Tests}
+\section{Test cases}
 \subsection{The following tests all passed as intended:}
 \begin{itemize}
 \item Creating row in Database - POST : /api/user/ 
