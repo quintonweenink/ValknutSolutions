@@ -141,7 +141,7 @@ Dependencies:
 \end{itemize} 
 
 \section{Functional Features to be Tested}\label{sec:FeaturesTest}
-Test estimation can be categorized as fast (nearly instant tests) or slow (timely tests with external dependencies) for our system. \\ 
+\paragraph{Test estimation can be categorized as fast (nearly instant tests) or slow (timely tests with external dependencies) for our system.} 
 \subsection{Overall approach with regards to adequate testing of :} 
 \begin{itemize}
 \item Feature unit tests:
@@ -207,7 +207,7 @@ Feature ID & RDS Source                            & Summary                    
 \end{table}
 
 
-\section{Test instructions} %TODO : onwards %
+\section{Test instructions} 
 Tests can be ran with the command "npm test" which will run Mocha, if this test is run locally it will connect to the local database.
 Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility with all versions of Node.
 \section{Item Pass/Fail Criteria for Tests}
@@ -215,10 +215,137 @@ If the specified Pre-condition is not met the test will fail. \\
 If the specified Post-condition is met the test will pass.
 \cleardoublepage
 \section{Test cases}
-\subsection{The following tests all passed as intended:}
+\subsection{Test Case 1: getLeadData}\label{test1}
+\subsubsection{Condition 1: Ad is submitted with all valid fields }
+\paragraph{Objective:} The purpose of this test is to extract data from a filled in Facebook lead ad and save this data if valid.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\subsubsection{Condition 2: Invalid inputs}
+\paragraph{Objective:} The purpose of this test is to return an empty user if the inputs are not valid
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\subsubsection{Condition 3: Valid data inputs}
+\paragraph{Objective:} The purpose of this test is to return a valid JSON object of the data for saving purposes.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+\subsection{Test Case 2: getData}\label{test2}
+\subsubsection{Condition 1: Valid inputs }
+\paragraph{Objective:} The purpose of this test is to extract data from any integration source.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+\subsection{Test Case 3: Insertion}\label{test3}
+\subsubsection{Condition 1: Valid inputs }
+\paragraph{Objective:} The purpose of this test is to test insertion of data into database.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+\subsection{Test Case 4: Deletion}\label{test4}
+\subsubsection{Condition 1: Valid field to remove }
+\paragraph{Objective:} The purpose of this test is to test deletion of data in the database
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+\subsection{Test Case 5: Retrieval}\label{test5}
+\subsubsection{Condition 1: If field exists }
+\paragraph{Objective:} The purpose of this test is to test retrieval of data from the database.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\subsubsection{Condition 2: If field does not exists }
+\paragraph{Objective:} The purpose of this test is to test retrieval of data from the database.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+
+\subsection{Test Case 6: Environmental test(Integration test}\label{test6}
+\subsubsection{Condition 1: If environment is set to Deployment }
+\paragraph{Objective:} The purpose of this test is to set the Environment variable based on the current state of the system, Deployment in this case.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\subsubsection{Condition 2: If environment is set to Development }
+\paragraph{Objective:} The purpose of this test is to set the Environment variable based on the current state of the system, Development in this case.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+\subsection{Test Case 7: Travis CI Deployment test(Integration test)}\label{test7}
+\subsubsection{Condition 1: If hosting version is compatible}
+\paragraph{Objective:} The purpose of this test is to ensure the current deployed version is compatible with the external hosting service. This includes dependency versions.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+
+
+\section{Item Pass/Fail criteria}\label{sec:FailPass}
 \begin{itemize}
-\item Creating row in Database - POST : /api/user/ 
-	\begin{itemize}
+\item Creating row in Database
+\begin{itemize}
 	\item Pre-conditions:
 		\begin{itemize}
 		\item Database is connected and created
@@ -234,116 +361,163 @@ If the specified Post-condition is met the test will pass.
  		\item email
  		\end{itemize} 
 		\end{itemize}
-	\item Post-condition - The row gets persisted
-	\item Figure \ref{fig:MochaTests}
-	\end{itemize}
-
-\item Retrieving row in Database based on currentUser - GET : /api/user/:currentUser
+\item Post-condition - The row gets persisted
+\end{itemize}
+\item Retrieving row in Database
 	\begin{itemize}
 	\item Pre-condition - The currentUser exists
 	\item Post-condition - The currentUser is retrieved 
-	\item Figure \ref{fig:MochaTests}
 	\end{itemize}
-	
+
 \item Removing row in Database based on currentUser - DELETE : /api/user/:currentUser
 	\begin{itemize}
 	\item Pre-condition - The currentUser exists
-	\item Post-condition - The currentUser is removed 
-	\item Figure \ref{fig:MochaTests}
-	\end{itemize}	
-	\begin{figure}[H]
-  	\centering
-      \includegraphics[width=\textwidth]{images/tests.png}
-  	\caption{Output of Mocha tests}
-  	\label{fig:MochaTests}
-	\end{figure}
-
+	\item Post-condition - The currentUser is removed
+	\end{itemize}
 
 \item Travis CI build test for Node version 5.11
 	\begin{itemize}
 	\item Pre-condition - The changes to the branch are compatible with version 5.11
 	\item Post-condition - The build will pass successfully 
-	\item Figure \ref{fig:5_11}
 	\end{itemize}	
 	
-	\begin{figure}[h]
-  	\centering
-      \includegraphics[width=\textwidth]{images/5_11.png}
-  	\caption{Output of Travis tests for Node version 5.11}
-  	\label{fig:5_11}
-	\end{figure}
-
-\cleardoublepage
 \item Travis CI build test for Node version 6.2
 	\begin{itemize}
 	\item Pre-condition - The changes to the branch are compatible with version 6.2
 	\item Post-condition - The build will pass successfully 
-	\item Figure \ref{fig:6_2}
-	\end{itemize}	
+\end{itemize}
 \end{itemize}
 
-\begin{figure}[h]
-  \centering
-      \includegraphics[width=\textwidth]{images/6_2.png}
-  \caption{Output of Travis tests for Node version 6.2}
-  \label{fig:6_2}
-\end{figure}
+\paragraph{If all pre-conditions are met the test will pass. In the case of a pre-condition not being fulfilled that specific test will fail.}
 
 
-\cleardoublepage
-\subsection{The following tests failed as intended:}
+\section{Test Deliverables}
+Artefacts to be produced as part of testing include the following:
 \begin{itemize}
-	\item Travis CI build, running Mocha when a branch was merged.
-	\begin{itemize}
-	\item Pre-condition - Heroku server is online.
-	\item Post-condition - The build will pass successfully 
-	\item Figure \ref{fig:failed}
-	\item This test failed as a result of the hosting server being offline, not fulfilling the Pre-condition. 
-	\item The error stating a timeout proves this failure.
-	\end{itemize}
-
-	\begin{figure}[h]
-  	\centering
-      \includegraphics[width=\textwidth]{images/failed.png}
-  	\caption{Output of failed Travis test}
-  	\label{fig:failed}
-	\end{figure}	
-	
-	\cleardoublepage
-	\item Database connection test based on Mocha test
-	\begin{itemize}
-	\item Pre-conditions
-	\begin{itemize}
-		\item The database exists and is created
-		\item The database accepts connections
-	\end{itemize}
-	\item Post-condition - The test will pass
-	\item Figure \ref{fig:DBFailed}
-	\item This test failed as a the Pre-conditions did not hold. 
-	\item The database was not initialized at that time.
-	\end{itemize}
-
-
-	\begin{figure}[h]
-  	\centering
-      \includegraphics[width=\textwidth]{images/DBConnectionFailed.png}
-  	\caption{Database connection test}
-  	\label{fig:DBFailed}
-	\end{figure}	
-	
-	
-	\begin{figure}[h]
-  	\centering
-      \includegraphics[width=\textwidth]{images/TravisInterface.png}
-  	\caption{Travis interface used for test logs}
-	\end{figure}
-
+\item Test Plan Section \ref{sec:testItems} - Section \ref{sec:FailPass}
+\item Test Report Section \ref{sec:testReport}
+\item Test code \href{https://github.com/QuintonWeenink/ValknutSolutions/tree/develop/test}{Github Link to testing directory}
 \end{itemize}
 
-\cleardoublepage
-\section{Test Summary}
+\section{Detailed Test Results}\label{sec:testReport}
+\subsection{Overview of Test Results}
+All tests were run multiple times to ensure success with the inclusion of the Travis Continuous integration tests to ensure compatibility. Two of the tests failed as a result of the external server not being active at that specific time, these cases form part of integration testing and the normal unit tests make use of mocked out information.\\
+The Mocha testing framework was chosen as it integrates well with the Node Package manager system and 
+simplifies the creation of writing a new unit test.\\
+Travis CI was chosen as integration testing framework to ensure compatibility and deployment capabilities. Travis CI integrates with Github to run tests on all branch merges to ensure compatibility of new features in the main deployment branch.\\
+Travis CI runs automated tests per branch merge without the need for developer assistance, this greatly decreases deployment time and ensures compatibility.
+
+\subsection{Functional Requirements Test results}
+\begin{table}[H]
+\caption{Links to test files}
+\label{link_table}
+\begin{tabular}{|l|l|l|}
+\hline
+Test ID    & Test Name   & Github Link to File \\ \hline \hline
+1          & getLeadData &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbControllerTest.js}{fbControllerTest.js}         \\ \hline
+2          & getData  &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbControllerTest.js}{fbControllerTest.js}       \\ \hline
+3,4,5      & API tests/Database functions & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js}         \\ \hline
+6          &  Environmental test  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js Line 9-15}\\ \hline
+7		   & Compatibility test & \href{https://travis-ci.com/QuintonWeenink/ValknutSolutions/builds/30866212}{Travis CI build nr 130} \\ \hline
+\end{tabular}
+\end{table}
+\paragraph{All tests are located in the Github repo's testing directory:\href{https://github.com/QuintonWeenink/ValknutSolutions}{Repo}}
+
+
+\subsubsection{Test Case 1 - TC \ref{test1}} %TODO %
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 2 - TC \ref{test2}}
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 3 - TC \ref{test3}}
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 4 - TC \ref{test4}}
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 5 - TC \ref{test5}}
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 6 - TC \ref{test6}}
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 7 - TC \ref{test7}}
+The following results were obtained from the tests conducted. The tests to produce the
+following results have passed/failed and the reasons are stated below.
+\begin{enumerate}
+	\item Reason 1
+	\item Reason 2
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\section{Other}
+\begin{enumerate}
+	\item Mocha build screenshots %TODO %
+	\item The mapping of contracts onto tests increases the testability of a system. Mocking out objects eliminates external dependencies which greatly benefit testability. A form of mocking can be seen in Test \ref{test1}
+	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests.
+\end{enumerate}
+
+\section{Conclusions}
 This project follows a Continous Integration model with regards to testing. \\ Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
 The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls,such as Facebook, on which our system heavily relies.\\
-Future versions will include more tests based on these complexities.
+The ability to modularize functions in NodeJS also complicates the ability to test functionality, this is as a result of the asynchronous callback structure NodeJS uses.
 
 \end{document}
