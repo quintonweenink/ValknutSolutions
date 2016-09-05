@@ -63,14 +63,14 @@ InsuranceProfiling.controller('filterController',function($scope, $http)
 			}
 
 			//Marital Status
-			if(maritalStatusses.indexOf(user.maritalStatus.toUpperCase()) == -1)
+			if(maritalStatusses.indexOf(user.marital_status.toUpperCase()) == -1)
 			{
-				maritalStatusses.push(user.maritalStatus.toUpperCase());
+				maritalStatusses.push(user.marital_status.toUpperCase());
 				maritalCount.push(1);
 			}
 			else
 			{
-				maritalCount[maritalStatusses.indexOf(user.maritalStatus.toUpperCase())]++;
+				maritalCount[maritalStatusses.indexOf(user.marital_status.toUpperCase())]++;
 			}
 
 		}

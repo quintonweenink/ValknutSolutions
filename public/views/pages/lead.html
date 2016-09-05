@@ -7,18 +7,45 @@
 
 
     <!-- LEAD FORM -->
-    <form action="/api/user" method="post">
+<div layout="column" ng-cloak class="md-inline-form">
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+  <div>
+    <md-input-container>
+      <label>Title</label>
+      <input>
+    </md-input-container>
+
+    <md-input-container>
+      <label>Email</label>
+      <input type="email">
+    </md-input-container>
+  </div>
+</md-content>
+</div>
+<form action="/api/user" method="post">
         <div class='form-group'>
-            <label>Name</label>
-            <input type='text' class="form-contol" name="first_name">
+            <label>Last name</label>
+            <input type='text' class="form-contol" name="last_name">
+        </div>
+        <div class='form-group'>
+            <label>Marital status</label>
+            <input type='text' class="form-contol" name="marital_status">
+        </div>
+        <div class='form-group'>
+            <label>Date of birth</label>
+            <input type='text' class="form-contol" name="date_of_birth">
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="text" class="form-control" name="gender">
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" class="form-control" name="city">
         </div>
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
+            <input type="email" class="form-control" name="email">
         </div>
 
         <button type="submit" class="btn btn-warning btn-lg">Login</button>
