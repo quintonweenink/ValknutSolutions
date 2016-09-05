@@ -1,12 +1,28 @@
 var FB = require('fb');
 var leadController = require("../DBControllers/LeadController");
 var userController = require("../DBControllers/UserController");
-var email = require("../email/email")
+var email = require("../email/email");
 
 var auth = require('../config/auth.js');
 
 
 module.exports = {
+  //https://graph.facebook.com/oauth/access_token?client_id=959936647438530&client_secret=a1b4088df1dc99305fee1fa09c2c6e61&grant_type=fb_exchange_token&fb_exchange_token=EAANpDqrgoMIBABpEIRPct1YPpnIBwxS0GTQuVdWhUajE2asfOJv2egdaXDm9fGS7kkAkbLtyerMZCP3uluqUdkKhYmmUnrYsXxqfuwl9YsB6ZBa0xGYepCmBA1e0Y8HZBCl1ZB2ltLTBCiz8YwwHG5PmVz8FvLghUrh5rmBeCwZDZD
+  extendAccessToken : function extendAccessToken(page_access_token, callback)
+  {
+    FB.api(
+      'oauth/access_token',
+      {
+        client_id : auth.fb.appId,
+        client_secret : auth.fb.appSecret,
+        grant_type : 'fb_exchange_token',
+        fb_exchange_token : page_access_token
+      },
+      function (res){
+        callback(res);
+      }
+    );
+  },
   userAddedCallback : function userAddedCallback(user)
   {
     //Any functions to perform after the lead was captured from facebook and successfully added to the database

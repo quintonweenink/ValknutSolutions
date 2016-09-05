@@ -111,24 +111,29 @@ email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 */
 
 //------------API routes------------------//
+function accessTokenCallback(req, res, pageAccessToken)
+{
+	var page = {
+		page_id : req.body.page_id,
+		page_name : req.body.page_name,
+		page_access_token : pageAccessToken
+	};
+	var newPage = pageController.createPage(page)
+	.then(function(pages){
+		res.status(200).json(pages);
+}).catch(function(error){
+		 console.log("ops: " + error);
+		 res.status(500).json({ error: 'error' });
+ });
+	console.log('Page created', JSON.stringify(newPage));
+	res.status(200);
+}
 //API/pageAccessToken
 app.route('/api/pageAccessToken')
 	.post(function(req,res){
-		console.log('Creating page with its access token');
-		var page = {
-			page_id : req.body.page_id,
-			page_name : req.body.page_name,
-			page_access_token : req.body.page_access_token
-		};
-		var newPage = pageController.createPage(page)
-		.then(function(pages){
-			res.status(200).json(pages);
-	}).catch(function(error){
-			 console.log("ops: " + error);
-			 res.status(500).json({ error: 'error' });
-	 });
-		console.log('Page created', JSON.stringify(newPage));
-		res.status(200);
+		fbControllers.extendAccessToken(req.body.page_access_token, function (token){
+			accessTokenCallback(req, res, token.access_token);
+		});
 	});
 
 //API/leads
