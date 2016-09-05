@@ -20,6 +20,21 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 //------- FB Javascript SDK end ------//
 
+function createLeadForm(userId, pageid)
+{
+  console.log("Creating lead form");
+  FB.ui({
+    method: "lead_gen",
+    page_id: pageid,
+    ad_account_id : userId,
+    display: "popup"
+  },
+  function (res)
+  {
+    console.log(res);
+  });
+}
+
 function termsOfService(page_id)
 {
   FB.ui(
@@ -91,6 +106,8 @@ function getPageImage(img, page_id)
  function facebookLoginLeads()
  {
    FB.login(function(res){
+     var userId = res.authResponse.userID;
+     console.log(userId);
      console.log('Successfully logged in', res);
      $('#facebookLoginButtonLeads').hide(100);
      FB.api('/me/accounts',function(response){
@@ -108,7 +125,8 @@ function getPageImage(img, page_id)
          var a = $('<a></a>');
 
          a.herf = '#';
-         a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name));
+         //a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name, userId));
+         a.on('click', createLeadForm.bind(this, userId, page.id));
          a.text(page.name);
 
          div.append(img);
