@@ -4,9 +4,10 @@ var express = require('express');
 module.exports = {
 	createUser : function createUser(newUser)
 	{
+		/*
 		var new_user = models.User.create(newUser);
-		return new_user;
-		/* 
+		return new_user;*/
+
 		models.User.findOrCreate({
 			where: {
 				firstName : user.first_name,
@@ -23,9 +24,9 @@ module.exports = {
 		.spread(function(new_user, created){
 			//console.log("New user :" + JSON.stringify(new_user.get({plain:true})));
 			//console.log("Created field: " + JSON.stringify(created));
-			callback(new_user.id);
-			return new_user.id;
-		});*/
+			//callback(new_user.id);
+			return new_user;
+		});
 	},
 	deleteUserByID : function deleteUserByID(id)
 	{
