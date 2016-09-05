@@ -1,0 +1,33 @@
+<div class="container">
+    <md-content>
+    <h1><span class="fa fa-sign-in"></span> Lead </h1>
+
+    <!-- show any messages that come back with authentication -->
+        <div class="alert alert-danger">{{ message }}</div>
+
+
+    <!-- LEAD FORM -->
+    <form action="/api/user" method="post">
+        <div class='form-group'>
+            <label>Name</label>
+            <input type='text' class="form-contol" name="first_name">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+    </form>
+
+    <hr>
+
+    <p>Need an account? <a href="#signup">Signup</a></p>
+    <p>Or go <a href="#">home</a>.</p>
+</md-content>
+
+</div>

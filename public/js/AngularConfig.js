@@ -43,6 +43,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/marketing.html',
 		controller : 'marketingController'
 	})
+	.when('/lead',
+	{
+		templateUrl : 'views/pages/lead.html',
+		controller : 'leadController'
+	})
   .otherwise(
   {
     redirectTo: '/'

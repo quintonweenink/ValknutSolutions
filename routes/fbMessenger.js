@@ -1,5 +1,7 @@
 var request = require('request');
 
+var config = require('../config/auth');
+
 var activeUsers = {};//Hash table
 var messageList = {
 	0:'Please reply with your Name:',
@@ -32,7 +34,7 @@ function receivedDeliveryConfirmation(event)
 	  var timeOfMessage = event.timestamp;
 	  var message = event.message;
 
-	  console.log("Successfully sent message for user %d and page %d at %d with message:", 
+	  console.log("Successfully sent message for user %d and page %d at %d with message:",
 	    senderID, recipientID, timeOfMessage);
 	  console.log(JSON.stringify(message));
 }
@@ -40,7 +42,7 @@ function receivedDeliveryConfirmation(event)
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: 'EAAZAXI4LkwOMBACAqWIb2wLilLkp4floeTjoZBHIn4LgvunjdBFK0I2FWxWWmkms8POqZCsou77H6A6bPQphqdtEest5GFjCK9oWYzP45AIi7bs0NXOZAZAKCqJGMfK3NFkD2W6PvM8vP3GM1uUQhMd1TRZAiHnryNrRgl2MW8uQZDZD' },
+    qs: { access_token: config.messenger.access_token },
     method: 'POST',
     json: messageData
 
@@ -49,14 +51,14 @@ function callSendAPI(messageData) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
 
-      console.log("Successfully sent generic message with id %s to recipient %s", 
+      console.log("Successfully sent generic message with id %s to recipient %s",
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
       //console.error(response);
       console.error(error);
     }
-  });  
+  });
 }
 
 function receivedMessage(event) {
@@ -65,7 +67,7 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  console.log("Received message for user %d and page %d at %d with message:", 
+  console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
 
@@ -150,13 +152,13 @@ module.exports = function(app, passport){
 	})
     .get(function(req, res) {
     	console.log("get");
-		if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === 'this-is-a-shitty-token') {
+		if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === config.messenger.verify_token) {
 		    console.log("Validating webhook");
 		    res.status(200).send(req.query['hub.challenge']);
 		} else {
 		    console.error("Failed validation. Make sure the validation tokens match.");
-		    res.sendStatus(403);          
-  		}  
+		    res.sendStatus(403);
+  		}
 	});
 
 
