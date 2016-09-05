@@ -49,6 +49,7 @@ var users = require('./routes/users')(app, passport);
 var admins = require('./routes/admins')(app, passport);
 var analysts = require('./routes/analysts')(app, passport);
 var routes = require('./routes/routes')(app, passport);
+var graphRoute= require('./routes/graph')(app, passport);
 var angular = require('./routes/angular')(app, passport);
 
 
