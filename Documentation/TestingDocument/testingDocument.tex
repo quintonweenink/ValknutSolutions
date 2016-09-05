@@ -123,11 +123,18 @@ The testing environment is mainly software based and includes:
 \subsection{Assumptions and Dependencies}\label{subsec:assumptions}
 Assumptions:
 \begin{itemize}
-	\item 
+	\item An instance of the server is running locally(for Unit tests)
+	\item External server is active (for Deploy tests only)
+	\item Active internet connection (for Deploy tests only)
 \end{itemize}
 Dependencies:
 \begin{itemize}
-	\item
+	\item Travis CI 
+	\item Mocha framework
+	\item Chai (part of Mocha)
+	\item Assert package from npm
+	\item fbController.js test file
+	\item test.js file
 \end{itemize}
 
 
@@ -197,7 +204,7 @@ Dependencies:
 \hline
 Feature ID & RDS Source                            & Summary                                    & Test Case ID \\ \hline \hline
 1          & Functional requirements - getLeadData & Receive data from a Facebook lead ad       & 1            \\ \hline
-2          & Functional requirements - getLeadData    & Receive data from other integration source & 2            \\ \hline
+2          & Functional requirements - getData     & Receive data from other integration source & 2            \\ \hline
 3          & Functional requirements - Analysis    & Database insertions                        & 3            \\ \hline
 4          & Functional requirements - Analysis    & Database deletions                         & 4            \\ \hline
 5          & Functional requirements - Analysis    & Database retrievals                        & 5            \\ \hline
@@ -220,31 +227,41 @@ If the specified Post-condition is met the test will pass.
 \paragraph{Objective:} The purpose of this test is to extract data from a filled in Facebook lead ad and save this data if valid.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item An non-existing entity - based on Facebook user data:
+	\begin{enumerate}
+		\item firstName
+  		\item lastName
+  		\item mobileNumber 
+  		\item maritalStatus 
+  		\item dateOfBirth 
+ 		\item gender
+  		\item location 
+ 		\item email	
+	\end{enumerate}
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item A JSON object of a User passed to the Condition 3
 \end{enumerate}
 \subsubsection{Condition 2: Invalid inputs}
 \paragraph{Objective:} The purpose of this test is to return an empty user if the inputs are not valid
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item A unpopulated user object
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item Returns an empty user
 \end{enumerate}
 \subsubsection{Condition 3: Valid data inputs}
 \paragraph{Objective:} The purpose of this test is to return a valid JSON object of the data for saving purposes.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item An existing object of User as per Condition 1
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item A new User passed to the database
 \end{enumerate}
 
 \subsection{Test Case 2: getData}\label{test2}
@@ -252,11 +269,21 @@ If the specified Post-condition is met the test will pass.
 \paragraph{Objective:} The purpose of this test is to extract data from any integration source.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item An non-existing entity - based on user data from any integration:
+	\begin{enumerate}
+		\item firstName
+  		\item lastName
+  		\item mobileNumber 
+  		\item maritalStatus 
+  		\item dateOfBirth 
+ 		\item gender
+  		\item location 
+ 		\item email	
+	\end{enumerate}
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item A JSON object of a User 
 \end{enumerate}
 
 \subsection{Test Case 3: Insertion}\label{test3}
@@ -264,11 +291,11 @@ If the specified Post-condition is met the test will pass.
 \paragraph{Objective:} The purpose of this test is to test insertion of data into database.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item An existing entity of User object
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item The data will be saved into the database
 \end{enumerate}
 
 \subsection{Test Case 4: Deletion}\label{test4}
@@ -276,11 +303,11 @@ If the specified Post-condition is met the test will pass.
 \paragraph{Objective:} The purpose of this test is to test deletion of data in the database
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item An existing entity of User in the database
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item The existing entity gets deleted from the database 
 \end{enumerate}
 
 \subsection{Test Case 5: Retrieval}\label{test5}
@@ -288,56 +315,68 @@ If the specified Post-condition is met the test will pass.
 \paragraph{Objective:} The purpose of this test is to test retrieval of data from the database.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item An existing entity
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item The existing entity gets returned from the database
 \end{enumerate}
 \subsubsection{Condition 2: If field does not exists }
 \paragraph{Objective:} The purpose of this test is to test retrieval of data from the database.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item A non existing entity 
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item The test will return null
 \end{enumerate}
 
 
-\subsection{Test Case 6: Environmental test(Integration test}\label{test6}
+\subsection{Test Case 6: Environmental test(Integration test)}\label{test6}
 \subsubsection{Condition 1: If environment is set to Deployment }
 \paragraph{Objective:} The purpose of this test is to set the Environment variable based on the current state of the system, Deployment in this case.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item Environment set to deployment
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item Set the hosting port to 80
 \end{enumerate}
 \subsubsection{Condition 2: If environment is set to Development }
 \paragraph{Objective:} The purpose of this test is to set the Environment variable based on the current state of the system, Development in this case.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item Environment set to development
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item Set the hosting port to 3000 to avoid conflicts
 \end{enumerate}
 
-\subsection{Test Case 7: Travis CI Deployment test(Integration test)}\label{test7}
+\subsection{Test Case 7: Travis CI Deployment test (Integration test) }\label{test7}
 \subsubsection{Condition 1: If hosting version is compatible}
 \paragraph{Objective:} The purpose of this test is to ensure the current deployed version is compatible with the external hosting service. This includes dependency versions.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item 
+	\item A valid NodeJS and NPM version is used
+	\item Mocha tests pass
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item 
+	\item The build will pass
+\end{enumerate}
+\subsubsection{Condition 2: If hosting version is incompatible}
+\paragraph{Objective:} The purpose of this test is to ensure the current deployed version is compatible with the external hosting service. This includes dependency versions.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item An unsupported version of NodeJS or NPM is used
+	\item Mocha Tests fails
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item The build will error/fail
 \end{enumerate}
 
 
@@ -369,7 +408,7 @@ If the specified Post-condition is met the test will pass.
 	\item Post-condition - The currentUser is retrieved 
 	\end{itemize}
 
-\item Removing row in Database based on currentUser - DELETE : /api/user/:currentUser
+\item Removing row in Database based on currentUser 
 	\begin{itemize}
 	\item Pre-condition - The currentUser exists
 	\item Post-condition - The currentUser is removed
@@ -398,7 +437,7 @@ Artefacts to be produced as part of testing include the following:
 \item Test Report Section \ref{sec:testReport}
 \item Test code \href{https://github.com/QuintonWeenink/ValknutSolutions/tree/develop/test}{Github Link to testing directory}
 \end{itemize}
-
+\clearpage
 \section{Detailed Test Results}\label{sec:testReport}
 \subsection{Overview of Test Results}
 All tests were run multiple times to ensure success with the inclusion of the Travis Continuous integration tests to ensure compatibility. Two of the tests failed as a result of the external server not being active at that specific time, these cases form part of integration testing and the normal unit tests make use of mocked out information.\\
@@ -409,7 +448,7 @@ Travis CI runs automated tests per branch merge without the need for developer a
 
 \subsection{Functional Requirements Test results}
 \begin{table}[H]
-\caption{Links to test files}
+\centering
 \label{link_table}
 \begin{tabular}{|l|l|l|}
 \hline
@@ -420,11 +459,12 @@ Test ID    & Test Name   & Github Link to File \\ \hline \hline
 6          &  Environmental test  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js Line 9-15}\\ \hline
 7		   & Compatibility test & \href{https://travis-ci.com/QuintonWeenink/ValknutSolutions/builds/30866212}{Travis CI build nr 130} \\ \hline
 \end{tabular}
+\caption{Links to test files}
 \end{table}
 \paragraph{All tests are located in the Github repo's testing directory:\href{https://github.com/QuintonWeenink/ValknutSolutions}{Repo}}
 
 
-\subsubsection{Test Case 1 - TC \ref{test1}} %TODO %
+\subsubsection{Test Case 1 - TC \ref{test1}}
 The following results were obtained from the tests conducted. The tests to produce the
 following results have passed/failed and the reasons are stated below.
 \begin{enumerate}
@@ -510,14 +550,30 @@ following results have passed/failed and the reasons are stated below.
 
 \section{Other}
 \begin{enumerate}
-	\item Mocha build screenshots %TODO %
+	\item Mocha build screenshots 
+	\begin{figure}[H]
+	\includegraphics[width=15cm]{images/tests.png}
+	\caption{Api Tests}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\includegraphics[width=15cm]{images/FbControllerTest.png}
+		\caption{getLeadData unit test}
+	\end{figure}
+	\clearpage
+	\item Travis build
+	\begin{figure}[H]
+	\includegraphics[width=15cm]{images/Travis.png}
+	\caption{Travis success }
+	\end{figure}	
+	
 	\item The mapping of contracts onto tests increases the testability of a system. Mocking out objects eliminates external dependencies which greatly benefit testability. A form of mocking can be seen in Test \ref{test1}
 	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests.
 \end{enumerate}
 
 \section{Conclusions}
 This project follows a Continous Integration model with regards to testing. \\ Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
-The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls,such as Facebook, on which our system heavily relies.\\
+The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls, such as Facebook, on which our system heavily relies.\\
 The ability to modularize functions in NodeJS also complicates the ability to test functionality, this is as a result of the asynchronous callback structure NodeJS uses.
 
 \end{document}
