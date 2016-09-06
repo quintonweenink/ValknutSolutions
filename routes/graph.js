@@ -4,8 +4,9 @@ var models = require("../models");
 
 var userController = require("../DBControllers/UserController");
 
+var DateController = require("../DateControllers/Date")
 
-module.exports = function(app, passport){
+module.exports =	function(app, passport){
 	app.route('/api/graph/location')
 	.get(function(req,res){
 		res.json("Please supply a chart type: eg. /location/pie");
@@ -81,18 +82,18 @@ module.exports = function(app, passport){
 		});
 	});
 
-	function getAge(dateString)
-	{
-		var today = new Date();
-		var birthDate = new Date(dateString);
-		var age = today.getFullYear() - birthDate.getFullYear();
-		var m = today.getMonth() - birthDate.getMonth();
-		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-		{
-			age--;
-		}
-		return age;
-	}
+	// function getAge(dateString)
+	// {
+	// 	var today = new Date();
+	// 	var birthDate = new Date(dateString);
+	// 	var age = today.getFullYear() - birthDate.getFullYear();
+	// 	var m = today.getMonth() - birthDate.getMonth();
+	// 	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
+	// 	{
+	// 		age--;
+	// 	}
+	// 	return age;
+	// }
 
 	app.route('/api/graph/age')
 	.get(function(req,res){
@@ -108,7 +109,7 @@ module.exports = function(app, passport){
 			for (var i = 0; i < users.length; i++)
 			{
 				var user = users[i];
-				var Age = getAge(user.dateOfBirth);
+				var Age = DateController.getAge(user.dateOfBirth);
 				if(ages.indexOf(Age) == -1)
 				{
 					ages.push(Age);
@@ -325,15 +326,15 @@ module.exports = function(app, passport){
 		});
 	});
 
-	function getMonths(dateString)
-	{
-		var monthNames = ["January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December"
-	];
-	var birthDate = new Date(dateString);
-	var month = birthDate.getMonth()
-	return monthNames[month];
-}
+// function getMonths(dateString)
+// {
+// 		var monthNames = ["January", "February", "March", "April", "May", "June",
+// 		"July", "August", "September", "October", "November", "December"
+// 	];
+// 	var birthDate = new Date(dateString);
+// 	var month = birthDate.getMonth()
+// 	return monthNames[month];
+// }
 
 app.route('/api/graph/signups/')
 //User Post route
@@ -349,23 +350,19 @@ app.route('/api/graph/signups/')
 	for (var i = 0; i < users.length; i++)
 	{
 		var user = users[i];
-		var Status = getMonths(user.createdAt);
+		var Status = DateController.getMonths(user.createdAt);
 		monthCount[months.indexOf(Status)]++;
 	}
-
-
 
 	var GraphObject = new Object;
 	GraphObject.labels = months;
 	GraphObject.data = monthCount;
 	GraphObject.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-1'}];
-	GraphObject.options = {
+	GraphObject.options =
+	{
 		title: {
 			display: true,
 			text:  "Signups per month"
-		},
-		onHover :{
-
 		},
 		scales:
 		{
@@ -383,12 +380,10 @@ app.route('/api/graph/signups/')
 				}
 			]
 		}
-		};
-
-		res.json(GraphObject);
+	};
+	res.json(GraphObject);
 	});
-});
-
+	});
 
 
 

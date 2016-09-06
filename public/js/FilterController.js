@@ -1,5 +1,6 @@
 InsuranceProfiling.controller('filterController',function($scope, $http)
 {
+	$scope.message = "";
 	$scope.submit = function(){
 		$scope.message = "";
 		if($scope.data.graphType == "pie")
