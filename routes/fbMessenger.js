@@ -18,7 +18,7 @@ var messageList = {
 };//Another hash table
 
 var user = {
-	messageId : 0,
+   messageId : 0,
    first_name : "",
    last_name : "",
    phone_number : "",
@@ -28,6 +28,7 @@ var user = {
    city : "",
    email : ""
  }
+
 
 
 function sendTextMessage(recipientId, messageNumber, messageText) {
@@ -100,44 +101,44 @@ function receivedMessage(event) {
 
 
   if (messageText && message.is_echo === undefined){
-	  if(activeUsers.senderID === undefined){
-  		activeUsers.senderID = user;
-  	}
-  	else
-  	{
-  			activeUsers.senderID.messageId++
-  			switch (activeUsers.senderID.messageId - 1)
-  			{
-  				case 1:
-  					activeUsers.senderID.first_name = messageText;
-  					break;
-  				case 2:
-  					activeUsers.senderID.last_name = messageText;
-  					break;
-  				case 3:
-  					activeUsers.senderID.phone_number = messageText;
-  					break;
-  				case 4:
-  					activeUsers.senderID.marital_status = messageText;
-  					break;
-  				case 5:
-  					activeUsers.senderID.date_of_birth = messageText;
-  					break;
-  				case 6:
-  					activeUsers.senderID.gender = messageText;
-  					break;
-  				case 7:
-  					activeUsers.senderID.city = messageText;
-  					break;
-  				case 8:
-  					activeUsers.senderID.email = messageText;
-  					break;
-  				default:
-  					userController.createUser(activeUsers.senderID);
-  					activeUsers.senderID = null;
-  			}
-  	}
-
+	 if(activeUsers.senderID === undefined){
+ 	   activeUsers.senderID = user;
+ 	 }
+ 	 else
+ 	 {
+ 		activeUsers.senderID.messageId++;
+ 		console.log(activeUsers.senderID.messageId);
+ 		switch (activeUsers.senderID.messageId)
+ 		{
+ 			case 1:
+ 				activeUsers.senderID.first_name = messageText;
+ 				break;
+ 			case 2:
+ 				activeUsers.senderID.last_name = messageText;
+ 				break;
+ 			case 3:
+ 				activeUsers.senderID.phone_number = messageText;
+ 				break;
+ 			case 4:
+ 				activeUsers.senderID.marital_status = messageText;
+ 				break;
+ 			case 5:
+ 				activeUsers.senderID.date_of_birth = messageText;
+ 				break;
+ 			case 6:
+ 				activeUsers.senderID.gender = messageText;
+ 				break;
+ 			case 7:
+ 				activeUsers.senderID.city = messageText;
+ 				break;
+ 			case 8:
+ 				activeUsers.senderID.email = messageText;
+ 				break;
+ 			default:
+ 				userController.createUser(activeUsers.senderID);
+ 				activeUsers.senderID = null;
+ 		}
+ 	 }
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
