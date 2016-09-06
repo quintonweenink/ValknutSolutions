@@ -25,12 +25,12 @@ describe('Graph Date Test', function(){
       var testData = "1994-06-05T22:00:00.000Z";
       assert(dateController.getMonths(testData));
     });
-    it("Returns the June from the datestring 1994-06-05T22:00:00.000Z", function(){
+    it("Returns June from the datestring 1994-06-05T22:00:00.000Z", function(){
       var testData = "1994-06-05T22:00:00.000Z";
       var testMonth = "June";
       assert.equal(testMonth, dateController.getMonths(testData));
     });
-    it("Returns the September from the datestring 1994-09-05T22:00:00.000Z", function(){
+    it("Returns September from the datestring 1994-09-05T22:00:00.000Z", function(){
       var testData = "1994-09-05T22:00:00.000Z";
       var testMonth = "September";
       assert.equal(testMonth, dateController.getMonths(testData));
