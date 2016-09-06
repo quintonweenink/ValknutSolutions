@@ -1,23 +1,23 @@
 "use strict";
 module.exports = function(sequelize, DataTypes){
 var User = sequelize.define('User', {
-  firstName: {
+  first_name: {
     type: DataTypes.STRING,
     allowNull : false
   },
-  lastName: {
+  last_name: {
     type: DataTypes.STRING,
     allowNull : false
   },
-  phoneNumber : {
+  phone_number : {
     type : DataTypes.STRING,
     allowNull : false
   },
-  maritalStatus : {
+  marital_status : {
     type : DataTypes.STRING,
     allowNull : false
   },
-  dateOfBirth : {
+  date_of_birth : {
     type : DataTypes.DATE,
     allowNull : false
   },

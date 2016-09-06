@@ -47,8 +47,10 @@ public/libs
 *.fls
 *.out
 *.toc
-*.fmt 
+*.fmt
 *.pdf
+*.hst
+*.ver
 
 ## Intermediate documents:
 *.dvi
