@@ -133,6 +133,7 @@ function receivedMessage(event) {
  				break;
  			default:
 				activeUsers.senderID.email = messageText;
+				console.log(activeUsers.senderID);
  				userController.createUser(activeUsers.senderID);
  				activeUsers.senderID = undefined;
 				break;
