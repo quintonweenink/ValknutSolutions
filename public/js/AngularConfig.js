@@ -46,7 +46,7 @@ InsuranceProfiling.config(function($routeProvider) {
 	.when('/lead',
 	{
 		templateUrl : 'views/pages/lead.html',
-		controller : 'leadController'
+		controller : 'LeadController'
 	})
   .otherwise(
   {

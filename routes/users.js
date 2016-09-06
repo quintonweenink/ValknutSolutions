@@ -26,13 +26,13 @@ module.exports = function(app, passport){
 				};
 
 				//Auto insert data according to passed data
-				if(req.body.firstName)
+				if(req.body.first_name)
 				{
-					newUser.first_name = req.body.firstName;
-					newUser.last_name = req.body.lastName;
-					newUser.phone_number = req.body.phoneNumber;
-					newUser.marital_status = req.body.maritalStatus;
-					newUser.date_of_birth = req.body.dateOfBirth;
+					newUser.first_name = req.body.first_name;
+					newUser.last_name = req.body.last_name;
+					newUser.phone_number = req.body.phone_number;
+					newUser.marital_status = req.body.marital_status;
+					newUser.date_of_birth = req.body.date_of_birth;
 					newUser.gender = req.body.gender;
 					newUser.city = req.body.city;
 					newUser.email = req.body.email;

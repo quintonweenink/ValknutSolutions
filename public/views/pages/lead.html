@@ -8,49 +8,62 @@
 
     <!-- LEAD FORM -->
 <div layout="column" ng-cloak class="md-inline-form">
-        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-  <div>
-    <md-input-container>
-      <label>Title</label>
-      <input>
-    </md-input-container>
-
-    <md-input-container>
-      <label>Email</label>
-      <input type="email">
-    </md-input-container>
-  </div>
-</md-content>
+    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+      <div>
+        <form action='#' novalidate>
+            <div layout='row'>
+                <md-input-container>
+                  <label>First name</label>
+                  <input ng-model='user.first_name'>
+                </md-input-container>
+                <md-input-container>
+                  <label>Last name</label>
+                  <input ng-model='user.last_name'>
+                </md-input-container>
+            </div>
+            <div layout='row'>
+                <md-input-container>
+                  <label>Contact number</label>
+                  <input ng-model='user.phone_number'>
+                </md-input-container>
+            </div>
+            <div layout='row'>
+                <md-input-container>
+                  <label>Marital status</label>
+                  <input ng-model='user.marital_status'>
+                </md-input-container>
+            </div>
+            <div layout='row'>
+                <md-input-container>
+                  <label>Date of birth</label>
+                  <md-datepicker ng-model="user.date_of_birth"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div layout='row'>
+                <md-input-container>
+                  <label>Gender</label>
+                  <input ng-model='user.gender'>
+                </md-input-container>
+            </div>
+            <div layout='row'>
+                <md-input-container>
+                  <label>City</label>
+                  <input ng-model='user.city'>
+                </md-input-container>
+            </div>
+            <div layout='row'>
+                <md-input-container>
+                  <label>Email</label>
+                  <input type='email' ng-model='user.email'>
+                </md-input-container>
+            </div>
+            <md-input-container>
+                <md-button ng-click="postForm($http)">Submit</md-button>
+            </md-input-container>
+        </form>
+      </div>
+  </md-content>
 </div>
-<form action="/api/user" method="post">
-        <div class='form-group'>
-            <label>Last name</label>
-            <input type='text' class="form-contol" name="last_name">
-        </div>
-        <div class='form-group'>
-            <label>Marital status</label>
-            <input type='text' class="form-contol" name="marital_status">
-        </div>
-        <div class='form-group'>
-            <label>Date of birth</label>
-            <input type='text' class="form-contol" name="date_of_birth">
-        </div>
-        <div class="form-group">
-            <label>Gender</label>
-            <input type="text" class="form-control" name="gender">
-        </div>
-        <div class="form-group">
-            <label>City</label>
-            <input type="text" class="form-control" name="city">
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" name="email">
-        </div>
-
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
-    </form>
-
     <hr>
 
     <p>Need an account? <a href="#signup">Signup</a></p>
