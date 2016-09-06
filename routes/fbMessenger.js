@@ -131,12 +131,11 @@ function receivedMessage(event) {
  			case 7:
  				activeUsers.senderID.city = messageText;
  				break;
- 			case 8:
- 				activeUsers.senderID.email = messageText;
- 				break;
  			default:
+				activeUsers.senderID.email = messageText;
  				userController.createUser(activeUsers.senderID);
- 				activeUsers.senderID = null;
+ 				activeUsers.senderID = undefined;
+				break;
  		}
  	 }
 
