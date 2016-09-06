@@ -229,7 +229,7 @@ If the specified Pre-condition is not met the test will fail. \\
 If the specified Post-condition is met the test will pass.
 \cleardoublepage
 \section{Test cases}
-\subsection{Test Case 1: getLeadData}\label{test1}
+\subsection{\underline{Test Case 1: getLeadData}}\label{test1}
 \subsubsection{Condition 1: Ad is submitted with all valid fields }
 \paragraph{Objective:} The purpose of this test is to extract data from a filled in Facebook lead ad and save this data if valid.
 \paragraph{Input:} The following inputs will be used:
@@ -271,7 +271,7 @@ If the specified Post-condition is met the test will pass.
 	\item A new User passed to the database
 \end{enumerate}
 
-\subsection{Test Case 2: getData}\label{test2}
+\subsection{\underline{Test Case 2: getData}}\label{test2}
 \subsubsection{Condition 1: Valid inputs }
 \paragraph{Objective:} The purpose of this test is to extract data from any integration source.
 \paragraph{Input:} The following inputs will be used:
@@ -293,7 +293,7 @@ If the specified Post-condition is met the test will pass.
 	\item A JSON object of a User 
 \end{enumerate}
 
-\subsection{Test Case 3: Insertion}\label{test3}
+\subsection{\underline{Test Case 3: Insertion}}\label{test3}
 \subsubsection{Condition 1: Valid inputs }
 \paragraph{Objective:} The purpose of this test is to test insertion of data into database.
 \paragraph{Input:} The following inputs will be used:
@@ -305,7 +305,7 @@ If the specified Post-condition is met the test will pass.
 	\item The data will be saved into the database
 \end{enumerate}
 
-\subsection{Test Case 4: Deletion}\label{test4}
+\subsection{\underline{Test Case 4: Deletion}}\label{test4}
 \subsubsection{Condition 1: Valid field to remove }
 \paragraph{Objective:} The purpose of this test is to test deletion of data in the database
 \paragraph{Input:} The following inputs will be used:
@@ -317,7 +317,7 @@ If the specified Post-condition is met the test will pass.
 	\item The existing entity gets deleted from the database 
 \end{enumerate}
 
-\subsection{Test Case 5: Retrieval}\label{test5}
+\subsection{\underline{Test Case 5: Retrieval}}\label{test5}
 \subsubsection{Condition 1: If field exists }
 \paragraph{Objective:} The purpose of this test is to test retrieval of data from the database.
 \paragraph{Input:} The following inputs will be used:
@@ -339,7 +339,7 @@ If the specified Post-condition is met the test will pass.
 	\item The test will return null
 \end{enumerate}
 
-\subsection{Test Case 6: Extract age from datestring}\label{test6}
+\subsection{\underline{Test Case 6: Extract age from datestring}}\label{test6}
 \subsubsection{Condition 1: Valid datestring object }
 \paragraph{Objective:} The purpose of this test is to retrieve a valid age from a datestring.
 \paragraph{Input:} The following inputs will be used:
@@ -372,7 +372,7 @@ If the specified Post-condition is met the test will pass.
 \end{enumerate}
 
 
-\subsection{Test Case 7: Extract month from datestring as named month}\label{test7}
+\subsection{\underline{Test Case 7: Extract month from datestring as named month}}\label{test7}
 \subsubsection{Condition 1: Valid datestring object }
 \paragraph{Objective:} The purpose of this test is to retrieve a valid month from a datestring.
 \paragraph{Input:} The following inputs will be used:
@@ -405,7 +405,7 @@ If the specified Post-condition is met the test will pass.
 \end{enumerate}
 
 
-\subsection{Test Case 8: Environmental test(Integration test)}\label{test8}
+\subsection{\underline{Test Case 8: Environmental test(Integration test)}}\label{test8}
 \subsubsection{Condition 1: If environment is set to Deployment }
 \paragraph{Objective:} The purpose of this test is to set the Environment variable based on the current state of the system, Deployment in this case.
 \paragraph{Input:} The following inputs will be used:
@@ -427,7 +427,7 @@ If the specified Post-condition is met the test will pass.
 	\item Set the hosting port to 3000 to avoid conflicts
 \end{enumerate}
 
-\subsection{Test Case 9: Travis CI Deployment test (Integration test) }\label{test9}
+\subsection{\underline{Test Case 9: Travis CI Deployment test (Integration test) }}\label{test9}
 \subsubsection{Condition 1: If hosting version is compatible}
 \paragraph{Objective:} The purpose of this test is to ensure the current deployed version is compatible with the external hosting service. This includes dependency versions.
 \paragraph{Input:} The following inputs will be used:
@@ -451,7 +451,7 @@ If the specified Post-condition is met the test will pass.
 	\item The build will error/fail
 \end{enumerate}
 
-
+\pagebreak
 
 \section{Item Pass/Fail criteria}\label{sec:FailPass}
 \begin{itemize}
@@ -661,26 +661,36 @@ The build for number 130 passed in Travis CI's log
 	\item [Result]: Pass 
 \end{description}
 
-
+\pagebreak
 \section{Other}
-\begin{enumerate}
-	\item Mocha build screenshots 
+
+	\subsection{Mocha build screenshots}
+	
+	\begin{figure}[H]
+	\includegraphics[width=15cm]{images/FbControllerTest.png}
+	\caption{getLeadData unit test}
+	\end{figure}
+	
+	\begin{figure}[H]
+	\includegraphics[width=15cm]{images/getAge.png}
+	\caption{getAge and getMonth unit test}
+	\end{figure}
+	
 	\begin{figure}[H]
 	\includegraphics[width=15cm]{images/tests.png}
 	\caption{Api Tests}
 	\end{figure}
 	
-	\begin{figure}[H]
-		\includegraphics[width=15cm]{images/FbControllerTest.png}
-		\caption{getLeadData unit test}
-	\end{figure}
-	\clearpage
-	\item Travis build
+	
+	\pagebreak
+	
+	\subsection{Travis build}
 	\begin{figure}[H]
 	\includegraphics[width=15cm]{images/Travis.png}
 	\caption{Travis success }
 	\end{figure}	
 	
+\begin{enumerate}
 	\item The mapping of contracts onto tests increases the testability of a system. Mocking out objects eliminates external dependencies which greatly benefit testability. A form of mocking can be seen in Test \ref{test1}
 	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests.
 \end{enumerate}
