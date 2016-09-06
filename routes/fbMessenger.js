@@ -5,9 +5,13 @@ var config = require('../config/auth');
 var activeUsers = {};//Hash table
 var messageList = {
 	0:'Please reply with your Name:',
-	1:'Please reply with your Surname:',
-	2:'Please reply with your email address:',
-	3:'Please enter your cell number with your county code:'
+	1:'Please reply with your Last name:',
+	2:'Please reply with your Phone number:',
+	3:'Please reply with your Marital status:',
+	4:'Please reply with your Date of birth:',
+	5:'Please reply with your Gender:',
+	6:'Please reply with your City:',
+	7:'Please reply with your Email:'
 };//Another hash table
 
 
@@ -83,13 +87,33 @@ function receivedMessage(event) {
   if (messageText && message.is_echo === undefined) {
 
   	if(activeUsers.senderID === undefined)
-	  	activeUsers.senderID = 0;
+	  	activeUsers.senderID.messageId = 0;
 	else
-	  	if(activeUsers.senderID > 2)
-	  		activeUsers.senderID = 0; //Reset so you don't go outside has table
+	  	if(activeUsers.senderID.messageId > 6)
+	  		activeUsers.senderID.messageId = 0; //Reset so you don't go outside has table
 	  	else
-	  		activeUsers.senderID++; //Go to next message
-
+		{
+			switch (activeUsers.senderId.messageId)
+			{
+				case 0:
+					activeUsers.senderID.first_name = messageText;
+				case 1:
+					activeUsers.senderID.last_name = messageText;
+				case 2:
+					activeUsers.senderID.phone_number = messageText;
+				case 3:
+					activeUsers.senderID.marital_status = messageText;
+				case 0:
+					activeUsers.senderID.date_of_birth = messageText;
+				case 1:
+					activeUsers.senderID.gender = messageText;
+				case 2:
+					activeUsers.senderID.city = messageText;
+				case 3:
+					activeUsers.senderID.email = messageText;	
+			}
+	  		activeUsers.senderID.messageId++; //Go to next message
+		}
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -112,7 +136,7 @@ function receivedMessage(event) {
       //   break;
 
       default:
-        sendTextMessage(senderID, activeUsers.senderID, messageText);
+        sendTextMessage(senderID, activeUsers.senderID.messageId, messageText);
     }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");

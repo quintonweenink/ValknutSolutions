@@ -1,73 +1,63 @@
 <div class="container">
-    <md-content>
-    <h1><span class="fa fa-sign-in"></span> Lead </h1>
+    <h4>Please enter your data and we will contact you back: </h4>
 
     <!-- show any messages that come back with authentication -->
-        <div class="alert alert-danger">{{ message }}</div>
+    <div class="alert alert-danger">{{ message }}</div>
 
 
     <!-- LEAD FORM -->
-<div layout="column" ng-cloak class="md-inline-form">
-    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-      <div>
+
+<div>
+    <md-content layout-gt-lg="row" layout-align="space-between center">
+
         <form action='#' novalidate>
-            <div layout='row'>
-                <md-input-container>
+            <div layout="row">
+                <lg-input-container layout-margin flex>
                   <label>First name</label>
                   <input ng-model='user.first_name'>
-                </md-input-container>
-                <md-input-container>
+                </lg-input-container>
+                <lg-input-container layout-margin flex>
                   <label>Last name</label>
                   <input ng-model='user.last_name'>
-                </md-input-container>
+                </lg-input-container>
             </div>
-            <div layout='row'>
-                <md-input-container>
+            <div layout="row">
+                <lg-input-container layout-margin flex>
                   <label>Contact number</label>
                   <input ng-model='user.phone_number'>
-                </md-input-container>
-            </div>
-            <div layout='row'>
-                <md-input-container>
+                </lg-input-container>
+                <lg-input-container layout-margin flex>
                   <label>Marital status</label>
                   <input ng-model='user.marital_status'>
-                </md-input-container>
+                </lg-input-container>
             </div>
-            <div layout='row'>
-                <md-input-container>
+            <div layout="row">
+                <lg-input-container layout-margin flex>
                   <label>Date of birth</label>
                   <md-datepicker ng-model="user.date_of_birth"></md-datepicker>
-                </md-input-container>
-            </div>
-            <div layout='row'>
-                <md-input-container>
+                </lg-input-container>
+                <lg-input-container layout-margin flex>
                   <label>Gender</label>
                   <input ng-model='user.gender'>
-                </md-input-container>
+                </lg-input-container>
             </div>
-            <div layout='row'>
-                <md-input-container>
+            <div layout="row">
+                <lg-input-container layout-margin flex>
                   <label>City</label>
                   <input ng-model='user.city'>
-                </md-input-container>
-            </div>
-            <div layout='row'>
-                <md-input-container>
+                </lg-input-container>
+                <lg-input-container layout-margin flex>
                   <label>Email</label>
                   <input type='email' ng-model='user.email'>
-                </md-input-container>
+                </lg-input-container>
             </div>
-            <md-input-container>
-                <md-button ng-click="postForm($http)">Submit</md-button>
-            </md-input-container>
+            <lg-input-container>
+                <md-button ng-click="postForm($http)" class="md-raised md-primary">Submit</md-button>
+            </lg-input-container>
         </form>
       </div>
   </md-content>
 </div>
-    <hr>
-
-    <p>Need an account? <a href="#signup">Signup</a></p>
-    <p>Or go <a href="#">home</a>.</p>
 </md-content>
 
 </div>
