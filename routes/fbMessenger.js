@@ -2,6 +2,9 @@ var request = require('request');
 
 var config = require('../config/auth');
 
+var models = require("../models");
+var userController = require("../DBControllers/UserController");
+
 var activeUsers = {};//Hash table
 var messageList = {
 	0:'Please reply with your Name:',
@@ -89,31 +92,31 @@ function receivedMessage(event) {
   	if(activeUsers.senderID === undefined)
 	  	activeUsers.senderID.messageId = 0;
 	else
-	  	if(activeUsers.senderID.messageId > 6)
-	  		activeUsers.senderID.messageId = 0; //Reset so you don't go outside has table
-	  	else
-		{
+	{
+			activeUsers.senderID.messageId++
 			switch (activeUsers.senderId.messageId)
 			{
-				case 0:
+				case 1:
 					activeUsers.senderID.first_name = messageText;
-				case 1:
+				case 2:
 					activeUsers.senderID.last_name = messageText;
-				case 2:
+				case 3:
 					activeUsers.senderID.phone_number = messageText;
-				case 3:
+				case 4:
 					activeUsers.senderID.marital_status = messageText;
-				case 0:
+				case 5:
 					activeUsers.senderID.date_of_birth = messageText;
-				case 1:
+				case 6:
 					activeUsers.senderID.gender = messageText;
-				case 2:
+				case 7:
 					activeUsers.senderID.city = messageText;
-				case 3:
-					activeUsers.senderID.email = messageText;	
+				case 8:
+					activeUsers.senderID.email = messageText;
+				default:
+					userController.createUser(activeUsers.senderID);
+					activeUsers.senderID = null;
 			}
-	  		activeUsers.senderID.messageId++; //Go to next message
-		}
+	}
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -136,7 +139,7 @@ function receivedMessage(event) {
       //   break;
 
       default:
-        sendTextMessage(senderID, activeUsers.senderID.messageId, messageText);
+        sendTextMessage(senderID, activeUsers.senderID.messageId - 1, messageText);
     }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
