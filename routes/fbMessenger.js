@@ -7,6 +7,7 @@ var userController = require("../DBControllers/UserController");
 
 var activeUsers = {};//Hash table
 var messageList = {
+	-1:'Your will be contacted shortly',
 	0:'Please reply with your Name:',
 	1:'Please reply with your Last name:',
 	2:'Please reply with your Phone number:',
@@ -19,20 +20,21 @@ var messageList = {
 
 var user = {
    messageId : 0,
-   first_name : "",
-   last_name : "",
-   phone_number : "",
-   marital_status : "",
-   date_of_birth : "",
-   gender : "",
-   city : "",
-   email : ""
+   first_name : '',
+   last_name : '',
+   phone_number : '',
+   marital_status : '',
+   date_of_birth : '',
+   gender : '',
+   city : '',
+   email : ''
  }
 
 
 
 function sendTextMessage(recipientId, messageNumber, messageText) {
-	console.log('message id: ' + messageNumber);
+	if(messageNumber === undefined)
+		messageText = -1;
   var messageData = {
     recipient: {
       id: recipientId
