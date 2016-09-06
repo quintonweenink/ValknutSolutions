@@ -109,7 +109,7 @@ module.exports =	function(app, passport){
 			for (var i = 0; i < users.length; i++)
 			{
 				var user = users[i];
-				var Age = DateController.getAge(user.dateOfBirth);
+				var Age = DateController.getAge(user.date_of_birth);
 				if(ages.indexOf(Age) == -1)
 				{
 					ages.push(Age);
@@ -186,7 +186,7 @@ module.exports =	function(app, passport){
 			for (var i = 0; i < users.length; i++)
 			{
 				var user = users[i];
-				var Status = user.maritalStatus.toUpperCase();
+				var Status = user.marital_status.toUpperCase();
 				if(maritalStatus.indexOf(Status) == -1)
 				{
 					maritalStatus.push(Status);
