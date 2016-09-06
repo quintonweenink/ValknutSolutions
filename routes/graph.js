@@ -60,7 +60,8 @@ module.exports = function(app, passport){
 						yAxes: [{
 							display: true,
 							ticks: {
-								suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+								suggestedMin: 0,  // minimum will be 0, unless there is a lower value.
+								stepSize: 1
 							}
 						}]
 					}
@@ -149,7 +150,8 @@ module.exports = function(app, passport){
 						yAxes: [{
 							display: true,
 							ticks: {
-								suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+								suggestedMin: 0,
+								stepSize: 1
 							}
 						}]
 					}
@@ -225,7 +227,8 @@ module.exports = function(app, passport){
 						yAxes: [{
 							display: true,
 							ticks: {
-								suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+								suggestedMin: 0,
+								stepSize: 1
 							}
 						}]
 					}
@@ -301,7 +304,8 @@ module.exports = function(app, passport){
 						yAxes: [{
 							display: true,
 							ticks: {
-								suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+								suggestedMin: 0,
+								stepSize: 1
 							}
 						}]
 					}
@@ -324,57 +328,66 @@ module.exports = function(app, passport){
 	function getMonths(dateString)
 	{
 		var monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+		"July", "August", "September", "October", "November", "December"
 	];
-		var birthDate = new Date(dateString);
-		var month = birthDate.getMonth()
-		return monthNames[month];
+	var birthDate = new Date(dateString);
+	var month = birthDate.getMonth()
+	return monthNames[month];
+}
+
+app.route('/api/graph/signups/')
+//User Post route
+.get(function(req, res) {
+	models.User.findAll().then(function(users){
+		var months = ["January", "February", "March", "April", "May", "June",
+		"July", "August", "September", "October", "November", "December"
+	];
+	var monthCount = [];
+	for(var j=0 ;j < months.length;j++)
+	monthCount[j] = 0;
+
+	for (var i = 0; i < users.length; i++)
+	{
+		var user = users[i];
+		var Status = getMonths(user.createdAt);
+		monthCount[months.indexOf(Status)]++;
 	}
 
-	app.route('/api/graph/signups/')
-	//User Post route
-	.get(function(req, res) {
-		models.User.findAll().then(function(users){
-			var months = ["January", "February", "March", "April", "May", "June",
-	  "July", "August", "September", "October", "November", "December"
-		];
-		var monthCount = [];
-			for(var j=0 ;j < months.length;j++)
-			  	monthCount[j] = 0;
-
-			for (var i = 0; i < users.length; i++)
-			{
-				var user = users[i];
-				var Status = getMonths(user.createdAt);
-					monthCount[months.indexOf(Status)]++;
-			}
 
 
+	var GraphObject = new Object;
+	GraphObject.labels = months;
+	GraphObject.data = monthCount;
+	GraphObject.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-1'}];
+	GraphObject.options = {
+		title: {
+			display: true,
+			text:  "Signups per month"
+		},
+		onHover :{
 
-			var GraphObject = new Object;
-			GraphObject.labels = months;
-			GraphObject.data = monthCount;
-				GraphObject.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-1' }];
-				GraphObject.options = {
-					title: {
-						display: true,
-						text:  "Signups per month"
-					},
-					scales: {
-						yAxes: [
-							{
-								id: 'y-axis-1',
-								type: 'linear',
-								display: true,
-								position: 'left'
-							}
-						]
+		},
+		scales:
+		{
+			yAxes:
+			[
+				{
+					id: 'y-axis-1',
+					type: 'linear',
+					display: true,
+					position: 'left',
+					ticks: {
+						suggestedMin: 0,
+						stepSize: 1
 					}
-				};
+				}
+			]
+		}
+		};
 
-			res.json(GraphObject);
-		});
+		res.json(GraphObject);
 	});
+});
 
 
 
