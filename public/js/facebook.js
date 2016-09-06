@@ -23,16 +23,25 @@ window.fbAsyncInit = function() {
 function createLeadForm(userId, pageid)
 {
   console.log("Creating lead form");
-  FB.ui({
-    method: "lead_gen",
-    page_id: pageid,
-    ad_account_id : userId,
-    display: "popup"
-  },
-  function (res)
-  {
-    console.log(res);
-  });
+  FB.api(
+    "/" + userId + "/adaccounts",
+    function (response) {
+      if (response && !response.error) {
+        console.log(response.data[0].account_id);
+        FB.ui({
+          method: "lead_gen",
+          page_id: pageid,
+          ad_account_id : response.data[0].account_id,
+          display: "popup"
+        },
+        function (res)
+        {
+          console.log(res);
+        });
+      }
+    }
+);
+
 }
 
 function termsOfService(page_id)
@@ -106,7 +115,7 @@ function getPageImage(img, page_id)
  function facebookLoginLeads()
  {
    FB.login(function(res){
-     var userId = res.authResponse.userID;
+     var userId = res.authResponse.accessToken;
      console.log(userId);
      console.log('Successfully logged in', res);
      $('#facebookLoginButtonLeads').hide(100);
@@ -126,7 +135,7 @@ function getPageImage(img, page_id)
 
          a.herf = '#';
          //a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name, userId));
-         a.on('click', createLeadForm.bind(this, userId, page.id));
+         a.on('click', createLeadForm.bind(this, res.authResponse.userID, page.id));
          a.text(page.name);
 
          div.append(img);
@@ -136,6 +145,6 @@ function getPageImage(img, page_id)
          ul.append(li);
        }
      })
-   },{scope: 'manage_pages'});
+   },{scope: ['manage_pages', 'ads_management']});
  }
 //------- FB login button end ------//
