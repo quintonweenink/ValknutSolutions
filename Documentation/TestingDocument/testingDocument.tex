@@ -132,6 +132,7 @@ Dependencies:
 	\item Travis CI 
 	\item Mocha framework
 	\item Chai (part of Mocha)
+	\item Heroku platform as a service (Integration tests)
 	\item Assert package from npm
 	\item fbController.js test file
 	\item test.js file
@@ -139,9 +140,10 @@ Dependencies:
 
 
 \section{Test items}\label{sec:testItems}
-\subsection{The items included in this test document includes:}
+\subsection{The items included in this test document:}
 \begin{itemize}
 	\item Backend API calls
+	\item Functional unit tests
 	\item Database management functions
 	\item Environmental tests 
 	\item Deployment and compatibility tests
@@ -178,7 +180,10 @@ Dependencies:
 	\item The ability to receive data from a Facebook lead ad and save this data in the database.
 	\item The ability to receive data from any other integration point as per the specified format.
 	\item These feature relates to the getLeadData use case in the Functional requirements documentation
+	\item The calculation of Age from a datestring object
+	\item The calculation of Months from a datestring object
 	\end{itemize}
+	
 \item API calls to do:
 	\begin{itemize}
 	\item Database insertions 
@@ -208,8 +213,10 @@ Feature ID & RDS Source                            & Summary                    
 3          & Functional requirements - Analysis    & Database insertions                        & 3            \\ \hline
 4          & Functional requirements - Analysis    & Database deletions                         & 4            \\ \hline
 5          & Functional requirements - Analysis    & Database retrievals                        & 5            \\ \hline
-6          &  Architecture design - Section 5      & Environmental test                         & 6            \\ \hline
-7          &  Architecture design - Section 5.1.1  & Deployment test                            & 7            \\ \hline
+6          & Functional requirements - generateReport & Extract age from datestring			    & 6			   \\ \hline
+7	       & Functional requirements - generateReport & Extract month from datestring			& 7            \\ \hline
+8          &  Architecture design - Section 5      & Environmental test                         & 8            \\ \hline
+9          &  Architecture design - Section 5.1.1  & Deployment test                            & 9            \\ \hline
 \end{tabular}
 \end{table}
 
@@ -332,8 +339,73 @@ If the specified Post-condition is met the test will pass.
 	\item The test will return null
 \end{enumerate}
 
+\subsection{Test Case 6: Extract age from datestring}\label{test6}
+\subsubsection{Condition 1: Valid datestring object }
+\paragraph{Objective:} The purpose of this test is to retrieve a valid age from a datestring.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item "1994-06-05T22:00:00.000Z"
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item A valid age will be returned
+\end{enumerate}
+\subsubsection{Condition 2: Correct age is returned  }
+\paragraph{Objective:}  The purpose of this test is calculate the age from a datestring in the format "1994-06-05T22:00:00.000Z".
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item "1994-06-05T22:00:00.000Z"
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item The age of 22 is returned as a valid outcome
+\end{enumerate}
+\subsubsection{Condition 3: Correct age is returned  }
+\paragraph{Objective:}  The purpose of this test is calculate the age from a datestring in the format "1998-06-05T22:00:00.000Z".
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item "1998-06-05T22:00:00.000Z"
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item The age of 18 is returned as a valid outcome
+\end{enumerate}
 
-\subsection{Test Case 6: Environmental test(Integration test)}\label{test6}
+
+\subsection{Test Case 7: Extract month from datestring as named month}\label{test7}
+\subsubsection{Condition 1: Valid datestring object }
+\paragraph{Objective:} The purpose of this test is to retrieve a valid month from a datestring.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item "1994-06-05T22:00:00.000Z"
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item A valid month will be returned as a named month ie. September
+\end{enumerate}
+\subsubsection{Condition 2: Correct age is returned  }
+\paragraph{Objective:}  The purpose of this test is calculate the month from a datestring in the format "1994-06-05T22:00:00.000Z".
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item "1994-06-05T22:00:00.000Z"
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item The string of the month of June is returned
+\end{enumerate}
+\subsubsection{Condition 3: Correct age is returned  }
+\paragraph{Objective:}  The purpose of this test is calculate the month from a datestring in the format "1998-09-05T22:00:00.000Z".
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item "1998-09-05T22:00:00.000Z"
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item The string of the month of September is returned
+\end{enumerate}
+
+
+\subsection{Test Case 8: Environmental test(Integration test)}\label{test8}
 \subsubsection{Condition 1: If environment is set to Deployment }
 \paragraph{Objective:} The purpose of this test is to set the Environment variable based on the current state of the system, Deployment in this case.
 \paragraph{Input:} The following inputs will be used:
@@ -355,7 +427,7 @@ If the specified Post-condition is met the test will pass.
 	\item Set the hosting port to 3000 to avoid conflicts
 \end{enumerate}
 
-\subsection{Test Case 7: Travis CI Deployment test (Integration test) }\label{test7}
+\subsection{Test Case 9: Travis CI Deployment test (Integration test) }\label{test9}
 \subsubsection{Condition 1: If hosting version is compatible}
 \paragraph{Objective:} The purpose of this test is to ensure the current deployed version is compatible with the external hosting service. This includes dependency versions.
 \paragraph{Input:} The following inputs will be used:
@@ -383,6 +455,22 @@ If the specified Post-condition is met the test will pass.
 
 \section{Item Pass/Fail criteria}\label{sec:FailPass}
 \begin{itemize}
+\item Extract age from datestring
+\begin{itemize}
+	\item Condition 1:
+	\begin{itemize}
+		\item Pre-condition - Valid input datestring object
+		\item Post-condition - Valid object is returned
+	\end{itemize}
+	\item Condition 2 and 3:
+	\begin{itemize}
+		\item Pre-condition - Valid input datestring object
+		\item Post-condition - Correct age is returned
+	\end{itemize}
+
+\end{itemize}
+\item Extract month from datestring
+
 \item Creating row in Database
 \begin{itemize}
 	\item Pre-conditions:
@@ -456,32 +544,33 @@ Test ID    & Test Name   & Github Link to File \\ \hline \hline
 1          & getLeadData &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbControllerTest.js}{fbControllerTest.js}         \\ \hline
 2          & getData  &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbControllerTest.js}{fbControllerTest.js}       \\ \hline
 3,4,5      & API tests/Database functions & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js}         \\ \hline
-6          &  Environmental test  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js Line 9-15}\\ \hline
-7		   & Compatibility test & \href{https://travis-ci.com/QuintonWeenink/ValknutSolutions/builds/30866212}{Travis CI build nr 130} \\ \hline
+6          & getAge    & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/graphTest.js}{graphTest.js} \\ \hline
+7          & getMonths  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/graphTest.js}{graphTest.js} \\ \hline 
+8          &  Environmental test  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js Line 9-15}\\ \hline
+9		   & Compatibility test & \href{https://travis-ci.com/QuintonWeenink/ValknutSolutions/builds/30866212}{Travis CI build nr 130} \\ \hline
 \end{tabular}
 \caption{Links to test files}
 \end{table}
 \paragraph{All tests are located in the Github repo's testing directory:\href{https://github.com/QuintonWeenink/ValknutSolutions}{Repo}}
 
-
+\paragraph{The following results were obtained from the tests conducted.}
 \subsubsection{Test Case 1 - TC \ref{test1}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 1 ran with valid inputs.
+The data extraction functionality for Facebook works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Valid inputs were passed as parameter 
 \end{enumerate}
-
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
 
 \subsubsection{Test Case 2 - TC \ref{test2}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 2 ran with valid inputs.
+The data extraction functionality for any integration works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Valid inputs were passed as parameter 
 \end{enumerate}
 
 \begin{description}
@@ -489,11 +578,11 @@ following results have passed/failed and the reasons are stated below.
 \end{description}
 
 \subsubsection{Test Case 3 - TC \ref{test3}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 3 created a new user in the database.
+The API for insertion works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Server was live to accept new connections and database functions.
 \end{enumerate}
 
 \begin{description}
@@ -501,11 +590,11 @@ following results have passed/failed and the reasons are stated below.
 \end{description}
 
 \subsubsection{Test Case 4 - TC \ref{test4}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 4 deleted the new user in the database.
+The API for deletion works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Server was live to accept new connections and database functions.
 \end{enumerate}
 
 \begin{description}
@@ -513,11 +602,11 @@ following results have passed/failed and the reasons are stated below.
 \end{description}
 
 \subsubsection{Test Case 5 - TC \ref{test5}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 5 retrieved a user in the database.
+The API for retrieval works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Server was live to accept new connections and database functions.
 \end{enumerate}
 
 \begin{description}
@@ -525,11 +614,12 @@ following results have passed/failed and the reasons are stated below.
 \end{description}
 
 \subsubsection{Test Case 6 - TC \ref{test6}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 6 returned the age of 22 and 18. 
+The getAge functionality works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Correct inputs were passed as parameter 
+	\item Correct outputs were returned
 \end{enumerate}
 
 \begin{description}
@@ -537,16 +627,40 @@ following results have passed/failed and the reasons are stated below.
 \end{description}
 
 \subsubsection{Test Case 7 - TC \ref{test7}}
-The following results were obtained from the tests conducted. The tests to produce the
-following results have passed/failed and the reasons are stated below.
+Test case 7 returned the month of June and September. 
+The getMonths functionality works as intended.
 \begin{enumerate}
-	\item Reason 1
-	\item Reason 2
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Valid inputs were passed as parameter 
+	\item Correct inputs were passed as parameter 
+	\item Correct outputs were returned
 \end{enumerate}
 
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
+\subsubsection{Test Case 8 - TC \ref{test8}}
+The local environment is set to development as a result of the environment test.
+\begin{enumerate}
+	\item Environment returned as development for local
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsubsection{Test Case 9 - TC \ref{test9}}
+The build for number 130 passed in Travis CI's log
+\begin{enumerate}
+	\item The current packages and node version were compatible with the external Heroku server.
+	\item The build completed without errors.
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
 
 \section{Other}
 \begin{enumerate}
