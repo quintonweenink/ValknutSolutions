@@ -59,7 +59,6 @@
 			{
 			\begin{itemize}
 				\item 13054903 - Charl Jansen van Vuuren
-				\item 10297902 - Bernhard Schuld
 				\item 13044924 - Kevin Heritage
 				\item 13176545 - Quinton Weenink\\
 			\end{itemize}
@@ -84,15 +83,21 @@
 	\begin{versionhistory}
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Original Architectural document without Functional requirements}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Added Functional requirements and separated Architectural requirements}
+		\vhEntry{1.2}{27.07.2016}{CJvV,KH,QW}{Added better scoping requirements}
 	\end{versionhistory}
 
 \section{Functional requirements and application design}
-	\subsection{User subsystem}
+	\subsection{Scope}
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/uc__insuranceProfiling__scope.jpg}  \\
+		\caption{Scope : Insurance Profiling}
+		\end{figure}
+	\subsection{Social Media subsystem}
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
-		\includegraphics[width=\textwidth]{images/uc__Insurance_profiling.jpg}  \\
-		\caption{Use Case Diagram : Insurance Profiling}
+		\includegraphics[width=\textwidth]{images/uc__socialMedia__scope.jpg}  \\
+		\caption{Use Case Diagram : Social Media}
 		\end{figure}
 
 		\begin{flushleft}
@@ -117,7 +122,7 @@
 		\subsubsection{Services Contracts}
 
 		\begin{figure}[H]
-		\includegraphics[width=\textwidth]{images/obj__Service_Contract__addLeadData.jpg}  \\
+		\includegraphics[width=\textwidth]{images/class__getLeadData__serviceContract.jpg}  \\
 		\caption{Service Contract : addLeadData}
 		\end{figure}
 
@@ -131,64 +136,218 @@
 		\subsubsection{Process specifications}
 
 		\begin{figure}[H]
-		\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-		\caption{Use Case Diagram : Publications}
-		\end{figure}git
+		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
+		\caption{Process specification : Publications}
+		\end{figure}
 
+	\subsection{Analysis subsystem}
+		\subsubsection{Use cases}
 
-	\subsection{Analytics}
-
-	\subsubsection{Use cases}
-
-	\begin{figure}[H]
-	\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-	\caption{Use Case Diagram : Publications}
-	\end{figure}
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/uc__analysis__scope.jpg}  \\
+		\caption{Use Case Diagram : Analysis}
+		\end{figure}
 
 		\begin{flushleft}
-		\textbf{Critical}
-			\begin{itemize}
-					\item todo
-			\end{itemize}
+			\textbf{Critical}
+				\begin{itemize}
+					\item validateUser
+					\item createUser
+					\item getUser
+				\end{itemize}
+			\textbf{Important}
+				\begin{itemize}
+					\item validateUser
+				\end{itemize}
 
-		\textbf{Important}
-			\begin{itemize}
-					\item todo
-			\end{itemize}
+			\textbf{Nice-To-Have}
+				\begin{itemize}
+					\item getAnalyst
+					\item analiseUser
+				\end{itemize}
+		\end{flushleft}
 
-		\textbf{Nice-To-Have}
-			\begin{itemize}
-					\item todo
-			\end{itemize}
-	\end{flushleft}
+		\subsubsection{Services Contracts}
 
-	\subsubsection{Services Contracts}
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/class__drawGraph__serviceContract.jpg}  \\
+		\caption{Service Contract : drawGraph}
+		\end{figure}
 
-	\begin{figure}[H]
-	\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-	\caption{Use Case Diagram : Publications}
-	\end{figure}
+		\subsubsection{Required Functionality}
 
-	\subsubsection{Required Functionality}
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/obj__Required_Functionality__addLeadData.jpg}  \\
+		\caption{Required Functionality : drawGraph}
+		\end{figure}
 
-	\begin{figure}[H]
-	\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-	\caption{Use Case Diagram : Publications}
-	\end{figure}
+		\subsubsection{Process specifications}
 
-	\subsubsection{Process specifications}
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
+		\caption{Process specification : drawGraph}
+		\end{figure}
 
-	\begin{figure}[H]
-	\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-	\caption{Use Case Diagram : Publications}
-	\end{figure}
+	\subsection{Administration subsystem}
+		\subsubsection{Use cases}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/uc__administration__scope.jpg}  \\
+		\caption{Use Case Diagram : Administration}
+		\end{figure}
+
+		\begin{flushleft}
+			\textbf{Critical}
+				\begin{itemize}
+					\item validateUser
+					\item createUser
+					\item getUser
+				\end{itemize}
+			\textbf{Important}
+				\begin{itemize}
+					\item validateUser
+				\end{itemize}
+
+			\textbf{Nice-To-Have}
+				\begin{itemize}
+					\item getAnalyst
+					\item analiseUser
+				\end{itemize}
+		\end{flushleft}
+
+		\subsubsection{Services Contracts}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/class__createAdministrator__serviceContract.jpg}  \\
+		\caption{Service Contract : createAdministrator}
+		\end{figure}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/class__login__serviceContract.jpg}  \\
+		\caption{Service Contract : login}
+		\end{figure}
+
+		\subsubsection{Required Functionality}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/obj__Required_Functionality__addLeadData.jpg}  \\
+		\caption{Required Functionality : createAdministrator}
+		\end{figure}
+
+		\subsubsection{Process specifications}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
+		\caption{Process specification : createAdministrator}
+		\end{figure}
+
+	\subsection{Persistence subsystem}
+		\subsubsection{Use cases}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/uc__persistence__scope.jpg}  \\
+		\caption{Use Case Diagram : Persistence}
+		\end{figure}
+
+		\begin{flushleft}
+			\textbf{Critical}
+				\begin{itemize}
+					\item validateUser
+					\item createUser
+					\item getUser
+				\end{itemize}
+			\textbf{Important}
+				\begin{itemize}
+					\item validateUser
+				\end{itemize}
+
+			\textbf{Nice-To-Have}
+				\begin{itemize}
+					\item getAnalyst
+					\item analiseUser
+				\end{itemize}
+		\end{flushleft}
+
+		\subsubsection{Services Contracts}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/class__createAdministrator__serviceContract.jpg}  \\
+		\caption{Service Contract : persistUser}
+		\end{figure}
+
+		\subsubsection{Required Functionality}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/obj__Required_Functionality__addLeadData.jpg}  \\
+		\caption{Required Functionality : persistUser}
+		\end{figure}
+
+		\subsubsection{Process specifications}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
+		\caption{Process specification : persistUser}
+		\end{figure}
+
+	\subsection{Notifications subsystem}
+		\subsubsection{Use cases}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/uc__notifications__scope.jpg}  \\
+		\caption{Use Case Diagram : Notifications}
+		\end{figure}
+
+		\begin{flushleft}
+			\textbf{Critical}
+				\begin{itemize}
+					\item validateUser
+					\item createUser
+					\item getUser
+				\end{itemize}
+			\textbf{Important}
+				\begin{itemize}
+					\item validateUser
+				\end{itemize}
+
+			\textbf{Nice-To-Have}
+				\begin{itemize}
+					\item getAnalyst
+					\item analiseUser
+				\end{itemize}
+		\end{flushleft}
+
+		\subsubsection{Services Contracts}
+
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/class__notify__serviceContract.jpg}  \\
+		\caption{Service Contract : notify}
+		\end{figure}
+
+		\subsubsection{Required Functionality}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/obj__Required_Functionality__addLeadData.jpg}  \\
+		\caption{Required Functionality : notify}
+		\end{figure}
+
+		\subsubsection{Process specifications}
+
+		\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
+		\caption{Process specification : notify}
+		\end{figure}
 
 
 \subsection{Domain model}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{images/class__Domain_Model.jpg}  \\
-\caption{Domain Model}
+\includegraphics[width=\textwidth]{images/class__analysis__domainModel.jpg}  \\
+\caption{Domain Model : Analysis}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{images/class__leadAdd__domainModel.jpg}  \\
+\caption{Domain Model : Social Media}
 \end{figure}
 
 \subsection{Open Issues}
