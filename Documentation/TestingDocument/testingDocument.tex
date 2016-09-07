@@ -88,7 +88,7 @@ Test driven development is crucial to our system as it ensures every added featu
 The scope of this document is structured as follows. The features that are considered for testing are listed as per section \ref{sec:testItems}. \\
 Tests that have been identified from the requirements are
 discussed in detail in section \ref{sec:FeaturesTest}.\\
-Furthermore, this document outlines the test environment and the risks involved in the testing approaches that will be followed as per section \ref{subsec:testEnvironment}. Assumptions and dependencies of this test plan will also be mentioned as per section \ref{subsec:assumptions} . Section ... , ... and ...  outlines, discusses and concludes on the results of the tests, respectively.
+Furthermore, this document outlines the test environment and the risks involved in the testing approaches that will be followed as per section \ref{subsec:testEnvironment}. Assumptions and dependencies of this test plan will also be mentioned as per section \ref{subsec:assumptions} . Section \ref{sec:FeaturesTest} , \ref{sec:testCases} and \ref{sec:testReport} outlines, discusses and concludes on the results of the tests, respectively.
 \subsection{Test Environment}\label{subsec:testEnvironment}
 The testing environment is mainly software based and includes:
 \begin{itemize}
@@ -126,6 +126,8 @@ Assumptions:
 	\item An instance of the server is running locally(for Unit tests)
 	\item External server is active (for Deploy tests only)
 	\item Active internet connection (for Deploy tests only)
+	\item NodeJS and Node package manager is installed works as intended
+	\item Mocha is installed and works as intended
 \end{itemize}
 Dependencies:
 \begin{itemize}
@@ -135,7 +137,8 @@ Dependencies:
 	\item Heroku platform as a service (Integration tests)
 	\item Assert package from npm
 	\item fbController.js test file
-	\item test.js file
+	\item graphTest.js test file
+	\item test.js test file
 \end{itemize}
 
 
@@ -149,6 +152,7 @@ Dependencies:
 	\item Deployment and compatibility tests
 \end{itemize} 
 
+\pagebreak
 \section{Functional Features to be Tested}\label{sec:FeaturesTest}
 \paragraph{Test estimation can be categorized as fast (nearly instant tests) or slow (timely tests with external dependencies) for our system.} 
 \subsection{Overall approach with regards to adequate testing of :} 
@@ -201,7 +205,7 @@ Dependencies:
 	\end{itemize}
 \end{itemize}
 
-\begin{table}[]
+\begin{table}[H]
 \centering
 \caption{Test cases}
 \label{test_table}
@@ -224,11 +228,9 @@ Feature ID & RDS Source                            & Summary                    
 \section{Test instructions} 
 Tests can be ran with the command "npm test" which will run Mocha, if this test is run locally it will connect to the local database.
 Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility with all versions of Node.
-\section{Item Pass/Fail Criteria for Tests}
-If the specified Pre-condition is not met the test will fail. \\
-If the specified Post-condition is met the test will pass.
+
 \cleardoublepage
-\section{Test cases}
+\section{Test cases}\label{sec:testCases}
 \subsection{\underline{Test Case 1: getLeadData}}\label{test1}
 \subsubsection{Condition 1: Ad is submitted with all valid fields }
 \paragraph{Objective:} The purpose of this test is to extract data from a filled in Facebook lead ad and save this data if valid.
@@ -377,11 +379,11 @@ If the specified Post-condition is met the test will pass.
 \paragraph{Objective:} The purpose of this test is to retrieve a valid month from a datestring.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item "1994-06-05T22:00:00.000Z"
+	\item "1994-09-05T22:00:00.000Z"
 \end{enumerate}
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
-	\item A valid month will be returned as a named month ie. September
+	\item A valid month will be returned as a named month
 \end{enumerate}
 \subsubsection{Condition 2: Correct age is returned  }
 \paragraph{Objective:}  The purpose of this test is calculate the month from a datestring in the format "1994-06-05T22:00:00.000Z".
@@ -454,6 +456,8 @@ If the specified Post-condition is met the test will pass.
 \pagebreak
 
 \section{Item Pass/Fail criteria}\label{sec:FailPass}
+If the specified Pre-conditions are not met the post condition will result as false and the test will fail. \\
+If the specified Pre-conditions are met the post-condition will hold true and the test will pass.
 \begin{itemize}
 \item Extract age from datestring
 \begin{itemize}
@@ -470,6 +474,19 @@ If the specified Post-condition is met the test will pass.
 
 \end{itemize}
 \item Extract month from datestring
+\begin{itemize}
+	\item Condition 1:
+	\begin{itemize}
+		\item Pre-condition - Valid input datestring object
+		\item Post-condition - Valid object is returned
+	\end{itemize}
+	\item Condition 2 and 3:
+	\begin{itemize}
+		\item Pre-condition - Valid input datestring object
+		\item Post-condition - Correct month is returned
+	\end{itemize}
+
+\end{itemize}
 
 \item Creating row in Database
 \begin{itemize}
@@ -514,8 +531,6 @@ If the specified Post-condition is met the test will pass.
 	\item Post-condition - The build will pass successfully 
 \end{itemize}
 \end{itemize}
-
-\paragraph{If all pre-conditions are met the test will pass. In the case of a pre-condition not being fulfilled that specific test will fail.}
 
 
 \section{Test Deliverables}
@@ -692,12 +707,13 @@ The build for number 130 passed in Travis CI's log
 	
 \begin{enumerate}
 	\item The mapping of contracts onto tests increases the testability of a system. Mocking out objects eliminates external dependencies which greatly benefit testability. A form of mocking can be seen in Test \ref{test1}
-	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests.
+	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests. Continuous integration further ensures total compatibility of all new features in each environment (deployment or development).
 \end{enumerate}
 
 \section{Conclusions}
 This project follows a Continous Integration model with regards to testing. \\ Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
 The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls, such as Facebook, on which our system heavily relies.\\
-The ability to modularize functions in NodeJS also complicates the ability to test functionality, this is as a result of the asynchronous callback structure NodeJS uses.
+The ability to modularize functions in NodeJS also complicates the ability to test functionality, this is as a result of the asynchronous callback structure NodeJS uses. \\
+As a final note, all the unit tests completed successfully and the integration test will ensure these tests always pass before deploying a new version of the system.
 
 \end{document}
