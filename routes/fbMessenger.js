@@ -41,17 +41,21 @@ var user = {
 
 
 
-function sendTextMessage(recipientId, messageNumber, messageText) {
-	if(messageNumber === undefined)
+function sendTextMessage(recipientId, user, messageText) {
+	var messageNumber;
+	if(user === undefined)
 		messageNumber = 8;
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: messageList[messageNumber]
-    }
-  };
+	else {
+		messageNumber = user.messageId;
+	}
+	  var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      text: messageList[messageNumber]
+	    }
+  	};
 
   console.log('Trying to send this message back to facebook: '+ messageData)
 
@@ -137,7 +141,7 @@ function saveMessage(senderID, messageText)
 		   default:
 			   activeUsers.senderID.email = messageText;
 			   console.log(activeUsers.senderID);
-			   //userController.createUser(activeUsers.senderID);
+			   userController.createUser(activeUsers.senderID);
 			   delete activeUsers.senderID;
 			   break;
 	   }
@@ -165,7 +169,7 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
-	 saveMessage(senderID, messageText)
+	 saveMessage(senderID, messageText);
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
@@ -187,7 +191,7 @@ function receivedMessage(event) {
       //   break;
 
       default:
-        sendTextMessage(senderID, activeUsers.senderID.messageId, messageText);
+        sendTextMessage(senderID, activeUsers.senderID, messageText);
     }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
