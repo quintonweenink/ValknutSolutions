@@ -71,7 +71,7 @@
 	% Start of the revision history table
 	\begin{versionhistory}
   		\vhEntry{1.0}{27.7.2016}{CJvV,KH,QW}{in progress}
-  		\vhEntry{1.1}{9.9.2016}{CJvV,KH,QW}{Changed Project name. Updates for new use cases and modules}
+  		\vhEntry{1.1}{9.9.2016}{CJvV,KH,QW}{Changed product name. Update manual structure. Updates for new use cases and modules.}
 	\end{versionhistory}	
 	
 	\cleardoublepage
@@ -101,10 +101,10 @@
 
 	\section{Using the system}
 		\subsection{Signing up your page}
-			This section will cover the steps necessary for signing up your Facebook page in order for Facebook to send the data from the Lead Ads on your page through to the Insurance profiling server for processing.
+			This section will cover the steps necessary for signing up your Facebook page in order for Facebook to send the data from the Lead Ads on your page through to the MarketLead.io server for processing.
 			\begin{enumerate}
 				\item Navigate to the website\\
-				Open up the browser of your choice (Mozilla Firefox recommended) and navigate to the \href{https://insuranceprofiling.herokuapp.com}{Insurance Profiling} website.
+				Open up the browser of your choice (Mozilla Firefox recommended) and navigate to the \href{https://insuranceprofiling.herokuapp.com}{MarketLead.io} website.
 
 				\item Sign up\\
 				Click on the Sign Up button in the top right corner of the website\\
@@ -134,8 +134,22 @@
 				  \caption{Selecting the page to manage}
 				  \label{fig:selectPage}
 				\end{figure}
-				When clicking on the page that the system should manage the user can create a lead ad.\\
-				To create a lead ad user this Facebook references: \href{https://www.facebook.com/business/a/lead-ads}{Facebook Lead adverts}
+				When clicking on the page that the system should manage a pop-up will appear that requires the user to accept the Facebook lead ads terms of service. The system cannot manage the lead ad without the marketer of the page accepting their terms of service.\\
+				\begin{figure}[H]
+					\centering
+						\includegraphics[width=\textwidth]{images/facebook_tos.png}
+					\caption{Facebook terms of service}
+					\label{fig:facebookTermsOfService}
+				\end{figure}
+				Once the terms of service has been accepted a lead ad can be created through the form creator.\\
+				\begin{figure}
+					\centering
+						\includegraphics[width=\textwidth]{images/facebook_lead_form_creator.png}
+					\caption{Facebook lead form creator}
+					\label{fig:facebookLeadFormCreator}
+				\end{figure}\\
+				*Incomplete: Process being implemented (Server still accepts lead data from lead ads created through the following reference*\\
+				To create a lead ad use this Facebook references: \href{https://www.facebook.com/business/a/lead-ads}{Facebook Lead adverts}
 			\end{enumerate}
 	
 	\section{Troubleshooting}
