@@ -1,0 +1,14 @@
+\begin {longtable}{@{}ll>{\hsize =\vhAuthorColWidth }X>{\hsize =\vhChangeColWidth }X@{}}
+\textbf {\vhversionname }
+ & \textbf {\vhdatename }
+ & \textbf {\vhauthorname }
+ & \textbf {\vhchangename }\\[1ex]
+1.0
+ & 27.7.2016
+ & \listset {CJvV,KH,QW}
+ & in progress\\
+1.1
+ & 9.9.2016
+ & \listset {CJvV,KH,QW}
+ & Changed Project name. Updates for new use cases and modules\\
+\end {longtable}
