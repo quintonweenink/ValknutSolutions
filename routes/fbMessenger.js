@@ -165,7 +165,7 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
-
+	 saveMessage(senderID, messageText)
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
