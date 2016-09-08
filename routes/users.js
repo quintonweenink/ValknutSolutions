@@ -10,7 +10,6 @@ var fs = require('fs');
 var fbControllers = require("../fbControllers/fbController.js");
 
 module.exports = function(app, passport){
-
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
