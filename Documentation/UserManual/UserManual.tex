@@ -100,12 +100,11 @@
 		When the marketer/analyst is done using the system they can simply close the web browser window to end their session with the system.
 
 	\section{Using the system}
+		In order to use the syste you will have to navigate to the website.
+		Open a web browser of your choice (Mozilla Firefox/Google Chrome recommended) and navigate to the \href{https://insuranceprofiling.herokuapp.com}{MarketLead.io} website.
 		\subsection{Signing up your page}
 			This section will cover the steps necessary for signing up your Facebook page in order for Facebook to send the data from the Lead Ads on your page through to the MarketLead.io server for processing.
 			\begin{enumerate}
-				\item Navigate to the website\\
-				Open up the browser of your choice (Mozilla Firefox recommended) and navigate to the \href{https://insuranceprofiling.herokuapp.com}{MarketLead.io} website.
-
 				\item Sign up\\
 				Click on the Sign Up button in the top right corner of the website\\
 				\begin{figure}[H]
@@ -150,6 +149,41 @@
 				\end{figure}\\
 				*Incomplete: Process being implemented (Server still accepts lead data from lead ads created through the following reference*\\
 				To create a lead ad use this Facebook references: \href{https://www.facebook.com/business/a/lead-ads}{Facebook Lead adverts}
+			\end{enumerate}
+
+		% \subsection{Manually filling in a lead}
+		% 	If a user wants to use a service and does not use the various social media platforms they can navigate to the \href{https://insuranceprofiling.herokuapp.com}{MarketLead.io} and fill in a lead form manually.
+		% 	\begin{enumerate}
+		% 		\item 
+		% 	\end{enumerate}
+
+		\subsection{Generating reports}
+			\begin{enumerate}
+				\item Navigate to the 'Reports' page
+					\begin{figure}
+						\centering
+							\includegraphics[width=\textwidth]{images/home_reports.png}
+						\caption{Home page indicating where to find reports}
+						\label{fig:homeReports}
+					\end{figure}\\
+					After this has been clicked the page will load the report generator.
+				\item Create a report
+					\begin{figure}
+						\centering
+							\includegraphics[width=\textwidth]{images/generate_report.png}
+						\caption{Report generator}
+						\label{fig:reportGenerator}
+					\end{figure}
+					Breakdown of the report generator
+					\begin{itemize}
+						\item[1.] When selecting this item there will be a graph of the amount of clients falling different age groups.
+						\item[2.] When selecting this item there will be a graph of the amount of clients falling in the different genders
+						\item[3.] When selecting this item there will be a graph of the amount of clients in the different locations
+						\item[4.] When selecting this item there will be a graph of the amount of clients in different marital statuses
+						\item[5.] This item will produce a Pie Chart graph
+						\item[6.] This item will produce a Bar Chart graph
+						\item[7.] This button will generate a report according to the options selected above and it will be displayed below the graph generator.
+					\end{itemize}
 			\end{enumerate}
 	
 	\section{Troubleshooting}
