@@ -30,6 +30,15 @@ var user = {
    email : ''
  }
 
+// var senderID = 'asdfasdfsadf';
+// var messageText = 'This is entered';
+//
+//  for(var x = 0; x < 10; x++)
+//  {
+// 	 saveMessage(senderID, messageText)
+// 	 console.log(activeUsers.senderID);
+//  }
+
 
 
 function sendTextMessage(recipientId, messageNumber, messageText) {
@@ -83,6 +92,58 @@ function callSendAPI(messageData) {
   });
 }
 
+function saveMessage(senderID, messageText)
+{
+	if(activeUsers.senderID === undefined || activeUsers.senderID.messageId === undefined){
+	  activeUsers.senderID = {
+	     messageId : 0,
+	     first_name : '',
+	     last_name : '',
+	     phone_number : '',
+	     marital_status : '',
+	     date_of_birth : '',
+	     gender : '',
+	     city : '',
+	     email : ''
+	 	};
+	}
+	else
+	{
+	   activeUsers.senderID.messageId++;
+	   console.log(activeUsers.senderID.messageId);
+	   switch (activeUsers.senderID.messageId)
+	   {
+		   case 1:
+			   activeUsers.senderID.first_name = messageText;
+			   break;
+		   case 2:
+			   activeUsers.senderID.last_name = messageText;
+			   break;
+		   case 3:
+			   activeUsers.senderID.phone_number = messageText;
+			   break;
+		   case 4:
+			   activeUsers.senderID.marital_status = messageText;
+			   break;
+		   case 5:
+			   activeUsers.senderID.date_of_birth = messageText;
+			   break;
+		   case 6:
+			   activeUsers.senderID.gender = messageText;
+			   break;
+		   case 7:
+			   activeUsers.senderID.city = messageText;
+			   break;
+		   default:
+			   activeUsers.senderID.email = messageText;
+			   console.log(activeUsers.senderID);
+			   //userController.createUser(activeUsers.senderID);
+			   delete activeUsers.senderID;
+			   break;
+	   }
+	}
+}
+
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -103,44 +164,7 @@ function receivedMessage(event) {
 
 
   if (messageText && message.is_echo === undefined){
-	 if(activeUsers.senderID === undefined){
- 	   activeUsers.senderID = user;
- 	 }
- 	 else
- 	 {
- 		activeUsers.senderID.messageId++;
- 		console.log(activeUsers.senderID.messageId);
- 		switch (activeUsers.senderID.messageId)
- 		{
- 			case 1:
- 				activeUsers.senderID.first_name = messageText;
- 				break;
- 			case 2:
- 				activeUsers.senderID.last_name = messageText;
- 				break;
- 			case 3:
- 				activeUsers.senderID.phone_number = messageText;
- 				break;
- 			case 4:
- 				activeUsers.senderID.marital_status = messageText;
- 				break;
- 			case 5:
- 				activeUsers.senderID.date_of_birth = messageText;
- 				break;
- 			case 6:
- 				activeUsers.senderID.gender = messageText;
- 				break;
- 			case 7:
- 				activeUsers.senderID.city = messageText;
- 				break;
- 			default:
-				activeUsers.senderID.email = messageText;
-				console.log(activeUsers.senderID);
- 				userController.createUser(activeUsers.senderID);
- 				activeUsers.senderID = undefined;
-				break;
- 		}
- 	 }
+
 
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
