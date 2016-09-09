@@ -15,11 +15,7 @@ module.exports = {
 		  		}));
 			return user;
   		});
-		io.on('connection', function(socket){
-		    socket.on('new user', function(obj){
-		        io.emit('new user', newUser)
-		    })
-		})
+		io.emit('new user', newUser);
 		return new_user;
 	},
 	deleteUserByID : function deleteUserByID(id)

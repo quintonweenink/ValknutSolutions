@@ -21,6 +21,14 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var io = module.exports = require('socket.io')(server);
+
+io.on('connection', function(socket) {
+  // a user has visited our page - add them to the visitorsData object
+  socket.on('disconnect', function() {
+    console.log("Client disconnected");
+    // a user has left our page - remove them from the visitorsData object
+  });
+});
 /**
  * Listen on provided port, on all network interfaces.
  */
