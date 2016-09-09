@@ -1,7 +1,8 @@
 var models = require("../models");
 var express = require('express');
 
-var io = require('../bin/www');
+var www = require('../bin/www');
+var io = www.io;
 
 module.exports = {
 	createUser : function createUser(newUser)
