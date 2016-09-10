@@ -10,10 +10,12 @@ var fs = require('fs');
 var fbControllers = require("../fbControllers/fbController.js");
 
 module.exports = function(app, passport){
-
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
+
+				//This should be removed before release
+				/**/
 				var newUser = {
 					first_name : 'Kevin',
 					last_name : 'Heritage',
@@ -24,6 +26,7 @@ module.exports = function(app, passport){
 					city : 'Pretoria',
 					email : 'kheritage222@gmail.com'
 				};
+				/**/
 
 				//Auto insert data according to passed data
 				if(req.body.first_name)

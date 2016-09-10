@@ -20,6 +20,9 @@
 <script src="libs/angular/angular.min.js"></script>
 <script src="libs/angular-route/angular-route.min.js"></script>
 
+<!-- Socket.io -->
+<script src="libs/socket.io-client/socket.io.js"></script>
+
 <!-- Angular controllers -->
 <script type="text/javascript" src="js/AngularConfig.js"></script>
 <script type="text/javascript" src='js/AboutController.js'></script>
@@ -30,6 +33,8 @@
 <script type="text/javascript" src='js/SignupController.js'></script>
 <script type="text/javascript" src='js/MarketingController.js'></script>
 <script type="text/javascript" src='js/LeadController.js'></script>
+<script type="text/javascript" src='js/LiveUserFeedController.js'></script>
+
 
 <!--<script src="js/script.js"></script>-->
 
@@ -69,22 +74,24 @@ $(document).ready(function(){
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
 
-<nav class="grey">
+<nav class="teal darken-4">
   <div class="nav-wrapper">
-    <a href="#/" class="brand-logo">    MarketLead.io</a>
-    <a href="" data-activates="mobile-demo" class="button-collapse">
-      <i class="material-icons">menu</i>
+    <a href="#/" class="brand-logo" style="padding-left:60px;">MarketLead.io</a>
+    <a href="" data-activates="mobile" class="button-collapse">
+      <i><img src="images/1473172118_Location_Outline-22.svg" alt="Logo" style="width:60px;height:60px;"></img></i>
     </a>
     <ul class="right hide-on-med-and-down">
       <li><a href="#/">Home</a></li>
+      <li><a href="#lead">Lead</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login</a></li>
       <li><a href="#signup">Sign Up</a></li>
 
     </ul>
-    <ul class="side-nav" id="mobile-demo">
+    <ul class="side-nav" id="mobile">
       <li><a href="#">Home</a></li>
+      <li><a href="#lead">Lead</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login</a></li>

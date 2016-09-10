@@ -2,25 +2,60 @@ var request = require('request');
 
 var config = require('../config/auth');
 
+var models = require("../models");
+var userController = require("../DBControllers/UserController");
+
 var activeUsers = {};//Hash table
 var messageList = {
+	8:'Your will be contacted shortly',
 	0:'Please reply with your Name:',
-	1:'Please reply with your Surname:',
-	2:'Please reply with your email address:',
-	3:'Please enter your cell number with your county code:'
+	1:'Please reply with your Last name:',
+	2:'Please reply with your Phone number:',
+	3:'Please reply with your Marital status:',
+	4:'Please reply with your Date of birth:',
+	5:'Please reply with your Gender:',
+	6:'Please reply with your City:',
+	7:'Please reply with your Email:'
 };//Another hash table
 
+var user = {
+   messageId : 0,
+   first_name : '',
+   last_name : '',
+   phone_number : '',
+   marital_status : '',
+   date_of_birth : '',
+   gender : '',
+   city : '',
+   email : ''
+ }
 
-function sendTextMessage(recipientId, messageNumber, messageText) {
-	console.log('message id: ' + messageNumber);
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: messageList[messageNumber]
-    }
-  };
+// var senderID = 'asdfasdfsadf';
+// var messageText = 'This is entered';
+//
+//  for(var x = 0; x < 10; x++)
+//  {
+// 	 saveMessage(senderID, messageText)
+// 	 console.log(activeUsers.senderID);
+//  }
+
+
+
+function sendTextMessage(recipientId, user, messageText) {
+	var messageNumber;
+	if(user === undefined)
+		messageNumber = 8;
+	else {
+		messageNumber = user.messageId;
+	}
+	  var messageData = {
+	    recipient: {
+	      id: recipientId
+	    },
+	    message: {
+	      text: messageList[messageNumber]
+	    }
+  	};
 
   console.log('Trying to send this message back to facebook: '+ messageData)
 
@@ -61,6 +96,58 @@ function callSendAPI(messageData) {
   });
 }
 
+function saveMessage(senderID, messageText)
+{
+	if(activeUsers.senderID === undefined || activeUsers.senderID.messageId === undefined){
+	  activeUsers.senderID = {
+	     messageId : 0,
+	     first_name : '',
+	     last_name : '',
+	     phone_number : '',
+	     marital_status : '',
+	     date_of_birth : '',
+	     gender : '',
+	     city : '',
+	     email : ''
+	 	};
+	}
+	else
+	{
+	   activeUsers.senderID.messageId++;
+	   console.log(activeUsers.senderID.messageId);
+	   switch (activeUsers.senderID.messageId)
+	   {
+		   case 1:
+			   activeUsers.senderID.first_name = messageText;
+			   break;
+		   case 2:
+			   activeUsers.senderID.last_name = messageText;
+			   break;
+		   case 3:
+			   activeUsers.senderID.phone_number = messageText;
+			   break;
+		   case 4:
+			   activeUsers.senderID.marital_status = messageText;
+			   break;
+		   case 5:
+			   activeUsers.senderID.date_of_birth = messageText;
+			   break;
+		   case 6:
+			   activeUsers.senderID.gender = messageText;
+			   break;
+		   case 7:
+			   activeUsers.senderID.city = messageText;
+			   break;
+		   default:
+			   activeUsers.senderID.email = messageText;
+			   console.log(activeUsers.senderID);
+			   userController.createUser(activeUsers.senderID);
+			   delete activeUsers.senderID;
+			   break;
+	   }
+	}
+}
+
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -80,17 +167,9 @@ function receivedMessage(event) {
   console.log('Sender Id: '+senderID);
 
 
-  if (messageText && message.is_echo === undefined) {
+  if (messageText && message.is_echo === undefined){
 
-  	if(activeUsers.senderID === undefined)
-	  	activeUsers.senderID = 0;
-	else
-	  	if(activeUsers.senderID > 2)
-	  		activeUsers.senderID = 0; //Reset so you don't go outside has table
-	  	else
-	  		activeUsers.senderID++; //Go to next message
-
-
+	 saveMessage(senderID, messageText);
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.

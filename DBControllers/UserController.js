@@ -1,6 +1,9 @@
 var models = require("../models");
 var express = require('express');
 
+var www = require('../bin/www');
+var io = www.io;
+
 module.exports = {
 	createUser : function createUser(newUser)
 	{
@@ -13,6 +16,10 @@ module.exports = {
 		  		}));
 			return user;
   		});
+		//postponed
+		/*
+		io.emit('new user', newUser);
+		*/
 		return new_user;
 	},
 	deleteUserByID : function deleteUserByID(id)
@@ -32,4 +39,4 @@ module.exports = {
 			return null;
 
 	}
-};
+}

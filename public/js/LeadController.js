@@ -1,5 +1,5 @@
 InsuranceProfiling.controller('LeadController', function($scope, $http) {
-	$scope.message = "Lead page";
+	$scope.message = "";
 	$scope.user;
 	$scope.postForm = function()
 	{
@@ -21,7 +21,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http) {
 		});
 	}
 
-}).config(function($mdThemingProvider) {
+})/*.config(function($mdThemingProvider) {
 
     // Configure a dark theme with primary foreground yellow
 
@@ -29,4 +29,4 @@ InsuranceProfiling.controller('LeadController', function($scope, $http) {
       .primaryPalette('blue')
       .dark();
 
-  });
+  });*/
