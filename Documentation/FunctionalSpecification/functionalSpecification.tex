@@ -14,19 +14,6 @@
 \newcommand{\nexists}{\not\exists}
 \newcommand\tab[1][0.5cm]{\hspace*{#1}}
 
-\usepackage{tabulary}
-\newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
-
-
-\usepackage{titlesec}
-
-\setcounter{secnumdepth}{4}
-
-\titleformat{\paragraph}
-{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
 % Header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -83,18 +70,31 @@
 	\begin{versionhistory}
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Original Architectural document without Functional requirements}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Added Functional requirements and separated Architectural requirements}
-		\vhEntry{1.2}{27.07.2016}{CJvV,KH,QW}{Added better scoping requirements}
+		\vhEntry{1.2}{27.07.2016}{CJvV,KH,QW}{Added better scoping requirements, updated use cases, updated each subsystem}
 	\end{versionhistory}
+	
+	\pagebreak
 
 \section{Functional requirements and application design}
-	\subsection{Scope}
+	\subsection{Overall System Scope}
+	The system consists of five modularized subsystems namely:
+	\begin{itemize}
+		\item Administration Section \ref{subsec:Admin}
+		\item Notifications Section \ref{subsec:Notifcations}
+		\item Analysis Section \ref{subsec:Analysis}
+		\item Persistence with regards to data Section \ref{subsec:Persistence}
+		\item Social media Section \ref{subsec:SocialMedia}
+	\end{itemize}
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/uc__insuranceProfiling__scope.jpg}  \\
 		\caption{Scope : Insurance Profiling}
 		\end{figure}
-	\subsection{Social Media subsystem}
+		
+		
+		\pagebreak
+	\subsection{Social Media subsystem}\label{subsec:SocialMedia}
+	The social media subsystem forms a major part of the system's functionality. The included modules handle the receiving of data from the Facebook advertisement lead form, and the other integration sources.
 		\subsubsection{Use cases}
-
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/uc__socialMedia__scope.jpg}  \\
 		\caption{Use Case Diagram : Social Media}
@@ -103,19 +103,18 @@
 		\begin{flushleft}
 			\textbf{Critical}
 				\begin{itemize}
-	  				\item validateUser
-	  				\item createUser
-	  				\item getUser
+	  				\item validateCustomer
+	  				\item createCustomer
+	  				\item getCustomer
 				\end{itemize}
 			\textbf{Important}
 				\begin{itemize}
-	  				\item validateUser
+	  				\item validateCustomer
 				\end{itemize}
-
 			\textbf{Nice-To-Have}
 				\begin{itemize}
 	  				\item getAnalyst
-	  				\item analiseUser
+	  				\item analyseUser
 				\end{itemize}
 		\end{flushleft}
 
@@ -139,8 +138,10 @@
 		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
 		\caption{Process specification : Publications}
 		\end{figure}
-
-	\subsection{Analysis subsystem}
+		
+	\pagebreak
+	\subsection{Analysis subsystem}\label{subsec:Analysis}
+	The analysis subsystem handles another core functionality of the system, analysis of the retrieved data.\\ This includes the ability to generate reports in the form of different graphs, filtered by different fields.\\ Analysis and reporting forms a major feature from a marketing and risk analysis standpoint.
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
@@ -152,16 +153,16 @@
 			\textbf{Critical}
 				\begin{itemize}
 					\item getUsers
+					\item generateReport
 					\item drawGraph
-					\item getUser
 				\end{itemize}
 			\textbf{Important}
 				\begin{itemize}
+				\item setGraphType
 				\end{itemize}
 
 			\textbf{Nice-To-Have}
 				\begin{itemize}
-					\item setGraphType
 					\item filterGraph
 				\end{itemize}
 		\end{flushleft}
@@ -186,10 +187,10 @@
 		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
 		\caption{Process specification : drawGraph}
 		\end{figure}
-
-	\subsection{Administration subsystem}
+	\pagebreak
+	\subsection{Administration subsystem}\label{subsec:Admin}
+	The administration subsystem handles the authentication and management of the analysts and administrators of the system.
 		\subsubsection{Use cases}
-
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/uc__administration__scope.jpg}  \\
 		\caption{Use Case Diagram : Administration}
@@ -198,18 +199,20 @@
 		\begin{flushleft}
 			\textbf{Critical}
 				\begin{itemize}
-					\item validateUser
-					\item createUser
+					\item createAdministrator
+					\item createAnalyst
+					\item login
 					\item getUser
 				\end{itemize}
 			\textbf{Important}
 				\begin{itemize}
-					\item validateUser
+					\item removeAnalyst
+					\item removeAdministrator
 				\end{itemize}
 
 			\textbf{Nice-To-Have}
 				\begin{itemize}
-					\item getAnalyst
+					\item logout
 					\item analiseUser
 				\end{itemize}
 		\end{flushleft}
@@ -240,7 +243,9 @@
 		\caption{Process specification : createAdministrator}
 		\end{figure}
 
-	\subsection{Persistence subsystem}
+	\pagebreak
+	\subsection{Persistence subsystem}\label{subsec:Persistence}
+	The persistence subsystem handles the throughout persisting of information in the system. Persistence in this case related to the information passing between database and system.
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
@@ -251,19 +256,9 @@
 		\begin{flushleft}
 			\textbf{Critical}
 				\begin{itemize}
-					\item validateUser
-					\item createUser
-					\item getUser
-				\end{itemize}
-			\textbf{Important}
-				\begin{itemize}
-					\item validateUser
-				\end{itemize}
-
-			\textbf{Nice-To-Have}
-				\begin{itemize}
-					\item getAnalyst
-					\item analiseUser
+					\item persistAdministrator
+					\item persistAnalyst
+					\item persistUser
 				\end{itemize}
 		\end{flushleft}
 
@@ -288,7 +283,9 @@
 		\caption{Process specification : persistUser}
 		\end{figure}
 
-	\subsection{Notifications subsystem}
+	\pagebreak
+	\subsection{Notifications subsystem}\label{subsec:Notifcations}
+	The notification subsystem handles the ability to send responses to customers and analysts. The use case might seem simplified, but this design allows for different notification channels. The notify module can be specialized in the format of Email, SMS and JSON responses or any other accessible notification module.
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
@@ -299,19 +296,16 @@
 		\begin{flushleft}
 			\textbf{Critical}
 				\begin{itemize}
-					\item validateUser
-					\item createUser
-					\item getUser
+					\item Notify
 				\end{itemize}
 			\textbf{Important}
 				\begin{itemize}
-					\item validateUser
+					\item Email
 				\end{itemize}
-
-			\textbf{Nice-To-Have}
+			\textbf{Nice-to-have}
 				\begin{itemize}
-					\item getAnalyst
-					\item analiseUser
+					\item SMS
+					\item JSON Objects
 				\end{itemize}
 		\end{flushleft}
 
