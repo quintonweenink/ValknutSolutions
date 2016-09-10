@@ -76,6 +76,19 @@
 	\pagebreak
 
 \section{Functional requirements and application design}
+The functional requirement specification of this system is separated into different sections, namely:
+\begin{itemize}
+	\item The overall scope of the system from a high level stand point
+	\item The smaller subsystems of the high level scope including
+		\begin{enumerate}
+			\item A use case diagram of that subsystem
+			\item A service contract 
+			\item The required functionality for that use case
+			\item A process specification if the use case functionality is complex
+		\end{enumerate}
+	\item Domain models based on the use cases - See Section \ref{sec:domain}
+	\item Any related open issues - See Section \ref{sec:open}
+\end{itemize}
 	\subsection{Overall System Scope}
 	The system consists of five modularized subsystems namely:
 	\begin{itemize}
@@ -93,7 +106,7 @@
 		
 		\pagebreak
 	\subsection{Social Media subsystem}\label{subsec:SocialMedia}
-	The social media subsystem forms a major part of the system's functionality. The included modules handle the receiving of data from the Facebook advertisement lead form, and the other integration sources.
+	The social media subsystem forms a major part of the system's functionality. \\The included modules handle the receiving of data from the Facebook advertisement lead form, and the other integration sources.
 		\subsubsection{Use cases}
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/uc__socialMedia__scope.jpg}  \\
@@ -136,7 +149,7 @@
 
 		\begin{figure}[H]
 		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-		\caption{Process specification : Publications}
+		\caption{Process specification : getLeadData}
 		\end{figure}
 		
 	\pagebreak
@@ -226,7 +239,7 @@
 
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/class__login__serviceContract.jpg}  \\
-		\caption{Service Contract : login}
+		\caption{Service Contract : Authentication}
 		\end{figure}
 
 		\subsubsection{Required Functionality}
@@ -245,7 +258,7 @@
 
 	\pagebreak
 	\subsection{Persistence subsystem}\label{subsec:Persistence}
-	The persistence subsystem handles the throughout persisting of information in the system. Persistence in this case related to the information passing between database and system.
+	The persistence subsystem handles the throughout persisting of information in the system. \\Persistence in this case related to the information passing between database and system. 
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
@@ -285,7 +298,7 @@
 
 	\pagebreak
 	\subsection{Notifications subsystem}\label{subsec:Notifcations}
-	The notification subsystem handles the ability to send responses to customers and analysts. The use case might seem simplified, but this design allows for different notification channels. The notify module can be specialized in the format of Email, SMS and JSON responses or any other accessible notification module.
+	The notification subsystem handles the ability to send responses to customers and analysts.\\ The use case might seem simplified, but this design allows for different notification channels. \\The notify module can be specialized in the format of Email, SMS and JSON responses or any other accessible notification module.
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
@@ -331,19 +344,24 @@
 		\end{figure}
 
 
-\subsection{Domain model}
-
+\pagebreak
+\subsection{Domain model}\label{sec:domain}
+The domain model shows the objects, their attributes and the relationships between these objects. \\
+The included domain models specify the Analysis model Figure \ref{fig:domain_admin} and the LeadAd/User model Figure \ref{fig:domain_user}.
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/class__analysis__domainModel.jpg}  \\
 \caption{Domain Model : Analysis}
+\label{fig:domain_admin}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/class__leadAdd__domainModel.jpg}  \\
 \caption{Domain Model : Social Media}
+\label{fig:domain_user}
 \end{figure}
 
-\subsection{Open Issues}
+\pagebreak
+\subsection{Open Issues}\label{sec:open}
 
 
 
