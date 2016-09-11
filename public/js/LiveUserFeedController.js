@@ -8,7 +8,10 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http) 
 	var socket = io('http://localhost:3000');
 
     socket.on('new user', function (data) {
-      $scope.users.push(data);
+		console.log('New user added: ')
+		console.log(data)
+      	$scope.users.push(data)
+		$scope.$apply() 
   });
 
 });

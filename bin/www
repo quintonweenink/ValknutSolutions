@@ -32,6 +32,12 @@ io.on('connection', function(socket) {
 });
 
 exports.io = io;
+
+setInterval(function() {
+    console.log('Checking for new jobs...');
+    io.emit('new user', {'first_name':'other', 'last_name':'otherone'});
+}, 1000);
+
 /**
  * Listen on provided port, on all network interfaces.
  */

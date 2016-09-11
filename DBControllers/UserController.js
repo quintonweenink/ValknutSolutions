@@ -16,10 +16,7 @@ module.exports = {
 		  		}));
 			return user;
   		});
-		//postponed
-		/*
-		io.emit('new user', newUser);
-		*/
+		//io.emit('new user', newUser);
 		return new_user;
 	},
 	deleteUserByID : function deleteUserByID(id)
