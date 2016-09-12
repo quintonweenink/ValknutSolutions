@@ -5,13 +5,13 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http) 
 		{'first_name': 'Margo', 'last_name':'Henning'}
 	];
 
-	var socket = io('http://localhost:3000');
+	var socket = io().connect();
 
     socket.on('new user', function (data) {
 		console.log('New user added: ')
 		console.log(data)
       	$scope.users.push(data)
-		$scope.$apply() 
+		$scope.$apply()
   });
 
 });
