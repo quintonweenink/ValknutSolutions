@@ -1,14 +1,19 @@
 InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http) {
-	$scope.message = "No message";
-	$scope.users = [
-		{'first_name': 'Quinton', 'last_name':'Weenink'},
-		{'first_name': 'Margo', 'last_name':'Henning'}
-	];
 
-	var socket = io('http://localhost:3000');
+	$scope.message = '';
+
+	$http.get("/api/user")
+	.then(function(users){
+		$scope.users = users.data;
+	});
+
+	var socket = io().connect();
 
     socket.on('new user', function (data) {
-      $scope.users.push(data);
+		console.log('New user added: ')
+		console.log(data)
+      	$scope.users.push(data)
+		$scope.$apply()
   });
 
 });

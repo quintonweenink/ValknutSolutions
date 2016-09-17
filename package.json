@@ -37,7 +37,7 @@
   "scripts": {
     "postinstall": "bower install",
     "test": "mocha test/graphTest",
-    "start": "node ./bin/www"
+    "start": "node ./app.js"
   },
   "repository": {
     "type": "git",
