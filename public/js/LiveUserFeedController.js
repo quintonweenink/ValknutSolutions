@@ -1,9 +1,11 @@
 InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http) {
-	$scope.message = "No message";
-	$scope.users = [
-		{'first_name': 'Quinton', 'last_name':'Weenink'},
-		{'first_name': 'Margo', 'last_name':'Henning'}
-	];
+
+	$scope.message = '';
+
+	$http.get("/api/user")
+	.then(function(users){
+		$scope.users = users.data;
+	});
 
 	var socket = io().connect();
 
