@@ -5,6 +5,10 @@ window.fbAsyncInit = function() {
     xfbml      : true,
     version    : 'v2.6'
   });
+
+  $('#facebookLoading').hide(100);
+  $('#facebookLoginButtonLeads').show(100);
+  $('#loginInstructions').show(100);
 };
 
 (function(d, s, id){
@@ -16,7 +20,48 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 //------- FB Javascript SDK end ------//
 
-function subscribeApp(page_id, page_access_token, page_name){
+function createLeadForm(userId, pageid)
+{
+  console.log("Creating lead form");
+  FB.api(
+    "/" + userId + "/adaccounts",
+    function (response) {
+      if (response && !response.error) {
+        console.log(response.data[0].account_id);
+        FB.ui({
+          method: "lead_gen",
+          page_id: pageid,
+          ad_account_id : response.data[0].account_id,
+          display: "popup"
+        },
+        function (res)
+        {
+          console.log(res);
+        });
+      }
+    }
+);
+
+}
+
+function termsOfService(page_id)
+{
+  FB.ui(
+    {
+      method: 'lead_gen_tos',
+      page_id: page_id,
+      display: 'popup'
+    },
+    function(response)
+    {
+      consol.log(response);
+    }
+  );
+}
+
+function subscribeApp(page_id, page_access_token, page_name)
+{
+  termsOfService(page_id);
   console.log('Subscribing page to app!' + page_id);
   FB.api(
     '/' + page_id + '/subscribed_apps',
@@ -33,15 +78,20 @@ function subscribeApp(page_id, page_access_token, page_name){
 function sendPageAccessToken(page_id, page_access_token, page_name)
 {
   console.log("Sending access token");
-  $.post("localhost/api/pageAccessToken",
+  var hostname = window.location.hostname;
+  var protocol = window.location.protocol + "//";
+  var port = (location.port ? ':' + location.port: '');
+  var destination = "api/pageAccessToken";
+  var address = protocol + hostname + port + "/api/pageAccessToken";
+  $.post(address,
     {
         "page_id" : page_id,
         "page_access_token" : page_access_token,
         "page_name" : page_name
-    },
-    accessTokenAdded(data,status)
+    }
+    //accessTokenAdded(data,status)
   );
-  console.log()
+  //console.log(address);
 }
 
 function accessTokenAdded(data, status)
@@ -65,6 +115,8 @@ function getPageImage(img, page_id)
  function facebookLoginLeads()
  {
    FB.login(function(res){
+     var userId = res.authResponse.accessToken;
+     console.log(userId);
      console.log('Successfully logged in', res);
      $('#facebookLoginButtonLeads').hide(100);
      FB.api('/me/accounts',function(response){
@@ -82,10 +134,9 @@ function getPageImage(img, page_id)
          var a = $('<a></a>');
 
          a.herf = '#';
-         a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name));
+         //a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name, userId));
+         a.on('click', createLeadForm.bind(this, res.authResponse.userID, page.id));
          a.text(page.name);
-
-
 
          div.append(img);
          div.css({"cursor": "pointer"});
@@ -94,6 +145,6 @@ function getPageImage(img, page_id)
          ul.append(li);
        }
      })
-   },{scope: 'manage_pages'});
+   },{scope: ['manage_pages', 'ads_management']});
  }
 //------- FB login button end ------//

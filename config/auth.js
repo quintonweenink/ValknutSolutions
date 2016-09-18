@@ -9,7 +9,16 @@ module.exports = {
           'user': 'valknutsolutions7@gmail.com',
           'pass': 'BleepBlop'
       },
+      'messenger': {
+          'access_token': 'EAAZAXI4LkwOMBACAqWIb2wLilLkp4floeTjoZBHIn4LgvunjdBFK0I2FWxWWmkms8POqZCsou77H6A6bPQphqdtEest5GFjCK9oWYzP45AIi7bs0NXOZAZAKCqJGMfK3NFkD2W6PvM8vP3GM1uUQhMd1TRZAiHnryNrRgl2MW8uQZDZD',
+          'verify_token':'this-is-a-shitty-token'
+      },
+      'weChat': {
+          'encodingAESKey': 'kOLctQbMhlo5hHVBLDK1FSbSsG53tDfAZHBZrP8tTtl',
+          'token':'thisisashittytoken7'
+      },
       'secret': 'secretsecretsecretbro',
       'emailUri' : 'smtps://valknutsolutions7:BleepBlop@smtp.gmail.com',
       'emailFrom' : 'Test@servername.com',
+      'url': 'https://insuranceprofiling.herokuapp.com/'
 }

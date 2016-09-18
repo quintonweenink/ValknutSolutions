@@ -16,9 +16,10 @@
     "Materialize": "materialize#^0.97.6",
     "angular": "^1.5.7",
     "angular-route": "^1.5.7",
-    "angular-chart.js": "^1.0.0",
+    "angular-chart.js": "^1.0.2",
     "angular-material": "^1.0.9",
-    "chart.js": "npm:chart.js#^2.2.1"
+    "chart.js": "npm:chart.js#^2.2.1",
+    "socket.io-client": "^1.4.8"
   },
   "resolutions": {
     "angular": "1.5.7"

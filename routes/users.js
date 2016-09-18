@@ -2,6 +2,7 @@ var express = require('express');
 
 var models = require("../models");
 
+
 var userController = require("../DBControllers/UserController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
@@ -10,29 +11,32 @@ var fs = require('fs');
 var fbControllers = require("../fbControllers/fbController.js");
 
 module.exports = function(app, passport){
-
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
+
+				//This should be removed before release
+				/**/
 				var newUser = {
-					firstName : 'Kevin',
-					lastName : 'Heritage',
-					phoneNumber : '+27767405640',
-					maritalStatus : 'single',
-					dateOfBirth : '1994-06-06 00:00:00+02',
+					first_name : 'Kevin',
+					last_name : 'Heritage',
+					phone_number : '+27767405640',
+					marital_status : 'single',
+					date_of_birth : '1994-06-06 00:00:00+02',
 					gender : 'male',
 					city : 'Pretoria',
 					email : 'kheritage222@gmail.com'
 				};
+				/**/
 
 				//Auto insert data according to passed data
-				if(req.body.firstName)
+				if(req.body.first_name)
 				{
-					newUser.firstName = req.body.firstName;
-					newUser.lastName = req.body.lastName;
-					newUser.phoneNumber = req.body.phoneNumber;
-					newUser.maritalStatus = req.body.maritalStatus;
-					newUser.dateOfBirth = req.body.dateOfBirth;
+					newUser.first_name = req.body.first_name;
+					newUser.last_name = req.body.last_name;
+					newUser.phone_number = req.body.phone_number;
+					newUser.marital_status = req.body.marital_status;
+					newUser.date_of_birth = req.body.date_of_birth;
 					newUser.gender = req.body.gender;
 					newUser.city = req.body.city;
 					newUser.email = req.body.email;
@@ -41,7 +45,7 @@ module.exports = function(app, passport){
 				userController.createUser(newUser)
 				.then(function(user){
 	        		res.json(user.dataValues);
-	    		}) 
+	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
 			         res.status(500).json({ error: 'error' });
@@ -68,7 +72,7 @@ module.exports = function(app, passport){
 	//User ID update route
 	.put(function(req, res) {
         res.json({ message: 'User updated!',
-			ID: req.params.user_id 
+			ID: req.params.user_id
 		});
 		//Logic for updating a user
     })
@@ -79,18 +83,10 @@ module.exports = function(app, passport){
 		console.log(id);
 		userController.deleteUserByID(id).then(function(user){
 				res.json({ message: 'User deleted!',
-				ID: req.params.user_id 
+				ID: req.params.user_id
 			});
 		});
 		//Logic for updating a user
 	});
 
 };
-
-
-
-
-
-
-
-	

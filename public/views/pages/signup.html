@@ -1,7 +1,9 @@
 <div class="col-sm-6 col-sm-offset-3">
 
     <h1><span class="fa fa-sign-in"></span> Signup your page</h1>
-    <p>Login to Facebook and choose the page you want the lead ad on</p>
-    <button onclick="facebookLoginLeads()" id="facebookLoginButtonLeads" class="waves-effect waves-light btn">Login with Facebook</button>
+    <p id="facebookLoading">Please be patient as Facebook loads</p>
+    <p id="loginInstructions" style="display: none;">Login to Facebook and choose the page you want the lead ad on</p>
+    <button onclick="facebookLoginLeads()" id="facebookLoginButtonLeads" class="waves-effect waves-light btn" style="display: none;">Login with Facebook</button>
+    <button onclick="createLeadForm()" id="createLeadForm" class="waves-effect waves-light btn" style="display: none;">Create lead form</button>
     <ul id="pagesList"></ul>
 </div>

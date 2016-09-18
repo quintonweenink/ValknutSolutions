@@ -1,0 +1,31 @@
+<div class="container">
+    <h4>Please enter your data and we will contact you back: </h4>
+
+    <!-- show any messages that come back with authentication -->
+    <div class="alert alert-danger">{{ message }}</div>
+
+
+    <!-- LEAD FORM -->
+
+<div>
+    <md-content layout-gt-lg="row" layout-align="space-between center">
+
+        <table>
+           <tr>
+              <th>First name</th>
+              <th>Last name</th>
+           </tr>
+
+           <tr ng-repeat = "user in users">
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}</td>
+              <td>{{ user.phone_number }}</td>
+              <td>{{ user.date_of_birth }}</td>
+              <td>{{ user.email }}</td>
+           </tr>
+        </table>
+  </md-content>
+</div>
+</md-content>
+
+</div>
