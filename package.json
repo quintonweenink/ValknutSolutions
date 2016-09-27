@@ -37,7 +37,9 @@
   "scripts": {
     "postinstall": "bower install",
     "test": "mocha test/",
-    "start": "node ./app.js"
+    "start": "node ./app.js",
+    "apitest": "mocha test/api/",
+    "integrationtest": "mocha test/integration/"
   },
   "repository": {
     "type": "git",

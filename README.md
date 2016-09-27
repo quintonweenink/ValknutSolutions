@@ -31,10 +31,12 @@ You will need the following things properly installed on your computer.
 
 ### Testing
 
-* [Mocha](https://mochajs.org/) via [Chai](http://chaijs.com/)
-* 'mocha'
+* [Mocha](https://mochajs.org/) via [Chai](http://chaijs.com/) with Assert
+* Unit tests: `npm test`
+* API tests: `npm run-script apitest`
+* Integration tests: `npm run-script integrationtest`
 
-#
+
                                    /\
                                   //\\
                                  ///\\\
