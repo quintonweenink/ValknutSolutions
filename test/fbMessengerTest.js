@@ -111,12 +111,117 @@ describe('Facebook Messenger Test', function(){
           	      text: ''
           	    }
         	};
+            intendedUser = {
+               messageId : 0,
+               first_name : '',
+               last_name : '',
+               phone_number : '',
+               marital_status : '',
+               date_of_birth : '',
+               gender : '',
+               city : '',
+               email : ''
+              };
+              var messageList = {
+          		8:'You will be contacted shortly...',
+          		0:'Please reply with your Name:',
+          		1:'Please reply with your Last name:',
+          		2:'Please reply with your Phone number:',
+          		3:'Please reply with your Marital status:',
+          		4:'Please reply with your Date of birth:',
+          		5:'Please reply with your Gender:',
+          		6:'Please reply with your City:',
+          		7:'Please reply with your Email:'
+          	};//Another hash table
+
             it("Returns the default message if the user is null", function(){
-                  var message = "You will be contacted shortly...";
+                  var message = messageList[8];
 
                   messageData.message.text = message;
 
+
                   let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts name message", function(){
+                  var message = messageList[0];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 0;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts last name message", function(){
+                  var message = messageList[1];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 1;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts phone message", function(){
+                  var message = messageList[2];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 2;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts marital message", function(){
+                  var message = messageList[3];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 3;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts date of birth message", function(){
+                  var message = messageList[4];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 4;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts gender message", function(){
+                  var message = messageList[5];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 5;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts city message", function(){
+                  var message = messageList[6];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 6;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
+                  assert.deepEqual(constructedMessage, messageData);
+            });
+            it("Constracts email message", function(){
+                  var message = messageList[7];
+
+                  messageData.message.text = message;
+                  intendedUser.messageId = 7;
+
+                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+
                   assert.deepEqual(constructedMessage, messageData);
             });
       });
