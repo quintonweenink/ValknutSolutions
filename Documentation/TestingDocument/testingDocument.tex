@@ -43,12 +43,12 @@
 			
 			\line(1,0){300}\\
 			[0.2cm]
-			\LARGE{Project: Insurance profiling from social media\\
+			\LARGE{MarketLead.io\\
 			Client: RetroRabbit} \\
 			\line(1,0){300}\\
 			\LARGE{Team: Valknut Solutions}\\
 			[1.0cm]
-			\large{Version: 1.1}\\
+			\large{Version: 1.2}\\
 			[1.0cm]
 			\large
 			{
@@ -71,6 +71,7 @@
 	\begin{versionhistory}
   		\vhEntry{1.0}{27.7.2016}{CJvV,KH,QW}{created}
   		\vhEntry{1.1}{04.9.2016}{CJvV,KH,QW}{Updated format based on template on CS web, added new test information}
+  		\vhEntry{1.2}{27.9.2016}{CJvV,KH,QW}{Added to conclusion, testing in general and test summary, updated heading to new product name}
 	\end{versionhistory}	
 	
 	\cleardoublepage
@@ -710,10 +711,26 @@ The build for number 130 passed in Travis CI's log
 	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests. Continuous integration further ensures total compatibility of all new features in each environment (deployment or development).
 \end{enumerate}
 
+\pagebreak
 \section{Conclusions}
-This project follows a Continous Integration model with regards to testing. \\ Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.\\
-The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls, such as Facebook, on which our system heavily relies.\\
-The ability to modularize functions in NodeJS also complicates the ability to test functionality, this is as a result of the asynchronous callback structure NodeJS uses. \\
-As a final note, all the unit tests completed successfully and the integration test will ensure these tests always pass before deploying a new version of the system.
+\subsection{General testing conclusions}
+\begin{itemize}
+\item This project follows a Continous Integration model with regards to testing. Any new feature to be merged with the main branch is first tested, then reviewed by the person merging the branch and only then the merge is closed.
+
+\item  The amount of tests are limited in the current version of the system, this is as a result of the complexity of testing external API calls, such as Facebook, on which our system heavily relies.
+
+
+\item The ability to modularize functions in NodeJS also complicates the ability to test functionality, this is as a result of the asynchronous callback structure NodeJS uses. 
+\item The integration tests will ensure these tests always pass before deploying a new version of the system.
+\end{itemize}
+
+\subsection{Test Summary}
+\begin{itemize} 
+\item All the unit tests completed successfully. Once a test fulfills its pre-condition(s), that test will pass as intended, fulfilling the post-condition. 
+\item Test 1 through 9 all passed as intended, as a result of these tests fulfilling their pre-conditions
+\end{itemize}
+\subsection{Benefits of Testing}
+Unit tests in general increases the reliability of a system. Once a new feature is added, that feature must pass its intended tests before even considering integration. This test-driven development method ensures compatibility of new features (integration tests) and that the new feature acts as intended (unit tests).
+Testing ensures full functionality, reliability and helps other team members understand the added feature.
 
 \end{document}
