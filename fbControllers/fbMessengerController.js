@@ -1,3 +1,4 @@
+"use strict"
 module.exports = {
 addToUser : function addToUser(user, messageText)
 {
