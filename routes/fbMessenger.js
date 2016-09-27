@@ -93,7 +93,7 @@ function receivedMessage(event) {
 
       default:
         let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID);
-		console.log('Trying to send this message back to facebook: '+ messageData)
+		console.log('Trying to send this message back to facebook: '+ constructedMessage)
 		callSendAPI(constructedMessage)
     }
   } else if (messageAttachments) {
