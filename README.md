@@ -21,9 +21,9 @@ You will need the following things properly installed on your computer.
 ## Testing
 
 ### Heroku log tailing
-* 'heroku loggin'
-* 'heroku git:remote -a insuranceprofiling'
-* 'heroku logs --tail'
+* `heroku loggin`
+* `heroku git:remote -a insuranceprofiling`
+* `heroku logs --tail`
 
 ### Automated testing
 
