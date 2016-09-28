@@ -53,6 +53,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/liveUserFeed.html',
 		controller : 'LiveUserFeedController'
 	})
+	.when('/liveGraphs',
+	{
+		templateUrl : 'views/pages/liveGraphs.html',
+		controller : 'LiveGraphController'
+	})
 	.when('/privacyPolicy',
 	{
 		templateUrl : 'views/pages/privacyPolicy.html',
