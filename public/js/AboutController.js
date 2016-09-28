@@ -1,3 +1,3 @@
 InsuranceProfiling.controller('aboutController', function ($scope) {
-        $scope.message = "Some about information in message";
+        $scope.message = "";//No current alerts
  });

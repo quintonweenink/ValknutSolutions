@@ -1,3 +1,15 @@
+<style>
+table, th , td {
+
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
 <div class="container">
     <h4>Current leads: </h4>
 
@@ -14,6 +26,9 @@
            <tr>
               <th>First name</th>
               <th>Last name</th>
+              <th>Phone number</th>
+              <th>Date of birth</th>
+              <th>Email</th>
            </tr>
 
            <tr ng-repeat = "user in users">
