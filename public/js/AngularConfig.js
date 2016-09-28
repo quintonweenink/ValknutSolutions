@@ -53,6 +53,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/liveUserFeed.html',
 		controller : 'LiveUserFeedController'
 	})
+	.when('/privacyPolicy',
+	{
+		templateUrl : 'views/pages/privacyPolicy.html',
+		controller : 'PrivacyPolicyController'
+	})
   .otherwise(
   {
     redirectTo: '/'

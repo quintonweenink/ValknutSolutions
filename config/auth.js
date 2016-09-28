@@ -10,7 +10,7 @@ module.exports = {
           'pass': 'BleepBlop'
       },
       'messenger': {
-          'access_token': 'EAAZAXI4LkwOMBACAqWIb2wLilLkp4floeTjoZBHIn4LgvunjdBFK0I2FWxWWmkms8POqZCsou77H6A6bPQphqdtEest5GFjCK9oWYzP45AIi7bs0NXOZAZAKCqJGMfK3NFkD2W6PvM8vP3GM1uUQhMd1TRZAiHnryNrRgl2MW8uQZDZD',
+          'access_token': 'EAAZAXI4LkwOMBANZCPr0UILzZCMYQvjEjX5309iLcyzBtJYC7H4roXYGlKFx7dZA6nOZAHt0oBVKZCZCmuOLmjjnmcK3FHyW0awherbkoaGZB27Me0q9li6Vzn1Isv0BGHrY3gniVExqNYZC4EFbdFuTBaLZAKPm5ZBGZBdW6UsZAL75GJgZDZD',
           'verify_token':'this-is-a-shitty-token'
       },
       'weChat': {
