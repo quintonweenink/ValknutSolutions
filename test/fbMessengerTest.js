@@ -145,7 +145,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts name message", function(){
+            it("Constructs name message", function(){
                   var message = messageList[0];
 
                   messageData.message.text = message;
@@ -155,7 +155,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts last name message", function(){
+            it("Constructs last name message", function(){
                   var message = messageList[1];
 
                   messageData.message.text = message;
@@ -165,7 +165,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts phone message", function(){
+            it("Constructs phone message", function(){
                   var message = messageList[2];
 
                   messageData.message.text = message;
@@ -175,7 +175,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts marital message", function(){
+            it("Constructs marital message", function(){
                   var message = messageList[3];
 
                   messageData.message.text = message;
@@ -185,7 +185,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts date of birth message", function(){
+            it("Constructs date of birth message", function(){
                   var message = messageList[4];
 
                   messageData.message.text = message;
@@ -195,7 +195,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts gender message", function(){
+            it("Constructs gender message", function(){
                   var message = messageList[5];
 
                   messageData.message.text = message;
@@ -205,7 +205,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts city message", function(){
+            it("Constructs city message", function(){
                   var message = messageList[6];
 
                   messageData.message.text = message;
@@ -215,7 +215,7 @@ describe('Facebook Messenger Test', function(){
 
                   assert.deepEqual(constructedMessage, messageData);
             });
-            it("Constracts email message", function(){
+            it("Constructs email message", function(){
                   var message = messageList[7];
 
                   messageData.message.text = message;
