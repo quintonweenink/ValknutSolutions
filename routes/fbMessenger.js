@@ -4,9 +4,9 @@ var request = require('request');
 var config = require('../config/auth');
 
 var models = require("../models");
-var userController = require("../DBControllers/UserController");
+var userController = require("../controllers/db/UserController");
 
-var fbMessengerController = require("../fbControllers/fbMessengerController")
+var fbMessengerController = require("../controllers/fb/fbMessengerController")
 
 var activeUsers = {};//Hash table
 

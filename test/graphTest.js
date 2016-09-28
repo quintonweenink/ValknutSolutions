@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-var dateController = require('../DateControllers/Date.js');
+var dateController = require('../controllers/date/Date.js');
 
 
 describe('Graph Date Test', function(){

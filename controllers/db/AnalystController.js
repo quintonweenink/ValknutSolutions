@@ -1,4 +1,4 @@
-var models = require("../models");
+var models = require("../../models");
 var express = require('express');
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
 			if(canUser)
 				if(canUser.password == canPass)
 					return canUser;
-				
+
 			return null;
 	}
 };

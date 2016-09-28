@@ -2,9 +2,9 @@ var express = require('express');
 
 var models = require("../models");
 
-var userController = require("../DBControllers/UserController");
+var userController = require("../controllers/db/UserController");
 
-var DateController = require("../DateControllers/Date")
+var DateController = require("../controllers/date/Date")
 
 module.exports =	function(app, passport){
 	app.route('/api/graph/location')

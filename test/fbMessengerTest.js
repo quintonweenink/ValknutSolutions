@@ -1,7 +1,7 @@
 "use strict"
 var assert = require('assert');
 
-var fbMessengerController = require('../fbControllers/fbMessengerController');
+var fbMessengerController = require('../controllers/fb/fbMessengerController');
 
 
 describe('Facebook Messenger Test', function(){
