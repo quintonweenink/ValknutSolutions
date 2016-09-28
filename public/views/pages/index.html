@@ -75,8 +75,7 @@ $(document).ready(function(){
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
-<div style="position: fixed; top: 0; width: 100%; z-index: 2;">
-
+<div class="navbar-fixed">
 <nav class="teal darken-4">
   <div class="nav-wrapper">
     <a href="#/" class="brand-logo" style="padding-left:60px;">MarketLead.io</a>
@@ -106,11 +105,7 @@ $(document).ready(function(){
 </nav>
 </div>
 
-<div style="height:60px">
-
-</div>
-
-<div id="main">
+<div id="main" style="z-index: -1">
   <!-- Injected View's Output-->
   <div ng-view></div>
 
@@ -121,7 +116,7 @@ $(document).ready(function(){
 </div>
 
 <div style="position: fixed; bottom: 0; width: 100%;">
-    <div class="container teal">
+    <div class="container">
             <div class="card">
                 <div style="padding: 5px; margin-left: 50px"><a href="#privacyPolicy">Privacy Policy</a></div>
                 <div style="padding: 5px; margin-left: 50px"><a href="#termsOfService">Terms of Service</a></div>
