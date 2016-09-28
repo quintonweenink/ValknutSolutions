@@ -1,9 +1,9 @@
 var FB = require('fb');
-var leadController = require("../DBControllers/LeadController");
-var userController = require("../DBControllers/UserController");
-var email = require("../email/email");
+var leadController = require("../db/LeadController");
+var userController = require("../db/UserController");
+var email = require("../../email/email");
 
-var auth = require('../config/auth.js');
+var auth = require('../../config/auth.js');
 
 
 module.exports = {

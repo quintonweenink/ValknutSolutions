@@ -1,4 +1,4 @@
-var models = require("../models");
+var models = require("../../models");
 var express = require('express');
 module.exports = {
 	createAdmin : function createAdmin(newAdmin)

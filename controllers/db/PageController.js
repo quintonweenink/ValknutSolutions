@@ -1,4 +1,4 @@
-var models = require("../models");
+var models = require("../../models");
 var express = require('express');
 
 module.exports = {
@@ -27,5 +27,5 @@ module.exports = {
 			return new_page;
 
 	}
-	
+
 };
