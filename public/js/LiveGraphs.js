@@ -1,5 +1,6 @@
 InsuranceProfiling.controller('LiveGraphController',function($scope, $http)
 {
+	var socket = io().connect();
 	$http.get("/api/graph/signups/")
 	.then(function(response){
 		$scope.data_line = [ response.data.data ];
@@ -8,8 +9,6 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http)
 		$scope.options_line = response.data.options;
 		$scope.datasetOverride_line = response.data.datasetOverride;
 	});
-
-	var socket = io().connect();
 
     socket.on('new user', function() {
 			$http.get("/api/graph/signups/")
@@ -26,6 +25,7 @@ function updateChart(response)
 	$scope.message = response.data.data;
 	$scope.series_line = response.data.labels;
 	$scope.labels_line = response.data.labels;
+	$scope.$apply;
 	$scope.$broadcast("$reload", {});
 }
 
