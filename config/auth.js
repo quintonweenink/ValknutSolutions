@@ -20,5 +20,5 @@ module.exports = {
       'secret': 'secretsecretsecretbro',
       'emailUri' : 'smtps://valknutsolutions7:BleepBlop@smtp.gmail.com',
       'emailFrom' : 'Test@servername.com',
-      'url': 'https://insuranceprofiling.herokuapp.com/'
+      'url': 'https://marketlead.herokuapp.com/'
 }
