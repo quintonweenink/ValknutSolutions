@@ -3,12 +3,12 @@ var express = require('express');
 var models = require("../models");
 
 
-var userController = require("../DBControllers/UserController");
+var userController = require("../controllers/db/UserController");
 var email = require("../email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
-var fbControllers = require("../fbControllers/fbController.js");
+var fbControllers = require("../controllers/fb/fbController.js");
 
 module.exports = function(app, passport){
 	app.route('/api/user')

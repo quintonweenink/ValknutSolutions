@@ -1,7 +1,7 @@
-var models = require("../models");
+var models = require("../../models");
 var express = require('express');
 
-var app = require('../app');
+var app = require('../../app');
 var io = app.io;
 
 module.exports = {

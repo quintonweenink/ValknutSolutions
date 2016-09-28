@@ -1,8 +1,8 @@
 {
-  "name": "insuranceprofiling",
+  "name": "marketlead",
   "version": "0.0.1",
   "private": true,
-  "description": "Insurance profiling from social media",
+  "description": "Getting ahead of the market",
   "main": "index.js",
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -36,8 +36,10 @@
   "devDependencies": {},
   "scripts": {
     "postinstall": "bower install",
-    "test": "mocha test/graphTest",
-    "start": "node ./app.js"
+    "test": "mocha test/",
+    "start": "node ./app.js",
+    "apitest": "mocha test/api/",
+    "integrationtest": "mocha test/integration/"
   },
   "repository": {
     "type": "git",

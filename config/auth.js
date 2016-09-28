@@ -10,7 +10,7 @@ module.exports = {
           'pass': 'BleepBlop'
       },
       'messenger': {
-          'access_token': 'EAAZAXI4LkwOMBACAqWIb2wLilLkp4floeTjoZBHIn4LgvunjdBFK0I2FWxWWmkms8POqZCsou77H6A6bPQphqdtEest5GFjCK9oWYzP45AIi7bs0NXOZAZAKCqJGMfK3NFkD2W6PvM8vP3GM1uUQhMd1TRZAiHnryNrRgl2MW8uQZDZD',
+          'access_token': 'EAAZAXI4LkwOMBANlZBEysu0I1jAgOqRe7H9u0ZB58G92yfOXibZBvBZA4fZAVKoAhnZBvWawekuhrGl3ksaNudYqc5NuFzyECBW2Y8W1iXkthlX5b7oZBviZBuWDjEJgNeQFwjKtSb1HMZAZArUWBntKLF0a2EQ7q9JcUBjKM3j9CN33QZDZD',
           'verify_token':'this-is-a-shitty-token'
       },
       'weChat': {
@@ -20,5 +20,5 @@ module.exports = {
       'secret': 'secretsecretsecretbro',
       'emailUri' : 'smtps://valknutsolutions7:BleepBlop@smtp.gmail.com',
       'emailFrom' : 'Test@servername.com',
-      'url': 'https://insuranceprofiling.herokuapp.com/'
+      'url': 'https://marketlead.herokuapp.com/'
 }

@@ -34,7 +34,9 @@
 <script type="text/javascript" src='js/MarketingController.js'></script>
 <script type="text/javascript" src='js/LeadController.js'></script>
 <script type="text/javascript" src='js/LiveUserFeedController.js'></script>
-
+<script type="text/javascript" src='js/LiveGraphs.js'></script>
+<script type="text/javascript" src='js/PrivacyPolicyController.js'></script>
+<script type="text/javascript" src='js/TermsOfServiceController.js'></script>
 
 <!--<script src="js/script.js"></script>-->
 
@@ -73,6 +75,7 @@ $(document).ready(function(){
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
+<div style="position: fixed; top: 0; width: 100%; z-index: 2;">
 
 <nav class="teal darken-4">
   <div class="nav-wrapper">
@@ -81,28 +84,31 @@ $(document).ready(function(){
       <i><img src="/images/1473172319_advantage_sale.svg" alt="Logo" style="width:72px;height:72px;"></img></i>
     </a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="#/">Home</a></li>
+      <li><a href="#about">Home</a></li>
       <li><a href="#liveUserFeed">LiveFeed</a></li>
       <li><a href="#lead">Lead</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login</a></li>
       <li><a href="#signup">Sign Up</a></li>
+      <li><a href="#liveGraphs">Live Graphs</a></li>
 
     </ul>
     <ul class="side-nav" id="mobile">
-      <li><a href="#">Home</a></li>
+      <li><a href="#about">Home</a></li>
       <li><a href="#liveUserFeed">LiveFeed</a></li>
       <li><a href="#lead">Lead</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login</a></li>
       <li><a href="#signup">Sign Up</a></li>
+      <li><a href="#liveGraphs">Live Graphs</a></li>
     </ul>
   </div>
 </nav>
+</div>
 
+<div style="height:60px">
 
+</div>
 
 <div id="main">
   <!-- Injected View's Output-->
@@ -110,7 +116,17 @@ $(document).ready(function(){
 
 </div>
 
+<div style="height:100px">
 
-</body>
+</div>
+
+<div style="position: fixed; bottom: 0; width: 100%;">
+    <div class="container teal">
+            <div class="card">
+                <div style="padding: 5px; margin-left: 50px"><a href="#privacyPolicy">Privacy Policy</a></div>
+                <div style="padding: 5px; margin-left: 50px"><a href="#termsOfService">Terms of Service</a></div>
+            </div>
+    </div>
+</div>
 
 </html>

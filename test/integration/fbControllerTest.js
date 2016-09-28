@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-var fbController = require('../fbControllers/fbController');
+var fbController = require('../../controllers/fb/fbController');
 
 describe('Facebook Controller', function(){
   describe('extractUserTest', function(){
