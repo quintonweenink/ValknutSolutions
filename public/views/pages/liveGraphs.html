@@ -1,13 +1,21 @@
   <h3>Live graphs bro</h3>
   {{message}}
-  <div class="container">
-      <div class="container">
+<div layout="row"  layout-xs="column" >
+    <div flex>
         <md-content class="md-padding">
-          <h1 class="md-display-2">Line chart Example</h1>
+          <h1 class="md-headline">Signups per Month</h1>
           <canvas id="line" class="chart chart-line" chart-data="data_line"
           chart-labels="labels_line" chart-series="series_line" chart-colors="colors_line" chart-hover="onHover_line" chart-options="options_line"
           chart-dataset-override="datasetOverride_line" chart-click="onClick_line"
         </canvas>
         </md-content>
       </div>
-  </div>
+      <div flex>
+        <md-content class="md-padding">
+          <h1 class="md-headline">Signups per Day</h1>
+          <canvas id="pie" class="chart chart-pie"
+          chart-data="data_day" chart-labels="labels_day" chart-options="options_day">
+          </canvas>
+        </md-content>
+      </div>
+</div>

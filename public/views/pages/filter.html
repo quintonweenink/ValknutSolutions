@@ -1,11 +1,9 @@
 
-<h2>Generate a report </h2>
-<div class="container">
-
-  <div class="md-padding" ng-cloak>
-    <div >
+<h2 class="md-headline">Generate a report </h2>
+<div layout="row" layout-xs="column" layout-sm="column">
+  <div flex>
       <fieldset class="standard"ng-hide="showForm" >
-        <legend>Generate a report</legend>
+        <legend>Report</legend>
         <fieldset>
           <legend>Choose the information to display</legend>
           <md-radio-group ng-model="data.group1">
@@ -22,18 +20,14 @@
           <md-radio-button value="bar"> Bar Chart </md-radio-button>
         </md-radio-group>
       </fieldset>
-
-
-
       <md-button ng-click="submit();" type="button" class="md-raised">Generate Report</md-button>
       {{message}}
     </fieldset>
-
-    <div class="container" >
+  </div>
+    <div flex>
       <div ng-show="showPie">
         {{message}}
         <md-content class="md-padding">
-          <h1 class="md-display-2">Pie Chart</h1>
           <canvas id="pie" class="chart chart-pie"
           chart-data="data" chart-labels="labels" chart-options="options">
         </canvas>
@@ -41,15 +35,10 @@
     </div>
     <div ng-show="showBar">
       <md-content class="md-padding">
-        <h1 class="md-display-2">Bar chart</h1>
         <canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data"
         chart-labels="labels" chart-series="series" chart-options="options"
         style="display: block; width: 359px; height: 179px;" width="359" height="179"></canvas>
       </md-content>
     </div>
-
-</div>
-</div>
-</div>
-
+  </div>
 </div>
