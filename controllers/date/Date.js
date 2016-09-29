@@ -19,6 +19,14 @@ getMonths : function getMonths(dateString)
 	var birthDate = new Date(dateString);
 	var month = birthDate.getMonth()
 	return monthNames[month];
+},
+getDay : function getDay(dateString)
+{
+		var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+		"Saturday"];
+	var birthDate = new Date(dateString);
+	var day = birthDate.getDay()
+	return days[day];
 }
 
 

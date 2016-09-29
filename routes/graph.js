@@ -385,6 +385,43 @@ app.route('/api/graph/signups/')
 	});
 	});
 
+	app.route('/api/graph/SignupsPerDay/')
+	//User Post route
+	.get(function(req, res) {
+		models.User.findAll().then(function(users){
+			var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+			"Saturday"];
+		var dayCount = [];
+		for(var j=0 ;j < days.length;j++)
+		dayCount[j] = 0;
+
+		for (var i = 0; i < users.length; i++)
+		{
+			var user = users[i];
+			var Status = DateController.getDay(user.createdAt);
+			dayCount[days.indexOf(Status)]++;
+		}
+
+		var GraphObject = new Object;
+		GraphObject.labels = days;
+		GraphObject.data = dayCount;
+		GraphObject.options =
+		{
+			title: {
+				display: true,
+				text:  "Signups Per Day"
+			},
+			legend: {
+				display: true,
+				labels: {
+					fontColor: 'rgb(255, 99, 132)'
+				}
+			}
+		};
+		res.json(GraphObject);
+		});
+
+		});
 
 
 
