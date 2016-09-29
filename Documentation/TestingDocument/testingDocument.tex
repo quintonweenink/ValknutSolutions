@@ -72,6 +72,7 @@
   		\vhEntry{1.0}{27.7.2016}{CJvV,KH,QW}{created}
   		\vhEntry{1.1}{04.9.2016}{CJvV,KH,QW}{Updated format based on template on CS web, added new test information}
   		\vhEntry{1.2}{27.9.2016}{CJvV,KH,QW}{Added to conclusion, testing in general and test summary, updated heading to new product name}
+  		\vhEntry{1.3}{30.9.2016}{CJvV,KH,QW}{Added Facebook messenger unit tests, updated testing tables, added detailed overview of new tests, updated paths to tests}
 	\end{versionhistory}	
 	
 	\cleardoublepage
@@ -184,6 +185,7 @@ Dependencies:
 	\begin{itemize}
 	\item The ability to receive data from a Facebook lead ad and save this data in the database.
 	\item The ability to receive data from any other integration point as per the specified format.
+	\item The ability to receive data from the Facebook messenger integration point.
 	\item These feature relates to the getLeadData use case in the Functional requirements documentation
 	\item The calculation of Age from a datestring object
 	\item The calculation of Months from a datestring object
@@ -222,14 +224,19 @@ Feature ID & RDS Source                            & Summary                    
 7	       & Functional requirements - generateReport & Extract month from datestring			& 7            \\ \hline
 8          &  Architecture design - Section 5      & Environmental test                         & 8            \\ \hline
 9          &  Architecture design - Section 5.1.1  & Deployment test                            & 9            \\ \hline
+10         &  Functional requirements - getMessengderData & Receive data from a Facebook messenger & 10            \\ \hline
 \end{tabular}
 \end{table}
 
 
 \section{Test instructions} 
-Tests can be ran with the command "npm test" which will run Mocha, if this test is run locally it will connect to the local database.
-Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility with all versions of Node.
-
+\begin{itemize}
+\item Unit Tests can be run with the command "npm test" which will run Mocha.
+\item API tests can be run with the command "npm run-script apitest"
+\item Integration tests can be run with the command "npm run-script integrationtest".  
+\item If these tests are ran locally they will connect to the local database.
+\item Travis CI runs these test to the external database hosted on Heroku. The Travis tests are ran when a new branch is merged to ensure compatibility with all versions of Node.
+\end{itemize}
 \cleardoublepage
 \section{Test cases}\label{sec:testCases}
 \subsection{\underline{Test Case 1: getLeadData}}\label{test1}
@@ -454,6 +461,70 @@ Travis CI runs these test to the external database hosted on Heroku. The Travis 
 	\item The build will error/fail
 \end{enumerate}
 
+
+\subsection{\underline{Test Case 10: Facebook messenger test}}\label{test10}
+\subsubsection{Condition 1: Valid user message}
+\paragraph{Objective:} The purpose of this test is to ensure the Facebook messenger integration data is extracted from the user message.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item An empty user to be populated
+	\begin{itemize}
+  	\item messageId = 0
+    \item firstname = ''
+    \item lastname : ''
+    \item phonenumber : ''
+    \item maritalstatus : ''
+    \item dateofbirth : ''
+    \item gender : ''
+    \item city : ''
+    \item email : ''
+    \end{itemize}	  
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item A populated user with the values
+	\begin{itemize}
+  	\item messageId : 1
+    \item firstname : 'Quinton'
+    \item lastname : 'Weenink'
+    \item phonenumber : '071 555 9858'
+    \item maritalstatus : 'Married'
+    \item dateofbirth : '08/03/1995'
+    \item gender : 'male'
+    \item city : 'Cape Town'
+    \item email : 'fake@gmail.com'
+    \end{itemize}	  
+\end{enumerate}
+\subsubsection{Condition 2: Valid response }
+\paragraph{Objective:} The purpose of this test is to ensure the correct response is given for a received message.
+\paragraph{Input:} The following inputs will be used:
+\begin{enumerate}
+	\item A correct response to the given message.
+	\begin{itemize}
+  	\item messageId : 1
+    \item firstname : 'Quinton'
+    \item lastname : 'Weenink'
+    \item phonenumber : '071 555 9858'
+    \item maritalstatus : 'Married'
+    \item dateofbirth : '08/03/1995'
+    \item gender : 'male'
+    \item city : 'Cape Town'
+    \item email : 'fake@gmail.com'
+    \end{itemize}	  
+\end{enumerate}
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	 \item 8:'You will be contacted shortly...',
+     \item 0:'Please reply with your Name:',
+     \item 1:'Please reply with your Last name:',
+     \item 2:'Please reply with your Phone number:',
+     \item 3:'Please reply with your Marital status:',
+     \item 4:'Please reply with your Date of birth:',
+     \item 5:'Please reply with your Gender:',
+     \item 6:'Please reply with your City:',
+     \item 7:'Please reply with your Email:'
+\end{enumerate}
+
 \pagebreak
 
 \section{Item Pass/Fail criteria}\label{sec:FailPass}
@@ -520,6 +591,12 @@ If the specified Pre-conditions are met the post-condition will hold true and th
 	\item Post-condition - The currentUser is removed
 	\end{itemize}
 
+\item Valid messenger responses for valid inputs
+	\begin{itemize}
+	\item Pre-condition - The inputs as specified are valid
+	\item Post-condition - The output messages are correct based on the inputs.
+	\end{itemize}
+
 \item Travis CI build test for Node version 5.11
 	\begin{itemize}
 	\item Pre-condition - The changes to the branch are compatible with version 5.11
@@ -530,7 +607,8 @@ If the specified Pre-conditions are met the post-condition will hold true and th
 	\begin{itemize}
 	\item Pre-condition - The changes to the branch are compatible with version 6.2
 	\item Post-condition - The build will pass successfully 
-\end{itemize}
+	\end{itemize}
+
 \end{itemize}
 
 
@@ -557,13 +635,14 @@ Travis CI runs automated tests per branch merge without the need for developer a
 \begin{tabular}{|l|l|l|}
 \hline
 Test ID    & Test Name   & Github Link to File \\ \hline \hline
-1          & getLeadData &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbControllerTest.js}{fbControllerTest.js}         \\ \hline
-2          & getData  &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbControllerTest.js}{fbControllerTest.js}       \\ \hline
-3,4,5      & API tests/Database functions & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js}         \\ \hline
+1          & getLeadData &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/integration/fbControllerTest.js}{fbControllerTest.js}         \\ \hline
+2          & getData  &  \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/integration/fbControllerTest.js}{fbControllerTest.js}       \\ \hline
+3,4,5      & API tests/Database functions & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/api/test.js}{test.js}         \\ \hline
 6          & getAge    & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/graphTest.js}{graphTest.js} \\ \hline
 7          & getMonths  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/graphTest.js}{graphTest.js} \\ \hline 
 8          &  Environmental test  & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/test.js}{test.js Line 9-15}\\ \hline
 9		   & Compatibility test & \href{https://travis-ci.com/QuintonWeenink/ValknutSolutions/builds/30866212}{Travis CI build nr 130} \\ \hline
+10		   & addToUser()/ getMessage() & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbMessengerTest.js}{fbMessengerTest.js}   \\ \hline
 \end{tabular}
 \caption{Links to test files}
 \end{table}
@@ -677,6 +756,21 @@ The build for number 130 passed in Travis CI's log
 	\item [Result]: Pass 
 \end{description}
 
+\subsubsection{Test Case 10 - TC \ref{test10}}
+Test case 10 returned a populated user and sent the correct responses based on the inputs.
+The Facebook messenger tests work as intended.
+\begin{enumerate}
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Valid inputs were populated.
+	\item Correct inputs were passed as parameter 
+	\item Correct messages were returned as outputs.
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+
 \pagebreak
 \section{Other}
 
@@ -727,10 +821,11 @@ The build for number 130 passed in Travis CI's log
 \subsection{Test Summary}
 \begin{itemize} 
 \item All the unit tests completed successfully. Once a test fulfills its pre-condition(s), that test will pass as intended, fulfilling the post-condition. 
-\item Test 1 through 9 all passed as intended, as a result of these tests fulfilling their pre-conditions
+\item Test 1 through 10 all passed as intended, as a result of these tests fulfilling their pre-conditions
 \end{itemize}
 \subsection{Benefits of Testing}
-Unit tests in general increases the reliability of a system. Once a new feature is added, that feature must pass its intended tests before even considering integration. This test-driven development method ensures compatibility of new features (integration tests) and that the new feature acts as intended (unit tests).
-Testing ensures full functionality, reliability and helps other team members understand the added feature.
+Unit tests in general increases the reliability of a system. Once a new feature is added, that feature must pass its intended tests before even considering integration.\\ \\ This test-driven development method ensures compatibility of new features (integration tests) and that the new feature acts as intended (unit tests). \\
+Testing ensures full functionality, reliability and helps other team members understand the added feature. \\ 
+The Mocha testing frameworks displays test results a easily understandable way.
 
 \end{document}
