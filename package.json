@@ -38,7 +38,7 @@
     "postinstall": "bower install",
     "test": "mocha test/",
     "start": "node ./app.js",
-    "apitest": "mocha test/api/",
+    "apitest": "./test/api/api.sh",
     "integrationtest": "mocha test/integration/"
   },
   "repository": {
