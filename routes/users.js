@@ -4,17 +4,19 @@ var models = require("../models");
 
 
 var userController = require("../controllers/db/UserController");
-var email = require("../email/email");
+var email = require("../controllers/email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
 var fbControllers = require("../controllers/fb/fbController.js");
 
+const authenticate = require('../controllers/auth/auth')
 
 module.exports = function(app, passport,io){
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
+
 				//This should be removed before release
 				/**/
 				var newUser = {
@@ -53,7 +55,7 @@ module.exports = function(app, passport,io){
 	    	 });
 		})
 		//User Get route
-	    .get(function(req, res) {
+	    .get(authenticate, function(req, res) {
 				models.User.findAll().then(function(users){
 					res.json(users);
 				});
