@@ -2,23 +2,14 @@
 var assert = require('assert');
 
 var fbMessengerController = require('../controllers/fb/fbMessengerController');
+const messageList = require('../config/messageList')
+const emptyUser = require('../config/emptyUser')
 
 
 describe('Facebook Messenger Test', function(){
     var activeUsers = {}
     var senderID = "SF93bsF576S"
-    var user
-    var intendedUser = {
-       messageId : 0,
-       first_name : '',
-       last_name : '',
-       phone_number : '',
-       marital_status : '',
-       date_of_birth : '',
-       gender : '',
-       city : '',
-       email : ''
-      };
+    var intendedUser = emptyUser
       var message
       describe('addToUser()', function(){
             it("Returns a valid empty user", function(){
@@ -103,7 +94,6 @@ describe('Facebook Messenger Test', function(){
             });
       });
       describe('getMessage()', function(){
-            delete activeUsers.senderID
             var messageData = {
           	    recipient: {
           	      id: senderID
@@ -112,38 +102,20 @@ describe('Facebook Messenger Test', function(){
           	      text: ''
           	    }
         	};
-            intendedUser = {
-               messageId : 0,
-               first_name : '',
-               last_name : '',
-               phone_number : '',
-               marital_status : '',
-               date_of_birth : '',
-               gender : '',
-               city : '',
-               email : ''
-              };
-              var messageList = {
-          		8:'You will be contacted shortly...',
-          		0:'Please reply with your Name:',
-          		1:'Please reply with your Last name:',
-          		2:'Please reply with your Phone number:',
-          		3:'Please reply with your Marital status:',
-          		4:'Please reply with your Date of birth:',
-          		5:'Please reply with your Gender:',
-          		6:'Please reply with your City:',
-          		7:'Please reply with your Email:'
-          	};//Another hash table
+            intendedUser = emptyUser
 
             it("Returns the default message if the user is null", function(){
-                  var message = messageList[8];
+                  var message = messageList[8]
 
-                  messageData.message.text = message;
+                  messageData.message.text = message
+                  delete activeUsers.senderID
 
+                  let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID)
 
-                  let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID);
+                  console.log(messageData)
+                  console.log(constructedMessage)
 
-                  assert.deepEqual(constructedMessage, messageData);
+                  assert.deepEqual(constructedMessage, messageData)
             });
             it("Constructs name message", function(){
                   var message = messageList[0];
