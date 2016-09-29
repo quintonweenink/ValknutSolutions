@@ -10,11 +10,11 @@ var util = require('util');
 var fs = require('fs');
 var fbControllers = require("../controllers/fb/fbController.js");
 
-module.exports = function(app, passport){
+
+module.exports = function(app, passport,io){
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
-
 				//This should be removed before release
 				/**/
 				var newUser = {
@@ -45,6 +45,7 @@ module.exports = function(app, passport){
 				userController.createUser(newUser)
 				.then(function(user){
 	        		res.json(user.dataValues);
+							io.emit('updateGraph');
 	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
