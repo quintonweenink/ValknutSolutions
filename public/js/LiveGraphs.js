@@ -1,7 +1,7 @@
 InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast,$mdDialog)
 {
 	$scope.message = "";
-	$http.get("/api/graph/signups/")
+	$http.get("/api/graph/SignupsPerMonth/")
 	.then(function(response){
 		$scope.data_line = [ response.data.data ];
 		$scope.series_line = response.data.labels;
@@ -20,7 +20,7 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 
 	var socket = io().connect();
 	socket.on('updateGraph', function() {
-		$http.get("/api/graph/signups/")
+		$http.get("/api/graph/SignupsPerMonth/")
 		.then(function(response){
 			updateChart(response);
 		});
