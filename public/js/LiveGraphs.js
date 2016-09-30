@@ -1,4 +1,4 @@
-InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast)
+InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast,$mdDialog)
 {
 
 	$http.get("/api/graph/signups/")
@@ -16,6 +16,7 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		$scope.labels_day = response2.data.labels;
 		$scope.options_day = response2.data.options;
 	});
+
 
 var socket = io().connect();
     socket.on('updateGraph', function() {
@@ -36,6 +37,31 @@ var socket = io().connect();
 					 .hideDelay(2000)
 			 );
 	});
+
+	$scope.onClickSlice = function (points, evt) {
+		console.log(points[0])
+						$mdDialog.show(
+								$mdDialog.alert()
+									.parent(angular.element(document.body))
+									.clickOutsideToClose(true)
+									.title('User signups for: ')
+									.textContent(points[0]._model.label
+									+' : '+ $scope.data_day[points[0]._index])
+									.ok('Close')
+							);
+					};
+
+	$scope.onClick_line = function (points, evt) {
+										$mdDialog.show(
+												$mdDialog.alert()
+													.parent(angular.element(document.body))
+													.clickOutsideToClose(true)
+													.title('User signups for: ')
+													.textContent($scope.labels_line[points[0]._index]
+													+' : '+ $scope.data_line[0][points[0]._index])
+													.ok('Close')
+											);
+									};
 
 function updateChart(response)
 {
