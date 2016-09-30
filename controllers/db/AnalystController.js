@@ -4,11 +4,15 @@ var express = require('express');
 module.exports = {
 	createAnalyst : function createAnalyst(newUser)
 	{
-			var new_analyst = models.Analyst.create({
-								email: newUser.email,
-								password: newUser.password,
-			});
-			return new_user;
+		var new_user = models.Analyst.findOrCreate({where: {email: newUser.email},
+			defaults: newUser})
+		  .spread(function(user, created) {
+			console.log(user.get({
+			  plain: true
+				}));
+			return user;
+		});
+		return new_user;
 	},
 	getAnalystById : function getAnalystById(id)
 	{
@@ -16,18 +20,21 @@ module.exports = {
 		if(get_analyst)
 			return get_analyst;
 		else
-			return null;
+			return null
 
 	},
 	validateAnalyst : function validateAnalyst(canEmail, canPass)
 	{
-			var canUser = models.Analyst.findOne({where: {
-				email : canEmail
-			}});
-			if(canUser)
-				if(canUser.password == canPass)
-					return canUser;
-
+		var get_user = models.Analyst.findOne({where: {
+			email: canEmail,
+			password: canPass
+		}},function(user){
+			console.log(user.dataValues)
+		});
+		if(get_user){
+			return get_user
+		}
+		else
 			return null;
 	}
 };

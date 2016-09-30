@@ -1,4 +1,4 @@
-{
+module.exports = {
     8:'You will be contacted shortly...',
     0:'Please reply with your Name:',
     1:'Please reply with your Last name:',

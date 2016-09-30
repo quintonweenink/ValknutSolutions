@@ -3,10 +3,12 @@ var express = require('express');
 var models = require("../models");
 
 var adminController = require("../controllers/db/AdminController");
-var email = require("../email/email");
+var email = require("../controllers/email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
+
+const authenticate = require('../controllers/auth/auth').authenticate
 
 module.exports = function(app, passport){
 

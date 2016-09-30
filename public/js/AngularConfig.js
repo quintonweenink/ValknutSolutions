@@ -3,6 +3,8 @@
 var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial']);
 
 InsuranceProfiling.config(function($routeProvider) {
+	
+
 	$routeProvider
 	// route for the home page
 	.when('/', {

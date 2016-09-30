@@ -8,11 +8,13 @@ var analystController = require("../controllers/db/AnalystController");
 var pageController = require("../controllers/db/PageController");
 var advertisementCotroller = require("../controllers/db/AdvertisementController");
 var leadController = require("../controllers/db/LeadController");
-var email = require("../email/email");
+var email = require("../controllers/email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
 var fbControllers = require("../controllers/fb/fbController.js");
+
+const authenticate = require('../controllers/auth/auth').authenticate
 
 module.exports = function(app, passport){
 //--------------Facebook authentication-----------//
@@ -98,18 +100,18 @@ next();
 //
 //   }
 // });
+// ########### Please not this will not work due to the modules being moved around also I feel it best to move this into the model controller ######### [START]
+			//Emailer code
+			/*
+			var emailSettings = {
+				to: 'charljvv@gmail.com', // recipient
+				subject: 'Test mail bro', // Subject line
+				text: 'Test body mail', // plaintext body
+			};
 
-//Emailer code
-/*
-var emailSettings = {
-	to: 'charljvv@gmail.com', // recipient
-	subject: 'Test mail bro', // Subject line
-	text: 'Test body mail', // plaintext body
-};
-
-email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
-*/
-
+			email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
+			*/
+// ########### Please not this will not work due to the modules being moved around also I feel it best to move this into the model controller ######### [END]
 //------------API routes------------------//
 function accessTokenCallback(req, res, pageAccessToken)
 {
