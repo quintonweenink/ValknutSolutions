@@ -1,10 +1,10 @@
 module.exports = {
-       'fb': {
+      'fb': {
            'appId': '959936647438530',
            'appSecret': 'a1b4088df1dc99305fee1fa09c2c6e61',
            'callbackURL': 'localhost',
            'version': 'v2.6'
-       },
+      },
       'emailAuth': {
           'user': 'valknutsolutions7@gmail.com',
           'pass': 'BleepBlop'

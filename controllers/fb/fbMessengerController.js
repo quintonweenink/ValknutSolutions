@@ -1,6 +1,7 @@
 "use strict"
 const messageList = require('../../config/messageList')
-const emptyUser = require('../../config/emptyUser')
+const emptyUser = require('../../config/objects/user')
+
 module.exports = {
 addToUser : function addToUser(user, messageText)
 {

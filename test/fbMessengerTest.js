@@ -3,7 +3,7 @@ var assert = require('assert');
 
 var fbMessengerController = require('../controllers/fb/fbMessengerController');
 const messageList = require('../config/messageList')
-const emptyUser = require('../config/emptyUser')
+const emptyUser = require('../config/objects/user')
 
 
 describe('Facebook Messenger Test', function(){
@@ -111,9 +111,6 @@ describe('Facebook Messenger Test', function(){
                   delete activeUsers.senderID
 
                   let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID)
-
-                  console.log(messageData)
-                  console.log(constructedMessage)
 
                   assert.deepEqual(constructedMessage, messageData)
             });

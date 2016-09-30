@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
 
-const authenticate = require('../controllers/auth/auth')
+const authenticate = require('../controllers/auth/auth').authenticate
 
 module.exports = function(app, passport){
 

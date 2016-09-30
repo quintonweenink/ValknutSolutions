@@ -10,7 +10,7 @@ var util = require('util');
 var fs = require('fs');
 var fbControllers = require("../controllers/fb/fbController.js");
 
-const authenticate = require('../controllers/auth/auth')
+const authenticate = require('../controllers/auth/auth').authenticate
 
 module.exports = function(app, passport,io){
 	app.route('/api/user')
