@@ -338,7 +338,7 @@ module.exports = function(app, passport){
 // 	return monthNames[month];
 // }
 
-app.route('/api/graph/signups/')
+app.route('/api/graph/SignupsPerMonth/')
 //User Post route
 .get(function(req, res) {
 	models.User.findAll().then(function(users){
