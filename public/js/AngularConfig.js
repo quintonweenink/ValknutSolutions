@@ -6,8 +6,8 @@ InsuranceProfiling.config(function($routeProvider) {
 	$routeProvider
 	// route for the home page
 	.when('/', {
-		templateUrl : 'views/pages/home.html',
-		controller  : 'mainController'
+		templateUrl : 'views/pages/about.html',
+		controller  : 'aboutController'
 	})
 
 	// route for the about page
