@@ -6,7 +6,7 @@
         <legend>Report</legend>
         <fieldset>
           <legend>Choose the information to display</legend>
-          <md-radio-group ng-model="data.group1">
+          <md-radio-group ng-model="group1">
             <md-radio-button ng-checked="checked" value="age" >Age</md-radio-button>
             <md-radio-button value="gender"> Gender </md-radio-button>
             <md-radio-button value="location">Location</md-radio-button>
@@ -15,7 +15,7 @@
         </fieldset>
         <fieldset
         <legend>Choose the type of graph to display</legend>
-        <md-radio-group ng-model="data.graphType">
+        <md-radio-group ng-model="graphType">
           <md-radio-button value="pie" >Pie Chart</md-radio-button>
           <md-radio-button value="bar"> Bar Chart </md-radio-button>
         </md-radio-group>
@@ -29,14 +29,14 @@
         {{message}}
         <md-content class="md-padding">
           <canvas id="pie" class="chart chart-pie"
-          chart-data="data" chart-labels="labels" chart-options="options">
+          chart-data="data" chart-labels="labels" chart-options="options" chart-click="onClick">
         </canvas>
       </md-content>
     </div>
     <div ng-show="showBar">
       <md-content class="md-padding">
         <canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data"
-        chart-labels="labels" chart-series="series" chart-options="options"
+        chart-labels="labels" chart-series="series" chart-options="options" chart-click="onClick"
         style="display: block; width: 359px; height: 179px;" width="359" height="179"></canvas>
       </md-content>
     </div>
