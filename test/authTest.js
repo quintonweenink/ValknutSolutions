@@ -10,6 +10,12 @@ const analyst = require('../config/objects/analyst')
 describe('Authentication Test', function(){
     var intendedUser = analyst
     var req = {
+        headers: {
+
+        },
+        query: {
+
+        },
         body: {
 
         },

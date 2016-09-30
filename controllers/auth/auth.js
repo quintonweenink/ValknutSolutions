@@ -10,9 +10,12 @@ module.exports = {
 
     authenticate : function(req, res, next){
         // check header or url parameters or post parameters for token
-        var token
+        var token = req.body.token || req.query.token || req.headers['x-access-token'];
+        if(!token)
+            token = 'no token'
+        console.log('Token: ' + token)
         // decode token
-        if (token = req.body.token) {
+        if (token != 'no token') {
             // verifies secret and checks exp
             jwt.verify(token, config.secret, function(err, decoded) {
                 if (err) {

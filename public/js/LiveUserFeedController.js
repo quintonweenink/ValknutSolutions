@@ -1,11 +1,19 @@
-InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http) {
+InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootScope, $http) {
 
-	$scope.message = '';
+	$scope.cookie = getCookie();
+	$scope.users;
 
-	$http.get("/api/user")
-	.then(function(users){
-		$scope.users = users.data;
-	});
+
+	$http.get("/api/user?token="+$scope.cookie)
+	.then(function(res){
+		if (typeof res.data.success !== 'undefined') {
+		    $scope.message = res.data.message
+		}
+		else{
+			$scope.users = res.data;
+			$scope.message = "Users recieved"
+		}
+	})
 
 	var socket = io().connect();
 
