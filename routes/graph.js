@@ -6,7 +6,7 @@ var userController = require("../controllers/db/UserController");
 
 var DateController = require("../controllers/date/Date")
 
-const authenticate = require('../controllers/auth/auth')
+const authenticate = require('../controllers/auth/auth').authenticate
 
 module.exports = function(app, passport){
 	app.route('/api/graph/location')
