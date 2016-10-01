@@ -34,14 +34,14 @@ var User = sequelize.define('User', {
     allowNull : false
   },
   processed : {
-  type : DataTypes.BOOLEAN,
-  allowNull : true,
-  defaultValue : false
+    type : DataTypes.BOOLEAN,
+    allowNull : true,
+    defaultValue : false
   },
   from : {
-  type : DataTypes.STRING,
-  allowNull : true,
-  defaultValue : "Web"
+    type : DataTypes.STRING,
+    allowNull : true,
+    defaultValue : "Web"
   }
 });
 return User;
