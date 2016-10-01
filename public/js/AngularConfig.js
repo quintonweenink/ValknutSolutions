@@ -3,7 +3,7 @@
 var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial']);
 
 InsuranceProfiling.config(function($routeProvider) {
-	
+
 
 	$routeProvider
 	// route for the home page
@@ -22,12 +22,6 @@ InsuranceProfiling.config(function($routeProvider) {
 	.when('/login', {
 		templateUrl : 'views/pages/login.html',
 		controller  : 'loginController'
-	})
-	//route for login_form
-	.when('/login_form',
-	{
-		templateUrl : 'views/pages/login_form.html',
-		controller  : 'loginFormController'
 	})
 	//signup route
 	.when('/signup',
