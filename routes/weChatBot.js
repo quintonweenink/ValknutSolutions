@@ -105,7 +105,7 @@ module.exports = function(app, passport){
 	app.route('/weChatBot/webhook')
 	.post(function(req, res) {
         console.log('===============message=============')
-        console.log(req.body)
+        console.log(req)
 
         res.json({
             success: true,
@@ -140,19 +140,9 @@ module.exports = function(app, passport){
   // 		}
 	})
     .get(function(req, res) {
-        console.log('=== This is the wechat request ===')
     	console.log(req.query)
         var echostr = req.param('echostr', null)
-        console.log('=== This is the wechat request ===')
-        console.log('Echo str: ' + echostr)
         res.send(echostr)
-		// if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === config.weChat.token) {
-		//     console.log("Validating webhook");
-		//     res.status(200).send(req.query['hub.challenge']);
-		// } else {
-		//     console.error("Failed validation. Make sure the validation tokens match.");
-		//     res.sendStatus(403);
-  // 		}
 	});
 
 
