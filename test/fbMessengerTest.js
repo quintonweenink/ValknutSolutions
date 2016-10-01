@@ -195,6 +195,31 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
       });
+      describe('getMessage()', function(){
+            var messageData = {
+          	    recipient: {
+          	      id: senderID
+          	    },
+          	    message: {
+          	      text: ''
+          	    }
+        	};
+            intendedUser = emptyUser
 
+            it("Returns the default message if the user is null", function(){
+                  var message = messageList[8]
+
+                  messageData.message.text = message
+
+                  senderID = 'senderID'
+                  var tousername = 'tousername'
+                  var createtime = 64164164
+
+
+                  let constructedMessage = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers.senderID)
+
+                  console.log(constructedMessage)
+            });
+      });
 
 });
