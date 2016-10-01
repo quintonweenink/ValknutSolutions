@@ -1,7 +1,7 @@
 "use strict"
 const messageList = require('../../config/messageList')
 const emptyUser = require('../../config/objects/user')
-const xmlMessage = require('../config/xmlMessage').message
+const xmlMessage = require('../../config/xmlMessage').message
 
 var util = require('util')
 
