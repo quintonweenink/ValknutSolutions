@@ -8,7 +8,7 @@ var userController = require("../controllers/db/UserController");
 
 var fbMessengerController = require("../controllers/fb/fbMessengerController")
 
-var activeUsers = {};//Hash table
+var activeWeChatUsers = {};//Hash table
 
 var util = require('util')
 
@@ -31,15 +31,15 @@ module.exports = function(app, passport){
 
         res.contentType("application/xml")
 
-        activeUsers.senderID = fbMessengerController.addToUser(activeUsers.senderID, content)
+        activeWeChatUsers.senderID = fbMessengerController.addToUser(activeWeChatUsers.senderID, content)
 
-        if(activeUsers.senderID.email != ''){
-            userController.createUser(activeUsers.senderID)
-            delete activeUsers.senderID
+        if(activeWeChatUsers.senderID.email != ''){
+            userController.createUser(activeWeChatUsers.senderID)
+            delete activeWeChatUsers.senderID
         }
 
 
-        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers.senderID)
+        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeWeChatUsers.senderID)
 
         console.log(str)
 
