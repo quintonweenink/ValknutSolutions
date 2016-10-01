@@ -141,7 +141,9 @@ module.exports = function(app, passport){
 	})
     .get(function(req, res) {
         console.log('=== This is the wechat request ===')
-    	console.log(req._realableState.query);
+        console.log(req.IncomingMessage);
+        console.log('=== This is the wechat request ===')
+    	console.log(req.query);
         console.log('=== This is the wechat request ===')
         res.json({
             token: auth.weChat.token,
