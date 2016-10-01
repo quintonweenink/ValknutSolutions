@@ -36,7 +36,8 @@ module.exports = function(app, passport){
         "<CreateTime>%d</CreateTime>"+
         "<MsgType>text</MsgType>"+
         "<Content><![CDATA[%s]]></Content>"+
-        "</xml>", tousername, fromusername, createtime+1, reply)
+        "</xml>",
+        fromusername, tousername, createtime+1, reply)
 
         console.log(str)
 
