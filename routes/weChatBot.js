@@ -10,6 +10,8 @@ var fbMessengerController = require("../controllers/fb/fbMessengerController")
 
 var activeUsers = {};//Hash table
 
+var util = require('util')
+
 function receivedDeliveryConfirmation(event)
 {
 	  var senderID = event.sender.id;
