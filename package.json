@@ -18,7 +18,6 @@
     "http": "0.0.0",
     "jsonwebtoken": "^7.0.1",
     "mocha": "^2.5.3",
-    "morgan": "~1.6.1",
     "nodemailer": "^2.5.0",
     "nodemailer-smtp-transport": "^2.6.0",
     "passport": "^0.3.2",
