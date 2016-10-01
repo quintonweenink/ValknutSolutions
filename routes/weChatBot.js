@@ -120,7 +120,9 @@ module.exports = function(app, passport){
         res.contentType("application/xml")
         var reply = "Hi there";
 
-        var str = "<xml></xml>"
+        var str = util.format("<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%d</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>", tousername, fromusername, createtime+1, reply)
+
+
 
         res.send(str)
 		// var data = req.body;
