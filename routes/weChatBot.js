@@ -1,4 +1,4 @@
-"use strict"
+
 var request = require('request');
 
 var config = require('../config/auth');
@@ -118,9 +118,17 @@ module.exports = function(app, passport){
 
 
         res.contentType("application/xml")
-        var reply = "Hi there";
+        var reply = "Hi there from valknut solutions";
 
-        var str = util.format("<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%d</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content></xml>", tousername, fromusername, createtime+1, reply)
+        var str = util.format("<xml>"+
+        "<ToUserName>%s</ToUserName>"+
+        "<FromUserName>%s</FromUserName>"+
+        "<CreateTime>%d</CreateTime>"+
+        "<MsgType>text</MsgType>"+
+        "<Content><![CDATA[%s]]></Content>"+
+        "</xml>", tousername, fromusername, createtime+1, reply)
+
+        console.log(str)
 
 
 
