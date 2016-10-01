@@ -104,45 +104,52 @@ function receivedMessage(event) {
 module.exports = function(app, passport){
 	app.route('/weChatBot/webhook')
 	.post(function(req, res) {
-		var data = req.body;
+        console.log('===============message=============')
+        console.log(req.body)
 
-		  // Make sure this is a page subscription
-		  if (data.object == 'page') {
-		    // Iterate over each entry
-		    // There may be multiple if batched
-		    data.entry.forEach(function(pageEntry) {
-		      var pageID = pageEntry.id;
-		      var timeOfEvent = pageEntry.time;
-
-		      // Iterate over each messaging event
-		      pageEntry.messaging.forEach(function(messagingEvent) {
-		        if (messagingEvent.optin) {
-		          receivedAuthentication(messagingEvent);
-		        } else if (messagingEvent.message) {
-		          receivedMessage(messagingEvent);
-		        } else if (messagingEvent.delivery) {
-		          receivedDeliveryConfirmation(messagingEvent);
-		        } else if (messagingEvent.postback) {
-		          receivedPostback(messagingEvent);
-		        } else {
-		          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
-		        }
-		      });
-		     });
-		     res.sendStatus(200);
-  		}
+        res.json({
+            success: true,
+            message: 'Thanks for the message'
+        })
+		// var data = req.body;
+        //
+		//   // Make sure this is a page subscription
+		//   if (data.object == 'page') {
+		//     // Iterate over each entry
+		//     // There may be multiple if batched
+		//     data.entry.forEach(function(pageEntry) {
+		//       var pageID = pageEntry.id;
+		//       var timeOfEvent = pageEntry.time;
+        //
+		//       // Iterate over each messaging event
+		//       pageEntry.messaging.forEach(function(messagingEvent) {
+		//         if (messagingEvent.optin) {
+		//           receivedAuthentication(messagingEvent);
+		//         } else if (messagingEvent.message) {
+		//           receivedMessage(messagingEvent);
+		//         } else if (messagingEvent.delivery) {
+		//           receivedDeliveryConfirmation(messagingEvent);
+		//         } else if (messagingEvent.postback) {
+		//           receivedPostback(messagingEvent);
+		//         } else {
+		//           console.log("Webhook received unknown messagingEvent: ", messagingEvent);
+		//         }
+		//       });
+		//      });
+		//      res.sendStatus(200);
+  // 		}
 	})
     .get(function(req, res) {
         console.log('=== This is the wechat request ===')
     	console.log(req);
         console.log('=== This is the wechat request ===')
-		if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === config.weChat.token) {
-		    console.log("Validating webhook");
-		    res.status(200).send(req.query['hub.challenge']);
-		} else {
-		    console.error("Failed validation. Make sure the validation tokens match.");
-		    res.sendStatus(403);
-  		}
+		// if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === config.weChat.token) {
+		//     console.log("Validating webhook");
+		//     res.status(200).send(req.query['hub.challenge']);
+		// } else {
+		//     console.error("Failed validation. Make sure the validation tokens match.");
+		//     res.sendStatus(403);
+  // 		}
 	});
 
 
