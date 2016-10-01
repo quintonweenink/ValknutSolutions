@@ -105,18 +105,22 @@ module.exports = function(app, passport){
 	app.route('/weChatBot/webhook')
 	.post(function(req, res) {
         console.log('===============message=============')
-        tousername = req.body.xml.tousername[0]
-        fromusername = req.body.xml.fromusername[0]
-        msgtype = req.body.xml.msgtype[0]
-        content = req.body.xml.content[0]
-        createtime = parseInt(req.body.xml.createtime[0])
 
         console.log(req.body.xml)
 
-        res.json({
-            success: true,
-            message: 'Thanks for the message'
-        })
+        var tousername = req.body.xml.tousername[0]
+        var fromusername = req.body.xml.fromusername[0]
+        var msgtype = req.body.xml.msgtype[0]
+        var content = req.body.xml.content[0]
+        var createtime = parseInt(req.body.xml.createtime[0])
+
+
+        res.contentType("application/xml")
+        var reply = "Hi there";
+
+        var str = util.format("<xml><ToUserName>%s</ToUserName><FromUserName>%s</FromUserName><CreatTime>%d</CreateTime><MsgType>text</MsgType><Content><![CDATA[%s]]></Content></xml>", fromusername, tousername, createtime+1, reply)
+
+        res.send(str)
 		// var data = req.body;
         //
 		//   // Make sure this is a page subscription
