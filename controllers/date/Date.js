@@ -27,6 +27,12 @@ getDay : function getDay(dateString)
 	var birthDate = new Date(dateString);
 	var day = birthDate.getDay()
 	return days[day];
+},
+getYear : function Year(dateString)
+{
+	var birthDate = new Date(dateString);
+	var year = birthDate.getFullYear()
+	return year;
 }
 
 

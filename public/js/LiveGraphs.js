@@ -1,7 +1,7 @@
 InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast,$mdDialog)
 {
 	$scope.message = "";
-	$http.get("/api/graph/SignupsPerMonth/")
+	$http.get("/api/graph/SignupsPerMonth/line")
 	.then(function(response){
 		$scope.data_line = [ response.data.data ];
 		$scope.series_line = response.data.labels;
@@ -10,22 +10,21 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		$scope.datasetOverride_line = response.data.datasetOverride;
 	});
 
-	$http.get("/api/graph/SignupsPerDay/")
+	$http.get("/api/graph/SignupsPerDay/pie")
 	.then(function(response2){
 		$scope.data_day =  response2.data.data ;
 		$scope.labels_day = response2.data.labels;
 		$scope.options_day = response2.data.options;
 	});
 
-
 	var socket = io().connect();
 	socket.on('updateGraph', function() {
-		$http.get("/api/graph/SignupsPerMonth/")
+		$http.get("/api/graph/SignupsPerMonth/line")
 		.then(function(response){
 			updateChart(response);
 		});
 
-		$http.get("/api/graph/SignupsPerDay/")
+		$http.get("/api/graph/SignupsPerDay/pie")
 		.then(function(response2){
 			updateDayChart(response2);
 		});
