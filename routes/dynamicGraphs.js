@@ -211,4 +211,101 @@ module.exports =	function(app, passport){
 			res.json({ message: 'This route does not support delete requests'});
 		});
 
+
+		app.route('/api/graph/FromWhere/')
+		.get(function(req,res){
+			res.json("Please supply a chart type: eg. FromWhere/pie");
+		})
+		.put(function(req, res) {
+			res.json({ message: 'This route does not support put requests'	});
+		})
+		.post(function(req, res) {
+			res.json({ message: 'This route does not support post requests'	});
+		})
+		.delete(function(req, res) {
+			res.json({ message: 'This route does not support delete requests'});
+		});
+
+		app.route('/api/graph/FromWhere/:type')
+		.get(function(req, res) {
+			models.User.findAll().then(
+				function(users){
+					var integration = [];
+					var integrationCount = [];
+					for (var i = 0; i < users.length; i++)
+					{
+						var user = users[i];
+						var Status = user.from;
+						if(integration.indexOf(Status) == -1)
+						{
+							integration.push(Status);
+							integrationCount.push(1);
+						}
+						else
+						{
+							integrationCount[integration.indexOf(Status)]++;
+						}
+					}
+					var GraphObject = new Object;
+					GraphObject.labels = integration;
+					GraphObject.data = integrationCount;
+					if(req.params.type == "pie")
+					{
+						GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "From Which Integration"
+							},
+							legend: {
+								display: true,
+								labels: {
+									fontColor: 'rgb(255, 99, 132)'
+								}
+							}
+						};
+					}
+					else if(req.params.type == "bar")
+					{
+						GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "From Which Integration"
+							},
+							scales: {
+								yAxes: [{
+									display: true,
+									ticks: {
+										suggestedMin: 0,
+										stepSize: 1
+									}
+								}]
+							}
+						};
+					}
+					else
+					{
+						GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "From Which Integration"
+							}
+						}
+					}
+					res.json(GraphObject);
+				});
+			})
+			.put(function(req, res) {
+				res.json({ message: 'This route does not support put requests'});
+			})
+			.post(function(req, res) {
+				res.json({ message: 'This route does not support post requests'});
+			})
+			.delete(function(req, res) {
+				res.json({ message: 'This route does not support delete requests'});
+			});
+
+
 };

@@ -41,7 +41,7 @@ var User = sequelize.define('User', {
   from : {
     type : DataTypes.STRING,
     allowNull : true,
-    defaultValue : "Web"
+    defaultValue : "Website"
   }
 });
 return User;
