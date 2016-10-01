@@ -10,7 +10,17 @@ module.exports =	function(app, passport){
 	app.route('/api/graph/location')
 	.get(function(req,res){
 		res.json("Please supply a chart type: eg. /location/pie");
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
+
 	app.route('/api/graph/location/:type')
 	.get(function(req, res) {
 		models.User.findAll().then(function(users){
@@ -80,28 +90,33 @@ module.exports =	function(app, passport){
 			}
 			res.json(GraphObject);
 		});
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
-	// function getAge(dateString)
-	// {
-	// 	var today = new Date();
-	// 	var birthDate = new Date(dateString);
-	// 	var age = today.getFullYear() - birthDate.getFullYear();
-	// 	var m = today.getMonth() - birthDate.getMonth();
-	// 	if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate()))
-	// 	{
-	// 		age--;
-	// 	}
-	// 	return age;
-	// }
 
 	app.route('/api/graph/age')
 	.get(function(req,res){
 		res.json("Please supply a chart type: eg. /age/pie");
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
 	app.route('/api/graph/age/:type')
-	//User Post route
 	.get(function(req, res) {
 		models.User.findAll().then(function(users){
 			var ages = [];
@@ -170,11 +185,29 @@ module.exports =	function(app, passport){
 			}
 			res.json(GraphObject);
 		});
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
 	app.route('/api/graph/marital')
 	.get(function(req,res){
 		res.json("Please supply a chart type: eg. /marital/pie");
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
 	app.route('/api/graph/marital/:type')
@@ -247,11 +280,29 @@ module.exports =	function(app, passport){
 			}
 			res.json(GraphObject);
 		});
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
 	app.route('/api/graph/gender')
 	.get(function(req,res){
 		res.json("Please supply a chart type: eg. /gender/pie");
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
 	app.route('/api/graph/gender/:type')
@@ -324,105 +375,314 @@ module.exports =	function(app, passport){
 			}
 			res.json(GraphObject);
 		});
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
 
-// function getMonths(dateString)
-// {
-// 		var monthNames = ["January", "February", "March", "April", "May", "June",
-// 		"July", "August", "September", "October", "November", "December"
-// 	];
-// 	var birthDate = new Date(dateString);
-// 	var month = birthDate.getMonth()
-// 	return monthNames[month];
-// }
+	app.route('/api/graph/SignupsPerMonth/')
+	.get(function(req,res){
+		res.json("Please supply a chart type: eg. SignupsPerMonth/line");
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
+	});
 
-app.route('/api/graph/SignupsPerMonth/')
-//User Post route
-.get(function(req, res) {
-	models.User.findAll().then(function(users){
-		var months = ["January", "February", "March", "April", "May", "June",
-		"July", "August", "September", "October", "November", "December"
-	];
-	var monthCount = [];
-	for(var j=0 ;j < months.length;j++)
-	monthCount[j] = 0;
+	app.route('/api/graph/SignupsPerMonth/:type')
+	.get(function(req, res) {
+		models.User.findAll().then(
+			function(users){
+				var months = ["January", "February", "March", "April", "May", "June",
+				"July", "August", "September", "October", "November", "December"
+			];
+			var monthCount = [];
+			for(var j=0 ;j < months.length;j++)
+			monthCount[j] = 0;
 
-	for (var i = 0; i < users.length; i++)
-	{
-		var user = users[i];
-		var Status = DateController.getMonths(user.createdAt);
-		monthCount[months.indexOf(Status)]++;
-	}
+			for (var i = 0; i < users.length; i++)
+			{
+				var user = users[i];
+				var Status = DateController.getMonths(user.createdAt);
+				monthCount[months.indexOf(Status)]++;
+			}
 
-	var GraphObject = new Object;
-	GraphObject.labels = months;
-	GraphObject.data = monthCount;
-	GraphObject.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-1'}];
-	GraphObject.options =
-	{
-		title: {
-			display: true,
-			text:  "Signups per month"
-		},
-		scales:
-		{
-			yAxes:
-			[
+			var GraphObject = new Object;
+			GraphObject.labels = months;
+			GraphObject.data = monthCount;
+			GraphObject.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-1'}];
+			if(req.params.type == "pie")
+			{
+				GraphObject.options =
 				{
-					id: 'y-axis-1',
-					type: 'linear',
-					display: true,
-					position: 'left',
-					ticks: {
-						suggestedMin: 0,
-						stepSize: 1
+					title: {
+						display: true,
+						text:  "Signups per month"
+					},
+					legend: {
+						display: true,
+						labels: {
+							fontColor: 'rgb(255, 99, 132)'
+						}
+					}
+				};
+			}
+			else if(req.params.type == "line")
+			{
+				GraphObject.options =
+					{
+						title: {
+							display: true,
+							text:  "Signups per month"
+						},
+						scales:
+						{
+							yAxes:
+							[
+								{
+									id: 'y-axis-1',
+									type: 'linear',
+									display: true,
+									position: 'left',
+									ticks: {
+										suggestedMin: 0,
+										stepSize: 1
+									}
+								}
+							]
+						}
+					};
+			}
+			else
+			{
+				GraphObject.options =
+				{
+					title: {
+						display: true,
+						text:  "Signups per month"
 					}
 				}
-			]
-		}
-	};
-	res.json(GraphObject);
+			}
+			res.json(GraphObject);
+		});
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
 	});
-	});
+
 
 	app.route('/api/graph/SignupsPerDay/')
-	//User Post route
+	.get(function(req,res){
+		res.json("Please supply a chart type: eg. SignupsPerDay/pie");
+	})
+	.put(function(req, res) {
+		res.json({ message: 'This route does not support put requests'	});
+	})
+	.post(function(req, res) {
+		res.json({ message: 'This route does not support post requests'	});
+	})
+	.delete(function(req, res) {
+		res.json({ message: 'This route does not support delete requests'});
+	});
+
+
+	app.route('/api/graph/SignupsPerDay/:type')
 	.get(function(req, res) {
-		models.User.findAll().then(function(users){
-			var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
-			"Saturday"];
-		var dayCount = [];
-		for(var j=0 ;j < days.length;j++)
-		dayCount[j] = 0;
+		models.User.findAll().then(
+			function(users){
+				var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+				"Saturday"];
+				var dayCount = [];
+				for(var j=0 ;j < days.length;j++)
+				dayCount[j] = 0;
 
-		for (var i = 0; i < users.length; i++)
-		{
-			var user = users[i];
-			var Status = DateController.getDay(user.createdAt);
-			dayCount[days.indexOf(Status)]++;
-		}
-
-		var GraphObject = new Object;
-		GraphObject.labels = days;
-		GraphObject.data = dayCount;
-		GraphObject.options =
-		{
-			title: {
-				display: true,
-				text:  "Signups Per Day"
-			},
-			legend: {
-				display: true,
-				labels: {
-					fontColor: 'rgb(255, 99, 132)'
+				for (var i = 0; i < users.length; i++)
+				{
+					var user = users[i];
+					var Status = DateController.getDay(user.createdAt);
+					dayCount[days.indexOf(Status)]++;
 				}
-			}
+
+				var GraphObject = new Object;
+				GraphObject.labels = days;
+				GraphObject.data = dayCount;
+				if(req.params.type == "pie")
+				{
+					GraphObject.options =
+					{
+						title: {
+							display: true,
+							text:  "Signups Per Day"
+						},
+						legend: {
+							display: true,
+							labels: {
+								fontColor: 'rgb(255, 99, 132)'
+							}
+						}
+					};
+				}
+				else if(req.params.type == "bar")
+				{
+					GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "Signups Per Day"
+							},
+							scales:
+							{
+								yAxes:
+								[
+									{
+										id: 'y-axis-1',
+										type: 'linear',
+										display: true,
+										position: 'left',
+										ticks: {
+											suggestedMin: 0,
+											stepSize: 1
+										}
+									}
+								]
+							}
+						};
+				}
+				else
+				{
+					GraphObject.options =
+					{
+						title: {
+							display: true,
+							text:  "Signups Per Day"
+						}
+					}
+				}
+				res.json(GraphObject);
+			});
+		})
+		.put(function(req, res) {
+			res.json({ message: 'This route does not support put requests'});
+		})
+		.post(function(req, res) {
+			res.json({ message: 'This route does not support post requests'});
+		})
+		.delete(function(req, res) {
+			res.json({ message: 'This route does not support delete requests'});
+		});
+
+
+		app.route('/api/graph/SignupsPerYear/')
+		.get(function(req,res){
+			res.json("Please supply a chart type: eg. SignupsPerYear/line");
+		})
+		.put(function(req, res) {
+			res.json({ message: 'This route does not support put requests'	});
+		})
+		.post(function(req, res) {
+			res.json({ message: 'This route does not support post requests'	});
+		})
+		.delete(function(req, res) {
+			res.json({ message: 'This route does not support delete requests'});
+		});
+
+		app.route('/api/graph/SignupsPerYear/:type')
+		.get(function(req, res) {
+			models.User.findAll().then(
+				function(users){
+					var year = [];
+					var yearCount = [];
+					for (var i = 0; i < users.length; i++)
+					{
+						var user = users[i];
+						var Status = DateController.getYear(user.createdAt);
+						if(year.indexOf(Status) == -1)
+						{
+							year.push(Status);
+							yearCount.push(1);
+						}
+						else
+						{
+							yearCount[year.indexOf(Status)]++;
+						}
+					}
+					var GraphObject = new Object;
+					GraphObject.labels = year;
+					GraphObject.data = yearCount;
+					if(req.params.type == "pie")
+					{
+						GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "Signups Per Year"
+							},
+							legend: {
+								display: true,
+								labels: {
+									fontColor: 'rgb(255, 99, 132)'
+								}
+							}
+						};
+					}
+					else if(req.params.type == "bar")
+					{
+						GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "Signups Per Year"
+							},
+							scales: {
+								yAxes: [{
+									display: true,
+									ticks: {
+										suggestedMin: 0,
+										stepSize: 1
+									}
+								}]
+							}
+						};
+					}
+					else
+					{
+						GraphObject.options =
+						{
+							title: {
+								display: true,
+								text:  "Signups Per Year"
+							}
+						}
+					}
+					res.json(GraphObject);
+				});
+			})
+			.put(function(req, res) {
+				res.json({ message: 'This route does not support put requests'});
+			})
+			.post(function(req, res) {
+				res.json({ message: 'This route does not support post requests'});
+			})
+			.delete(function(req, res) {
+				res.json({ message: 'This route does not support delete requests'});
+			});
+
+
 		};
-		res.json(GraphObject);
-		});
-
-		});
-
-
-
-};
