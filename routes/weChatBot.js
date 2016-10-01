@@ -12,6 +12,8 @@ var activeUsers = {};//Hash table
 
 var util = require('util')
 
+const xmlMessage = require('../config/xmlMessage').message
+
 
 module.exports = function(app, passport){
 	app.route('/weChatBot/webhook')
@@ -21,23 +23,23 @@ module.exports = function(app, passport){
         console.log(req.body.xml)
 
         var tousername = req.body.xml.tousername[0]
-        var fromusername = req.body.xml.fromusername[0]
+        var senderID = req.body.xml.fromusername[0]
         var msgtype = req.body.xml.msgtype[0]
         var content = req.body.xml.content[0]
         var createtime = parseInt(req.body.xml.createtime[0])
 
 
         res.contentType("application/xml")
-        var reply = "Hi there from valknut solutions";
 
-        var str = util.format("<xml>"+
-        "<ToUserName>%s</ToUserName>"+
-        "<FromUserName>%s</FromUserName>"+
-        "<CreateTime>%d</CreateTime>"+
-        "<MsgType>text</MsgType>"+
-        "<Content><![CDATA[%s]]></Content>"+
-        "</xml>",
-        fromusername, tousername, createtime+1, reply)
+        activeUsers.senderID = fbMessengerController.addToUser(activeUsers.senderID, content)
+
+        if(activeUsers.senderID.email != ''){
+            userController.createUser(activeUsers.senderID)
+            delete activeUsers.senderID
+        }
+
+
+        let str = fbMessengerController.getXMLMessage(senderID, activeUsers.senderID)
 
         console.log(str)
 
