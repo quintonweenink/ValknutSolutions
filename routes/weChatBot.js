@@ -105,7 +105,13 @@ module.exports = function(app, passport){
 	app.route('/weChatBot/webhook')
 	.post(function(req, res) {
         console.log('===============message=============')
-        console.log(req)
+        tousername = req.body.xml.tousername[0]
+        fromusername = req.body.xml.fromusername[0]
+        msgtype = req.body.xml.msgtype[0]
+        content = req.body.xml.content[0]
+        createtime = parseInt(req.body.xml.createtime[0])
+
+        console.log(req.body.xml)
 
         res.json({
             success: true,
