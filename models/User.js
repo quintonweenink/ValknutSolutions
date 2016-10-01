@@ -32,6 +32,16 @@ var User = sequelize.define('User', {
   email : {
     type: DataTypes.STRING,
     allowNull : false
+  },
+  processed : {
+  type : DataTypes.BOOLEAN,
+  allowNull : true,
+  defaultValue : false
+  },
+  from : {
+  type : DataTypes.STRING,
+  allowNull : true,
+  defaultValue : "Web"
   }
 });
 return User;
