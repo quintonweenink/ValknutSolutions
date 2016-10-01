@@ -7,7 +7,11 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 	});
 
 	console.log($scope.message)
-	$scope.analyst;
+
+	$scope.analystLogin
+	$scope.analystSignup
+	$scope.adminLogin
+	$scope.adminSignup
 
 	$scope.postAnalystLogin = function()
 	{
@@ -16,8 +20,8 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 	    url: '/api/analyst/authenticate',
 	    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	    data:
-		'email='+$scope.analyst.email+
-		'&password='+$scope.analyst.password
+		'email='+$scope.analystLogin.email+
+		'&password='+$scope.analystLogin.password
 		}).success(function (res) {
 			$scope.message = res.message
 			if(res.success){
@@ -34,8 +38,8 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 	    url: '/api/analyst',
 	    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	    data:
-		'email='+$scope.analyst.email+
-		'&password='+$scope.analyst.password
+		'email='+$scope.analystSignup.email+
+		'&password='+$scope.analystSignup.password
 		}).success(function (res) {
 			$scope.message = res.message
 			if(res.success){
@@ -52,8 +56,8 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 	    url: '/api/admin',
 	    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	    data:
-		'email='+$scope.analyst.email+
-		'&password='+$scope.analyst.password
+		'email='+$scope.adminLogin.email+
+		'&password='+$scope.adminLogin.password
 		}).success(function (res) {
 			$scope.message = res.message
 			if(res.success){
@@ -70,8 +74,8 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 	    url: '/api/admin/authenticate',
 	    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	    data:
-		'email='+$scope.analyst.email+
-		'&password='+$scope.analyst.password
+		'email='+$scope.adminSignup.email+
+		'&password='+$scope.adminSignup.password
 		}).success(function (res) {
 			$scope.message = res.message
 			if(res.success){

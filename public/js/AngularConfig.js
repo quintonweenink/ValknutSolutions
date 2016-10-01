@@ -23,12 +23,6 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/login.html',
 		controller  : 'loginController'
 	})
-	//signup route
-	.when('/signup',
-	{
-		templateUrl : 'views/pages/signup.html',
-		controller  : 'signupController'
-	})
 	.when('/filter',
 	{
 		templateUrl : 'views/pages/filter.html',
