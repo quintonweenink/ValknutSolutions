@@ -143,7 +143,7 @@ module.exports = function(app, passport){
         console.log('=== This is the wechat request ===')
     	console.log(req.query);
         console.log('=== This is the wechat request ===')
-        res.json({req.query.echostr})
+        res = req.query.echostr
 		// if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === config.weChat.token) {
 		//     console.log("Validating webhook");
 		//     res.status(200).send(req.query['hub.challenge']);
