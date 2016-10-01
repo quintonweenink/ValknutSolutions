@@ -75,6 +75,7 @@ io.on('connection', function(socket) {
 
 exports.io = io;
 
+var weChatBot = require('./routes/weChatBot')(app, passport)
 var fbMessenger = require('./routes/fbMessenger')(app, passport);
 var users = require('./routes/users')(app, passport, io);
 var admins = require('./routes/admins')(app, passport);
