@@ -19,6 +19,17 @@ window.fbAsyncInit = function() {
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 //------- FB Javascript SDK end ------//
+//TODO: Get campaigns
+
+//TODO: Select campaigns
+
+//TODO: Get ad sets under selected campaign
+
+//TODO: Select ad set under campaign
+
+//TODO: Get ads under selected ad sets
+
+//TODO: Select ad
 
 function createLeadForm(userId, pageid)
 {
