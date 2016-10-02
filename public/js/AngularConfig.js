@@ -58,6 +58,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/termsOfService.html',
 		controller : 'TermsOfServiceController'
 	})
+	.when('/connect',
+	{
+		templateUrl : 'views/pages/connectPage.html',
+		controller : 'ConnectPageController'
+	})
   .otherwise(
   {
     redirectTo: '/'
