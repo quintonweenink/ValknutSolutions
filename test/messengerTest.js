@@ -250,4 +250,21 @@ describe('Facebook Messenger Test', function(){
                   //console.log(constructedMessage)
             });
       });
+      describe('validate()', function(){
+            var id = 'validateres'
+            it("Returns the default message if the user is null", function(){
+				var messageText = 'hi'
+
+				activeUsers[id] = emptyUser.clone(userJSON)
+				activeUsers[id].messageId++;
+
+                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
+                }
+
+
+            });
+      });
+
 });
