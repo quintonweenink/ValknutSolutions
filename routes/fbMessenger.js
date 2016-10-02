@@ -8,6 +8,8 @@ var userController = require("../controllers/db/UserController");
 
 var fbMessengerController = require("../controllers/fb/fbMessengerController")
 
+const messageList = require('../config/messageList')
+
 var activeUsers = {};//Hash table
 
 function receivedDeliveryConfirmation(event)
@@ -66,36 +68,23 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
-	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText);
+	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText)
+
+	//validate here
+	if(!messageList[activeUsers[senderID].messageId-1].validate(messageText)){
+		activeUsers[senderID].messageId--
+		activeUsers[senderID].email = ''
+	}
+
 	if(activeUsers[senderID].email != ''){
 		userController.createUser(activeUsers[senderID])
+		//This could be removed but it makes it easyier to test and demo
 		delete activeUsers[senderID]
 	}
-    // If we receive a text message, check to see if it matches any special
-    // keywords and send back the corresponding example. Otherwise, just echo
-    // the text we received.
-    switch (messageText) {
-      // case 'image':
-      //   sendImageMessage(senderID);
-      //   break;
+    let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
+	console.log('Trying to send this message back to facebook: '+ constructedMessage)
+	callSendAPI(constructedMessage)
 
-      // case 'button':
-      //   sendButtonMessage(senderID);
-      //   break;
-
-      // case 'generic':
-      //   sendGenericMessage(senderID);
-      //   break;
-
-      // case 'receipt':
-      //   sendReceiptMessage(senderID);
-      //   break;
-
-      default:
-        let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
-		console.log('Trying to send this message back to facebook: '+ constructedMessage)
-		callSendAPI(constructedMessage)
-    }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
   }
@@ -116,14 +105,8 @@ module.exports = function(app, passport){
 
 		      // Iterate over each messaging event
 		      pageEntry.messaging.forEach(function(messagingEvent) {
-		        if (messagingEvent.optin) {
-		          receivedAuthentication(messagingEvent);
-		        } else if (messagingEvent.message) {
+		        if (messagingEvent.message) {
 		          receivedMessage(messagingEvent);
-		        } else if (messagingEvent.delivery) {
-		          receivedDeliveryConfirmation(messagingEvent);
-		        } else if (messagingEvent.postback) {
-		          receivedPostback(messagingEvent);
 		        } else {
 		          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
 		        }
