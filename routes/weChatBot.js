@@ -8,7 +8,7 @@ var userController = require("../controllers/db/UserController");
 
 var fbMessengerController = require("../controllers/fb/fbMessengerController")
 
-var activeWeChatUsers = {};//Hash table
+var activeUsers = {};//Hash table
 
 var util = require('util')
 
@@ -24,7 +24,6 @@ module.exports = function(app, passport){
 
         var tousername = req.body.xml.tousername[0]
         var senderID = req.body.xml.fromusername[0]
-        var hashID = 'wechat'+senderID
         var msgtype = req.body.xml.msgtype[0]
         var content = req.body.xml.content[0]
         var createtime = parseInt(req.body.xml.createtime[0])
@@ -32,21 +31,22 @@ module.exports = function(app, passport){
 
         res.contentType("application/xml")
 
-        activeWeChatUsers.hashID = fbMessengerController.addToUser(activeWeChatUsers.hashID, content)
+        activeUsers.senderID = fbMessengerController.addToUser(activeUsers.senderID, content)
 
-        if(activeWeChatUsers.hashID.email != ''){
-            userController.createUser(activeWeChatUsers.hashID)
-            delete activeWeChatUsers.hashID
+        if(activeUsers.senderID.email != ''){
+            userController.createUser(activeUsers.senderID)
+            delete activeUsers.senderID
         }
 
 
-        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeWeChatUsers.hashID)
+        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers.senderID)
 
         console.log(str)
 
         res.send(str)
 	})
     .get(function(req, res) {
+    	console.log(req.query)
         var echostr = req.param('echostr', null)
         res.send(echostr)
 	});
