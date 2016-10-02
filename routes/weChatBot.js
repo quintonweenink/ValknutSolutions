@@ -28,10 +28,13 @@ module.exports = function(app, passport){
         var content = req.body.xml.content[0]
         var createtime = parseInt(req.body.xml.createtime[0])
 
-
-        res.contentType("application/xml")
-
         activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
+
+		//validate here, not the best way but i need to check the messageID
+		if(!messageList[activeUsers[senderID].messageId-1].validate(messageText)){
+			activeUsers[senderID].messageId--
+			activeUsers[senderID].email = ''
+		}
 
         if(activeUsers[senderID].email != ''){
             userController.createUser(activeUsers[senderID])
@@ -42,6 +45,8 @@ module.exports = function(app, passport){
         let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
 
         console.log(str)
+
+		res.contentType("application/xml")
 
         res.send(str)
 	})
