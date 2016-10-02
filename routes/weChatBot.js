@@ -31,7 +31,7 @@ module.exports = function(app, passport){
 
         res.contentType("application/xml")
 
-        activeUsers[senderID] = fbMessengerController.addWeChatUser(activeUsers[senderID], content)
+        activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
 
         if(activeUsers[senderID].email != ''){
             userController.createUser(activeUsers[senderID])
