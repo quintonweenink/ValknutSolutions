@@ -3,7 +3,7 @@ var assert = require('assert');
 
 var fbMessengerController = require('../controllers/fb/fbMessengerController');
 const messageList = require('../config/messageList')
-const emptyUser = require('../config/objects/user')
+const emptyUser = require('../config/objects/user.json')
 
 
 describe('Facebook Messenger Test', function(){
