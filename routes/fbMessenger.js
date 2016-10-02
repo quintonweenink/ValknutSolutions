@@ -66,10 +66,10 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
-	activeUsers.senderID = fbMessengerController.addToUser(activeUsers.senderID, messageText);
-	if(activeUsers.senderID.email != ''){
-		userController.createUser(activeUsers.senderID)
-		delete activeUsers.senderID
+	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText);
+	if(activeUsers[senderID].email != ''){
+		userController.createUser(activeUsers[senderID])
+		delete activeUsers[senderID]
 	}
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
@@ -92,7 +92,7 @@ function receivedMessage(event) {
       //   break;
 
       default:
-        let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID);
+        let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
 		console.log('Trying to send this message back to facebook: '+ constructedMessage)
 		callSendAPI(constructedMessage)
     }

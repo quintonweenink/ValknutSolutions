@@ -31,15 +31,15 @@ module.exports = function(app, passport){
 
         res.contentType("application/xml")
 
-        activeUsers.senderID = fbMessengerController.addToUser(activeUsers.senderID, content)
+        activeUsers[senderID] = fbMessengerController.addWeChatUser(activeUsers[senderID], content)
 
-        if(activeUsers.senderID.email != ''){
-            userController.createUser(activeUsers.senderID)
-            delete activeUsers.senderID
+        if(activeUsers[senderID].email != ''){
+            userController.createUser(activeUsers[senderID])
+            delete activeUsers[senderID]
         }
 
 
-        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers.senderID)
+        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
 
         console.log(str)
 
