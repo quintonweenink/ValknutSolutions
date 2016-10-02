@@ -250,30 +250,4 @@ describe('Facebook Messenger Test', function(){
                   //console.log(constructedMessage)
             });
       });
-      describe('validate()', function(){
-            var id = 'validateres'
-            it("Test of logic not really a unit test", function(){
-				var messageText = 'hi'
-
-				activeUsers[id] = emptyUser.clone(userJSON)
-				activeUsers[id].messageId++;
-
-                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
-					var error = {success: false, message: 'Should not go in here'}
-                    throw error
-                }
-            });
-			it("isName test with failing name", function(){
-				var messageText = 'hi'
-
-				activeUsers[id] = emptyUser.clone(userJSON)
-				activeUsers[id].messageId++;
-
-                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
-					var error = {success: false, message: 'Should not go in here'}
-                    throw error
-                }
-            });
-      });
-
 });

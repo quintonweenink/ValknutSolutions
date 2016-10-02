@@ -85,6 +85,23 @@ function receivedMessage(event) {
 	console.log('Trying to send this message back to facebook: '+ constructedMessage)
 	callSendAPI(constructedMessage)
 
+      // case 'button':
+      //   sendButtonMessage(senderID);
+      //   break;
+
+      // case 'generic':
+      //   sendGenericMessage(senderID);
+      //   break;
+
+      // case 'receipt':
+      //   sendReceiptMessage(senderID);
+      //   break;
+
+      default:
+        let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
+		console.log('Trying to send this message back to facebook: '+ constructedMessage)
+		callSendAPI(constructedMessage)
+    }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
   }
@@ -107,6 +124,10 @@ module.exports = function(app, passport){
 		      pageEntry.messaging.forEach(function(messagingEvent) {
 		        if (messagingEvent.message) {
 		          receivedMessage(messagingEvent);
+		        } else if (messagingEvent.delivery) {
+		          receivedDeliveryConfirmation(messagingEvent);
+		        } else if (messagingEvent.postback) {
+		          receivedPostback(messagingEvent);
 		        } else {
 		          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
 		        }

@@ -15,7 +15,6 @@ module.exports = {
             return true
         }
     },
-<<<<<<< 2da2d4c299e655eda25c5380136ea90c621ef1f5
     1:
     {
         message:'Please reply with your Last name:',
@@ -72,13 +71,3 @@ module.exports = {
             return true
         }
     }
-=======
-    1:'Please reply with your Last name:',
-    2:'Please reply with your Phone number:',
-    3:'Please reply with your Marital status:',
-    4:'Please reply with your Date of birth:',
-    5:'Please reply with your Gender:',
-    6:'Please reply with your City:',
-    7:'Please reply with your Email:'
->>>>>>> new file to git ignore
-}
