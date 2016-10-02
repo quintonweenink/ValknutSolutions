@@ -70,7 +70,7 @@ function receivedMessage(event) {
 
 	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText)
 
-	//validate here
+	//validate here, not the best way but i need to check the messageID
 	if(!messageList[activeUsers[senderID].messageId-1].validate(messageText)){
 		activeUsers[senderID].messageId--
 		activeUsers[senderID].email = ''

@@ -258,8 +258,9 @@ describe('Facebook Messenger Test', function(){
 				activeUsers[id] = emptyUser.clone(userJSON)
 				activeUsers[id].messageId++;
 
-                if(messageList[activeUsers[id].messageId - 1].validate(messageText)){
-                       console.log('passed')
+                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
                 }
 
 
