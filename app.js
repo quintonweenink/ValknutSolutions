@@ -81,6 +81,7 @@ var admins = require('./routes/admins')(app, passport);
 var analysts = require('./routes/analysts')(app, passport);
 var routes = require('./routes/routes')(app, passport);
 var graphRoute= require('./routes/graph')(app, passport);
+var liveGraphRoute = require('./routes/dynamicGraphs')(app, passport);
 var angular = require('./routes/angular')(app, passport);
 
 
