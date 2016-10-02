@@ -24,6 +24,7 @@ module.exports = function(app, passport){
 
         var tousername = req.body.xml.tousername[0]
         var senderID = req.body.xml.fromusername[0]
+        var hashID = 'wechat'+senderID
         var msgtype = req.body.xml.msgtype[0]
         var content = req.body.xml.content[0]
         var createtime = parseInt(req.body.xml.createtime[0])
@@ -31,15 +32,15 @@ module.exports = function(app, passport){
 
         res.contentType("application/xml")
 
-        activeWeChatUsers.senderID = fbMessengerController.addToUser(activeWeChatUsers.senderID, content)
+        activeWeChatUsers.hashID = fbMessengerController.addToUser(activeWeChatUsers.hashID, content)
 
-        if(activeWeChatUsers.senderID.email != ''){
-            userController.createUser(activeWeChatUsers.senderID)
-            delete activeWeChatUsers.senderID
+        if(activeWeChatUsers.hashID.email != ''){
+            userController.createUser(activeWeChatUsers.hashID)
+            delete activeWeChatUsers.hashID
         }
 
 
-        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeWeChatUsers.senderID)
+        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeWeChatUsers.hashID)
 
         console.log(str)
 
