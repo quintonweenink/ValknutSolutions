@@ -46,7 +46,6 @@ module.exports = function(app, passport){
         res.send(str)
 	})
     .get(function(req, res) {
-    	console.log(req.query)
         var echostr = req.param('echostr', null)
         res.send(echostr)
 	});
