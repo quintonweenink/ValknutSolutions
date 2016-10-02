@@ -59,7 +59,7 @@ getMessage : function getMessage(recipientId, user) {
 	      id: recipientId
 	    },
 	    message: {
-	      text: messageList[messageNumber]
+	      text: messageList[messageNumber].message
 	    }
   	};
 
