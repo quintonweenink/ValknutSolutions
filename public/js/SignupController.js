@@ -1,3 +1,3 @@
 InsuranceProfiling.controller('signupController', function($scope) {
-	$scope.message = '';
+	$scope.message = 'Signup controller';
 });

@@ -54,7 +54,7 @@ function termsOfService(page_id)
     },
     function(response)
     {
-      consol.log(response);
+      console.log(response);
     }
   );
 }
@@ -134,8 +134,9 @@ function getPageImage(img, page_id)
          var a = $('<a></a>');
 
          a.herf = '#';
-         //a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name, userId));
-         a.on('click', createLeadForm.bind(this, res.authResponse.userID, page.id));
+         a.on('click', subscribeApp.bind(this, page.id, page.access_token, page.name, userId));
+         //a.on('click', createLeadForm.bind(this, res.authResponse.userID, page.id));
+         //a.on('click', getCampaigns.bind(this, res.authResponse.userID));
          a.text(page.name);
 
          div.append(img);

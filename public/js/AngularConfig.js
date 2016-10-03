@@ -58,6 +58,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/termsOfService.html',
 		controller : 'TermsOfServiceController'
 	})
+	.when('/signupLeadPage',
+	{
+		templateUrl : 'views/pages/signup.html',
+		controller : 'facebook'
+	})
 	.when('/connect',
 	{
 		templateUrl : 'views/pages/connectPage.html',
