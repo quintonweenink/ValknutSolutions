@@ -20,14 +20,14 @@ module.exports = function(app, passport,io){
 				//This should be removed before release
 				/**/
 				var newUser = {
-					first_name : 'Kevin',
-					last_name : 'Heritage',
-					phone_number : '+27767405640',
-					marital_status : 'single',
-					date_of_birth : '1994-06-06 00:00:00+02',
-					gender : 'male',
-					city : 'Pretoria',
-					email : 'kheritage222@gmail.com'
+					first_name : '',
+					last_name : '',
+					phone_number : '',
+					marital_status : '',
+					date_of_birth : '',
+					gender : '',
+					city : '',
+					email : ''
 				};
 				/**/
 
