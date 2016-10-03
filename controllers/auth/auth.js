@@ -13,7 +13,7 @@ module.exports = {
         var token = req.body.token || req.query.token || req.headers['x-access-token'];
         if(!token)
             token = 'no token'
-        console.log('Token: ' + token)
+        //console.log('Token: ' + token)
         // decode token
         if (token != 'no token') {
             // verifies secret and checks exp

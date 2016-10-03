@@ -17,6 +17,13 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		$scope.options_day = response2.data.options;
 	});
 
+	$http.get("/api/graph/FromWhere/bar")
+	.then(function(response3){
+		$scope.data_from = response3.data.data;
+		$scope.labels_from = response3.data.labels;
+		$scope.options_from = response3.data.options;
+	});
+
 	var socket = io().connect();
 	socket.on('updateGraph', function() {
 		$http.get("/api/graph/SignupsPerMonth/line")
@@ -29,12 +36,20 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 			updateDayChart(response2);
 		});
 
+		$http.get("/api/graph/FromWhere/bar")
+		.then(function(response3){
+			updateFromChart(response3);
+		});
+
 		$mdToast.show(
 			$mdToast.simple()
 			.textContent('New User added!')
 			.position('bottom right')
 			.hideDelay(2000)
 		);
+
+		$scope.$apply;
+		$scope.$broadcast("$reload", {});
 	});
 
 	$scope.onClickSlice = function (points, evt) {
@@ -61,14 +76,27 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 				);
 			};
 
+			$scope.onClick_from = function (points, evt) {
+				$mdDialog.show(
+					$mdDialog.alert()
+					.parent(angular.element(document.body))
+					.clickOutsideToClose(true)
+					.title($scope.options_from.title.text)
+					.textContent($scope.labels_from[points[0]._index]
+						+' : '+ $scope.data_from[points[0]._index])
+						.ok('Close')
+					);
+				};
+
+
 			function updateChart(response)
 			{
 				//console.log("Updating Chart ");
 				$scope.data_line = [ response.data.data ];
 				$scope.series_line = response.data.labels;
 				$scope.labels_line = response.data.labels;
-				$scope.$apply;
-				$scope.$broadcast("$reload", {});
+				// $scope.$apply;
+				// $scope.$broadcast("$reload", {});
 			}
 
 			function updateDayChart(response2)
@@ -77,9 +105,15 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 				$scope.data_day =  response2.data.data ;
 				$scope.labels_day = response2.data.labels;
 				$scope.options_day = response2.data.options;
-				$scope.$apply;
-				$scope.$broadcast("$reload", {});
+				// $scope.$apply;
+				// $scope.$broadcast("$reload", {});
 			}
 
+			function updateFromChart(response3)
+			{
+				$scope.data_from = response3.data.data;
+				$scope.labels_from = response3.data.labels;
+				$scope.options_from = response3.data.options;
+			};
 
 		});

@@ -1,13 +1,17 @@
 "use strict"
 const messageList = require('../../config/messageList')
 const emptyUser = require('../../config/objects/user')
+const userJSON = JSON.parse(JSON.stringify(emptyUser))
+const xmlMessage = require('../../config/xmlMessage').messageFormat
+
+var util = require('util')
 
 module.exports = {
 addToUser : function addToUser(user, messageText)
 {
 	if(user === undefined || user === undefined){
 		//Make an empty user
-	  user = emptyUser
+	  user = emptyUser.clone(userJSON)
 	}
 	else
 	{
@@ -60,7 +64,18 @@ getMessage : function getMessage(recipientId, user) {
   	};
 
   return messageData;
-}
+},
+getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, user) {
 
+	var messageNumber;
+	if(user === undefined)
+		messageNumber = 8;
+	else {
+		messageNumber = user.messageId;
+	}
+	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber])
+
+  return str;
+}
 
 };

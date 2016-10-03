@@ -63,6 +63,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/signup.html',
 		controller : 'facebook'
 	})
+	.when('/connect',
+	{
+		templateUrl : 'views/pages/connectPage.html',
+		controller : 'ConnectPageController'
+	})
   .otherwise(
   {
     redirectTo: '/'
