@@ -12,7 +12,7 @@ var activeUsers = {};//Hash table
 
 var util = require('util')
 
-const xmlMessage = require('../config/xmlMessage').message
+const messageList = require('../config/messageList')
 
 
 module.exports = function(app, passport){
