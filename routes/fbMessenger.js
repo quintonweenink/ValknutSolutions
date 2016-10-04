@@ -81,31 +81,11 @@ function receivedMessage(event) {
 		//This could be removed but it makes it easyier to test and demo
 		delete activeUsers[senderID]
 	}
-    // If we receive a text message, check to see if it matches any special
-    // keywords and send back the corresponding example. Otherwise, just echo
-    // the text we received.
-    switch (messageText) {
-      // case 'image':
-      //   sendImageMessage(senderID);
-      //   break;
 
-      // case 'button':
-      //   sendButtonMessage(senderID);
-      //   break;
+    let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
+	console.log('Trying to send this message back to facebook: '+ constructedMessage)
+	callSendAPI(constructedMessage)
 
-      // case 'generic':
-      //   sendGenericMessage(senderID);
-      //   break;
-
-      // case 'receipt':
-      //   sendReceiptMessage(senderID);
-      //   break;
-
-      default:
-        let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
-		console.log('Trying to send this message back to facebook: '+ constructedMessage)
-		callSendAPI(constructedMessage)
-    }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
   }
