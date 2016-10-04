@@ -10,6 +10,9 @@ var util = require('util');
 var fs = require('fs');
 var fbControllers = require("../controllers/fb/fbController.js");
 
+const emptyUser = require('../config/objects/user')
+const userJSON = JSON.parse(JSON.stringify(emptyUser))
+
 const authenticate = require('../controllers/auth/auth').authenticate
 
 module.exports = function(app, passport,io){
@@ -17,21 +20,8 @@ module.exports = function(app, passport,io){
 		//User Post route
 	    .post(function(req, res) {
 
-				//This should be removed before release
-				/**/
-				var newUser = {
-					first_name : '',
-					last_name : '',
-					phone_number : '',
-					marital_status : '',
-					date_of_birth : '',
-					gender : '',
-					city : '',
-					email : ''
-				};
-				/**/
-
-				//Auto insert data according to passed data
+				var newUser = emptyUser.clone(userJSON)
+				
 				if(req.body.first_name)
 				{
 					newUser.first_name = req.body.first_name;
