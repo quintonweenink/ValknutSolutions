@@ -9,7 +9,6 @@ const config = require('../../config/auth')
 var validator = require('validator')
 
 module.exports = {
-<<<<<<< 2da2d4c299e655eda25c5380136ea90c621ef1f5
 	isName : function(res){
 		if(!validator.isEmpty(res))
 			if(validator.isAlpha(res))
@@ -44,13 +43,4 @@ module.exports = {
 				return true
 		return false
     }
-=======
-
-    validate : function(user){
-        for (var attr in obj) {
-            if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-        }
-    }
-
->>>>>>> new file to git ignore
 }

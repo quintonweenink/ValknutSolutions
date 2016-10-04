@@ -81,9 +81,13 @@ function receivedMessage(event) {
 		//This could be removed but it makes it easyier to test and demo
 		delete activeUsers[senderID]
 	}
-    let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
-	console.log('Trying to send this message back to facebook: '+ constructedMessage)
-	callSendAPI(constructedMessage)
+    // If we receive a text message, check to see if it matches any special
+    // keywords and send back the corresponding example. Otherwise, just echo
+    // the text we received.
+    switch (messageText) {
+      // case 'image':
+      //   sendImageMessage(senderID);
+      //   break;
 
       // case 'button':
       //   sendButtonMessage(senderID);
@@ -122,7 +126,9 @@ module.exports = function(app, passport){
 
 		      // Iterate over each messaging event
 		      pageEntry.messaging.forEach(function(messagingEvent) {
-		        if (messagingEvent.message) {
+		        if (messagingEvent.optin) {
+		          receivedAuthentication(messagingEvent);
+		        } else if (messagingEvent.message) {
 		          receivedMessage(messagingEvent);
 		        } else if (messagingEvent.delivery) {
 		          receivedDeliveryConfirmation(messagingEvent);
