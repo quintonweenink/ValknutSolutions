@@ -6,7 +6,7 @@ var config = require('../config/auth');
 var models = require("../models");
 var userController = require("../controllers/db/UserController");
 
-var fbMessengerController = require("../controllers/fb/fbMessengerController")
+var fbMessengerController = require("../controllers/fb/messengerController")
 
 const messageList = require('../config/messageList')
 

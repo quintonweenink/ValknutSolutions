@@ -1,7 +1,7 @@
 "use strict"
 var assert = require('assert');
 
-var fbMessengerController = require('../controllers/fb/fbMessengerController');
+var fbMessengerController = require('../controllers/fb/messengerController');
 const messageList = require('../config/messageList')
 const emptyUser = require('../config/objects/user')
 const userJSON = JSON.parse(JSON.stringify(emptyUser))

@@ -6,7 +6,7 @@ var config = require('../config/auth');
 var models = require("../models");
 var userController = require("../controllers/db/UserController");
 
-var fbMessengerController = require("../controllers/fb/fbMessengerController")
+var fbMessengerController = require("../controllers/fb/messengerController")
 
 var activeUsers = {};//Hash table
 
@@ -32,10 +32,10 @@ module.exports = function(app, passport){
 
 		//validate here, not the best way but i need to check the messageID
 		if(activeUsers[senderID].messageId != 0)
-		if(!messageList[activeUsers[senderID].messageId-1].validate(content)){
-			activeUsers[senderID].messageId--
-			activeUsers[senderID].email = ''
-		}
+			if(!messageList[activeUsers[senderID].messageId-1].validate(content)){
+				activeUsers[senderID].messageId--
+				activeUsers[senderID].email = ''
+			}
 
         if(activeUsers[senderID].email != ''){
             userController.createUser(activeUsers[senderID])
