@@ -1,3 +1,5 @@
+var validation = require('../controllers/validation/validation')
+
 module.exports = {
     8:
     {
@@ -12,7 +14,7 @@ module.exports = {
         message:'Please reply with your Name:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isName()
         }
     },
     1:
@@ -20,7 +22,7 @@ module.exports = {
         message:'Please reply with your Last name:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isName()
         }
     },
     2:
@@ -28,7 +30,7 @@ module.exports = {
         message:'Please reply with your Phone number:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isPhoneNumber()
         }
     },
     3:
@@ -36,7 +38,7 @@ module.exports = {
         message:'Please reply with your Marital status:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isMarital()
         }
     },
     4:
@@ -44,7 +46,7 @@ module.exports = {
         message:'Please reply with your Date of birth:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isDate()
         }
     },
     5:
@@ -52,7 +54,7 @@ module.exports = {
         message:'Please reply with your Gender:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isGender()
         }
     },
     6:
@@ -60,7 +62,7 @@ module.exports = {
         message:'Please reply with your City:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isName()
         }
     },
     7:
@@ -68,6 +70,6 @@ module.exports = {
         message:'Please reply with your Email:',
         validate: function(res){
             //validate is a string (no numbers and symbols*)
-            return true
+            return validation.isEmail()
         }
     }
