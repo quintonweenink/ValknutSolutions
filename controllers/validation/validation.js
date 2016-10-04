@@ -37,7 +37,7 @@ module.exports = {
 				return true
 		return false
 	},
-    isEmail : function(res){
+	isEmail : function(res){
 		if(!validator.isEmpty(res))
 			if(validator.isEmail(res))
 				return true
