@@ -16,9 +16,9 @@ InsuranceProfiling.controller('LeadController', function($scope, $http) {
 		'&gender='+$scope.user.gender+
 		'&city='+$scope.user.city+
 		'&email='+$scope.user.email
-		}).success(function () {
-			window.location = '/';
-		});
+		}).then(function(res){
+			    $scope.message = res.data.message
+		})
 	}
 
 })/*.config(function($mdThemingProvider) {

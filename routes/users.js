@@ -15,13 +15,16 @@ const userJSON = JSON.parse(JSON.stringify(emptyUser))
 
 const authenticate = require('../controllers/auth/auth').authenticate
 
+const objectValidate = require('../controllers/validation/fullValidation').objectValidate
+
+
 module.exports = function(app, passport,io){
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
 
 				var newUser = emptyUser.clone(userJSON)
-				
+
 				if(req.body.first_name)
 				{
 					newUser.first_name = req.body.first_name;
@@ -32,6 +35,15 @@ module.exports = function(app, passport,io){
 					newUser.gender = req.body.gender;
 					newUser.city = req.body.city;
 					newUser.email = req.body.email;
+				}
+
+				let resObj = objectValidate(newUser)
+				console.log(resObj)
+
+				if(!resObj.success)
+				{
+					res.send(resObj);
+					return resObj
 				}
 
 				userController.createUser(newUser)

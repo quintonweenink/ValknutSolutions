@@ -6,6 +6,8 @@ const messageList = require('../config/messageList')
 const emptyUser = require('../config/objects/user')
 const userJSON = JSON.parse(JSON.stringify(emptyUser))
 
+const objectValidate = require('../controllers/validation/fullValidation').objectValidate
+
 
 describe('Validation Testing', function(){
     var activeUsers = {}
@@ -188,5 +190,34 @@ describe('Validation Testing', function(){
 				}
             });
       });
+	  describe('objectValidate()', function(){
+		  var passingUser = emptyUser.clone(userJSON)
+
+            it("Validate passing user", function(){
+
+			  passingUser.first_name = 'Quinton'
+			  passingUser.last_name = 'Weenink'
+			  passingUser.phone_number = '0718596641'
+			  passingUser.marital_status = 'married'
+			  passingUser.date_of_birth = '2-2-1994'
+			  passingUser.gender = 'female'
+			  passingUser.city = 'PE'
+			  passingUser.email = 'quinton@gmail.com'
+
+
+                if(!objectValidate(passingUser).success){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
+                }
+            });
+			it("Test of logic not really a unit test", function(){
+				passingUser.email = '420blazzzz'
+
+				if(objectValidate(passingUser).success){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
+                }
+            });
+		});
 
 });
