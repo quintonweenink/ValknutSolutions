@@ -26,8 +26,6 @@ module.exports = function(app, passport,io){
 
 				var newUser = emptyUser.clone(userJSON)
 
-				console.log(req.body)
-
 				if(req.body.first_name)
 				{
 					newUser.first_name = req.body.first_name;
