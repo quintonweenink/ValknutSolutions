@@ -35,10 +35,10 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			\includegraphics[width=10cm]{images/marketlead_3.png}  \\
 			[0.5cm]
 			\huge{
-			Architectural Requirements, Initial Architecture Design and Non-Functional Requirements\\
+			Architectural Requirements, Architecture Design and Non-Functional Requirements\\
 			}
 
 			\line(1,0){300}\\
@@ -48,17 +48,17 @@
 			\line(1,0){300}\\
 			\LARGE{Team: Valknut Solutions}\\
 			[1.0cm]
+			\large{Version: 1.4}\\
 			\large
 			{
 			\begin{itemize}
 				\item 13054903 - Charl Jansen van Vuuren
-				\item 10297902 - Bernhard Schuld
 				\item 13044924 - Kevin Heritage
 				\item 13176545 - Quinton Weenink\\
 			\end{itemize}
 			}
 			\textsc{\large}\\
-		[3.0cm]
+		[1.0cm]
 		\textsc{\large  Department of Computer Science}\\
 		[0.5cm]
 		\textsc{\large \today}\\
@@ -79,25 +79,29 @@
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Created}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Grammar errors, Introduction, Scope, Vision, Access channel, Quality requirements, Integration Requirements (API, Protocols, API Quality requirements), Architectural tactics(Security) and Architectural pattern changes}
   		\vhEntry{1.2}{07.09.2016}{CJvV,KH,QW}{Updated introduction, scope, Access channel requirements, Integration quality requirements, architectural Tactics, Architectural pattern}
+  		\vhEntry{1.3}{05.10.2016}{CJvV,KH,QW}{Updated front-page with logo, updated introduction, Vision, Scope, Access channel requirements, Quality requirements, Tactics, Overall flow of the document}
 	\end{versionhistory}
 
 \pagebreak
 
 \section{Introduction}
- Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project aims to eliminate the need for vast amounts of data gathering by utilising a user's social media information, based on advertisement forms and the integration of a Facebook messenger bot.
+ Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project aims to eliminate the need for vast amounts of data gathering by utilising a user's social media information, based on advertisement forms and the integration of a Facebook and Wechat messenger bot.\\ This includes the managing and processing of these leads from the marketing and analysis viewpoints.
 
 \section{Scope of system}
 The project as it is currently specified is an application that will allow insurance companies the ability to get data from lead data provided via lead advertisements on Facebook.
-A user would fill in a Facebook advertisement to purchase short term insurance based on Facebook's advertisement analytics. \\
-A further access point is available by means of a personalized Facebook messenger bot.\\ \\ This data will be used to charge the users for the insurance that they have signed up for while also providing the application with some basic data that can later be used to analyse the users and the data they provided. \\
+A user fills in a Facebook advertisement to purchase short term insurance based on Facebook's advertisement audience algorithm. \\
+Further access points are available by means of a personalized Facebook messenger bot and Wechat messenger integration.\\ The use of messenger bots allow for a more personalized look and feel, as the user can supply information by means of talking to the bot. \\ \\
+This data will be used to charge the users for the insurance that they have signed up for while also providing the application with some basic data that can later be used to analyse the users and the data they provided. \\
 An analyst would be able to log into our system and generate risk statistics for a certain advertisement based on certain criteria, this information gives the insurance company the ability to charge and adapt their sale and costs based on popular advertisements.\\ \\
 This information will be available based on API calls to the database or through a Web front-end for analysts.\\
 A live dashboard for marketing follow ups will allow marketers the ability to see unprocessed leads and live graphs.
 
 
 \section{Vision}
-As the project is currently specified the ambition is to allow the analyst the ability to get the best indication of the risk associated with each user.\\
-The primary focus of this project is to generate risk statistics based on social media advertisements.
+We seek to implement a real time marketing and lead gathering application with multiple integration points with social media and other formats.  \\
+A business can manage and respond to leads and analyze their current customers and audience. \\ 
+We expose and link companies to their future customers in an easy and pluggable manner.
+
 \pagebreak
 
 \section{Architectural Requirements}
@@ -105,6 +109,7 @@ The primary focus of this project is to generate risk statistics based on social
 \subsubsection{User:}
 	\begin{enumerate}
 		\item A user will fill in an advertisement form on Facebook, or chat with a messenger bot to supply the information specified and submit this data.
+		\item This data can also be filled in via the website form.
 		\item The necessary data will be gathered and saved in the database.
 		\item The system will analyze the data and send the user a response via email if they qualified for the insurance.
 		\item A sales person will contact the specified user with further instructions.
@@ -119,7 +124,7 @@ The primary focus of this project is to generate risk statistics based on social
 \subsubsection{Marketer:}
 	\begin{enumerate}
 		\item A marketer will supply the necessary  authorization to access the dashboard.
-		\item A live graph will be presented to the marketer to see new leads
+		\item A number of live graphs will be presented to the marketer to see new leads and user signups.
 		\item The marketer will be able to see a list of unprocessed leads to follow up on
 	\end{enumerate}	
 
@@ -130,6 +135,7 @@ The primary focus of this project is to generate risk statistics based on social
 		\item The website will be accessible via the majority of operating systems if such an operating system has access to a supported web-browser.
 		\item Facebook advertisement integration will be accessible via the normal Facebook access channels.
 		\item Facebook messenger integration will be accessible via the Messenger application.
+		\item Wechat integration will be available via the Wechat messenger platform.
 	\end{itemize}
 
 
@@ -163,7 +169,7 @@ The primary focus of this project is to generate risk statistics based on social
 			\item The ability to integrate with other social media platforms should be considered and modularised accordingly, to ensure seamless future integration.
 			\item The ability to change the risk analysis algorithm as needed should be considered.
 			\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
-			\item Integration with Facebook's advertisements API forms a major part of this release.
+			\item Integration with Facebook's advertisements API, Wechat messing API and  Facebook's messenger API form major parts of this release.
 			\item Tactics : Section \ref{subsec:accesib}
 		\end{itemize}
 
@@ -180,6 +186,7 @@ The primary focus of this project is to generate risk statistics based on social
 		\begin{itemize}
 			\item All actions performed in the system should be traceable to the user that performed them.
 			\item The user's IP  will be logged as to have a form of accountability in the persistence of the data.
+			\item Tactics: Section \ref{subsec:auditability}
 		\end{itemize}
 
 		\subsubsection{Cost}
@@ -197,6 +204,7 @@ The primary focus of this project is to generate risk statistics based on social
 			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
 			\item Further integration with the Facebook ad system will increase usability, as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 			\item The Facebook messenger integration allows a more fulfilling user experience as it eliminates the normal form structure of capturing data.
+			\item Tactics : Section \ref{subsec:usability}
 		\end{itemize}
 
 		\subsubsection{Flexibility}
@@ -226,8 +234,10 @@ The primary focus of this project is to generate risk statistics based on social
 			\item An alternative is to use Curl based calls to interact with these APIs.
 			\item The method of interacting with the API will be to parse the JSON string that will be returned by the Facebook server.
 			\item It is also possible to get the access token using this method (a string of characters giving you access to a persons  account with the permissions specified).
+			\item Facebook messenger bot integration is supplied by means of the Facebook messenger api \href{https://developers.facebook.com/docs/messenger-platform}{Facebook Messenger}
+			\item Wechat integration is supplie by means of the Official account developer platform API, for Wechat. \href{http://dev.wechat.com/}{Wechat API}
 		\end{itemize}
-			Regarding the access token, a Facebook page Access token and Facebook user access token will be used. These Access Token should also have the longest lifetime possible to be able to update user data for as long as possible.
+			Regarding the use of  access tokens, a Facebook page Access token and Facebook user access token will be used. These Access Token should also have the longest lifetime possible to be able to update user data for as long as possible.
 
 			\href{https://developers..com/docs/-login/access-tokens}{Access Tokens}
 			\begin{itemize}
@@ -244,8 +254,8 @@ The primary focus of this project is to generate risk statistics based on social
 				\item Once again the app secret should be kept safe and hidden from users
 			\end{itemize}
 
-			%ADD PAGE API CALLS MAYBE%
-
+			
+	\pagebreak
 		\subsubsection{Protocols}
 		The system will include the use of these protocols:
 		\begin{itemize}
@@ -268,11 +278,12 @@ The primary focus of this project is to generate risk statistics based on social
 
 
 		\subsubsection{Integration Quality Requirements}
+		\paragraph{The below mentioned use of the word Facebook is related to the Facebook advertisement integration and the messenger platform}
 		As mentioned in \ref{subsubsec:integratability}, integration with Facebook will be a major feature, as such this integration is subject to quality requirements in the form of:
 		\begin{itemize}
-			\item Reliability - The Facebook API server must be available at all times as this forms a major part of the system.
-			\item Auditability - The use of the Facebook developer application ID allows for auditability as to the use of the Facebook API in our system. The developer application ID allows Facebook to obtain information on the current use of their API with regards to our system.
-			\item Performance - Our system's performance in certain areas, is limited to the use of the Facebook API. The API system must respond before our system can analyse the data.
+			\item Reliability - The Facebook API, Wechat API and Messenger API server must be available at all times as this forms a major part of the system.
+			\item Auditability - The use of the Facebook developer application ID allows for auditability as to the use of the Facebook API in our system. The developer application ID allows Facebook to obtain information on the current use of their API with regards to our system. Wechat uses their own form of auditability similar to the Facebook method.
+			\item Performance - Our system's performance in certain areas, is limited to the use of the above mentioned APIs. The API systesm must respond before our system can analyse the data.
 			\item Security - Facebook's API has security measures in place to ensure that the Advertisement's data isn't accessed without authorization. This consent is granted by means of a permission request to the Analyst's Facebook page before we can obtain any information. The safeguard of this information is a major concern as mentioned in \ref{subsubsec:security}.
 			\item Maintainability - The system must be maintained on a bi-yearly basis as to ensure the latest version of the API is used and no deprecated functions are used. The use of deprecated functions can cause problems in future use of the system.
 		\end{itemize}
@@ -296,12 +307,13 @@ The primary focus of this project is to generate risk statistics based on social
 		\item Browser independence, to ensure any web-client can make use thereof.
 		\item Operating system independence.
 		\item The system should be as time efficient as possible
+		\item Mobile web-browser compatibility 
 		\end{itemize}
 \pagebreak
 
 	\section{Initial Architecture Design}
 
-	The below mentioned architecture specifies an initial architecture design from a high-level, and of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system.
+	The below mentioned architecture specifies an initial architecture design from a high-leve l standpoint, of the system as it is currently understood at this stage in development and design. Any and all architectural components, tactics and responsibilities listed are subject to change and are at a level which attempts to provide the best description of what is currently intended to be the insurance profiling system.
 
 	\subsection{Architectural tactics}\label{subsec:tactics}
 
@@ -323,6 +335,11 @@ The primary focus of this project is to generate risk statistics based on social
 		\subsubsection{Accessibility and Integratability}\label{subsec:accesib}
 		\begin{itemize}
 			\item Providing access: providing proxies, supporting standard communication protocols (REST calls)
+		\end{itemize}
+		\subsubsection{Auditability}\label{subsec:auditability}
+		\begin{itemize}
+			\item Auditability closes relates to Security \ref{subsec:security}
+			\item Authentication and authorization tactics in general.
 		\end{itemize}
 
 		\subsubsection{Security}\label{subsec:security}
@@ -346,6 +363,10 @@ The primary focus of this project is to generate risk statistics based on social
 		\begin{itemize}
 			\item Resource demand: indexing, paging, query optimization
 		\end{itemize}
+		\subsubsection{Usability}\label{subsec:usability}
+		\begin{itemize}
+			\item The use of virtualization increases the overall reliability and usability of the system. Most hosting platforms makes use of virtualization platforms.
+		\end{itemize}
 
 	\subsection{Architectural components addressing architectural responsibilities}
 		\begin{itemize}
@@ -357,10 +378,18 @@ The primary focus of this project is to generate risk statistics based on social
 		\item The responsibility of providing the persistence provider access to the persistence API by means of the Sequelize ORM.
 		\end{itemize}
 
+\pagebreak
 	\subsection{Infrastructure}
 	\subsubsection{Architectural (structural) patterns}
-	In order to promote flexibility as well as testability, the layered architectural pattern will be used.\\	 It allows for future development to change tactics (business logic tactics) and allows for the decoupling of different functions. \\ Decoupling is crucial in order for the system to remain within its architectural concern boundaries, which will rely heavily on a modular configurable system.\\ In conjunction with the Model-View-Controller pattern will allow for a understandable and testable system, with proper modularization.\\ MVC includes the ability to generate new views for the web based front-end efficiently. See Figure \ref{fig:techstack}
+	\begin{itemize}
 	
+	
+	\item In order to promote flexibility as well as testability, a hybrid pattern will be used, with key-traits from the  layered architectural pattern and the Model-View-Controller pattern.
+	\item The layered approach allows for future development to change tactics (business logic tactics) and allows for the decoupling of different functions. 
+	\item The Model-View-Controller pattern allows for a understandable and testable system, with proper modularization.
+	MVC includes the ability to generate new views for the web based front-end efficiently. See Figure \ref{fig:techstack}
+	\item Decoupling is crucial in order for the system to remain within its architectural concern boundaries, which will rely heavily on a modular configurable system.  
+	\end{itemize}
 	\subsubsection{Concepts and constraints for application components}
 	Application components will not be deployed at the first level of granularity. Any application components will be hosted within the architectural components.
 	\begin{figure}[H]
