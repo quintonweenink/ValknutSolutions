@@ -73,7 +73,7 @@
   		\vhEntry{1.1}{04.9.2016}{CJvV,KH,QW}{Updated format based on template on CS web, added new test information}
   		\vhEntry{1.2}{27.9.2016}{CJvV,KH,QW}{Added to conclusion, testing in general and test summary, updated heading to new product name}
   		\vhEntry{1.3}{30.9.2016}{CJvV,KH,QW}{Added Facebook messenger unit tests, updated testing tables, added detailed overview of new tests, updated paths to tests}
-  		\vhEntry{1.4}{05.11.2016}{CJvV,KH,QW}{Added Logo, added Validation tests to all necessary sections, added new figures for messenger and validation tests}
+  		\vhEntry{1.4}{05.11.2016}{CJvV,KH,QW}{Added Logo, added Validation tests to all necessary sections, added new figures for messenger and validation tests, added Authentication test with figure}
 	\end{versionhistory}	
 	
 	\cleardoublepage
@@ -139,6 +139,8 @@ Dependencies:
 	\item Chai (part of Mocha)
 	\item Heroku platform as a service (Integration tests)
 	\item Assert package from npm
+	\item validatationTest.js
+	\item authTest.js
 	\item fbController.js test file
 	\item graphTest.js test file
 	\item test.js test file
@@ -191,6 +193,7 @@ Dependencies:
 	\item The calculation of Age from a datestring object
 	\item The calculation of Months from a datestring object
 	\item Validation test for user input from all integration points
+	\item Authentication test to verify an analyst's identity
 	\end{itemize}
 	
 \item API calls to do:
@@ -228,6 +231,7 @@ Feature ID & RDS Source                            & Summary                    
 9          &  Architecture design - Section 5.1.1  & Deployment test                            & 9            \\ \hline
 10         &  Functional requirements - getMessengderData & Receive data from a Facebook messenger & 10            \\ \hline
 11        &  Functional requirements - getData & Validate input from a integration source & 11         \\ \hline
+12        &  Architectural requirements - Security and Auditability & 12        \\ \hline
 \end{tabular}
 \end{table}
 
@@ -553,6 +557,8 @@ Feature ID & RDS Source                            & Summary                    
 
 \paragraph{Outcome:} The following outcomes are expected for a pass result:
 \begin{enumerate}
+\item A valid user with :
+\begin{itemize}
 	\item A success object is returned per item with a true flag.
 	\item firstname = 'Quinton'
 	\item lastname = 'Weenink'
@@ -562,6 +568,8 @@ Feature ID & RDS Source                            & Summary                    
 	\item gender = 'female'
 	\item city = 'PE'
 	\item email = 'quinton@gmail.com'
+
+\end{itemize}
 \end{enumerate}
 
 \subsubsection{Condition 2: invalid user input }
@@ -588,6 +596,31 @@ Feature ID & RDS Source                            & Summary                    
 	\item An error message is returned
 \end{enumerate}
 
+\subsection{\underline{Test Case 12: Authentication Test}}\label{test12}
+\subsubsection{Condition 1: invalid token provided}
+\paragraph{Objective:} The purpose of this test is to ensure that only the authorized users gain access to certain key functions. This test will reject a wrong token.
+\paragraph{Input:} The following inputs will be used:
+	\begin{enumerate}
+  		\item Invalid authentication token
+ 	\end{enumerate}  
+
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item An error message stating "Invalid token"
+	\item No access.
+\end{enumerate}
+
+\subsubsection{Condition 2: valid token provided }
+\paragraph{Objective:}  The purpose of this test is to ensure that only the authorized users gain access to certain key functions. This test will accept a correct token.
+\paragraph{Input:} The following inputs will be used:
+	\begin{enumerate}
+  	\item Valid authentication token
+    \end{enumerate}	  
+
+\paragraph{Outcome:} The following outcomes are expected for a pass result:
+\begin{enumerate}
+	\item Access is granted
+\end{enumerate}
 
 
 
@@ -679,6 +712,22 @@ If the specified Pre-conditions are met the post-condition will hold true and th
 	\end{itemize}
 \end{itemize}
 
+\item Authentication of user
+\begin{itemize}
+	\item Condition 1:
+	\begin{itemize}
+		\item Pre-condition - An invalid access token is provided
+		\item Post-condition - No access is granted.
+		\item Post-condition - Error message 
+	\end{itemize}
+	\item Condition 2:
+	\begin{itemize}
+		\item Pre-condition - A valid access token is provided
+		\item Post-condition - Access is granted.
+	\end{itemize}
+\end{itemize}
+
+
 \item Travis CI build test for Node version 5.11
 	\begin{itemize}
 	\item Pre-condition - The changes to the branch are compatible with version 5.11
@@ -704,10 +753,10 @@ Artefacts to be produced as part of testing include the following:
 \clearpage
 \section{Detailed Test Results}\label{sec:testReport}
 \subsection{Overview of Test Results}
-All tests were run multiple times to ensure success with the inclusion of the Travis Continuous integration tests to ensure compatibility. Two of the tests failed as a result of the external server not being active at that specific time, these cases form part of integration testing and the normal unit tests make use of mocked out information.\\
+All tests were run multiple times to ensure success with the inclusion of the Travis Continuous integration tests to ensure compatibility. Two of the tests failed as a result of the external server not being active at that specific time, these cases form part of integration testing and the normal unit tests make use of mocked out information.\\ \\
 The Mocha testing framework was chosen as it integrates well with the Node Package manager system and 
 simplifies the creation of writing a new unit test.\\
-Travis CI was chosen as integration testing framework to ensure compatibility and deployment capabilities. Travis CI integrates with Github to run tests on all branch merges to ensure compatibility of new features in the main deployment branch.\\
+Travis CI was chosen as integration testing framework to ensure compatibility and deployment capabilities. Travis CI integrates with Github to run tests on all branch merges to ensure compatibility of new features in the main deployment branch.\\ \\
 Travis CI runs automated tests per branch merge without the need for developer assistance, this greatly decreases deployment time and ensures compatibility.
 
 \subsection{Functional Requirements Test results}
@@ -726,9 +775,14 @@ Test ID    & Test Name   & Github Link to File \\ \hline \hline
 9		   & Compatibility test & \href{https://travis-ci.com/QuintonWeenink/ValknutSolutions/builds/30866212}{Travis CI build nr 130} \\ \hline
 10		   & addToUser()/ getMessage() & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/fbMessengerTest.js}{fbMessengerTest.js}   \\ \hline
 11		   & validate()/ objectValidate() & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/validationTest.js}{validationTest.js}   \\ \hline
+12		   & authenticate()/ generateToken() & \href{https://github.com/QuintonWeenink/ValknutSolutions/blob/develop/test/authTest.js}{authTest.js}   \\ \hline
 \end{tabular}
 \caption{Links to test files}
 \end{table}
+
+\pagebreak
+
+\subsection{Test summary}
 \paragraph{All tests are located in the Github repo's testing directory:\href{https://github.com/QuintonWeenink/ValknutSolutions}{Repo}}
 
 \paragraph{The following results were obtained from the tests conducted.}
@@ -743,6 +797,7 @@ The data extraction functionality for Facebook works as intended.
 	\item [Result]: Pass 
 \end{description}
 
+
 \subsubsection{Test Case 2 - TC \ref{test2}}
 Test case 2 ran with valid inputs.
 The data extraction functionality for any integration works as intended.
@@ -754,6 +809,7 @@ The data extraction functionality for any integration works as intended.
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
 
 \subsubsection{Test Case 3 - TC \ref{test3}}
 Test case 3 created a new user in the database.
@@ -767,6 +823,7 @@ The API for insertion works as intended.
 	\item [Result]: Pass 
 \end{description}
 
+
 \subsubsection{Test Case 4 - TC \ref{test4}}
 Test case 4 deleted the new user in the database.
 The API for deletion works as intended.
@@ -778,6 +835,7 @@ The API for deletion works as intended.
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
 
 \subsubsection{Test Case 5 - TC \ref{test5}}
 Test case 5 retrieved a user in the database.
@@ -791,6 +849,7 @@ The API for retrieval works as intended.
 	\item [Result]: Pass 
 \end{description}
 
+
 \subsubsection{Test Case 6 - TC \ref{test6}}
 Test case 6 returned the age of 22 and 18. 
 The getAge functionality works as intended.
@@ -803,6 +862,7 @@ The getAge functionality works as intended.
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
 
 \subsubsection{Test Case 7 - TC \ref{test7}}
 Test case 7 returned the month of June and September. 
@@ -818,6 +878,7 @@ The getMonths functionality works as intended.
 	\item [Result]: Pass 
 \end{description}
 
+
 \subsubsection{Test Case 8 - TC \ref{test8}}
 The local environment is set to development as a result of the environment test.
 \begin{enumerate}
@@ -827,6 +888,7 @@ The local environment is set to development as a result of the environment test.
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
 
 \subsubsection{Test Case 9 - TC \ref{test9}}
 The build for number 130 passed in Travis CI's log
@@ -838,6 +900,7 @@ The build for number 130 passed in Travis CI's log
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
 
 \subsubsection{Test Case 10 - TC \ref{test10}}
 Test case 10 returned a populated user and sent the correct responses based on the inputs.
@@ -854,8 +917,7 @@ The Facebook messenger tests work as intended.
 \end{description}
 
 
-
-\subsubsection{Test Case 10 - TC \ref{test11}}
+\subsubsection{Test Case 11 - TC \ref{test11}}
 Test case 11 returned a success = true message for the valid condition and a success = false for the invalid condition.
 The validation controller works as intended.
 \begin{enumerate}
@@ -867,6 +929,25 @@ The validation controller works as intended.
 \begin{description}
 	\item [Result]: Pass 
 \end{description}
+
+
+\subsubsection{Test Case 12 - TC \ref{test12}}
+Test case 12 returned a valid access granted for a valid token and Access denied with an error message for the invalid token.
+The authentication controller works as intended.
+\begin{enumerate}
+	\item All pre-conditions were met and as a result the post condition remained true
+	\item Authentication was denied and granted based on the correct tokens
+\end{enumerate}
+
+\begin{description}
+	\item [Result]: Pass 
+\end{description}
+
+\subsection{Test disussion}	
+\begin{enumerate}
+	\item The mapping of contracts onto tests increases the testability of a system. Mocking out objects eliminates external dependencies which greatly benefit testability. A form of mocking can be seen in Test \ref{test1} and Test \ref{test12}
+	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests. Continuous integration further ensures total compatibility of all new features in each environment (deployment or development).
+\end{enumerate}
 
 
 
@@ -899,7 +980,12 @@ The validation controller works as intended.
 	\caption{Validation Test}
 	\end{figure}	
 	
-
+	
+	\begin{figure}[H]
+	\includegraphics[width=15cm]{images/authTest.png}
+	\caption{Authentication Test}
+	\end{figure}	
+	
 	
 	\begin{figure}[H]
 	\includegraphics[width=15cm]{images/tests.png}
@@ -917,10 +1003,10 @@ The validation controller works as intended.
 	\caption{Travis success }
 	\end{figure}	
 	
-\begin{enumerate}
-	\item The mapping of contracts onto tests increases the testability of a system. Mocking out objects eliminates external dependencies which greatly benefit testability. A form of mocking can be seen in Test \ref{test1} and Test \ref{test11}
-	\item As with the continuous integration model we ensure that the system always stay in a deployable state by means of Travis CI tests and environmental tests. Continuous integration further ensures total compatibility of all new features in each environment (deployment or development).
-\end{enumerate}
+	\pagebreak
+	
+		
+
 
 \pagebreak
 \section{Conclusions}
@@ -938,9 +1024,9 @@ The validation controller works as intended.
 \subsection{Test Summary}
 \begin{itemize} 
 \item All the unit tests completed successfully. Once a test fulfills its pre-condition(s), that test will pass as intended, fulfilling the post-condition. 
-\item Test 1 through 11 all passed as intended, as a result of these tests fulfilling their pre-conditions
+\item Test 1 through 12 all passed as intended, as a result of these tests fulfilling their pre-conditions
 \end{itemize}
-\subsection{Benefits of Testing}
+\section{Benefits of Testing}
 Unit tests in general increases the reliability of a system. Once a new feature is added, that feature must pass its intended tests before even considering integration.\\ \\ This test-driven development method ensures compatibility of new features (integration tests) and that the new feature acts as intended (unit tests). \\
 Testing ensures full functionality, reliability and helps other team members understand the added feature. \\ 
 The Mocha testing frameworks displays test results a easily understandable way.
