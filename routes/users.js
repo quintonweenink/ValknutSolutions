@@ -26,11 +26,13 @@ module.exports = function(app, passport,io){
 
 				var newUser = emptyUser.clone(userJSON)
 
+				console.log(req.body)
+
 				if(req.body.first_name)
 				{
 					newUser.first_name = req.body.first_name;
 					newUser.last_name = req.body.last_name;
-					newUser.phone_number = req.body.phone_number;
+					newUser.phone_number = decodeURIComponent(req.body.phone_number);
 					newUser.marital_status = req.body.marital_status;
 					newUser.date_of_birth = req.body.date_of_birth;
 					newUser.gender = req.body.gender;
