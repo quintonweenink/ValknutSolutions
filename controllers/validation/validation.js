@@ -10,10 +10,15 @@ var validator = require('validator')
 
 module.exports = {
 	isName : function(res){
-		if(!validator.isEmpty(res) && res != 'undefined')
-			if(validator.isAlpha(res))
-				return true
-		return false
+		var list = res.split(' ')
+		var pass = false
+		for(var x = 0; x < list.length; x++)
+		if(!validator.isEmpty(list[x]) && list[x] != 'undefined')
+			if(validator.isAlpha(list[x])){}
+			else return false
+		else return false
+
+		return true
 	},
 	isPhoneNumber : function(res){
 		if(!validator.isEmpty(res) && res != 'undefined')
