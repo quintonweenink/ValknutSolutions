@@ -78,7 +78,7 @@
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Created}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Grammar errors, Introduction, Scope, Vision, Access channel, Quality requirements, Integration Requirements (API, Protocols, API Quality requirements), Architectural tactics(Security) and Architectural pattern changes}
   		\vhEntry{1.2}{07.09.2016}{CJvV,KH,QW}{Updated introduction, scope, Access channel requirements, Integration quality requirements, architectural Tactics, Architectural pattern}
-  		\vhEntry{1.3}{05.10.2016}{CJvV,KH,QW}{Updated front-page with logo, updated introduction, vision, scope,Access channel requirements}
+  		\vhEntry{1.3}{05.10.2016}{CJvV,KH,QW}{Updated front-page with logo, updated introduction, Vision, Scope, Access channel requirements, Quality requirements, Tactics, Overall flow of the document}
 	\end{versionhistory}
 
 \pagebreak
@@ -97,8 +97,8 @@ A live dashboard for marketing follow ups will allow marketers the ability to se
 
 
 \section{Vision}
-We seek to implement a real time marketing and lead gathering application with multiple integration points with social media and other formats. 
-A business can manage and respond to leads and analyze their current customers and audience. 
+We seek to implement a real time marketing and lead gathering application with multiple integration points with social media and other formats.  \\
+A business can manage and respond to leads and analyze their current customers and audience. \\ 
 We expose and link companies to their future customers in an easy and pluggable manner.
 
 \pagebreak
@@ -168,7 +168,7 @@ We expose and link companies to their future customers in an easy and pluggable 
 			\item The ability to integrate with other social media platforms should be considered and modularised accordingly, to ensure seamless future integration.
 			\item The ability to change the risk analysis algorithm as needed should be considered.
 			\item Integration includes the connection from the website to the profiling engine and back to the website as a report.
-			\item Integration with Facebook's advertisements API forms a major part of this release.
+			\item Integration with Facebook's advertisements API, Wechat messing API and  Facebook's messenger API form major parts of this release.
 			\item Tactics : Section \ref{subsec:accesib}
 		\end{itemize}
 
@@ -185,6 +185,7 @@ We expose and link companies to their future customers in an easy and pluggable 
 		\begin{itemize}
 			\item All actions performed in the system should be traceable to the user that performed them.
 			\item The user's IP  will be logged as to have a form of accountability in the persistence of the data.
+			\item Tactics: Section \ref{subsec:auditability}
 		\end{itemize}
 
 		\subsubsection{Cost}
@@ -202,6 +203,7 @@ We expose and link companies to their future customers in an easy and pluggable 
 			\item The platform is being developed with efficiency in mind, as a result the input and response of the website should be visually pleasing and simple to use.
 			\item Further integration with the Facebook ad system will increase usability, as the user will be able to generate a report from their Facebook dashboard, without the need to log in to our website.
 			\item The Facebook messenger integration allows a more fulfilling user experience as it eliminates the normal form structure of capturing data.
+			\item Tactics : Section \ref{subsec:usability}
 		\end{itemize}
 
 		\subsubsection{Flexibility}
@@ -304,6 +306,7 @@ We expose and link companies to their future customers in an easy and pluggable 
 		\item Browser independence, to ensure any web-client can make use thereof.
 		\item Operating system independence.
 		\item The system should be as time efficient as possible
+		\item Mobile web-browser compatibility 
 		\end{itemize}
 \pagebreak
 
@@ -332,6 +335,11 @@ We expose and link companies to their future customers in an easy and pluggable 
 		\begin{itemize}
 			\item Providing access: providing proxies, supporting standard communication protocols (REST calls)
 		\end{itemize}
+		\subsubsection{Auditability}\label{subsec:auditability}
+		\begin{itemize}
+			\item Auditability closes relates to Security \ref{subsec:security}
+			\item Authentication and authorization tactics in general.
+		\end{itemize}
 
 		\subsubsection{Security}\label{subsec:security}
 		\begin{itemize}
@@ -353,6 +361,10 @@ We expose and link companies to their future customers in an easy and pluggable 
 		\subsubsection{Scalability}\label{subsec:scalability}
 		\begin{itemize}
 			\item Resource demand: indexing, paging, query optimization
+		\end{itemize}
+		\subsubsection{Usability}\label{subsec:usability}
+		\begin{itemize}
+			\item The use of virtualization increases the overall reliability and usability of the system. Most hosting platforms makes use of virtualization platforms.
 		\end{itemize}
 
 	\subsection{Architectural components addressing architectural responsibilities}
