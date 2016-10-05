@@ -39,7 +39,7 @@ module.exports = function(app, passport,io){
 				}
 
 				let resObj = objectValidate(newUser)
-				console.log(resObj)
+				//console.log(resObj)
 
 				if(!resObj.success)
 				{

@@ -57,6 +57,14 @@ describe('Validation Testing', function(){
                 }
             });
 			it("isName test with passing last_name", function(){
+				var messageText = 'Jansen van Vuuren'
+
+                if(!messageList[intendedUser.messageId - 1].validate(messageText)){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
+                }
+            });
+			it("isName test with passing last_name", function(){
 				var messageText = 'Weenink'
 
                 if(!messageList[intendedUser.messageId - 1].validate(messageText)){
@@ -152,7 +160,7 @@ describe('Validation Testing', function(){
 				}
             });
 			it("isName test with failing City", function(){
-				var messageText = 'catlin genner'
+				var messageText = '420vil'
 
                 if(messageList[intendedUser.messageId - 1].validate(messageText)){
 					var error = {success: false, message: 'Should not go in here'}
@@ -160,7 +168,7 @@ describe('Validation Testing', function(){
                 }
             });
 			it("isName test with passing City", function(){
-				var messageText = 'male'
+				var messageText = 'PE'
 
                 if(!messageList[intendedUser.messageId - 1].validate(messageText)){
 					var error = {success: false, message: 'Should not go in here'}
