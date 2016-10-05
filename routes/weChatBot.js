@@ -28,7 +28,8 @@ module.exports = function(app, passport){
         var content = req.body.xml.content[0]
         var createtime = parseInt(req.body.xml.createtime[0])
 
-		content = activeUsers[senderID.messageId].normalize(content)
+		if(!(typeof activeUsers[senderID] === 'undefined') && !(activeUsers[senderID] === null))
+			content = messageList[activeUsers[senderID].messageId].normalize(content)
 
         activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
 
