@@ -1,6 +1,22 @@
-InsuranceProfiling.controller('LeadController', function($scope, $http) {
+InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialog) {
 	$scope.message = "";
 	$scope.user;
+
+	$scope.openFromLeft = function(message) {
+    	$mdDialog.show(
+      		$mdDialog.alert()
+        	.clickOutsideToClose(true)
+        	.title('Alert')
+        	.textContent(message)
+        	.ariaLabel(message)
+        	.ok('Ok!')
+        	// You can specify either sting with query selector
+        	.openFrom('#left')
+        	// or an element
+        	.closeTo(angular.element(document.querySelector('#right')))
+    		);
+  	};
+
 	$scope.postForm = function()
 	{
 		$http({
@@ -18,6 +34,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http) {
 		'&email='+$scope.user.email
 		}).then(function(res){
 			    $scope.message = res.data.message
+				$scope.openFromLeft(res.data.message)
 		})
 	}
 
