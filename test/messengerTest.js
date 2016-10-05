@@ -1,7 +1,7 @@
 "use strict"
 var assert = require('assert');
 
-var fbMessengerController = require('../controllers/fb/fbMessengerController');
+var fbMessengerController = require('../controllers/fb/messengerController');
 const messageList = require('../config/messageList')
 const emptyUser = require('../config/objects/user')
 const userJSON = JSON.parse(JSON.stringify(emptyUser))
@@ -134,7 +134,7 @@ describe('Facebook Messenger Test', function(){
             intendedUser = emptyUser.clone(userJSON)
 
             it("Returns the default message if the user is null", function(){
-                  var message = messageList[8]
+                  var message = messageList[8].message
 
                   messageData.message.text = message
                   delete activeUsers[senderID]
@@ -144,7 +144,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData)
             });
             it("Constructs name message", function(){
-                  var message = messageList[0];
+                  var message = messageList[0].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 0;
@@ -154,7 +154,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs last name message", function(){
-                  var message = messageList[1];
+                  var message = messageList[1].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 1;
@@ -164,7 +164,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs phone message", function(){
-                  var message = messageList[2];
+                  var message = messageList[2].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 2;
@@ -174,7 +174,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs marital message", function(){
-                  var message = messageList[3];
+                  var message = messageList[3].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 3;
@@ -184,7 +184,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs date of birth message", function(){
-                  var message = messageList[4];
+                  var message = messageList[4].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 4;
@@ -194,7 +194,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs gender message", function(){
-                  var message = messageList[5];
+                  var message = messageList[5].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 5;
@@ -204,7 +204,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs city message", function(){
-                  var message = messageList[6];
+                  var message = messageList[6].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 6;
@@ -214,7 +214,7 @@ describe('Facebook Messenger Test', function(){
                   assert.deepEqual(constructedMessage, messageData);
             });
             it("Constructs email message", function(){
-                  var message = messageList[7];
+                  var message = messageList[7].message
 
                   messageData.message.text = message;
                   intendedUser.messageId = 7;
@@ -248,6 +248,31 @@ describe('Facebook Messenger Test', function(){
                   let constructedMessage = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
 
                   //console.log(constructedMessage)
+            });
+      });
+      describe('validate()', function(){
+            var id = 'validateres'
+            it("Test of logic not really a unit test", function(){
+				var messageText = 'hi'
+
+				activeUsers[id] = emptyUser.clone(userJSON)
+				activeUsers[id].messageId++;
+
+                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
+                }
+            });
+			it("isName test with failing name", function(){
+				var messageText = 'hi'
+
+				activeUsers[id] = emptyUser.clone(userJSON)
+				activeUsers[id].messageId++;
+
+                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
+					var error = {success: false, message: 'Should not go in here'}
+                    throw error
+                }
             });
       });
 

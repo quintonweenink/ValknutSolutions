@@ -59,7 +59,7 @@ getMessage : function getMessage(recipientId, user) {
 	      id: recipientId
 	    },
 	    message: {
-	      text: messageList[messageNumber]
+	      text: messageList[messageNumber].message
 	    }
   	};
 
@@ -73,7 +73,7 @@ getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, us
 	else {
 		messageNumber = user.messageId;
 	}
-	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber])
+	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber].message)
 
   return str;
 }

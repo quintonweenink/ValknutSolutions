@@ -14,9 +14,10 @@ module.exports = {
 		    console.log(user.get({
 		      plain: true
 		  		}));
+				io.emit('new user', user);
 			return user;
   		});
-		io.emit('new user', newUser);
+
 		return new_user;
 	},
 	deleteUserByID : function deleteUserByID(id)

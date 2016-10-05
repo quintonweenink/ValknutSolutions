@@ -1,12 +1,25 @@
-InsuranceProfiling.controller('loginController', function($scope, $http) {
+InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog) {
 	$scope.cookie = getCookie()
+
+	$scope.openFromLeft = function(message) {
+    	$mdDialog.show(
+      		$mdDialog.alert()
+        	.clickOutsideToClose(true)
+        	.title('Alert')
+        	.textContent(message)
+        	.ariaLabel(message)
+        	.ok('Ok!')
+        	// You can specify either sting with query selector
+        	.openFrom('#left')
+        	// or an element
+        	.closeTo(angular.element(document.querySelector('#right')))
+    		);
+  	};
 
 	$http.get("/api/user?token="+$scope.cookie)
 	.then(function(users){
-		$scope.message = 'You already have a token'
+		$scope.openFromLeft('You already have a token')
 	});
-
-	console.log($scope.message)
 
 	$scope.analystLogin
 	$scope.analystSignup
@@ -26,7 +39,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
@@ -41,10 +54,9 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 		'email='+$scope.analystSignup.email+
 		'&password='+$scope.analystSignup.password
 		}).success(function (res) {
-			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
@@ -62,7 +74,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
@@ -77,10 +89,9 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 		'email='+$scope.adminSignup.email+
 		'&password='+$scope.adminSignup.password
 		}).success(function (res) {
-			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})

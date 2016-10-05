@@ -6,13 +6,13 @@ var config = require('../config/auth');
 var models = require("../models");
 var userController = require("../controllers/db/UserController");
 
-var fbMessengerController = require("../controllers/fb/fbMessengerController")
+var fbMessengerController = require("../controllers/fb/messengerController")
 
 var activeUsers = {};//Hash table
 
 var util = require('util')
 
-const xmlMessage = require('../config/xmlMessage').message
+const messageList = require('../config/messageList')
 
 
 module.exports = function(app, passport){
@@ -28,10 +28,14 @@ module.exports = function(app, passport){
         var content = req.body.xml.content[0]
         var createtime = parseInt(req.body.xml.createtime[0])
 
-
-        res.contentType("application/xml")
-
         activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
+
+		//validate here, not the best way but i need to check the messageID
+		if(activeUsers[senderID].messageId != 0)
+			if(!messageList[activeUsers[senderID].messageId-1].validate(content)){
+				activeUsers[senderID].messageId--
+				activeUsers[senderID].email = ''
+			}
 
         if(activeUsers[senderID].email != ''){
             userController.createUser(activeUsers[senderID])
@@ -42,6 +46,8 @@ module.exports = function(app, passport){
         let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
 
         console.log(str)
+
+		res.contentType("application/xml")
 
         res.send(str)
 	})

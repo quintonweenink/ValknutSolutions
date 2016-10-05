@@ -1,5 +1,5 @@
-# Insurance profiling
-Insurance profiling from social media (facebook)
+# MarketLead.io
+Insurance profiling from social media
 
 ## Prerequisites
 You will need the following things properly installed on your computer.
@@ -22,7 +22,7 @@ You will need the following things properly installed on your computer.
 
 ### Heroku log tailing
 * `heroku loggin`
-* `heroku git:remote -a insuranceprofiling`
+* `heroku git:remote -a marketlead`
 * `heroku logs --tail`
 
 ### Automated testing
