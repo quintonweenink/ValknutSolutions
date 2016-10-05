@@ -35,10 +35,10 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			\includegraphics[width=10cm]{images/marketlead_3.png}  \\
 			[0.5cm]
 			\huge{
-			Architectural Requirements, Initial Architecture Design and Non-Functional Requirements\\
+			Architectural Requirements, Architecture Design and Non-Functional Requirements\\
 			}
 
 			\line(1,0){300}\\
@@ -52,7 +52,6 @@
 			{
 			\begin{itemize}
 				\item 13054903 - Charl Jansen van Vuuren
-				\item 10297902 - Bernhard Schuld
 				\item 13044924 - Kevin Heritage
 				\item 13176545 - Quinton Weenink\\
 			\end{itemize}
@@ -79,17 +78,19 @@
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Created}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Grammar errors, Introduction, Scope, Vision, Access channel, Quality requirements, Integration Requirements (API, Protocols, API Quality requirements), Architectural tactics(Security) and Architectural pattern changes}
   		\vhEntry{1.2}{07.09.2016}{CJvV,KH,QW}{Updated introduction, scope, Access channel requirements, Integration quality requirements, architectural Tactics, Architectural pattern}
+  		\vhEntry{1.3}{05.10.2016}{CJvV,KH,QW}{Updated front-page with logo, updated introduction, vision, scope,Access channel requirements}
 	\end{versionhistory}
 
 \pagebreak
 
 \section{Introduction}
- Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project aims to eliminate the need for vast amounts of data gathering by utilising a user's social media information, based on advertisement forms and the integration of a Facebook messenger bot.
+ Insurance profiling and risk analysis often require large amounts of data to generate in-depth profiles, our project aims to eliminate the need for vast amounts of data gathering by utilising a user's social media information, based on advertisement forms and the integration of a Facebook and Wechat messenger bot.
 
 \section{Scope of system}
 The project as it is currently specified is an application that will allow insurance companies the ability to get data from lead data provided via lead advertisements on Facebook.
 A user would fill in a Facebook advertisement to purchase short term insurance based on Facebook's advertisement analytics. \\
-A further access point is available by means of a personalized Facebook messenger bot.\\ \\ This data will be used to charge the users for the insurance that they have signed up for while also providing the application with some basic data that can later be used to analyse the users and the data they provided. \\
+Further access points are available by means of a personalized Facebook messenger bot and Wechat messenger integration.\\ \\
+This data will be used to charge the users for the insurance that they have signed up for while also providing the application with some basic data that can later be used to analyse the users and the data they provided. \\
 An analyst would be able to log into our system and generate risk statistics for a certain advertisement based on certain criteria, this information gives the insurance company the ability to charge and adapt their sale and costs based on popular advertisements.\\ \\
 This information will be available based on API calls to the database or through a Web front-end for analysts.\\
 A live dashboard for marketing follow ups will allow marketers the ability to see unprocessed leads and live graphs.
@@ -97,7 +98,11 @@ A live dashboard for marketing follow ups will allow marketers the ability to se
 
 \section{Vision}
 As the project is currently specified the ambition is to allow the analyst the ability to get the best indication of the risk associated with each user.\\
-The primary focus of this project is to generate risk statistics based on social media advertisements.
+The primary focus of this project is to generate risk statistics based on social media advertisements. \\ \\
+We seek to implement a real time marketing and lead gathering application with multiple integration points with social media and other formats. 
+A business can manage and respond to leads and analyze their current customers and audience. 
+We expose and link companies to their future customers in an easy and pluggable manner.
+
 \pagebreak
 
 \section{Architectural Requirements}
@@ -105,6 +110,7 @@ The primary focus of this project is to generate risk statistics based on social
 \subsubsection{User:}
 	\begin{enumerate}
 		\item A user will fill in an advertisement form on Facebook, or chat with a messenger bot to supply the information specified and submit this data.
+		\item This data can also be filled in via the website form.
 		\item The necessary data will be gathered and saved in the database.
 		\item The system will analyze the data and send the user a response via email if they qualified for the insurance.
 		\item A sales person will contact the specified user with further instructions.
@@ -119,7 +125,7 @@ The primary focus of this project is to generate risk statistics based on social
 \subsubsection{Marketer:}
 	\begin{enumerate}
 		\item A marketer will supply the necessary  authorization to access the dashboard.
-		\item A live graph will be presented to the marketer to see new leads
+		\item A number of live graphs will be presented to the marketer to see new leads and user signups.
 		\item The marketer will be able to see a list of unprocessed leads to follow up on
 	\end{enumerate}	
 
@@ -130,6 +136,7 @@ The primary focus of this project is to generate risk statistics based on social
 		\item The website will be accessible via the majority of operating systems if such an operating system has access to a supported web-browser.
 		\item Facebook advertisement integration will be accessible via the normal Facebook access channels.
 		\item Facebook messenger integration will be accessible via the Messenger application.
+		\item Wechat integration will be available via the Wechat messenger platform.
 	\end{itemize}
 
 
