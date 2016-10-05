@@ -31,11 +31,11 @@ module.exports = function(app, passport,io){
 					newUser.first_name = req.body.first_name;
 					newUser.last_name = req.body.last_name;
 					newUser.phone_number = decodeURIComponent(req.body.phone_number);
-					newUser.marital_status = req.body.marital_status;
+					newUser.marital_status = req.body.marital_status.toLowerCase();
 					newUser.date_of_birth = req.body.date_of_birth;
-					newUser.gender = req.body.gender;
-					newUser.city = req.body.city;
-					newUser.email = req.body.email;
+					newUser.gender = req.body.gender.toLowerCase();
+					newUser.city = req.body.city.toLowerCase();
+					newUser.email = req.body.email.toLowerCase();
 				}
 
 				let resObj = objectValidate(newUser)

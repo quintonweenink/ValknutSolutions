@@ -68,6 +68,8 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
+	messageText = activeUsers[senderID.messageId].normalize(messageText)
+
 	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText)
 
 	//validate here, not the best way but i need to check the messageID
