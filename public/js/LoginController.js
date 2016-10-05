@@ -1,4 +1,4 @@
-InsuranceProfiling.controller('loginController', function($scope, $http) {
+InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog) {
 	$scope.cookie = getCookie()
 
 	$scope.openFromLeft = function(message) {
@@ -39,7 +39,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
@@ -54,10 +54,9 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 		'email='+$scope.analystSignup.email+
 		'&password='+$scope.analystSignup.password
 		}).success(function (res) {
-			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
@@ -75,7 +74,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
@@ -90,10 +89,9 @@ InsuranceProfiling.controller('loginController', function($scope, $http) {
 		'email='+$scope.adminSignup.email+
 		'&password='+$scope.adminSignup.password
 		}).success(function (res) {
-			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				console.log(res.token)
+				$scope.openFromLeft(res.token)
 			}
 			//window.location = '/';
 		})
