@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var xmlparser = require('express-xml-bodyparser')
 //Passport
 var passport = require('passport');
 //Session
@@ -26,6 +27,7 @@ var app = express();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(xmlparser())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -75,12 +77,14 @@ io.on('connection', function(socket) {
 
 exports.io = io;
 
+var weChatBot = require('./routes/weChatBot')(app, passport)
 var fbMessenger = require('./routes/fbMessenger')(app, passport);
 var users = require('./routes/users')(app, passport, io);
 var admins = require('./routes/admins')(app, passport);
 var analysts = require('./routes/analysts')(app, passport);
 var routes = require('./routes/routes')(app, passport);
 var graphRoute= require('./routes/graph')(app, passport);
+var liveGraphRoute = require('./routes/dynamicGraphs')(app, passport);
 var angular = require('./routes/angular')(app, passport);
 
 

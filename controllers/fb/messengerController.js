@@ -1,20 +1,17 @@
 "use strict"
+const messageList = require('../../config/messageList')
+const emptyUser = require('../../config/objects/user')
+const userJSON = JSON.parse(JSON.stringify(emptyUser))
+const xmlMessage = require('../../config/xmlMessage').messageFormat
+
+var util = require('util')
+
 module.exports = {
 addToUser : function addToUser(user, messageText)
 {
 	if(user === undefined || user === undefined){
 		//Make an empty user
-	  user = {
-	     messageId : 0,
-	     first_name : '',
-	     last_name : '',
-	     phone_number : '',
-	     marital_status : '',
-	     date_of_birth : '',
-	     gender : '',
-	     city : '',
-	     email : ''
-	 	};
+	  user = emptyUser.clone(userJSON)
 	}
 	else
 	{
@@ -51,18 +48,6 @@ addToUser : function addToUser(user, messageText)
 },
 getMessage : function getMessage(recipientId, user) {
 
-	var messageList = {
-		8:'You will be contacted shortly...',
-		0:'Please reply with your Name:',
-		1:'Please reply with your Last name:',
-		2:'Please reply with your Phone number:',
-		3:'Please reply with your Marital status:',
-		4:'Please reply with your Date of birth:',
-		5:'Please reply with your Gender:',
-		6:'Please reply with your City:',
-		7:'Please reply with your Email:'
-	};//Another hash table
-
 	var messageNumber;
 	if(user === undefined)
 		messageNumber = 8;
@@ -74,12 +59,23 @@ getMessage : function getMessage(recipientId, user) {
 	      id: recipientId
 	    },
 	    message: {
-	      text: messageList[messageNumber]
+	      text: messageList[messageNumber].message
 	    }
   	};
 
   return messageData;
-}
+},
+getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, user) {
 
+	var messageNumber;
+	if(user === undefined)
+		messageNumber = 8;
+	else {
+		messageNumber = user.messageId;
+	}
+	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber].message)
+
+  return str;
+}
 
 };

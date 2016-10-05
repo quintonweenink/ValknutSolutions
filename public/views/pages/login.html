@@ -1,13 +1,117 @@
 <div class="container">
-
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Login page</h1>
-		<p>{{ message }}</p>
-        <p>Login or Register with:</p>
-		
-        <a href="#login_form" class="btn btn-default"><span class="fa fa-user"></span> Analyst Login</a>
-        <a href="/auth/facebook" class="btn btn-default"><span class="fa fa-user"></span> Facebook user Login</a>
-        <a href="#signup" class="btn btn-default"><span class="fa fa-user"></span> Static Signup page</a>
+    <div class="alert alert-danger">
+        {{message}}
     </div>
+     <md-tabs md-dynamic-height  md-border-bottom>
+         <md-tab label="Analyst">
+           <div layout='row'>
+               <div flex>
+                         <h5>Analyst login</h5>
+                         <div layout="row">
+                                 <form action='#' novalidate>
+                                     <div layout="row">
+                                         <lg-input-container layout-margin flex>
+                                           <label>Email</label>
+                                           <input type='email' ng-model='analystLogin.email'>
+                                         </lg-input-container>
+                                     </div>
+                                     <div layout="row">
+                                         <lg-input-container layout-margin flex>
+                                           <label>Password</label>
+                                           <input type='password' ng-model='analystLogin.password'>
+                                         </lg-input-container>
+                                     </div>
+                                     <lg-input-container>
+                                         <md-button ng-click="postAnalystLogin($http)" class="md-raised md-primary">Submit</md-button>
+                                     </lg-input-container>
+                                 </form>
+                         </div>
+               </div>
+               <div flex>
+                         <h5>Analyst signup</h5>
+                         <div layout="row">
+                                 <form action='#' novalidate>
+                                     <div layout="row">
+                                         <lg-input-container layout-margin flex>
+                                           <label>Email</label>
+                                           <input type='email' ng-model='analystSignup.email'>
+                                         </lg-input-container>
+                                     </div>
+                                     <div layout="row">
+                                         <lg-input-container layout-margin flex>
+                                           <label>Password</label>
+                                           <input type='password' ng-model='analystSignup.password'>
+                                         </lg-input-container>
+                                     </div>
+                                     <lg-input-container>
+                                         <md-button ng-click="postAnalystSignup($http)" class="md-raised md-primary">Submit</md-button>
+                                     </lg-input-container>
+                                 </form>
+                         </div>
+               </div>
+        </div>
+        </md-tab>
+        <md-tab label="Facebook">
+          <md-content  class="md-padding">
+              <h1><span class="fa fa-lock"></span> Login page</h1>
+      		<p>{{ message }}</p>
+              <p>Login or Register with:</p>
+
+              <a href="#login_form" class="btn btn-default"><span class="fa fa-user"></span> Analyst Login</a>
+              <a href="/auth/facebook" class="btn btn-default"><span class="fa fa-user"></span> Facebook user Login</a>
+              <a href="#signup" class="btn btn-default"><span class="fa fa-user"></span> Static Signup page</a>
+              <a href="#signupLeadPage" class="btn btn-default"><span class="fa fa-user"></span>Signup facebook page</a>
+          </md-content>
+        </md-tab>
+        <md-tab label="Admin">
+            <div layout='row'>
+                <div flex>
+                          <h5>Admin login</h5>
+                          <div layout="row">
+                                  <form action='#' novalidate>
+                                      <div layout="row">
+                                          <lg-input-container layout-margin flex>
+                                            <label>Email</label>
+                                            <input type='email' ng-model='adminLogin.email'>
+                                          </lg-input-container>
+                                      </div>
+                                      <div layout="row">
+                                          <lg-input-container layout-margin flex>
+                                            <label>Password</label>
+                                            <input type='password' ng-model='adminLogin.password'>
+                                          </lg-input-container>
+                                      </div>
+                                      <lg-input-container>
+                                          <md-button ng-click="postAdminLogin($http)" class="md-raised md-primary">Submit</md-button>
+                                      </lg-input-container>
+                                  </form>
+                          </div>
+                </div>
+                <div flex>
+                          <h5>Admin signup</h5>
+                          <div layout="row">
+                                  <form action='#' novalidate>
+                                      <div layout="row">
+                                          <lg-input-container layout-margin flex>
+                                            <label>Email</label>
+                                            <input type='email' ng-model='adminSignup.email'>
+                                          </lg-input-container>
+                                      </div>
+                                      <div layout="row">
+                                          <lg-input-container layout-margin flex>
+                                            <label>Password</label>
+                                            <input type='password' ng-model='adminSignup.password'>
+                                          </lg-input-container>
+                                      </div>
+                                      <lg-input-container>
+                                          <md-button ng-click="postAdminSignup($http)" class="md-raised md-primary">Submit</md-button>
+                                      </lg-input-container>
+                                  </form>
+                          </div>
+                </div>
+         </div>
+        </md-tab>
+    </div>
+
 
 </div>

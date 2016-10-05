@@ -1,35 +1,31 @@
+"use strict"
 var express = require('express');
 
 var models = require("../models");
 
 
 var userController = require("../controllers/db/UserController");
-var email = require("../email/email");
+var email = require("../controllers/email/email");
 var jwt = require('jsonwebtoken');
 var util = require('util');
 var fs = require('fs');
 var fbControllers = require("../controllers/fb/fbController.js");
 
-module.exports = function(app, passport){
+const emptyUser = require('../config/objects/user')
+const userJSON = JSON.parse(JSON.stringify(emptyUser))
+
+const authenticate = require('../controllers/auth/auth').authenticate
+
+const objectValidate = require('../controllers/validation/fullValidation').objectValidate
+
+
+module.exports = function(app, passport,io){
 	app.route('/api/user')
 		//User Post route
 	    .post(function(req, res) {
 
-				//This should be removed before release
-				/**/
-				var newUser = {
-					first_name : 'Kevin',
-					last_name : 'Heritage',
-					phone_number : '+27767405640',
-					marital_status : 'single',
-					date_of_birth : '1994-06-06 00:00:00+02',
-					gender : 'male',
-					city : 'Pretoria',
-					email : 'kheritage222@gmail.com'
-				};
-				/**/
+				var newUser = emptyUser.clone(userJSON)
 
-				//Auto insert data according to passed data
 				if(req.body.first_name)
 				{
 					newUser.first_name = req.body.first_name;
@@ -42,9 +38,20 @@ module.exports = function(app, passport){
 					newUser.email = req.body.email;
 				}
 
+				let resObj = objectValidate(newUser)
+				console.log(resObj)
+
+				if(!resObj.success)
+				{
+					console.log(newUser)
+					res.send(resObj);
+					return resObj
+				}
+
 				userController.createUser(newUser)
 				.then(function(user){
 	        		res.json(user.dataValues);
+							io.emit('updateGraph');
 	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
@@ -52,9 +59,9 @@ module.exports = function(app, passport){
 	    	 });
 		})
 		//User Get route
-	    .get(function(req, res) {
+	    .get(authenticate, function(req, res) {
 				models.User.findAll().then(function(users){
-					res.json(users);
+					res.json({success: true, message: 'Sucessfully got users', users: users});
 				});
 				//Logic for returning all users
 			}

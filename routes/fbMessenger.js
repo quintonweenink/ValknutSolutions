@@ -6,7 +6,9 @@ var config = require('../config/auth');
 var models = require("../models");
 var userController = require("../controllers/db/UserController");
 
-var fbMessengerController = require("../controllers/fb/fbMessengerController")
+var fbMessengerController = require("../controllers/fb/messengerController")
+
+const messageList = require('../config/messageList')
 
 var activeUsers = {};//Hash table
 
@@ -66,36 +68,25 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
-	activeUsers.senderID = fbMessengerController.addToUser(activeUsers.senderID, messageText);
-	if(activeUsers.senderID.email != ''){
-		userController.createUser(activeUsers.senderID)
-		delete activeUsers.senderID
+	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText)
+
+	//validate here, not the best way but i need to check the messageID
+	if(activeUsers[senderID].messageId != 0)
+		if(!messageList[activeUsers[senderID].messageId-1].validate(messageText)){
+			activeUsers[senderID].messageId--
+			activeUsers[senderID].email = ''
+		}
+
+	if(activeUsers[senderID].email != ''){
+		userController.createUser(activeUsers[senderID])
+		//This could be removed but it makes it easyier to test and demo
+		delete activeUsers[senderID]
 	}
-    // If we receive a text message, check to see if it matches any special
-    // keywords and send back the corresponding example. Otherwise, just echo
-    // the text we received.
-    switch (messageText) {
-      // case 'image':
-      //   sendImageMessage(senderID);
-      //   break;
 
-      // case 'button':
-      //   sendButtonMessage(senderID);
-      //   break;
+    let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
+	console.log('Trying to send this message back to facebook: '+ constructedMessage)
+	callSendAPI(constructedMessage)
 
-      // case 'generic':
-      //   sendGenericMessage(senderID);
-      //   break;
-
-      // case 'receipt':
-      //   sendReceiptMessage(senderID);
-      //   break;
-
-      default:
-        let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers.senderID);
-		console.log('Trying to send this message back to facebook: '+ constructedMessage)
-		callSendAPI(constructedMessage)
-    }
   } else if (messageAttachments) {
     //sendTextMessage(senderID, "Message with attachment received");
   }

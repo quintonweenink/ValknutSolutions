@@ -14,11 +14,11 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-session": "~1.0.0",
+    "express-xml-bodyparser": "^0.3.0",
     "fb": "^1.1.1",
     "http": "0.0.0",
     "jsonwebtoken": "^7.0.1",
     "mocha": "^2.5.3",
-    "morgan": "~1.6.1",
     "nodemailer": "^2.5.0",
     "nodemailer-smtp-transport": "^2.6.0",
     "passport": "^0.3.2",
@@ -31,14 +31,16 @@
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "util": "^0.10.3",
+    "validator": "^6.0.0"
   },
   "devDependencies": {},
   "scripts": {
     "postinstall": "bower install",
     "test": "mocha test/",
     "start": "node ./app.js",
-    "apitest": "mocha test/api/",
+    "apitest": "./test/api/api.sh",
     "integrationtest": "mocha test/integration/"
   },
   "repository": {

@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var express = require('express');
-var configAuth = require('../config/auth');
+var configAuth = require('../../config/auth');
 
 module.exports = {
   sendMail: function sendMail(_to,_subject,_text)
