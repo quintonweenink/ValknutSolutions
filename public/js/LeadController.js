@@ -1,6 +1,6 @@
 InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialog) {
 	$scope.message = "";
-	$scope.user;
+	$scope.user
 
 	$scope.openFromLeft = function(message) {
     	$mdDialog.show(
@@ -33,7 +33,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 		'&city='+$scope.user.city+
 		'&email='+$scope.user.email
 		}).then(function(res){
-			    $scope.message = res.data.message
+			    //$scope.message = res.data.message
 				$scope.openFromLeft(res.data.message)
 		})
 	}

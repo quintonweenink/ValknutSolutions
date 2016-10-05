@@ -20,8 +20,8 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 
 	$http.get("/api/user?token="+$scope.cookie)
 	.then(function(res){
-			$scope.users = res.data
-		    $scope.message = res.data.message
+			$scope.users = res.data.users
+		    //$scope.message = res.data.message
 			$scope.openFromLeft(res.data.message)
 	})
 

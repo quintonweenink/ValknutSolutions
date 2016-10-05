@@ -43,6 +43,7 @@ module.exports = function(app, passport,io){
 
 				if(!resObj.success)
 				{
+					console.log(newUser)
 					res.send(resObj);
 					return resObj
 				}
@@ -60,7 +61,7 @@ module.exports = function(app, passport,io){
 		//User Get route
 	    .get(authenticate, function(req, res) {
 				models.User.findAll().then(function(users){
-					res.json(users);
+					res.json({success: true, message: 'Sucessfully got users', users: users});
 				});
 				//Logic for returning all users
 			}
