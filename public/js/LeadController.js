@@ -9,36 +9,33 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 	{
 		var lat = pos.coords.latitude;
 		var lng = pos.coords.longitude;
-		setCity(lat, lng);s
+		setCity(lat, lng);
 
 	}
 
-	function.errorFunc()
+	function errorFunc()
 	{
 			alert("geolocation failed");
 	}
 
 	function setCity(lat, lng)
 	{
-		var latlng = new google.maps.LatLng(lat, lng);
-		geocoder.geocode({'latlng', function )(results, status{
-			console.log(results);
-			if (results[1])
+		alert("Lat: " + lat + " Lon: " + lng);
+		$http({
+			method : 'GET',
+			url : 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng +
+			"&key=AIzaSyCufQbkKm7hySeotd6q3lZ3n0Yumb4Gv-o"
+		}).then(function (res)
 			{
-				alert (results[0].formatted_address);
-				for (var i = 0; i < results[0].address_components.length; i++)
+				console.log("Respones form maps: ", res);
+				for (var obj in res.data.results)
 				{
-					for (var b = 0; b < results[0].address_components[i].types.length; b++)
-					{
-						if (results[0].address_components[i].types[b] == "administrative_area_level_1")
-						{
-							city = results[0].address_components[i];
-							console.log(city);
-						}
-					}
+					alert(obj.types[0]);
+					for (var type in obj.types)
+						if (type === 'street_address')
+							alert(type);
 				}
-			}
-		})})
+			});
 	}
 
 	$scope.openFromLeft = function(message) {
@@ -58,8 +55,6 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 
 	$scope.postForm = function()
 	{
-		if (navigator.geolocation)
-		 navigator.geolocation.getCurrentPosition(successFunction)
 		$http({
 	    method: 'POST',
 	    url: '/api/user',
