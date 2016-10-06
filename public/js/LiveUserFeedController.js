@@ -2,6 +2,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 
 	$scope.cookie = getCookie();
 	$scope.users;
+	$scope.message = "";
 
 	$scope.calcAge = function(dateString) {
 		var birthday = +new Date(dateString);

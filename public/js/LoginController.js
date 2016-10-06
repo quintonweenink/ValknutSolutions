@@ -1,5 +1,6 @@
 InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog) {
 	$scope.cookie = getCookie()
+	$scope.message = "";
 
 	$scope.openFromLeft = function(message) {
     	$mdDialog.show(
