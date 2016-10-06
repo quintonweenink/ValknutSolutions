@@ -1,8 +1,12 @@
-InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootScope, $http, $mdDialog) {
+InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootScope, $http, $mdDialog, $location) {
 
 	$scope.cookie = getCookie();
 	$scope.users;
 
+	$scope.calcAge = function(dateString) {
+		var birthday = +new Date(dateString);
+  		return ~~((Date.now() - birthday) / (31557600000));
+}
 	function makeProcessed() {
 		$http.put("/api/user/"+$scope.currentUser.id)
 		.then(function(response){
@@ -53,7 +57,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
          targetEvent: ev,
          template:
            '<md-dialog aria-label="List dialog">' +
-           '  <md-dialog-content style="width: 450px">'+
+           '  <md-dialog-content style="width: 350px">'+
 		   '	<div class="container">'+
 		   '	<div class="row">'+
 		   '	<h5>Lead: </h5>'+
@@ -62,7 +66,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 		   '      <tr><td>Last Name: </td><td>'+user.last_name+'</td></tr>'+
 		   '      <tr><td>Phone number: </td><td>'+user.phone_number+'</td></tr>'+
 		   '      <tr><td>Marital status: </td><td>'+user.marital_status+'</td></tr>'+
-		   '      <tr><td>Date of Birth: </td><td>'+user.date_of_birth+'</td></tr>'+
+		   '      <tr><td>Age: </td><td>'+$scope.calcAge(user.date_of_birth)+'</td></tr>'+
 		   '      <tr><td>Gender: </td><td>'+user.gender+'</td></tr>'+
 		   '      <tr><td>City: </td><td>'+user.city+'</td></tr>'+
 		   '      <tr><td>Email: </td><td>'+user.email+'</td></tr>'+
@@ -94,11 +98,10 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 		.then(function(res){
 				$scope.users = res.data.users
 			    //$scope.message = res.data.message
-				if(res.data.success)
 					$scope.users = res.data.users
-				else {
+				if(!res.data.success) {
 					$scope.openFromLeft(res.data.message)
-					$location.path("/login");
+					$location.path("/login")
 				}
 		})
 	}

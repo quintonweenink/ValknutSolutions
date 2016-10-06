@@ -16,9 +16,11 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
     		);
   	};
 
+	//not the best test
 	$http.get("/api/user?token="+$scope.cookie)
-	.then(function(users){
-		$scope.openFromLeft('You already have a token')
+	.then(function(res){
+		if(res.success)
+			$scope.openFromLeft('You already have a token')
 	});
 
 	$scope.analystLogin
@@ -39,7 +41,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are logged in")
 			}
 			//window.location = '/';
 		})
@@ -56,7 +58,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		}).success(function (res) {
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are signed up")
 			}
 			//window.location = '/';
 		})
@@ -74,7 +76,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are logged in")
 			}
 			//window.location = '/';
 		})
@@ -91,7 +93,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		}).success(function (res) {
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are signed up")
 			}
 			//window.location = '/';
 		})

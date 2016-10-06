@@ -38,6 +38,9 @@ module.exports = function(app, passport,io){
 					newUser.email = req.body.email.toLowerCase();
 				}
 
+				if(req.body.from)
+					newUser.from = req.body.from
+
 				let resObj = objectValidate(newUser)
 				//console.log(resObj)
 
