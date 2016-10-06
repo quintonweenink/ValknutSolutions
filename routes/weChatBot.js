@@ -41,6 +41,7 @@ module.exports = function(app, passport){
 			}
 
         if(activeUsers[senderID].email != ''){
+			activeUsers[senderID].from = 'weChat'
             userController.createUser(activeUsers[senderID])
             delete activeUsers[senderID]
         }
