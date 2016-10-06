@@ -71,15 +71,15 @@ module.exports = function(app, passport,io){
 	app.route('/api/user/:user_id')
 	//User ID Get route
     .get(function(req, res) {
-		userController.getUserById(req.params.user_id).then(function(user){
+		userController.process(req.params.user_id).then(function(user){
 			res.json(user);
 		});
     })
 
 	//User ID update route
 	.put(function(req, res) {
-        res.json({ message: 'User updated!',
-			ID: req.params.user_id
+		userController.process(req.params.user_id).then(function(user){
+			res.json({success:true, message:'User is maked as processed'});
 		});
 		//Logic for updating a user
     })

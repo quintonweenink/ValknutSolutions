@@ -29,6 +29,7 @@ table tr:nth-child(even) {
               <th>Phone number</th>
               <th>Date of birth</th>
               <th>Email</th>
+			  <th>Options</th>
            </tr>
 
            <tr ng-repeat = "user in users">
@@ -37,6 +38,7 @@ table tr:nth-child(even) {
               <td>{{ user.phone_number }}</td>
               <td>{{ user.date_of_birth }}</td>
               <td>{{ user.email }}</td>
+			  <td><md-button class="md-raised md-warn" ng-click="customLead(user, $event)" content=user>Process</md-button></td>
            </tr>
         </table>
   </md-content>
