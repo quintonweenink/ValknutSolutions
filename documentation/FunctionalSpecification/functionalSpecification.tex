@@ -324,29 +324,26 @@ The functional requirement specification of this system is separated into differ
 				\end{itemize}
 		\end{flushleft}
 
-		%\subsubsection{Services Contracts}
-		%	\begin{itemize}
-		%	\item Pre-conditions
-		%		\begin{itemize}
-		%			\item The sender's notification point is valid
-		%			\item The recipient's notification point is valid
-		%			\item eg. Valid email addresses
-		%		\end{itemize}
-		%	\item Post-conditions
-		%		\begin{itemize}
-		%			\item A success message will be received 
-		%		\end{itemize}
-		%\end{itemize}
-		%\begin{figure}[H]
-		%\includegraphics[width=\textwidth]{images/class__notify__serviceContract.jpg}  \\
-		%\caption{Service Contract : notify}
-		%\end{figure}		
+		\subsubsection{Services Contracts}
+		The pre and post conditions for the marketing processing of a lead is described below:
+		\begin{itemize}
+				\item Pre-conditions
+				\begin{itemize}
+					\item The marketer is logged in.
+					\item A user lead is created (from any integration)
+				\end{itemize}
+			\item Post-conditions
+				\begin{itemize}
+					\item The marketer processes the lead. See Figure \ref{fig:processLead} for more information.
+				\end{itemize}
+		\end{itemize}
+
 		
 		\subsubsection{Process specifications}
-
 		\begin{figure}[H]
 		\includegraphics[width=18cm]{images/marketingProcess.jpg}  \\
 		\caption{Process specification : ProcessLead}
+		\label{fig:processLead}
 		\end{figure}
 
 		
