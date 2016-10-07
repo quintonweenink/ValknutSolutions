@@ -221,17 +221,17 @@ Dependencies:
 \hline
 Feature ID & RDS Source                            & Summary                                    & Test Case ID \\ \hline \hline
 1          & Functional requirements - getLeadData & Receive data from a Facebook lead ad       & 1            \\ \hline
-2          & Functional requirements - getData     & Receive data from other integration source & 2            \\ \hline
-3          & Functional requirements - Analysis    & Database insertions                        & 3            \\ \hline
-4          & Functional requirements - Analysis    & Database deletions                         & 4            \\ \hline
-5          & Functional requirements - Analysis    & Database retrievals                        & 5            \\ \hline
-6          & Functional requirements - generateReport & Extract age from datestring			    & 6			   \\ \hline
-7	       & Functional requirements - generateReport & Extract month from datestring			& 7            \\ \hline
-8          &  Architecture design - Section 5      & Environmental test                         & 8            \\ \hline
-9          &  Architecture design - Section 5.1.1  & Deployment test                            & 9            \\ \hline
-10         &  Functional requirements - getMessengderData & Receive data from a Facebook messenger & 10            \\ \hline
-11        &  Functional requirements - getData & Validate input from a integration source & 11         \\ \hline
-12        &  Architectural requirements - Security and Auditability & 12        \\ \hline
+2          & Functional requirements - getData     & Receive data from integration source & 2            \\ \hline
+3          & Functional requirements - Analysis    & Database insertions                        & 3  \\ \hline
+4          & Functional requirements - Analysis    & Database deletions                         & 4 \\ \hline
+5          & Functional requirements - Analysis    & Database retrievals                        & 5 \\ \hline
+6          & Functional requirements - generateReport & Extract age from datestring			    & 6	\\ \hline
+7	       & Functional requirements - generateReport & Extract month from datestring			& 7 \\ \hline
+8          &  Architecture design - Section 5      & Environmental test                         & 8 \\ \hline
+9          &  Architecture design - Section 5.1.1  & Deployment test                            & 9 \\ \hline
+10         &  Functional requirements - getMessengderData & Receive data from messenger & 10 \\ \hline
+11        &  Functional requirements - getData & Validate input data & 11 \\ \hline
+12        &  Architectural requirements - Security/Auditability & Authentication testing & 12 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -293,7 +293,7 @@ Feature ID & RDS Source                            & Summary                    
 \paragraph{Objective:} The purpose of this test is to extract data from any integration source.
 \paragraph{Input:} The following inputs will be used:
 \begin{enumerate}
-	\item An non-existing entity - based on user data from any integration:
+	\item A non-existing entity - based on user data from any integration:
 	\begin{enumerate}
 		\item firstName
   		\item lastName
@@ -309,6 +309,8 @@ Feature ID & RDS Source                            & Summary                    
 \begin{enumerate}
 	\item A JSON object of a User 
 \end{enumerate}
+
+\pagebreak
 
 \subsection{\underline{Test Case 3: Insertion}}\label{test3}
 \subsubsection{Condition 1: Valid inputs }
@@ -334,6 +336,8 @@ Feature ID & RDS Source                            & Summary                    
 	\item The existing entity gets deleted from the database 
 \end{enumerate}
 
+\pagebreak
+
 \subsection{\underline{Test Case 5: Retrieval}}\label{test5}
 \subsubsection{Condition 1: If field exists }
 \paragraph{Objective:} The purpose of this test is to test retrieval of data from the database.
@@ -355,6 +359,8 @@ Feature ID & RDS Source                            & Summary                    
 \begin{enumerate}
 	\item The test will return null
 \end{enumerate}
+
+\pagebreak
 
 \subsection{\underline{Test Case 6: Extract age from datestring}}\label{test6}
 \subsubsection{Condition 1: Valid datestring object }
@@ -388,6 +394,7 @@ Feature ID & RDS Source                            & Summary                    
 	\item The age of 18 is returned as a valid outcome
 \end{enumerate}
 
+\pagebreak
 
 \subsection{\underline{Test Case 7: Extract month from datestring as named month}}\label{test7}
 \subsubsection{Condition 1: Valid datestring object }
@@ -421,6 +428,7 @@ Feature ID & RDS Source                            & Summary                    
 	\item The string of the month of September is returned
 \end{enumerate}
 
+\pagebreak
 
 \subsection{\underline{Test Case 8: Environmental test(Integration test)}}\label{test8}
 \subsubsection{Condition 1: If environment is set to Deployment }
@@ -443,6 +451,8 @@ Feature ID & RDS Source                            & Summary                    
 \begin{enumerate}
 	\item Set the hosting port to 3000 to avoid conflicts
 \end{enumerate}
+
+\pagebreak
 
 \subsection{\underline{Test Case 9: Travis CI Deployment test (Integration test) }}\label{test9}
 \subsubsection{Condition 1: If hosting version is compatible}
@@ -468,6 +478,7 @@ Feature ID & RDS Source                            & Summary                    
 	\item The build will error/fail
 \end{enumerate}
 
+\pagebreak
 
 \subsection{\underline{Test Case 10: Facebook messenger test}}\label{test10}
 \subsubsection{Condition 1: Valid user message}
@@ -532,10 +543,7 @@ Feature ID & RDS Source                            & Summary                    
      \item 7:'Please reply with your Email:'
 \end{enumerate}
 
-
-
-
-
+\pagebreak
 
 \subsection{\underline{Test Case 11: Validation Test for user input}}\label{test11}
 \subsubsection{Condition 1: Valid user input}
@@ -595,6 +603,8 @@ Feature ID & RDS Source                            & Summary                    
 	\item A success object is returned per item with a false flag.
 	\item An error message is returned
 \end{enumerate}
+
+\pagebreak 
 
 \subsection{\underline{Test Case 12: Authentication Test}}\label{test12}
 \subsubsection{Condition 1: invalid token provided}
