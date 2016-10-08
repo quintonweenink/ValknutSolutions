@@ -29,14 +29,14 @@ module.exports =	function(app, passport){
 			for (var i = 0; i < users.length; i++)
 			{
 				var user = users[i];
-				if(cities.indexOf(user.city) == -1)
+				if(cities.indexOf(user.city.toUpperCase()) == -1)
 				{
-					cities.push(user.city);
+					cities.push(user.city.toUpperCase());
 					cityCount.push(1);
 				}
 				else
 				{
-					cityCount[cities.indexOf(user.city)]++;
+					cityCount[cities.indexOf(user.city.toUpperCase())]++;
 				}
 			}
 

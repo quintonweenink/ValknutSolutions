@@ -17,7 +17,7 @@ module.exports = {
 				io.emit('new user', user);
 			return user;
   		});
-
+			io.emit('updateGraph');
 		return new_user;
 	},
 	process : function process(user_id)
