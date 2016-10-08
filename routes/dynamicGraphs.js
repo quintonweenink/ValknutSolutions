@@ -314,35 +314,45 @@ module.exports =	function(app, passport){
 			app.route('/api/graph/Geochart/')
 			.get(function(req,res){
 
-				models.User.findAll().then(
-
-					function(users)
-					{
-						var integration = [];
-						var integrationCount = [];
+					models.User.findAll().then(function(users){
+						var cities = [];
+						var cityCount = [];
 						for (var i = 0; i < users.length; i++)
 						{
 							var user = users[i];
-							var Status = user.from;
-							if(integration.indexOf(Status) == -1)
+							if(cities.indexOf(user.city.toUpperCase()) == -1)
 							{
-								integration.push(Status);
-								integrationCount.push(1);
+								cities.push(user.city.toUpperCase());
+								cityCount.push(1);
 							}
 							else
 							{
-								integrationCount[integration.indexOf(Status)]++;
+								cityCount[cities.indexOf(user.city.toUpperCase())]++;
 							}
 						}
+
+						var arr2 = new Array();
+						arr2[0] = new Array(2);
+						arr2[0][0] = 'City';
+						arr2[0][1] = 'Users';
+							for (var i=0; i < cities.length;i++)
+							{
+								arr2[i+1] = new Array(2);
+								arr2[i+1][0] = cities[i];
+								arr2[i+1][1] = cityCount[i];
+							}
+
 						var GraphObject = new Object;
-						GraphObject.labels = integration;
-						GraphObject.data = integrationCount;
+
+						GraphObject.data = arr2;
 						GraphObject.options =
 						{
-								title: {
-									display: true,
-									text:  "From Which Integration"
-								}
+							region: 'ZA',
+							resolution : 'provinces',
+							displayMode: 'markers',
+							colorAxis: {colors: ['green', 'blue','black']},
+							maxSize : 8,
+							minSize : 5
 						}
 						res.json(GraphObject);
 					}
