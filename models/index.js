@@ -5,14 +5,19 @@ var path = require("path");
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
 var config = require('../config/config.json')[env];
+var dburl
 
-if (env != "development")
-{
+if (env != "development"){
   var pg = require('pg');
   pg.defaults.ssl = true;
+  dburl = process.env.DATABASE_URL
+}
+else {
+	dburl = config.url
 }
 
-var sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+var sequelize = new Sequelize(dburl);
 var db = {};
 
 fs.readdirSync(__dirname).filter(function(file) {
