@@ -308,4 +308,62 @@ module.exports =	function(app, passport){
 			});
 
 
+
+
+			/*********************Geo Chart route*****************/
+			app.route('/api/graph/Geochart/')
+			.get(function(req,res){
+
+				models.User.findAll().then(
+
+					function(users)
+					{
+						var integration = [];
+						var integrationCount = [];
+						for (var i = 0; i < users.length; i++)
+						{
+							var user = users[i];
+							var Status = user.from;
+							if(integration.indexOf(Status) == -1)
+							{
+								integration.push(Status);
+								integrationCount.push(1);
+							}
+							else
+							{
+								integrationCount[integration.indexOf(Status)]++;
+							}
+						}
+						var GraphObject = new Object;
+						GraphObject.labels = integration;
+						GraphObject.data = integrationCount;
+						GraphObject.options =
+						{
+								title: {
+									display: true,
+									text:  "From Which Integration"
+								}
+						}
+						res.json(GraphObject);
+					}
+
+				);
+
+			})
+			.put(function(req, res) {
+				res.json({ message: 'This route does not support put requests'	});
+			})
+			.post(function(req, res) {
+				res.json({ message: 'This route does not support post requests'	});
+			})
+			.delete(function(req, res) {
+				res.json({ message: 'This route does not support delete requests'});
+			});
+
+
+
+
+
+
+
 };
