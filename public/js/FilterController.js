@@ -17,9 +17,16 @@ InsuranceProfiling.controller('filterController',function($scope, $http, $mdDial
 		//This new method eliminates 5 if-else statements
 		$http.get("/api/graph/"+$scope.group1+"/"+$scope.graphType)
 		.then(function(response){
-			$scope.data = response.data.data;
-			$scope.labels = response.data.labels;
-			$scope.options = response.data.options;
+			if(response.data.data.length == 0)
+			{
+				$scope.message = "No users in db";
+			}
+			else
+			{
+				$scope.data = response.data.data;
+				$scope.labels = response.data.labels;
+				$scope.options = response.data.options;
+			}
 		});
 	};
 
