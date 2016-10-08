@@ -6,6 +6,7 @@ var authObj = {
            "callbackURL": "localhost",
            "version": "v2.6"
       },
+	  "secret":"fakesecret",
       "url": "https://marketlead.herokuapp.com/"
 }
 

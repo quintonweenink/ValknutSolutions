@@ -7,13 +7,5 @@
 "dialect": "postgres",
 "port": "5432",
 "url": "postgres://postgres:root@127.0.0.1:5432/InsuranceProfilingDevelop"
-},
-"deploy": {
-  "username": "drrllfcxpqicng",
-  "password": "ekdGWHIZHx9mEfJZVXJQH82jQE",
-  "database": "dfa1lr6bvct2pi",
-  "host": "ec2-54-247-185-241.eu-west-1.compute.amazonaws.com",
-  "dialect": "postgres",
-  "port": "5432"
 }
 }
