@@ -31,7 +31,7 @@ var authObj = {
 if (env != "development"){
   var pg = require('pg');
   pg.defaults.ssl = true;
-  authObj = process.env.AUTH
+  authObj = JSON.parse(process.env.AUTH)
 }
 
 module.exports = authObj
