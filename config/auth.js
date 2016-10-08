@@ -17,6 +17,9 @@ module.exports = {
           'encodingAESKey': 'kOLctQbMhlo5hHVBLDK1FSbSsG53tDfAZHBZrP8tTtl',
           'token':'thisisashittytoken7'
       },
+      'googleMaps' : {
+          'apiKey' : 'AIzaSyDVXBav7-jWp5fD4zRRB75VVU7RX4k1Y8E'
+      },
       'secret': 'secretsecretsecretbro',
       'emailUri' : 'smtps://valknutsolutions7:BleepBlop@smtp.gmail.com',
       'emailFrom' : 'Test@servername.com',
