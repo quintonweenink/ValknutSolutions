@@ -2,20 +2,37 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 
 	$scope.cookie = getCookie();
 	$scope.users;
+	$scope.user
 	$scope.message = "";
 
-	$scope.calcAge = function(dateString) {
+	function calcAge(dateString) {
 		var birthday = +new Date(dateString);
   		return ~~((Date.now() - birthday) / (31557600000));
 }
+
+	$scope.calcAge = calcAge
+
 	function makeProcessed() {
-		$http.put("/api/user/"+$scope.currentUser.id)
+		$http.put("/api/user/"+$scope.user.id)
 		.then(function(response){
 			$mdDialog.cancel()
 			$scope.updateLiveFeed()
 			$scope.openFromLeft(response.data.message)
 		});
   	};
+
+	$scope.updateLiveFeed = function(){
+		$http.get("/api/user?token="+$scope.cookie)
+		.then(function(res){
+				$scope.users = res.data.users
+				//$scope.message = res.data.message
+					$scope.users = res.data.users
+				if(!res.data.success) {
+					$scope.openFromLeft(res.data.message)
+					$location.path("/login")
+				}
+		})
+	}
 
 
 	$scope.openFromLeft = function(message) {
@@ -33,7 +50,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
     		);
   	};
 
-	$scope.processLead = function(user, ev) {
+	$scope.processLead = function(user, ev, updateLiveFeed, openFromLeft) {
 		$scope.currentUser = user;
 			$mdDialog.show(
 				$mdDialog.confirm()
@@ -51,61 +68,22 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
   	};
 
 	$scope.customLead = function(user, ev) {
-		$scope.currentUser = user;
+		$scope.user = user
 		var parentEl = angular.element(document.body);
        $mdDialog.show({
          parent: parentEl,
          targetEvent: ev,
-         template:
-           '<md-dialog aria-label="List dialog">' +
-           '  <md-dialog-content style="width: 350px">'+
-		   '	<div class="container">'+
-		   '	<div class="row">'+
-		   '	<h5>Lead: </h5>'+
-           '    <table>'+
-           '      <tr><td>First Name: </td><td>'+user.first_name+'</td></tr>'+
-		   '      <tr><td>Last Name: </td><td>'+user.last_name+'</td></tr>'+
-		   '      <tr><td>Phone number: </td><td>'+user.phone_number+'</td></tr>'+
-		   '      <tr><td>Marital status: </td><td>'+user.marital_status+'</td></tr>'+
-		   '      <tr><td>Age: </td><td>'+$scope.calcAge(user.date_of_birth)+'</td></tr>'+
-		   '      <tr><td>Gender: </td><td>'+user.gender+'</td></tr>'+
-		   '      <tr><td>City: </td><td>'+user.city+'</td></tr>'+
-		   '      <tr><td>Email: </td><td>'+user.email+'</td></tr>'+
-		   '      <tr><td>Integration point: </td><td>'+user.from+'</td></tr>'+
-		   '      <tr><td>Processed: </td><td>'+user.processed+'</td></tr>'+
-           '     </table>'+
-           '    </md-list-item></md-list>'+
-		   '	</div>'+
-		   '	</div>'+
-           '  </md-dialog-content>' +
-           '  <md-dialog-actions>' +
-           '    <md-button ng-click="cancel()" class="md-primary">' +
-           '      Cancel processing' +
-           '    </md-button>' +
-		   '    <md-button ng-click="process()" class="md-raised md-warn">' +
-           '      Process' +
-           '    </md-button>' +
-           '  </md-dialog-actions>' +
-           '</md-dialog>',
+         templateUrl:'views/pages/processLead.tmpl.html',
          locals: {
-           items: $scope.items
+           user: user
          },
-         controller: DialogController
+		 clickOutsideToClose:true,
+         controller: DialogController,
+		 fullscreen: true // Only for -xs, -sm breakpoints.
 	 })
   	};
 
-	$scope.updateLiveFeed = function(){
-		$http.get("/api/user?token="+$scope.cookie)
-		.then(function(res){
-				$scope.users = res.data.users
-			    //$scope.message = res.data.message
-					$scope.users = res.data.users
-				if(!res.data.success) {
-					$scope.openFromLeft(res.data.message)
-					$location.path("/login")
-				}
-		})
-	}
+
 
 	$scope.updateLiveFeed()
 
@@ -118,7 +96,8 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 		$scope.$apply()
   });
 
-  function DialogController($scope, $mdDialog) {
+  function DialogController($scope, $mdDialog, user) {
+	  $scope.user = user
 	  $scope.hide = function() {
 		$mdDialog.hide();
 	  };
@@ -130,6 +109,36 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 	  $scope.answer = function(answer) {
 		$mdDialog.hide(answer);
 	  };
+
+	  $scope.process = function(){
+		  $http.put("/api/user/"+$scope.user.id)
+  		.then(function(response){
+  			$scope.cancel()
+			$http.get("/api/user?token="+$scope.cookie)
+			.then(function(res){
+					$scope.users = res.data.users
+					//$scope.message = res.data.message
+						$scope.users = res.data.users
+					if(!res.data.success) {
+						$scope.openFromLeft(res.data.message)
+						$location.path("/login")
+					}
+			})
+			$mdDialog.show(
+	      		$mdDialog.alert()
+	        	.clickOutsideToClose(true)
+	        	.title('Alert')
+	        	.textContent(response.data.message)
+	        	.ariaLabel(response.data.message)
+	        	.ok('Ok!')
+	        	// You can specify either sting with query selector
+	        	.openFrom('#left')
+	        	// or an element
+	        	.closeTo(angular.element(document.querySelector('#right')))
+	    		);
+  		});
+	  }
+
   	$scope.process = makeProcessed;
 }
 
