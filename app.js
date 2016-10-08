@@ -86,6 +86,7 @@ var routes = require('./routes/routes')(app, passport);
 var graphRoute= require('./routes/graph')(app, passport);
 var liveGraphRoute = require('./routes/dynamicGraphs')(app, passport);
 var angular = require('./routes/angular')(app, passport);
+var location = require('./routes/location')(app, passport);
 
 
 // catch 404 and forward to error handler
