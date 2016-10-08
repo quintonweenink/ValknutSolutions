@@ -1,4 +1,5 @@
-module.exports = {
+var env = process.env.NODE_ENV || "development";
+var authObj = {
       'fb': {
            'appId': '959936647438530',
            'appSecret': 'a1b4088df1dc99305fee1fa09c2c6e61',
@@ -22,3 +23,12 @@ module.exports = {
       'emailFrom' : 'Test@servername.com',
       'url': 'https://marketlead.herokuapp.com/'
 }
+
+
+if (env != "development"){
+  var pg = require('pg');
+  pg.defaults.ssl = true;
+  authObj = process.env.AUTH
+}
+
+module.exports = authObj
