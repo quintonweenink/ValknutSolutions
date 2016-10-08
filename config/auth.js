@@ -6,11 +6,9 @@ var authObj = {
            "callbackURL": "localhost",
            "version": "v2.6"
       },
-	  "secret":"fakesecret",
-      "url": "https://marketlead.herokuapp.com/"
+	     "secret":"fakesecret",
+       "url": "https://marketlead.herokuapp.com/"
 }
-
-
 
 if(env == "testing"){
 	//This is for Travis
