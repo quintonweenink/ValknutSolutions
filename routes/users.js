@@ -54,7 +54,6 @@ module.exports = function(app, passport,io){
 				userController.createUser(newUser)
 				.then(function(user){
 	        		res.json(user.dataValues);
-							io.emit('updateGraph');
 	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
