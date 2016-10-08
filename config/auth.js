@@ -10,9 +10,12 @@ var authObj = {
       "url": "https://marketlead.herokuapp.com/"
 }
 
-console.log("Node env: " + process.env.NODE_ENV)
 
-if (env != "development"){
+
+if(env == "testing"){
+	//This is for Travis
+}
+else if (env != "development"){
   var pg = require('pg');
   pg.defaults.ssl = true;
   authObj = JSON.parse(process.env.AUTH || authObj)
