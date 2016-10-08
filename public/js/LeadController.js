@@ -72,7 +72,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 	    data:
 		'first_name='+$scope.user.first_name+
 		'&last_name='+$scope.user.last_name+
-		'&phone_number='+$scope.user.phone_number+
+		'&phone_number='+encodeURIComponent($scope.user.phone_number)+
 		'&marital_status='+$scope.user.marital_status+
 		'&date_of_birth='+$scope.user.date_of_birth+
 		'&gender='+$scope.user.gender+
