@@ -22,6 +22,7 @@ module.exports = function(app, passport)
       {
         var data = JSON.parse(body);
         var loop = true;
+        var city;
 
         for (var obj in data.results)
 				{
@@ -40,6 +41,7 @@ module.exports = function(app, passport)
 							{
 								//$('#city').val(tmp1.long_name);
                 console.log("City: " + tmp1.long_name);
+                city = tmp1.long_name;
                 loop = false;
                 break;
 							}
@@ -47,8 +49,11 @@ module.exports = function(app, passport)
 					}
 				}
 
+        if (!loop)
+          res.send(city);
+        else
+          res.status(500).json({ error: 'error finding the city' });
         console.log("=============Location end=============");
       });
-      res.send("Location goes here");
     });
 }
