@@ -8,7 +8,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 	function calcAge(dateString) {
 		var birthday = +new Date(dateString);
   		return ~~((Date.now() - birthday) / (31557600000));
-}
+	}
 
 	$scope.calcAge = calcAge
 
@@ -48,23 +48,6 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
         	// or an element
         	.closeTo(angular.element(document.querySelector('#right')))
     		);
-  	};
-
-	$scope.processLead = function(user, ev, updateLiveFeed, openFromLeft) {
-		$scope.currentUser = user;
-			$mdDialog.show(
-				$mdDialog.confirm()
-	        	.clickOutsideToClose(true)
-	        	.title('Lead')
-	        	.textContent("<div>"+user+"</div>")
-	        	.ariaLabel(user)
-	        	.ok('I have processed this lead')
-				.cancel('Not processing this lead')
-	        	// You can specify either sting with query selector
-	        	.openFrom('#left')
-	        	// or an element
-	        	.closeTo(angular.element(document.querySelector('#right')))
-			)
   	};
 
 	$scope.customLead = function(user, ev) {
@@ -109,35 +92,6 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 	  $scope.answer = function(answer) {
 		$mdDialog.hide(answer);
 	  };
-
-	  $scope.process = function(){
-		  $http.put("/api/user/"+$scope.user.id)
-  		.then(function(response){
-  			$scope.cancel()
-			$http.get("/api/user?token="+$scope.cookie)
-			.then(function(res){
-					$scope.users = res.data.users
-					//$scope.message = res.data.message
-						$scope.users = res.data.users
-					if(!res.data.success) {
-						$scope.openFromLeft(res.data.message)
-						$location.path("/login")
-					}
-			})
-			$mdDialog.show(
-	      		$mdDialog.alert()
-	        	.clickOutsideToClose(true)
-	        	.title('Alert')
-	        	.textContent(response.data.message)
-	        	.ariaLabel(response.data.message)
-	        	.ok('Ok!')
-	        	// You can specify either sting with query selector
-	        	.openFrom('#left')
-	        	// or an element
-	        	.closeTo(angular.element(document.querySelector('#right')))
-	    		);
-  		});
-	  }
 
   	$scope.process = makeProcessed;
 }
