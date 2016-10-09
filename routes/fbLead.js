@@ -1,8 +1,9 @@
-var express = require('express');
+var models = require('../models');
 var fbControllers = require('../controllers/fb/fbController');
-var advertisementController = require('../controllers/db/AdvertisementController');
+var advertisementCotroller = require("../controllers/db/AdvertisementController");
 var pageController = require('../controllers/db/PageController');
 var userController = require('../controllers/db/UserController');
+var fs = require('fs');
 
 module.exports = function(app, passport)
 {
