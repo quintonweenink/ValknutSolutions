@@ -308,4 +308,156 @@ module.exports =	function(app, passport){
 			});
 
 
+
+
+			/*********************Geo Chart route*****************/
+			app.route('/api/graph/Geochart/')
+			.get(function(req,res){
+
+					models.User.findAll().then(function(users){
+						var cities = [];
+						var cityCount = [];
+						for (var i = 0; i < users.length; i++)
+						{
+							var user = users[i];
+							if(cities.indexOf(user.city.toUpperCase()) == -1)
+							{
+								cities.push(user.city.toUpperCase());
+								cityCount.push(1);
+							}
+							else
+							{
+								cityCount[cities.indexOf(user.city.toUpperCase())]++;
+							}
+						}
+
+						var arr2 = new Array();
+						arr2[0] = new Array(2);
+						arr2[0][0] = 'City';
+						arr2[0][1] = 'Users';
+							for (var i=0; i < cities.length;i++)
+							{
+								arr2[i+1] = new Array(2);
+								arr2[i+1][0] = cities[i];
+								arr2[i+1][1] = cityCount[i];
+							}
+						var GraphObject = new Object;
+
+						GraphObject.data = arr2;
+						GraphObject.options =
+						{
+							region: 'ZA',
+							legend : {textStyle: {color: 'blue', fontSize: 16}},
+							// resolution : 'provinces',
+							backgroundColor: '#86c5da',
+							datalessRegionColor : '#FEE8D6',
+							// height : 600,
+							// keepAspectRatio : true,
+							displayMode: 'markers',
+							markerOpacity : 0.7,
+						 	sizeAxis : { maxSize: 15, minSize: 5},
+							colorAxis: {colors: ['red','green', 'blue']}
+						}
+						res.json(GraphObject);
+					}
+
+				);
+
+			})
+			.put(function(req, res) {
+				res.json({ message: 'This route does not support put requests'	});
+			})
+			.post(function(req, res) {
+				res.json({ message: 'This route does not support post requests'	});
+			})
+			.delete(function(req, res) {
+				res.json({ message: 'This route does not support delete requests'});
+			});
+
+
+
+			app.route('/api/graph/GeoChartCountry/')
+			.get(function(req,res){
+
+					models.User.findAll().then(function(users){
+						var countries = [];
+						var countryCount = [];
+
+						//TODO: Replace South Africa with user.country
+
+						// for (var i = 0; i < users.length; i++)
+						// {
+						// 	var user = users[i];
+						// 	if(countries.indexOf("user.country") == -1)
+						// 	{
+						// 		countries.push(user.country);
+						// 		countryCount.push(1);
+						// 	}
+						// 	else
+						// 	{
+						// 		countryCount[countries.indexOf(user.country)]++;
+						// 	}
+						// }
+
+						for (var i = 0; i < users.length; i++)
+						{
+							var user = users[i];
+							if(countries.indexOf("South Africa") == -1)
+							{
+								countries.push("South Africa");
+								countryCount.push(1);
+							}
+							else
+							{
+								countryCount[countries.indexOf("South Africa")]++;
+							}
+						}
+
+						var arr2 = new Array();
+						arr2[0] = new Array(2);
+						arr2[0][0] = 'Country';
+						arr2[0][1] = 'Users';
+							for (var i=0; i < countries.length;i++)
+							{
+								arr2[i+1] = new Array(2);
+								arr2[i+1][0] = countries[i];
+								arr2[i+1][1] = countryCount[i];
+							}
+						var GraphObject = new Object;
+
+						GraphObject.data = arr2;
+						GraphObject.options =
+						{
+								region: '002',
+								resolution : 'countries',
+								backgroundColor: '#86c5da',
+								datalessRegionColor : '#FEE8D6',
+								displayMode: 'region',
+								// markerOpacity : 0.7,
+								// sizeAxis : { maxSize: 15, minSize: 5},
+								// colorAxis: {colors: ['red','green', 'blue']}
+						};
+						res.json(GraphObject);
+					}
+
+				);
+
+			})
+			.put(function(req, res) {
+				res.json({ message: 'This route does not support put requests'	});
+			})
+			.post(function(req, res) {
+				res.json({ message: 'This route does not support post requests'	});
+			})
+			.delete(function(req, res) {
+				res.json({ message: 'This route does not support delete requests'});
+			});
+
+
+
+
+
+
+
+
 };

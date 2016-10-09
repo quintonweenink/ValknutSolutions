@@ -8,7 +8,7 @@
 <title>MarketLead.io</title>
 <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      
+
 <!--Materialize-->
 <link rel="stylesheet" href="public/libs/Materialize/dist/css/materialize.min.css"/>
 
@@ -28,6 +28,10 @@
 <!-- Socket.io -->
 <script src="libs/socket.io-client/socket.io.js"></script>
 
+<!--Google Chart for GeoChart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
 <!-- Angular controllers -->
 <script type="text/javascript" src="js/AngularConfig.js"></script>
 <script type="text/javascript" src='js/AboutController.js'></script>
@@ -42,7 +46,9 @@
 <script type="text/javascript" src='js/PrivacyPolicyController.js'></script>
 <script type="text/javascript" src='js/TermsOfServiceController.js'></script>
 <script type="text/javascript" src='js/ConnectPageController.js'></script>
+<script type="text/javascript" src='js/GeoController.js'></script>
 <script type="text/javascript" src='http://maps.googleapis.com/maps.api.js'></script>
+
 <!--<script src="js/script.js"></script>-->
 
 <!-- Chart dependency for Angular Chart-->
@@ -97,6 +103,7 @@ $(document).ready(function(){
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login/Signup</a></li>
       <li><a href="#liveGraphs">Live Graphs</a></li>
+      <li><a href="#geochart">GeoChart</a></li>
 
     </ul>
     <ul class="side-nav" id="mobile">
@@ -107,6 +114,7 @@ $(document).ready(function(){
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login/Signup</a></li>
       <li><a href="#liveGraphs">Live Graphs</a></li>
+      <li><a href="#geochart">geochart</a></li>
 
     </ul>
   </div>
