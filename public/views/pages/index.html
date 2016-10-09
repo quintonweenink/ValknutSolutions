@@ -49,7 +49,6 @@
 <script type="text/javascript" src='js/TermsOfServiceController.js'></script>
 <script type="text/javascript" src='js/ConnectPageController.js'></script>
 <script type="text/javascript" src='js/GeoController.js'></script>
-<script type="text/javascript" src='http://maps.googleapis.com/maps.api.js'></script>
 
 <!--<script src="js/script.js"></script>-->
 
@@ -88,7 +87,8 @@ $(document).ready(function(){
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
-<nav class="indigo" class="navbar-fixed">
+<div class="navbar-fixed">
+<nav class="indigo">
   <div class="nav-wrapper">
     <a href="#/" class="brand-logo" style="padding-left:60px;">MarketLead.io</a>
     <a href="" src="/images/logos/marketlead_4.png" data-activates="mobile" class="button-collapse">
@@ -120,6 +120,7 @@ $(document).ready(function(){
     </ul>
   </div>
 </nav>
+</div>
 
 
 <div id="main" style="z-index: -1">

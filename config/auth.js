@@ -6,11 +6,13 @@ var authObj = {
            "callbackURL": "localhost",
            "version": "v2.6"
       },
-	  "secret":"fakesecret",
-      "url": "https://marketlead.herokuapp.com/"
+	     "secret":"fakesecret",
+       "url": "https://marketlead.herokuapp.com/",
+       "google" :
+       {
+          "maps" : "AIzaSyDQ45U7xOfDtZpgVjhIeIO8h280x9KBYP4"
+       }
 }
-
-
 
 if(env == "testing"){
 	//This is for Travis
