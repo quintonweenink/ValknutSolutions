@@ -70,7 +70,7 @@ InsuranceProfiling.config(function($routeProvider) {
 	})
 	.when('/geochart',
 	{
-		templateUrl : 'views/pages/geoChart.html',
+		templateUrl : 'views/pages/GeoChart.html',
 		controller : 'geoController'
 	})
   .otherwise(
