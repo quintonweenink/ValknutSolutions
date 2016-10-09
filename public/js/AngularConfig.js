@@ -68,6 +68,11 @@ InsuranceProfiling.config(function($routeProvider) {
 		templateUrl : 'views/pages/connectPage.html',
 		controller : 'ConnectPageController'
 	})
+	.when('/geochart',
+	{
+		templateUrl : 'views/pages/geoChart.html',
+		controller : 'geoController'
+	})
   .otherwise(
   {
     redirectTo: '/'
