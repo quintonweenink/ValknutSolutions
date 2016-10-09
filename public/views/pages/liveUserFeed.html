@@ -31,7 +31,7 @@ table tr:nth-child(even) {
 			  <th>Options</th>
            </tr>
 
-           <tr ng-repeat = "user in users">
+           <tr ng-repeat = "user in users | filter:{ processed: false }">
               <td>{{ user.first_name }}</td>
               <td>{{ user.last_name }}</td>
               <td>{{ calcAge(user.date_of_birth) }}</td>
