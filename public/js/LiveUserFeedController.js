@@ -1,7 +1,9 @@
-InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootScope, $http, $mdDialog, $location) {
+InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, $mdDialog, $location) {
 
 	$scope.cookie = getCookie();
-	$scope.users;
+	$scope.users = {}
+	$scope.filters = {}
+	$scope.filters.showProcessed = false
 	$scope.user
 	$scope.message = "";
 
@@ -19,7 +21,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 			$scope.updateLiveFeed()
 			$scope.openFromLeft(response.data.message)
 		});
-  	};
+  	}
 
 	$scope.updateLiveFeed = function(){
 		$http.get("/api/user?token="+$scope.cookie)
@@ -31,6 +33,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 					$scope.openFromLeft(res.data.message)
 					$location.path("/login")
 				}
+				//$scope.$apply()
 		})
 	}
 
@@ -69,6 +72,20 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $rootSc
 
 
 	$scope.updateLiveFeed()
+
+	$scope.filterUsers = function filterUsers(users, filters) {
+		var filteredUsers = []
+		for(var x = 0; x < users.length; x++){
+			if(users[x].processed == filters.showProcessed)
+				filteredUsers.push(users[x])
+		}
+		return filteredUsers
+	}
+
+	$scope.changeShowProcessed = function changeShowProcessed() {
+		$scope.filters.showProcessed = !$scope.filters.showProcessed
+		//$scope.$apply()
+	}
 
 	var socket = io().connect();
 
