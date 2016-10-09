@@ -9,6 +9,7 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		}
 		else
 		{
+			//$scope.colors_line = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
 			$scope.data_line = [ response.data.data ];
 			$scope.series_line = response.data.labels;
 			$scope.labels_line = response.data.labels;
@@ -25,6 +26,7 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		}
 		else
 		{
+		//	$scope.colors_day = ['#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
 			$scope.data_day =  response2.data.data ;
 			$scope.labels_day = response2.data.labels;
 			$scope.options_day = response2.data.options;
@@ -39,9 +41,26 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		}
 		else
 		{
+		//	$scope.colors_from = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
 			$scope.data_from = response3.data.data;
 			$scope.labels_from = response3.data.labels;
 			$scope.options_from = response3.data.options;
+		 }
+	});
+
+
+	$http.get("/api/graph/ProcessedCount")
+	.then(function(response4){
+		if(response4.data.data.length == 0)
+		{
+			$scope.message = "No users in db";
+		}
+		else
+		{
+		//	$scope.colors_proc = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
+			$scope.data_proc =  response4.data.data ;
+			$scope.labels_proc = response4.data.labels;
+			$scope.options_proc = response4.data.options;
 		}
 	});
 
@@ -61,6 +80,11 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 		.then(function(response3){
 				updateFromChart(response3);
 		});
+
+		$http.get("/api/graph/ProcessedCount")
+		.then(function(response4){
+			updateProcChart(response4);
+	});
 
 		$mdToast.show(
 			$mdToast.simple()
@@ -84,6 +108,18 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 				.ok('Close')
 			);
 		};
+
+		$scope.onClickProcessed = function (points, evt) {
+			$mdDialog.show(
+				$mdDialog.alert()
+				.parent(angular.element(document.body))
+				.clickOutsideToClose(true)
+				.title($scope.options_proc.title.text)
+				.textContent(points[0]._model.label
+					+' : '+ $scope.data_proc[points[0]._index])
+					.ok('Close')
+				);
+			};
 
 		$scope.onClick_line = function (points, evt) {
 			$mdDialog.show(
@@ -135,6 +171,13 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 				$scope.data_from = response3.data.data;
 				$scope.labels_from = response3.data.labels;
 				$scope.options_from = response3.data.options;
+			};
+
+			function updateProcChart(response4)
+			{
+				$scope.data_proc = response4.data.data;
+				$scope.labels_proc = response4.data.labels;
+				$scope.options_from = response4.data.options;
 			};
 
 		});

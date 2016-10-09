@@ -9,7 +9,7 @@ module.exports = {
     city : "",
     email : "",
 	processed : false,
-	from : "Unknown",
+	from : "Website",
     clone : function(obj) {
         if (null == obj || "object" != typeof obj) return obj;
         var copy = obj.constructor();
