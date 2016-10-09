@@ -308,6 +308,53 @@ module.exports =	function(app, passport){
 			});
 
 
+			app.route('/api/graph/ProcessedCount/')
+			.get(function(req, res) {
+				models.User.findAll().then(
+					function(users){
+						var totalCount = users.length;
+						var processedCount = 0;
+						for (var i = 0; i < users.length; i++)
+						{
+							var user = users[i];
+							if(user.processed==true)
+							{
+								processedCount++;
+							}
+						}
+
+						totalCount = totalCount - processedCount;
+						var GraphObject = new Object;
+
+						GraphObject.labels = ['Unprocessed', 'Processed'];
+						GraphObject.data = [totalCount, processedCount];
+							GraphObject.options =
+							{
+								title: {
+									display: true,
+									text:  "Unprocessed vs Processed"
+								},
+								legend: {
+									display: true,
+									labels: {
+										fontColor: 'rgb(255, 99, 132)'
+									}
+								}
+							};
+
+						res.json(GraphObject);
+					});
+				})
+				.put(function(req, res) {
+					res.json({ message: 'This route does not support put requests'});
+				})
+				.post(function(req, res) {
+					res.json({ message: 'This route does not support post requests'});
+				})
+				.delete(function(req, res) {
+					res.json({ message: 'This route does not support delete requests'});
+				});
+
 
 
 			/*********************Geo Chart route*****************/
