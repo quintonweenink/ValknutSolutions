@@ -23,28 +23,18 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 	function setCity(lat, lng)
 	{
 		$http({
-			method : 'GET',
-			url : 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng +
-			"&key=AIzaSyCufQbkKm7hySeotd6q3lZ3n0Yumb4Gv-o"
+			method : 'POST',
+			url : '/loc/location',
+			headers :
+				{
+					'Content-Type' : 'application/x-www-form-urlencoded'
+				},
+			data :
+				"lat=" + lat +
+				"&lng=" + lng
 		}).then(function (res)
 			{
-				for (var obj in res.data.results)
-				{
-					var tmp = res.data.results[obj];
-					for (var addr in tmp.address_components)
-					{
-						var tmp1 = tmp.address_components[addr];
-						for (var type in tmp1.types)
-						if (tmp.types[type] === 'political' ||
-						 	tmp.types[type] === "sublocality" ||
-							tmp.types[type] === 'sublocality_level_1')
-							{
-								$('#city').val(tmp1.long_name);
-								return;
-							}
-
-					}
-				}
+				$('#city').val(res.data);
 			});
 	}
 
