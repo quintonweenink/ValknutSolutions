@@ -7,7 +7,7 @@ module.exports = function(app, passport)
     .post(function(req, res)
     {
       console.log("=============Location=============");
-      
+
       var lat = req.body.lat;
       var lng = req.body.lng;
       console.log("Lattitude: " + lat + " Longitude: :" + lng);

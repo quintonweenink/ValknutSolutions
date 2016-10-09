@@ -1,18 +1,6 @@
 var express = require('express');
-
 var models = require("../models");
-
-var userController = require("../controllers/db/UserController");
-var adminController = require("../controllers/db/AdminController");
-var analystController = require("../controllers/db/AnalystController");
-var pageController = require("../controllers/db/PageController");
-var advertisementCotroller = require("../controllers/db/AdvertisementController");
-var leadController = require("../controllers/db/LeadController");
-var email = require("../controllers/email/email");
 var jwt = require('jsonwebtoken');
-var util = require('util');
-var fs = require('fs');
-var fbControllers = require("../controllers/fb/fbController.js");
 
 const authenticate = require('../controllers/auth/auth').authenticate
 
@@ -112,88 +100,6 @@ next();
 			email.emailer(emailSettings.to,emailSettings.subject,emailSettings.text);
 			*/
 // ########### Please not this will not work due to the modules being moved around also I feel it best to move this into the model controller ######### [END]
-//------------API routes------------------//
-function accessTokenCallback(req, res, pageAccessToken)
-{
-	var page = {
-		page_id : req.body.page_id,
-		page_name : req.body.page_name,
-		page_access_token : pageAccessToken
-	};
-	var newPage = pageController.createPage(page)
-	.then(function(pages){
-		res.status(200).json(pages);
-}).catch(function(error){
-		 console.log("ops: " + error);
-		 res.status(500).json({ error: 'error' });
- });
-	console.log('Page created', JSON.stringify(newPage));
-	res.status(200);
-}
-//API/pageAccessToken
-app.route('/api/pageAccessToken')
-	.post(function(req,res){
-		fbControllers.extendAccessToken(req.body.page_access_token, function (token){
-			accessTokenCallback(req, res, token.access_token);
-		});
-	});
-
-//API/leads
-function leadPageFound(page, value){
-	var advertisement = {
-		page_id: page.id,
-		advertisement_id: '' + value.ad_id + ''
-	};
-	var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id){
-		fbControllers.getLeadData(value, page.pageAccessToken, id, fbControllers.facebookLeadCallback, fbControllers.userAddedCallback);
-
-	//Debugging
-	//console.log(JSON.stringify(newAdvertisement));
-	});
-}
-
-function processLead(lead)
-{
-	for (var ent in lead)
-	{
-		var changes = lead[ent].changes;
-		for (var ch in changes)
-		{
-			var value = changes[ch].value;
-			//console.log(JSON.stringify(value.leadgen_id));
-
-			models.Page.findOne({
-				where: {pageID : '' + value.page_id + ''}
-			})
-				.then(function(page){
-					//console.log("Page found: " + JSON.stringify(page));
-					leadPageFound(page, value);
-				});
-		}
-	}
-}
-
-app.route('/api/leads')
-	.post(function(req, res){
-		//console.log('Received lead from Facebook');
-
-		processLead(req.body.entry);
-
-		res.send('{"success" : true}');
-	})
-	.get(function(req, res){
-		//Function to verify that this server is the one that needs to talk to Facebook
-		//was only used once
-		if (req.query['hub.verify_token'] == 'bleepBlop123')
-			res.send(req.query['hub.challenge']);
-		else {
-			fs.readFile('./lead.json', function(err, data){
-				if (err) throw err;
-				res.send(data);
-			});
-		}
-	});
-
 
 	function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on
