@@ -1,18 +1,6 @@
 var express = require('express');
-
 var models = require("../models");
-
-//var userController = require("../controllers/db/UserController");
-//var adminController = require("../controllers/db/AdminController");
-//var analystController = require("../controllers/db/AnalystController");
-//var pageController = require("../controllers/db/PageController");
-//var advertisementCotroller = require("../controllers/db/AdvertisementController");
-//var leadController = require("../controllers/db/LeadController");
-//var email = require("../controllers/email/email");
 var jwt = require('jsonwebtoken');
-//var util = require('util');
-//var fs = require('fs');
-//var fbControllers = require("../controllers/fb/fbController.js");
 
 const authenticate = require('../controllers/auth/auth').authenticate
 
