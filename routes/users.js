@@ -81,7 +81,7 @@ module.exports = function(app, passport,io){
 	//User ID update route
 	.put(function(req, res) {
 		userController.process(req.params.user_id).then(function(user){
-			res.json({success:true, message:'User is maked as processed'});
+			res.json({success:true, message:'User is marked as processed'});
 		});
 		//Logic for updating a user
     })

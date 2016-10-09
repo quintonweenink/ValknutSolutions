@@ -1,4 +1,4 @@
-<div class="container">
+<div ng-controller="LeadController" class="container" ng-cloak>
     <h4>Please enter your data and we will contact you back: </h4>
 
     <!-- show any messages that come back with authentication -->
@@ -8,52 +8,52 @@
     <!-- LEAD FORM -->
 
 <div>
-    <md-content layout-gt-lg="row" layout-align="space-between center">
+    <md-content layout-gt-lg="row" layout-align="space-between center" layout-padding>
 
         <form action='#' novalidate>
             <div layout="row">
-                <lg-input-container layout-margin flex>
+                <md-input-container layout-margin flex>
                   <label>First name</label>
                   <input ng-model='user.first_name'>
-                </lg-input-container>
-                <lg-input-container layout-margin flex>
+			  </md-input-container>
+                <md-input-container layout-margin flex>
                   <label>Last name</label>
                   <input ng-model='user.last_name'>
-                </lg-input-container>
+                </md-input-container>
             </div>
             <div layout="row">
-                <lg-input-container layout-margin flex>
+                <md-input-container layout-margin flex>
                   <label>Contact number</label>
                   <input ng-model='user.phone_number'>
-                </lg-input-container>
-                <lg-input-container layout-margin flex>
+                </md-input-container>
+                <md-input-container layout-margin flex>
                   <label>Marital status</label>
                   <input ng-model='user.marital_status'>
-                </lg-input-container>
+                </md-input-container>
             </div>
             <div layout="row">
-                <lg-input-container layout-margin flex>
+                <md-input-container layout-margin flex>
                   <label>Date of birth</label>
                   <md-datepicker ng-model="user.date_of_birth"></md-datepicker>
-                </lg-input-container>
-                <lg-input-container layout-margin flex>
+                </md-input-container>
+                <md-input-container layout-margin flex>
                   <label>Gender</label>
                   <input ng-model='user.gender'>
-                </lg-input-container>
+                </md-input-container>
             </div>
             <div layout="row">
-                <lg-input-container layout-margin flex>
+                <md-input-container layout-margin flex>
                   <label>City</label>
                   <input ng-model='user.city' id="city">
-                </lg-input-container>
-                <lg-input-container layout-margin flex>
+                </md-input-container>
+                <md-input-container layout-margin flex>
                   <label>Email</label>
                   <input type='email' ng-model='user.email'>
-                </lg-input-container>
+                </md-input-container>
             </div>
-            <lg-input-container>
+            <md-input-container>
                 <md-button ng-click="postForm($http)" class="md-raised md-primary">Submit</md-button>
-            </lg-input-container>
+            </md-input-container>
         </form>
       </div>
   </md-content>

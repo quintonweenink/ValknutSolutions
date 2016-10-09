@@ -84,12 +84,4 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 		})
 	}
 
-})/*.config(function($mdThemingProvider) {
-
-    // Configure a dark theme with primary foreground yellow
-
-    $mdThemingProvider.theme('docs-dark', 'default')
-      .primaryPalette('blue')
-      .dark();
-
-  });*/
+})

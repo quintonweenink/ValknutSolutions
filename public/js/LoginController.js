@@ -1,4 +1,4 @@
-InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog) {
+InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog, $location) {
 	$scope.cookie = getCookie()
 	$scope.message = "";
 
@@ -7,7 +7,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
       		$mdDialog.alert()
         	.clickOutsideToClose(true)
         	.title('Alert')
-        	.textContent(message)
+        	.htmlContent(message)
         	.ariaLabel(message)
         	.ok('Ok!')
         	// You can specify either sting with query selector
@@ -42,9 +42,9 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft("You are logged in")
+				$scope.openFromLeft("You have successfully logged in! <i class='material-icons'>check_circle</i>")
+				$location.path("/liveUserFeed")
 			}
-			//window.location = '/';
 		})
 	}
 	$scope.postAnalystSignup = function()
@@ -79,7 +79,6 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 				setCookie(res.token)
 				$scope.openFromLeft("You are logged in")
 			}
-			//window.location = '/';
 		})
 	}
 	$scope.postAdminSignup = function()
@@ -99,4 +98,12 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			//window.location = '/';
 		})
 	}
-});
+}).config(function($mdThemingProvider) {
+
+    // Configure a dark theme with primary foreground yellow
+
+    $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('blue')
+      .dark();
+
+  });

@@ -1,6 +1,6 @@
 'use strict';
 
-var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial']);
+var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial','ngSanitize']);
 
 InsuranceProfiling.config(function($routeProvider) {
 
