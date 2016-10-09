@@ -429,6 +429,7 @@ module.exports =	function(app, passport){
 						GraphObject.options =
 						{
 								region: '002',
+								resolution : 'countries',
 								backgroundColor: '#86c5da',
 								datalessRegionColor : '#FEE8D6',
 								displayMode: 'region',
