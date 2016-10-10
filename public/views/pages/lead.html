@@ -40,26 +40,8 @@
 				  	</div>
 					<div layout="row" class="col l6 m6 s12">
 						<md-input-container class="nomarginplease" flex>
-							<label>Marital Status</label>
-							<md-select ng-model="user.marital_status">
-					          <md-option ng-repeat="status in selections.marital_status" value="{{status}}">{{status}}</md-option>
-					        </md-select>
-		                </md-input-container>
-				  	</div>
-				</div>
-				<div class="row">
-					<div layout="row" class="col l6 m6 s12">
-						<md-input-container class="nomarginplease" flex>
 							<label>Date of birth</label>
 		                    <md-datepicker ng-model="user.date_of_birth"></md-datepicker>
-		                </md-input-container>
-				  	</div>
-					<div layout="row" class="col l6 m6 s12">
-						<md-input-container class="nomarginplease" flex>
-							<label>Gender</label>
-							<md-select ng-model="user.gender">
-					          <md-option ng-repeat="gen in selections.gender" value="{{gen}}">{{gen}}</md-option>
-					        </md-select>
 		                </md-input-container>
 				  	</div>
 				</div>
@@ -75,6 +57,24 @@
 							<label>Email</label>
 		                    <input type='email' ng-model='user.email'>
 						</md-input-container>
+				  	</div>
+				</div>
+				<div class="row">
+					<div layout="row" class="col l6 m6 s12">
+						<md-input-container class="nomarginplease" flex>
+							<label>Marital Status</label>
+							<md-select ng-model="user.marital_status">
+					          <md-option ng-repeat="status in selections.marital_status" value="{{status}}">{{status}}</md-option>
+					        </md-select>
+		                </md-input-container>
+				  	</div>
+					<div layout="row" class="col l6 m6 s12">
+						<md-input-container class="nomarginplease" flex>
+							<label>Gender</label>
+							<md-select ng-model="user.gender">
+					          <md-option ng-repeat="gen in selections.gender" value="{{gen}}">{{gen}}</md-option>
+					        </md-select>
+		                </md-input-container>
 				  	</div>
 				</div>
 					<md-input-container class="nomarginplease" flex>
