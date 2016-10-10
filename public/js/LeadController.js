@@ -1,6 +1,18 @@
 InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialog) {
-	$scope.message = "";
+	$scope.message = ""
 	$scope.user = {}
+
+	$scope.selections = {}
+
+	$scope.selections.gender = [
+        "male",
+        "female"
+    ]
+
+	$scope.selections.marital_status = [
+        "married",
+        "single"
+    ]
 
 	$scope.user.from = "Website"
 

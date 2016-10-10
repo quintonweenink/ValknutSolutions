@@ -8,6 +8,9 @@ module.exports = {
 	toUpper : function(res){
 		return res.toUpperCase()
 	},
+	toNoSpace : function(res){
+		return res.replace(/\s/g, '')
+	},
 	doNothing : function(res){
 		return res
     }
