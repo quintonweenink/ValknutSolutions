@@ -1,3 +1,19 @@
+<style>
+@media screen and (min-width: 600px, max-width:991px) {
+#mapdiv {
+	width: 300px;
+}
+}
+@media screen and (min-width: 992px) {
+#mapdiv {
+	width: 400px;
+}
+#leaddialog {
+	width: 800px;
+}
+}
+</style>
+
 <md-dialog aria-label="Mango (Fruit)">
   <form ng-cloak>
     <md-toolbar>
@@ -10,21 +26,26 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="md-dialog-content">
-		  <div class="row">
+      <div class="md-dialog-content" id="leaddialog">
+		<div class="row">
+			<div class="col l5 m6 s12">
   		    <table>
   		      <tr><td>First Name: </td><td>{{ user.first_name }}</td></tr>
   		      <tr><td>Last Name: </td><td>{{ user.last_name }}</td></tr>
   		      <tr><td>Phone number: </td><td><a href="tel:{{user.phone_number}}">{{ user.phone_number }}</a></td></tr>
   		      <tr><td>Marital status: </td><td>{{ user.marital_status }}</td></tr>
-  		      <tr><td>Age: </td><td>{{ user.date_of_birth }}</td></tr>
+  		      <tr><td>Age: </td><td>{{ calcAge(user.date_of_birth); }}</td></tr>
   		      <tr><td>Gender: </td><td>{{ user.gender }}</td></tr>
   		      <tr><td>City: </td><td>{{ user.city }}</td></tr>
   		      <tr><td>Email: </td><td><a href="mailto:{{user.email}}">{{ user.email }}</a></td></tr>
   		      <tr><td>Integration point: </td><td>{{ user.from }}</td></tr>
   		      <tr><td>Processed: </td><td>{{ user.processed }}</td></tr>
   		     </table>
-  			</div>
+		 	</div>
+			<div class="col l7 m6 s12" id="mapdiv">
+				<div id="regions_div"></div>
+			</div>
+  		</div>
       </div>
     </md-dialog-content>
 
@@ -39,3 +60,4 @@
     </md-dialog-actions>
   </form>
 </md-dialog>
+<div ng-init="drawMap(user)"></div>
