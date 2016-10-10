@@ -39,11 +39,14 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		'email='+$scope.analystLogin.email+
 		'&password='+$scope.analystLogin.password
 		}).success(function (res) {
-			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
 				$scope.openFromLeft("You have successfully logged in! <i class='material-icons'>check_circle</i>")
 				$location.path("/liveUserFeed")
+			}
+			else
+			{
+				$scope.openFromLeft("Incorrect email or password! <i class='material-icons'>clear</i>")
 			}
 		})
 	}
@@ -59,7 +62,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		}).success(function (res) {
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft("You are signed up")
+				$scope.openFromLeft("You are signed up!  <i class='material-icons'>check_circle</i>")
 			}
 			//window.location = '/';
 		})
