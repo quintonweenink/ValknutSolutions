@@ -169,7 +169,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 
 					var options = GraphObject.options;
 
-					var chart = new google.visualization.GeoChart(document.getElementById('regions_div')[0])
+					var chart = new google.visualization.GeoChart(document.getElementById('regions_div'))
 
 					chart.draw(data, options);
 			})
