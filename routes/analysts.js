@@ -45,7 +45,9 @@ module.exports = function(app, passport){
 
 		analystController.createAnalyst(newAnalyst)
 		.then(function(analyst){
-			res.json(analyst.dataValues);
+			res.json({success: true,
+				message: 'Valid credentials'
+			});
 		})
 		.catch(function(error){
 			console.log("ops: " + error);
