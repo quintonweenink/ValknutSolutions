@@ -24,7 +24,7 @@ module.exports = {
     {
         message:'Please reply with your Phone number:',
         validate: validation.isPhoneNumber,
-		normalize: normalize.doNothing
+		normalize: normalize.toNoSpace
     },
     3:
     {

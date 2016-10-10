@@ -16,16 +16,17 @@ module.exports = {
 			return {success: false, message: 'Not a valid last_name'}
 		if(!validator.isPhoneNumber(user.phone_number))
 			return {success: false, message: 'Not a valid phone_number'}
-		if(!validator.isMarital(user.marital_status))
-			return {success: false, message: 'Not a valid marital_status'}
 		if(!validator.isDate(user.date_of_birth))
 			return {success: false, message: 'Not a valid date_of_birth'}
-		if(!validator.isGender(user.gender))
-			return {success: false, message: 'Not a valid gender'}
 		if(!validator.isName(user.city))
 			return {success: false, message: 'Not a valid city'}
 		if(!validator.isEmail(user.email))
 			return {success: false, message: 'Not a valid email'}
+		if(!validator.isMarital(user.marital_status))
+			return {success: false, message: 'Not a valid marital_status'}
+		if(!validator.isGender(user.gender))
+			return {success: false, message: 'Not a valid gender'}
+
 		return {success: true, message: 'This is a valid user'}
 	}
 }

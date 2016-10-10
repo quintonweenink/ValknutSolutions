@@ -21,6 +21,7 @@ module.exports = {
 		return true
 	},
 	isPhoneNumber : function(res){
+		res = res.replace(/\s/g, '')
 		if(!validator.isEmpty(res) && res != 'undefined')
 			if(validator.isMobilePhone(res, 'en-ZA'))
 				return true

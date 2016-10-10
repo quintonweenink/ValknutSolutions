@@ -1,6 +1,18 @@
 InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialog) {
-	$scope.message = "";
+	$scope.message = ""
 	$scope.user = {}
+
+	$scope.selections = {}
+
+	$scope.selections.gender = [
+        "male",
+        "female"
+    ]
+
+	$scope.selections.marital_status = [
+        "married",
+        "single"
+    ]
 
 	$scope.user.from = "Website"
 
@@ -34,7 +46,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 				"&lng=" + lng
 		}).then(function (res)
 			{
-				$('#city').val(res.data);
+				$scope.user.city = res.data
 			});
 	}
 

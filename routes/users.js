@@ -18,6 +18,8 @@ const authenticate = require('../controllers/auth/auth').authenticate
 
 const objectValidate = require('../controllers/validation/fullValidation').objectValidate
 
+const objectNormalize = require('../controllers/validation/fullNormalize').objectNormalize
+
 
 module.exports = function(app, passport,io){
 	app.route('/api/user')
@@ -51,9 +53,11 @@ module.exports = function(app, passport,io){
 					return resObj
 				}
 
+				newUser = objectNormalize(newUser)
+
 				userController.createUser(newUser)
 				.then(function(user){
-	        		res.json(user.dataValues);
+	        		res.json({success:true, message:"You will be contacted shortly..."});
 	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
