@@ -1,7 +1,8 @@
 InsuranceProfiling.controller('geoController', function($scope, $http) {
 	$scope.message = 'This is the Geo page (passed from controller as message )';
-
-	google.charts.load('upcoming', {'packages':['geochart']});
+	var key = 'AIzaSyDQ45U7xOfDtZpgVjhIeIO8h280x9KBYP4';
+	// var key = 'AIzaSyC8QmyT2CZbJUh3YTyQrb2Kcl-yc0nqMBM';
+	google.charts.load('upcoming', {'packages':['geochart'], mapsApiKey: key });
 	google.charts.setOnLoadCallback(drawRegionsMap);
 
 	function drawRegionsMap() {
