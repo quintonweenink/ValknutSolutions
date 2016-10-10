@@ -1,16 +1,16 @@
 <style>
 @media screen and (min-width: 600px, max-width:991px) {
-#mapdiv {
-	width: 300px;
-}
+	#mapdiv {
+		width: 300px;
+	}
 }
 @media screen and (min-width: 992px) {
-#mapdiv {
-	width: 400px;
-}
-#leaddialog {
-	width: 800px;
-}
+	#mapdiv {
+		width: 400px;
+	}
+	#leaddialog {
+		width: 800px;
+	}
 }
 </style>
 
@@ -43,8 +43,14 @@
   		     </table>
 		 	</div>
 			<div class="col l7 m6 s12" id="mapdiv">
-				<div id="regions_div"></div>
+				<md-button class="md-raised" ng-click="drawMap(user)" style="margin-top:25px">
+					Show map
+				</md-button>
+				<div id="regions_div">
+
+				</div>
 			</div>
+			<!--<div ng-init="drawMap(user)"/>-->
   		</div>
       </div>
     </md-dialog-content>
@@ -60,4 +66,3 @@
     </md-dialog-actions>
   </form>
 </md-dialog>
-<div ng-init="drawMap(user)"></div>

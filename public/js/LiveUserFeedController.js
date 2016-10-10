@@ -120,7 +120,6 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 
 		$scope.drawMap = function drawMap(user){
 			console.log("Drawing the map")
-			console.log(user)
 			var key = 'AIzaSyDQ45U7xOfDtZpgVjhIeIO8h280x9KBYP4'
 			google.charts.load('upcoming', {'packages':['geochart'], mapsApiKey: key })
 			google.charts.setOnLoadCallback(function() {
@@ -169,7 +168,11 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 
 					var options = GraphObject.options;
 
-					var chart = new google.visualization.GeoChart(document.getElementById('regions_div'))
+					var regions_div = document.getElementById('regions_div')
+
+					console.log(regions_div)
+
+					var chart = new google.visualization.GeoChart(regions_div)
 
 					chart.draw(data, options);
 			})
