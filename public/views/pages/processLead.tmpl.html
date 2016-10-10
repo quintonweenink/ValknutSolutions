@@ -15,12 +15,12 @@
   		    <table>
   		      <tr><td>First Name: </td><td>{{ user.first_name }}</td></tr>
   		      <tr><td>Last Name: </td><td>{{ user.last_name }}</td></tr>
-  		      <tr><td>Phone number: </td><td>{{ user.phone_number }}</td></tr>
+  		      <tr><td>Phone number: </td><td><a href="callto:{{user.phone_number}}">{{ user.phone_number }}</a></td></tr>
   		      <tr><td>Marital status: </td><td>{{ user.marital_status }}</td></tr>
   		      <tr><td>Age: </td><td>{{ user.date_of_birth }}</td></tr>
   		      <tr><td>Gender: </td><td>{{ user.gender }}</td></tr>
   		      <tr><td>City: </td><td>{{ user.city }}</td></tr>
-  		      <tr><td>Email: </td><td>{{ user.email }}</td></tr>
+  		      <tr><td>Email: </td><td><a href="mailto:{{user.email}}">{{ user.email }}</a></td></tr>
   		      <tr><td>Integration point: </td><td>{{ user.from }}</td></tr>
   		      <tr><td>Processed: </td><td>{{ user.processed }}</td></tr>
   		     </table>
