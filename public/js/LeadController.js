@@ -46,7 +46,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 				"&lng=" + lng
 		}).then(function (res)
 			{
-				$('#city').val(res.data);
+				$scope.user.city = res.data
 			});
 	}
 

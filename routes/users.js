@@ -57,7 +57,7 @@ module.exports = function(app, passport,io){
 
 				userController.createUser(newUser)
 				.then(function(user){
-	        		res.json(user.dataValues);
+	        		res.json({success:true, message:"You will be contacted shortly..."});
 	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
