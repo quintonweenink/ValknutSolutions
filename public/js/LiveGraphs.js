@@ -177,7 +177,7 @@ InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdT
 			{
 				$scope.data_proc = response4.data.data;
 				$scope.labels_proc = response4.data.labels;
-				$scope.options_from = response4.data.options;
+				$scope.options_proc = response4.data.options;
 			};
 
 		});
