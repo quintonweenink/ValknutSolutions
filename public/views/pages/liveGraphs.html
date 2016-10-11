@@ -1,29 +1,65 @@
+<div class="container">
   <h1 class="md-headline" >Live analytics</h3>
   {{message}}
-<div layout="row"  layout-xs="column" >
-    <div flex>
-        <md-content class="md-padding">
-          <h1 class="md-headline">Signups per Month</h1>
-          <canvas id="line" class="chart chart-line" chart-data="data_line"
-          chart-labels="labels_line" chart-series="series_line" chart-colors="colors_line" chart-hover="onHover_line" chart-options="options_line"
-          chart-dataset-override="datasetOverride_line" chart-click="onClick_line"
-        </canvas>
-        </md-content>
-      </div>
-      <div flex>
-        <md-content class="md-padding">
-          <h1 class="md-headline">Signups per Day</h1>
-          <canvas id="pie" class="chart chart-pie"
-          chart-data="data_day" chart-labels="labels_day" chart-click="onClickSlice" chart-options="options_day">
-          </canvas>
-        </md-content>
-      </div>
-      <div flex>
-        <md-content class="md-padding">
-          <h1 class="md-headline">From which integration</h1>
-          <canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data_from"
-          chart-labels="labels_from" chart-series="series_from" chart-options="options_from" chart-click="onClick_from"
-        </canvas>
-        </md-content>
-      </div>
+<div class="row">
+			<div class="col l6 m6 s12">
+				<md-card>
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">Signups per Month</span>
+			          </md-card-title-text>
+			        </md-card-title>
+			        <md-card-content>
+						<canvas id="line" class="chart chart-line" chart-data="data_line"
+			            chart-labels="labels_line" chart-series="series_line" chart-colors="colors_line" chart-hover="onHover_line" chart-options="options_line"
+			            chart-dataset-override="datasetOverride_line" chart-click="onClick_line"
+			          </canvas>
+			        </md-card-content>
+	      		</md-card>
+			</div>
+			<div class="col l6 m6 s12">
+				<md-card>
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">From which integration</span>
+			          </md-card-title-text>
+			        </md-card-title>
+			        <md-card-content>
+						<canvas id="bar" class="chart chart-bar ng-isolate-scope" chart-data="data_from" chart-colors="colors_from"
+			            chart-labels="labels_from" chart-series="series_from" chart-options="options_from" chart-click="onClick_from"
+			          </canvas>
+			        </md-card-content>
+	      		</md-card>
+			</div>
+</div>
+<div class="row">
+			<div class="col l6 m12 s12">
+				<md-card>
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">Signups per Day</span>
+			          </md-card-title-text>
+			        </md-card-title>
+			        <md-card-content>
+						<canvas id="pie" class="chart chart-pie"
+			            chart-data="data_day" chart-colors="colors_day" chart-labels="labels_day" chart-click="onClickSlice" chart-options="options_day">
+			            </canvas>
+			        </md-card-content>
+	      		</md-card>
+			</div>
+			<div class="col l6 m12 s12">
+				<md-card>
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">Signups per Day</span>
+			          </md-card-title-text>
+			        </md-card-title>
+			        <md-card-content>
+						<canvas id="pie" class="chart chart-pie"
+			                  chart-data="data_proc" chart-colors="colors_proc" chart-labels="labels_proc" chart-click="onClickProcessed" chart-options="options_proc">
+			                  </canvas>
+			        </md-card-content>
+	      		</md-card>
+			</div>
+</div>
 </div>

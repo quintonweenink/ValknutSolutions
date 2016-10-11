@@ -18,6 +18,8 @@ const authenticate = require('../controllers/auth/auth').authenticate
 
 const objectValidate = require('../controllers/validation/fullValidation').objectValidate
 
+const objectNormalize = require('../controllers/validation/fullNormalize').objectNormalize
+
 
 module.exports = function(app, passport,io){
 	app.route('/api/user')
@@ -30,16 +32,19 @@ module.exports = function(app, passport,io){
 				{
 					newUser.first_name = req.body.first_name;
 					newUser.last_name = req.body.last_name;
-					newUser.phone_number = req.body.phone_number;
-					newUser.marital_status = req.body.marital_status;
+					newUser.phone_number = decodeURIComponent(req.body.phone_number);
+					newUser.marital_status = req.body.marital_status.toLowerCase();
 					newUser.date_of_birth = req.body.date_of_birth;
-					newUser.gender = req.body.gender;
-					newUser.city = req.body.city;
-					newUser.email = req.body.email;
+					newUser.gender = req.body.gender.toLowerCase();
+					newUser.city = req.body.city.toLowerCase();
+					newUser.email = req.body.email.toLowerCase();
 				}
 
+				if(req.body.from)
+					newUser.from = req.body.from
+
 				let resObj = objectValidate(newUser)
-				console.log(resObj)
+				//console.log(resObj)
 
 				if(!resObj.success)
 				{
@@ -48,10 +53,11 @@ module.exports = function(app, passport,io){
 					return resObj
 				}
 
+				newUser = objectNormalize(newUser)
+
 				userController.createUser(newUser)
 				.then(function(user){
-	        		res.json(user.dataValues);
-							io.emit('updateGraph');
+	        		res.json({success:true, message:"You will be contacted shortly..."});
 	    		})
 	    		.catch(function(error){
 			         console.log("ops: " + error);
@@ -71,15 +77,15 @@ module.exports = function(app, passport,io){
 	app.route('/api/user/:user_id')
 	//User ID Get route
     .get(function(req, res) {
-		userController.getUserById(req.params.user_id).then(function(user){
+		userController.process(req.params.user_id).then(function(user){
 			res.json(user);
 		});
     })
 
 	//User ID update route
 	.put(function(req, res) {
-        res.json({ message: 'User updated!',
-			ID: req.params.user_id
+		userController.process(req.params.user_id).then(function(user){
+			res.json({success:true, message:'User is marked as processed'});
 		});
 		//Logic for updating a user
     })

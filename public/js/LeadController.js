@@ -1,6 +1,54 @@
 InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialog) {
-	$scope.message = "";
-	$scope.user
+	$scope.message = ""
+	$scope.user = {}
+
+	$scope.selections = {}
+
+	$scope.selections.gender = [
+        "male",
+        "female"
+    ]
+
+	$scope.selections.marital_status = [
+        "married",
+        "single"
+    ]
+
+	$scope.user.from = "Website"
+
+  if (navigator.geolocation)
+		navigator.geolocation.getCurrentPosition(initiatePos, errorFunc)
+
+	function initiatePos(pos)
+	{
+		var lat = pos.coords.latitude;
+		var lng = pos.coords.longitude;
+		setCity(lat, lng);
+
+	}
+
+	function errorFunc()
+	{
+			alert("geolocation failed");
+	}
+
+	function setCity(lat, lng)
+	{
+		$http({
+			method : 'POST',
+			url : '/loc/location',
+			headers :
+				{
+					'Content-Type' : 'application/x-www-form-urlencoded'
+				},
+			data :
+				"lat=" + lat +
+				"&lng=" + lng
+		}).then(function (res)
+			{
+				$scope.user.city = res.data
+			});
+	}
 
 	$scope.openFromLeft = function(message) {
     	$mdDialog.show(
@@ -26,7 +74,7 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 	    data:
 		'first_name='+$scope.user.first_name+
 		'&last_name='+$scope.user.last_name+
-		'&phone_number='+$scope.user.phone_number+
+		'&phone_number='+encodeURIComponent($scope.user.phone_number)+
 		'&marital_status='+$scope.user.marital_status+
 		'&date_of_birth='+$scope.user.date_of_birth+
 		'&gender='+$scope.user.gender+
@@ -38,12 +86,4 @@ InsuranceProfiling.controller('LeadController', function($scope, $http, $mdDialo
 		})
 	}
 
-})/*.config(function($mdThemingProvider) {
-
-    // Configure a dark theme with primary foreground yellow
-
-    $mdThemingProvider.theme('docs-dark', 'default')
-      .primaryPalette('blue')
-      .dark();
-
-  });*/
+})

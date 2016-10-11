@@ -29,7 +29,7 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/UP.jpg}  \\
+			\includegraphics[width=10cm]{images/marketlead_3.png}  \\
 			[0.5cm]
 			\huge{
 			Functional Specification\\
@@ -42,6 +42,7 @@
 			\line(1,0){300}\\
 			\LARGE{Team: Valknut Solutions}\\
 			[1.0cm]
+			\large{Version: 1.3}\\
 			\large
 			{
 			\begin{itemize}
@@ -51,7 +52,7 @@
 			\end{itemize}
 			}
 			\textsc{\large}\\
-		[3.0cm]
+		[1.0cm]
 		\textsc{\large  Department of Computer Science}\\
 		[0.5cm]
 		\textsc{\large \today}\\
@@ -71,6 +72,7 @@
   		\vhEntry{1.0}{27.05.2016}{CJvV,KH,QW}{Original Architectural document without Functional requirements}
   		\vhEntry{1.1}{27.07.2016}{CJvV,KH,QW}{Added Functional requirements and separated Architectural requirements}
 		\vhEntry{1.2}{09.09.2016}{CJvV,KH,QW}{Added better scoping requirements, updated use cases, updated each subsystem, added descriptions to each section}
+		\vhEntry{1.3}{05.11.2016}{CJvV,KH,QW}{Added logo,Marketing use cases, marketing activity diagram, updated some styling and added service contract specification for marketing case}
 	\end{versionhistory}
 	
 	\pagebreak
@@ -102,14 +104,14 @@ The functional requirement specification of this system is separated into differ
 		\item Social media Section \ref{subsec:SocialMedia}
 	\end{itemize}
 		\begin{figure}[H]
-		\includegraphics[width=\textwidth]{images/uc__insuranceProfiling__scope.jpg}  \\
+		\includegraphics[width=\textwidth]{images/uc__insuranceProfiling__scope2.jpg}  \\
 		\caption{Scope : Insurance Profiling}
 		\end{figure}
 		
 		
 		\pagebreak
 	\subsection{Social Media subsystem}\label{subsec:SocialMedia}
-	The social media subsystem forms a major part of the system's functionality. \\The included modules handle the receiving of data from the Facebook advertisement lead form, and the other integration sources.
+	The social media subsystem forms a major part of the system's functionality. \\The included modules handle the receiving of data from the Facebook advertisement lead form, the Wechat messenger bot and the Facebook messenger. The social media aspect further includes the website's lead form integration point.\\
 		\subsubsection{Use cases}
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/uc__socialMedia__scope.jpg}  \\
@@ -184,14 +186,25 @@ The functional requirement specification of this system is separated into differ
 			\textbf{Important}
 				\begin{itemize}
 				\item setGraphType
+					\begin{itemize}
+						\item Pie graph
+						\item Bar graph
+						\item Line graph
+					\end{itemize}
 				\end{itemize}
 
 			\textbf{Nice-To-Have}
 				\begin{itemize}
-					\item filterGraph
+					\item filterGraph - Including:
+					\begin{itemize}
+						\item Gender
+						\item Age
+						\item Location
+						\item Marital status
+						\item The amount of signups per year
+					\end{itemize}
 				\end{itemize}
 		\end{flushleft}
-	\pagebreak
 		\subsubsection{Services Contracts}
 		\begin{itemize}
 			\item Pre-conditions
@@ -220,12 +233,11 @@ The functional requirement specification of this system is separated into differ
 		%\caption{Required Functionality : drawGraph}
 		%\end{figure}
 
-		%\subsubsection{Process specifications}
-
-		%\begin{figure}[H]
-		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-		%\caption{Process specification : drawGraph}
-		%\end{figure}
+		\subsubsection{Process specifications}
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/process__generateReport.jpg}  \\
+		\caption{Process specification : generateReport}
+		\end{figure}
 	\pagebreak
 	\subsection{Administration subsystem}\label{subsec:Admin}
 	The administration subsystem handles the authentication and management of the analysts and administrators of the system.
@@ -275,11 +287,83 @@ The functional requirement specification of this system is separated into differ
 		\label{fig:createAdmin}
 		\end{figure}
 		
+		\pagebreak
+	\subsubsection{Authentication module}\label{subsubsec:Auth}		
+	The authentication module, as part of the higher level Adminstrator subsystem, handles the identification and access control of Analysts. An analyst must login before any features available to them are available.
 		\begin{figure}[H]
 		\includegraphics[width=\textwidth]{images/class__login__serviceContract.jpg}  \\
 		\caption{Service Contract : Authentication}
 		\label{fig:authentication}
 		\end{figure}
+		
+		
+	\pagebreak
+		
+\subsection{Marketing subsystem}\label{subsec:marketing}
+	The Marketing subsystem handles the ability to process new user leads.\\ This includes updating user's information and marking the user as processed. Uninterested users can decline the processing, removing that user's information.
+		\subsubsection{Use cases}
+		\begin{figure}[H]
+		\includegraphics[width=\textwidth]{images/uc__marketing_scope.jpg}  \\
+		\caption{Use Case Diagram : Marketing}
+		\end{figure}
+
+		\begin{flushleft}
+			\textbf{Critical}
+				\begin{itemize}
+					\item ProcessLead
+					\item ViewUserInformation
+				\end{itemize}
+			\textbf{Important}
+				\begin{itemize}
+					\item LiveLeads
+					\item UpdateUserInformation
+				\end{itemize}
+			\textbf{Nice-to-have}
+				\begin{itemize}
+					\item LiveGraphs
+				\end{itemize}
+		\end{flushleft}
+
+		\subsubsection{Services Contracts}
+		The pre and post conditions for the marketing processing of a lead is described below:
+		\begin{itemize}
+				\item Pre-conditions
+				\begin{itemize}
+					\item The marketer is logged in.
+					\item A user lead is created (from any integration)
+				\end{itemize}
+			\item Post-conditions
+				\begin{itemize}
+					\item The marketer processes the lead. See Figure \ref{fig:processLead} for more information.
+				\end{itemize}
+		\end{itemize}
+
+		
+		\subsubsection{Process specifications}
+		\begin{figure}[H]
+		\includegraphics[width=18cm]{images/marketingProcess.jpg}  \\
+		\caption{Process specification : ProcessLead}
+		\label{fig:processLead}
+		\end{figure}
+
+		
+
+		%\subsubsection{Required Functionality}
+
+		%\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/obj__Required_Functionality__addLeadData.jpg}  \\
+		%\caption{Required Functionality : notify}
+		%\end{figure}
+
+		%\subsubsection{Process specifications}
+
+		%\begin{figure}[H]
+		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
+		%\caption{Process specification : notify}
+		%\end{figure}
+		
+		
+		
 
 		%\subsubsection{Required Functionality}
 
@@ -297,7 +381,7 @@ The functional requirement specification of this system is separated into differ
 
 	\pagebreak
 	\subsection{Persistence subsystem}\label{subsec:Persistence}
-	The persistence subsystem handles the throughout persisting of information in the system. \\Persistence in this case related to the information passing between database and system. 
+	The persistence subsystem handles the throughout persisting of information in the system. \\Persistence in this case related to the information passing between database and system. \\ Users, analysts and Adminstrators data are all persisted throughout the system. \\ This ensures any changes to a user, analyst or admin's data, is synchronized with the database system.
 		\subsubsection{Use cases}
 
 		\begin{figure}[H]
@@ -378,20 +462,10 @@ The functional requirement specification of this system is separated into differ
 		\includegraphics[width=\textwidth]{images/class__notify__serviceContract.jpg}  \\
 		\caption{Service Contract : notify}
 		\end{figure}
-
-		%\subsubsection{Required Functionality}
-
-		%\begin{figure}[H]
-		%\includegraphics[width=\textwidth]{images/obj__Required_Functionality__addLeadData.jpg}  \\
-		%\caption{Required Functionality : notify}
-		%\end{figure}
-
-		%\subsubsection{Process specifications}
-
-		%\begin{figure}[H]
-		%\includegraphics[width=\textwidth]{images/Incomplete.png}  \\
-		%\caption{Process specification : notify}
-		%\end{figure}
+		
+		
+		
+		
 
 
 \pagebreak

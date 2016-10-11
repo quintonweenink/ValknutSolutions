@@ -1,6 +1,6 @@
 'use strict';
 
-var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial']);
+var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial','ngSanitize']);
 
 InsuranceProfiling.config(function($routeProvider) {
 
@@ -67,6 +67,11 @@ InsuranceProfiling.config(function($routeProvider) {
 	{
 		templateUrl : 'views/pages/connectPage.html',
 		controller : 'ConnectPageController'
+	})
+	.when('/geochart',
+	{
+		templateUrl : 'views/pages/GeoChart.html',
+		controller : 'geoController'
 	})
   .otherwise(
   {

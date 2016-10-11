@@ -21,13 +21,21 @@
           <md-radio-button value="bar"> Bar Chart </md-radio-button>
         </md-radio-group>
       </fieldset>
+      <fieldset>
+        Geographical Information:
+      <div>
+        <a href="#geochart">
+          <img src="/images/logos/earth.png" width="25px" height="auto">
+        </a><a href="#geochart"> GeoChart</a>
+      </div>
+    </fieldset>
       <md-button ng-click="submit();" type="button" class="md-raised">Generate Report</md-button>
       {{message}}
     </fieldset>
+
   </div>
     <div flex>
       <div ng-show="showPie">
-        {{message}}
         <md-content class="md-padding">
           <canvas id="pie" class="chart chart-pie"
           chart-data="data" chart-labels="labels" chart-options="options" chart-click="onClick">

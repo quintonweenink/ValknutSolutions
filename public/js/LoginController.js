@@ -1,12 +1,13 @@
-InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog) {
+InsuranceProfiling.controller('loginController', function($scope, $http, $mdDialog, $location) {
 	$scope.cookie = getCookie()
+	$scope.message = "";
 
 	$scope.openFromLeft = function(message) {
     	$mdDialog.show(
       		$mdDialog.alert()
         	.clickOutsideToClose(true)
         	.title('Alert')
-        	.textContent(message)
+        	.htmlContent(message)
         	.ariaLabel(message)
         	.ok('Ok!')
         	// You can specify either sting with query selector
@@ -16,9 +17,11 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
     		);
   	};
 
+	//not the best test
 	$http.get("/api/user?token="+$scope.cookie)
-	.then(function(users){
-		$scope.openFromLeft('You already have a token')
+	.then(function(res){
+		if(res.success)
+			$scope.openFromLeft('You already have a token')
 	});
 
 	$scope.analystLogin
@@ -36,12 +39,15 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		'email='+$scope.analystLogin.email+
 		'&password='+$scope.analystLogin.password
 		}).success(function (res) {
-			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You have successfully logged in! <i class='material-icons'>check_circle</i>")
+				$location.path("/liveUserFeed")
 			}
-			//window.location = '/';
+			else
+			{
+				$scope.openFromLeft("Incorrect email or password! <i class='material-icons'>clear</i>")
+			}
 		})
 	}
 	$scope.postAnalystSignup = function()
@@ -56,7 +62,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		}).success(function (res) {
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are signed up!  <i class='material-icons'>check_circle</i>")
 			}
 			//window.location = '/';
 		})
@@ -74,9 +80,8 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			$scope.message = res.message
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are logged in")
 			}
-			//window.location = '/';
 		})
 	}
 	$scope.postAdminSignup = function()
@@ -91,9 +96,17 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 		}).success(function (res) {
 			if(res.success){
 				setCookie(res.token)
-				$scope.openFromLeft(res.token)
+				$scope.openFromLeft("You are signed up")
 			}
 			//window.location = '/';
 		})
 	}
-});
+}).config(function($mdThemingProvider) {
+
+    // Configure a dark theme with primary foreground yellow
+
+    $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('blue')
+      .dark();
+
+  });

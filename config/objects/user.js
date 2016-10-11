@@ -8,6 +8,8 @@ module.exports = {
     gender : "",
     city : "",
     email : "",
+	processed : false,
+	from : "Website",
     clone : function(obj) {
         if (null == obj || "object" != typeof obj) return obj;
         var copy = obj.constructor();

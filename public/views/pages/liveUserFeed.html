@@ -1,6 +1,5 @@
 <style>
 table, th , td {
-
   padding: 5px;
 }
 table tr:nth-child(odd) {
@@ -9,34 +8,43 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
   background-color: #ffffff;
 }
+          /*
+           * The Material demos system does not currently allow targeting the body element, so this
+           * must go here in the HTML.
+           */
+          body[dir=rtl] .hint {
+            right: 2px;
+            left: auto;
+          }
 </style>
 <div class="container">
-    <h4>Current leads: </h4>
-
-    <!-- show any messages that come back with authentication -->
-    <div collapse="isCollapsed" class="alert">{{ message }}</div>
-
-
-    <!-- LEAD FORM -->
-
-<div>
-    <md-content layout-gt-lg="row" layout-align="space-between center">
+	<div class="row">
+		<div class="col l6 m6 s12">
+	    	<h4>Current leads: </h4>
+		</div>
+		<div class="col l6 m6 s12">
+			<md-button class="md-raised" ng-click="changeShowProcessed()" style="margin-top:25px">
+				{{ filters.showProcessed ? 'Show unprocessed leads' : 'Show processed leads' }} <i class="material-icons">check</i>
+			</md-button>
+		</div>
+	</div>
+    <md-content>
 
         <table>
            <tr>
               <th>First name</th>
               <th>Last name</th>
-              <th>Phone number</th>
-              <th>Date of birth</th>
+              <th>Age</th>
               <th>Email</th>
+			  <th>Options</th>
            </tr>
 
-           <tr ng-repeat = "user in users">
+           <tr ng-repeat = "user in filterUsers(users, filters)">
               <td>{{ user.first_name }}</td>
               <td>{{ user.last_name }}</td>
-              <td>{{ user.phone_number }}</td>
-              <td>{{ user.date_of_birth }}</td>
+              <td>{{ calcAge(user.date_of_birth) }}</td>
               <td>{{ user.email }}</td>
+			  <td><md-button class="md-raised md-warn" ng-click="customLead(user, $event)" content=user>Process</md-button></td>
            </tr>
         </table>
   </md-content>

@@ -4,9 +4,11 @@
 <html ng-app="InsuranceProfiling">
 
 <head>
-  <!--Google Icon Font
-  <link rel="stylesheet" href="public/libs/material-design-icons"/>
-  -->
+
+<title>MarketLead.io</title>
+<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <!--Materialize-->
 <link rel="stylesheet" href="public/libs/Materialize/dist/css/materialize.min.css"/>
 
@@ -23,8 +25,14 @@
 <script src="libs/angular/angular.min.js"></script>
 <script src="libs/angular-route/angular-route.min.js"></script>
 
+<script src="libs/angular-sanitize/angular-sanitize.min.js"></script>
+
 <!-- Socket.io -->
 <script src="libs/socket.io-client/socket.io.js"></script>
+
+<!--Google Chart for GeoChart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 <!-- Angular controllers -->
 <script type="text/javascript" src="js/AngularConfig.js"></script>
@@ -40,6 +48,8 @@
 <script type="text/javascript" src='js/PrivacyPolicyController.js'></script>
 <script type="text/javascript" src='js/TermsOfServiceController.js'></script>
 <script type="text/javascript" src='js/ConnectPageController.js'></script>
+<script type="text/javascript" src='js/GeoController.js'></script>
+
 <!--<script src="js/script.js"></script>-->
 
 <!-- Chart dependency for Angular Chart-->
@@ -77,12 +87,11 @@ $(document).ready(function(){
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
-<div class="navbar-fixed">
-<nav class="indigo">
+<nav class="indigo" class="navbar-fixed">
   <div class="nav-wrapper">
     <a href="#/" class="brand-logo" style="padding-left:60px;">MarketLead.io</a>
-    <a href="" data-activates="mobile" class="button-collapse">
-      <i><img src="/images/logos/marketlead_3.png" alt="Logo" style="width:auto;height:65px;"></img></i>
+    <a href="" src="/images/logos/marketlead_4.png" data-activates="mobile" class="button-collapse">
+		<i class="material-icons">menu</i>
     </a>
     <ul class="right hide-on-med-and-down">
       <li><a href="#about">Home</a></li>
@@ -92,6 +101,7 @@ $(document).ready(function(){
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login/Signup</a></li>
       <li><a href="#liveGraphs">Live Graphs</a></li>
+      <li><a href="#geochart">GeoChart</a></li>
 
     </ul>
     <ul class="side-nav" id="mobile">
@@ -102,12 +112,10 @@ $(document).ready(function(){
       <li><a href="#filter">Report</a></li>
       <li><a href="#login">Login/Signup</a></li>
       <li><a href="#liveGraphs">Live Graphs</a></li>
-
+      <li><a href="#geochart">GeoChart</a></li>
     </ul>
   </div>
 </nav>
-</div>
-
 
 <div id="main" style="z-index: -1">
   <!-- Injected View's Output-->
@@ -119,7 +127,7 @@ $(document).ready(function(){
 
 </div>
 
-<div style="position: fixed; bottom: 0; width: 100%;">
+<div style="position: fixed; bottom: 0; width: 100%; z-index:30">
     <div class="container">
             <div class="card">
                 <div style="padding: 5px; margin-left: 50px"><a href="#privacyPolicy">Privacy Policy</a></div>

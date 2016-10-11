@@ -68,6 +68,9 @@ function receivedMessage(event) {
 
   if (messageText && message.is_echo === undefined){
 
+	if(!(typeof activeUsers[senderID] === 'undefined') && !(activeUsers[senderID] === null))
+		messageText = messageList[activeUsers[senderID].messageId].normalize(messageText)
+
 	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText)
 
 	//validate here, not the best way but i need to check the messageID
@@ -78,6 +81,7 @@ function receivedMessage(event) {
 		}
 
 	if(activeUsers[senderID].email != ''){
+		activeUsers[senderID].from = 'Facebook Messenger'
 		userController.createUser(activeUsers[senderID])
 		//This could be removed but it makes it easyier to test and demo
 		delete activeUsers[senderID]
@@ -106,15 +110,8 @@ module.exports = function(app, passport){
 		      var timeOfEvent = pageEntry.time;
 
 		      // Iterate over each messaging event
-		      pageEntry.messaging.forEach(function(messagingEvent) {
-		        if (messagingEvent.optin) {
-		          receivedAuthentication(messagingEvent);
-		        } else if (messagingEvent.message) {
+		      pageEntry.messaging.forEach(function(messagingEvent) {if (messagingEvent.message) {
 		          receivedMessage(messagingEvent);
-		        } else if (messagingEvent.delivery) {
-		          receivedDeliveryConfirmation(messagingEvent);
-		        } else if (messagingEvent.postback) {
-		          receivedPostback(messagingEvent);
 		        } else {
 		          console.log("Webhook received unknown messagingEvent: ", messagingEvent);
 		        }

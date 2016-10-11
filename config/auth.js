@@ -1,24 +1,26 @@
-module.exports = {
-      'fb': {
-           'appId': '959936647438530',
-           'appSecret': 'a1b4088df1dc99305fee1fa09c2c6e61',
-           'callbackURL': 'localhost',
-           'version': 'v2.6'
+var env = process.env.NODE_ENV || "development";
+var authObj = {
+      "fb": {
+           "appId": "hidden",
+           "appSecret": "hidden",
+           "callbackURL": "localhost",
+           "version": "v2.6"
       },
-      'emailAuth': {
-          'user': 'valknutsolutions7@gmail.com',
-          'pass': 'BleepBlop'
-      },
-      'messenger': {
-          'access_token': 'EAAZAXI4LkwOMBANlZBEysu0I1jAgOqRe7H9u0ZB58G92yfOXibZBvBZA4fZAVKoAhnZBvWawekuhrGl3ksaNudYqc5NuFzyECBW2Y8W1iXkthlX5b7oZBviZBuWDjEJgNeQFwjKtSb1HMZAZArUWBntKLF0a2EQ7q9JcUBjKM3j9CN33QZDZD',
-          'verify_token':'this-is-a-shitty-token'
-      },
-      'weChat': {
-          'encodingAESKey': 'kOLctQbMhlo5hHVBLDK1FSbSsG53tDfAZHBZrP8tTtl',
-          'token':'thisisashittytoken7'
-      },
-      'secret': 'secretsecretsecretbro',
-      'emailUri' : 'smtps://valknutsolutions7:BleepBlop@smtp.gmail.com',
-      'emailFrom' : 'Test@servername.com',
-      'url': 'https://marketlead.herokuapp.com/'
+	     "secret":"fakesecret",
+       "url": "https://marketlead.herokuapp.com/",
+       "google" :
+       {
+          "maps" : "AIzaSyDQ45U7xOfDtZpgVjhIeIO8h280x9KBYP4"
+       }
 }
+
+if(env == "testing"){
+	//This is for Travis
+}
+else if (env != "development"){
+  var pg = require('pg');
+  pg.defaults.ssl = true;
+  authObj = JSON.parse(process.env.AUTH || authObj)
+}
+
+module.exports = authObj

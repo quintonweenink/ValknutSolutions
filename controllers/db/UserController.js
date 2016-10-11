@@ -17,6 +17,21 @@ module.exports = {
 				io.emit('new user', user);
 			return user;
   		});
+			io.emit('updateGraph');
+		return new_user;
+	},
+	process : function process(user_id)
+	{
+		//Update in found in db still to be done
+		var new_user = models.User.update({
+			processed: true,
+		},{
+			where: {id: user_id}
+		}
+		)
+		  .spread(function(user, created) {
+			return user;
+  		});
 
 		return new_user;
 	},
