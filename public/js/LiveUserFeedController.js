@@ -119,6 +119,9 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 	};
 
 		$scope.drawMap = function drawMap(user){
+			$('#showMapButton').hide()
+			$('#progress').show()
+
 			console.log("Drawing the map")
 			var key = 'AIzaSyDQ45U7xOfDtZpgVjhIeIO8h280x9KBYP4'
 			google.charts.load('upcoming', {'packages':['geochart'], mapsApiKey: key })
@@ -174,7 +177,9 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 
 					var chart = new google.visualization.GeoChart(regions_div)
 
-					chart.draw(data, options);
+					chart.draw(data, options)
+
+					$('#progress').hide()
 			})
 		}
 

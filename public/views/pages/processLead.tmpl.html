@@ -1,3 +1,4 @@
+
 <style>
 @media screen and (min-width: 600px, max-width:991px) {
 	#mapdiv {
@@ -43,16 +44,14 @@
   		     </table>
 		 	</div>
 			<div class="col l7 m6 s12" id="mapdiv">
-				<md-button class="md-raised" ng-click="drawMap(user)" style="margin-top:25px">
-					Show map
-				</md-button>
-				<div id="regions_div">
-
-				</div>
+					<md-button class="md-raised" ng-click="drawMap(user)" id="showMapButton">Show map</md-button>
+					<div id="progress" hidden="true" style="width: 50%; margin: 0 auto;">
+	      				<md-progress-circular ng-disabled="false" class="md-accent" md-diameter="40"></md-progress-circular>
+		  			</div>
+					<div id="regions_div"></div>
 			</div>
-			<!--<div ng-init="drawMap(user)"/>-->
   		</div>
-      </div>
+	</div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
