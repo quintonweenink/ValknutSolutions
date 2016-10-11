@@ -1,5 +1,6 @@
 var models = require("../../models");
 var express = require('express');
+var crypto = require('crypto')
 
 module.exports = {
 	createAnalyst : function createAnalyst(newUser)
