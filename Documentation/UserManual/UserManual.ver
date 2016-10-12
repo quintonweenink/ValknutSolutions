@@ -10,5 +10,9 @@
 1.1
  & 9.9.2016
  & \listset {CJvV,KH,QW}
- & Changed Project name. Updates for new use cases and modules\\
+ & Changed product name. Update manual structure. Updates for new use cases and modules.\\
+1.2
+ & 11.10.2016
+ & \listset {CJvV,KH,QW}
+ & Updated according to feedback. Added new functionality manual. Updated the logo\\
 \end {longtable}
