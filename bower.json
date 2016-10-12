@@ -21,7 +21,8 @@
     "chart.js": "npm:chart.js#^2.2.1",
     "socket.io-client": "^1.4.8",
     "angular-sanitize": "^1.5.8",
-    "angular-google-chart": "^0.1.0"
+    "angular-google-chart": "^0.1.0",
+    "moment": "^2.15.1"
   },
   "resolutions": {
     "angular": "1.5.7"
