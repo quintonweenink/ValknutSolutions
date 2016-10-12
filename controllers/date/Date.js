@@ -33,6 +33,13 @@ getYear : function Year(dateString)
 	var birthDate = new Date(dateString);
 	var year = birthDate.getFullYear()
 	return year;
+},
+getYesterday : function getYesterday()
+{
+	var today = new Date();
+	var yesterday = new Date(today);
+	yesterday.setDate(today.getDate() - 1);
+	return yesterday;
 }
 
 
