@@ -8,7 +8,12 @@ var Analyst = sequelize.define('Analyst', {
   password: {
     type: DataTypes.STRING,
     allowNull : false
-  },
+},
+   salt : {
+     type : DataTypes.STRING,
+     allowNull : true,
+     defaultValue : "none"
+   }
 });
 return Analyst;
 };

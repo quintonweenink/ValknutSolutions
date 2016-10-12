@@ -46,6 +46,7 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			}
 			else
 			{
+				setCookie('notvalidtoken')
 				$scope.openFromLeft("Incorrect email or password! <i class='material-icons'>clear</i>")
 			}
 		})
@@ -63,6 +64,10 @@ InsuranceProfiling.controller('loginController', function($scope, $http, $mdDial
 			if(res.success){
 				setCookie(res.token)
 				$scope.openFromLeft("You are signed up!  <i class='material-icons'>check_circle</i>")
+			}
+			else
+			{
+				$scope.openFromLeft("There was a problem signing up <i class='material-icons'>clear</i>")
 			}
 			//window.location = '/';
 		})

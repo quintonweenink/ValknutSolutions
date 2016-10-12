@@ -20,13 +20,7 @@ module.exports = function(app, passport){
 	.post(function(req, res) {
 
 		if(req.body.email && req.body.password)
-			analystController.validateAnalyst(req.body.email, req.body.password).then(function(user){
-				res.json(generateToken(user))
-		});
-		else
-		res.json({success: false,
-			message: 'Incorrect usage of api'
-		});
+			analystController.validateAnalyst(req.body.email, req.body.password, res)
 	});
 
 	app.route('/api/analyst')
