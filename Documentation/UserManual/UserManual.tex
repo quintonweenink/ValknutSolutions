@@ -83,7 +83,7 @@
 			MarketLead.io is a real time marketing and lead gathering application with multiple integration points from social media and other formats.\\
 			A business can manage and respond to leads and analyze their current customers. We expose and link companies to their future customers in an easy and pluggable manner.\\
 			This document contains information related to the use of the MarketLead.io system and how to use it. The purpose of the system is to gather information from various social media platforms (i.e. Facebook Messenger, Facebook Lead Ads and We chat).
-			The data that was gathered can then be visualized in different graphs for analysts to view and gain insights from all of the integration points. Customers do not necessarily interact with our system directly but they can by completing the static lead form.  %(add reference here)
+			The data that was gathered can then be visualized in different graphs for analysts to view and gain insights from all of the integration points. Customers do not necessarily interact with our system directly but they can by completing the static lead form. \ref{fig:lead}
 			A marketer can register their different social media platforms to interact with the system through the website.
 			The following documentation is a guide on how to interact and use the web interface for marketers, analysts and administrators and in one case the future customer.
 			Working through this user manual can give anyone interacting with the web interface more information on how to use the system efficiently and correctly.
@@ -91,7 +91,17 @@
 		\subsection{System Configuration}
 			The main input of data to the system will be from the various social media platforms.
 			Marketers and analysts will interact with the system by the use of the web interface.
-			%Add image of how all the components interact with each other
+			\begin{figure}[H]
+				\includegraphics[width=\textwidth]{images/user_server1.png}
+				\caption{System overview}
+				\label{fig:sysOverview}
+			\end{figure}
+
+			\begin{figure}[H]
+				\includegraphics[width=\textwidth]{images/analyst_server.png}
+				\caption{Stakeholders}
+				\label{fig:stakeholders}
+			\end{figure}
 
 		\subsection{Installation}
 			The system does not have to be installed, however an up to date web browser is required to view the web site that interacts with the system. Mozilla Firefox or Google Chrome is recommended.
@@ -109,6 +119,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/home.jpg}
 				\caption{Home page}
+				\label{fig:home}
 			\end{figure}
 
 			\begin{itemize}
@@ -120,6 +131,7 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/home_team.jpg}
 					\caption{Home Page - Team}
+					\label{fig:homeTeam}
 				\end{figure}
 
 				\begin{itemize}
@@ -130,18 +142,21 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/home_marketing.jpg}
 					\caption{Home Page - Marketing}
+					\label{fig:homeMarketing}
 				\end{figure}
 
 			\subsubsection{Analysis}
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/home_analysis.jpg}
 					\caption{Home Page - Analysis}
+					\label{fig:homeAnalysis}
 				\end{figure}
 
 			\subsubsection{Powered By}
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/home_powered_by.jpg}
 					\caption{Home Page - Powered By}
+					\label{fig:homePoweredBy}
 				\end{figure}
 
 				\begin{itemize}
@@ -152,6 +167,7 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/home_integrates_with.jpg}
 					\caption{Home Page - Integrates With}
+					\label{fig:homeIntegratesWith}
 				\end{figure}
 
 				\begin{itemize}
@@ -162,6 +178,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/how_to_connect.jpg}
 				\caption{How to Connect}
+				\label{fig:howToConnect}
 			\end{figure}
 
 			\begin{itemize}
@@ -172,6 +189,7 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/how_to_connect_facebook_messenger.jpg}
 					\caption{How to Connect - Facebook Messenger}
+					\label{fig:howToConnectFacebookMessenger}
 				\end{figure}
 
 				\begin{itemize}
@@ -183,6 +201,7 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/how_to_connect_wechat.jpg}
 					\caption{How to Connect - WeChat}
+					\label{fig:howToConnectWeChat}
 				\end{figure}
 
 				\begin{itemize}
@@ -194,6 +213,7 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/how_to_connect_website.jpg}
 					\caption{How to Connect - Website}
+					\label{fig:howToConnectWebsite}
 				\end{figure}
 
 				\begin{itemize}
@@ -205,6 +225,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/live_feed.jpg}
 				\caption{Live Feed}
+				\label{fig:liveFeed}
 			\end{figure}
 			\begin{enumerate}
 				\item Will toggle the filter to show data that has/has not been processed yet.
@@ -212,6 +233,7 @@
 					\begin{figure}[H]
 						\includegraphics[width=\textwidth]{images/live_feed_process.jpg}
 						\caption{Live Feed - Processing of lead}
+						\label{fig:liveFeedProcessing}
 					\end{figure}
 
 					\begin{itemize}
@@ -235,6 +257,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/lead.jpg}
 				\caption{Lead}
+				\label{fig:lead}
 			\end{figure}
 			Note when loading this page your browser will ask you if you wish to share your location with this site. This will only populate the city field. One can read the privacy policy on our use of your location. We do not save any more information than the city.
 			\begin{enumerate}
@@ -253,6 +276,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/report.jpg}
 				\caption{Report}
+				\label{fig:report}
 			\end{figure}
 			Reports of the data can be generated from this page
 			\begin{enumerate}
@@ -272,6 +296,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/login_signup.jpg}
 				\caption{Login/Signup - Analyst}
+				\label{fig:loginSignupAnalyst}
 			\end{figure}
 			This is the page that will initially be loaded when navigating to the Login/Signup page
 			
@@ -291,13 +316,15 @@
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/login_signup_facebook.jpg}
 					\caption{Login/Signup - Facebook}
+					\label{fig:loginSignupFacebook}
 				\end{figure}
 				This is specifically for when a marketer wants to link their Facebook page to send the lead ad data through to our system for processing.
 				Once the login button is clicked facebook will load and let you log in.
 
 				\begin{figure}[H]
 					\includegraphics[width=\textwidth]{images/login_signup_facebook_pages.jpg}
-					\caption{Login/Signup - Facebook - Pages}
+					\caption{Login/Signup - Facebook Pages}
+					\label{fig:loginSignupFacebookPages}
 				\end{figure}
 				Once logged in the page will load your pages. Select the page you wish to interact with our system.
 				Once this page has been clicked it will send all of its data gathered from Lead Ads to our system for processing.
@@ -306,6 +333,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/live_graph.jpg}
 				\caption{Live Graphs}
+				\label{fig:liveGraphs}
 			\end{figure}
 
 			\begin{itemize}
@@ -317,6 +345,7 @@
 			\begin{figure}[H]
 				\includegraphics[width=\textwidth]{images/geo_chart.jpg}
 				\caption{GeoChart}
+				\label{fig:geoChart}
 			\end{figure}
 
 			\begin{itemize}
