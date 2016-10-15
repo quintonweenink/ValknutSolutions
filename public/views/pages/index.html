@@ -76,6 +76,40 @@ $(document).ready(function(){
 })
 </script>
 
+<style>
+		@font-face {
+			font-family: myFirstFont;
+			src: url(fonts/qoh.ttf);
+		}
+
+
+		.my-brand-logo {
+		  position: absolute;
+		  display: inline-block;
+		  font-size: 2.1rem;
+		  padding: 0;
+		  padding-left: 60px;
+		  padding-right: 60px;
+		  white-space: nowrap;
+		  color: transparent;
+		  background-color: #000;
+		  -webkit-background-clip: text;
+		  -moz-background-clip: text;
+		  background-clip: text;
+		  text-shadow: 0px 2px 5px #555;
+		  font-family: myFirstFont;
+
+		}
+
+
+		@media only screen and (max-width: 992px) {
+			.my-brand-logo {
+			  padding-left: 20px;
+
+			}
+		}
+</style>
+
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -89,9 +123,9 @@ $(document).ready(function(){
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
-<nav class="indigo" class="navbar-fixed">
+<nav class="grey" class="navbar-fixed">
   <div class="nav-wrapper">
-    <a href="#/" class="brand-logo" style="padding-left:60px;">MarketLead.io</a>
+    <div href="#/" class="my-brand-logo" >MarketLead.io </div>
     <a href="" src="/images/logos/marketlead_4.png" data-activates="mobile" class="button-collapse">
 		<i class="material-icons">menu</i>
     </a>
