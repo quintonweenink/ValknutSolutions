@@ -31,7 +31,7 @@ You will need the following things properly installed on your computer.
 
 ### Testing
 
-* [Mocha](https://mochajs.org/) via [Chai](http://chaijs.com/) with Assers
+* [Mocha](https://mochajs.org/) via [Chai](http://chaijs.com/) with Asserts
 * Unit tests: `npm test`
 * API tests: `npm run-script apitest`
 * Integration tests: `npm run-script integrationtest`
