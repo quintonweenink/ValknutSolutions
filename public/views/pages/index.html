@@ -79,7 +79,7 @@ $(document).ready(function(){
 <style>
 		@font-face {
 			font-family: myFirstFont;
-			src: url(fonts/qoh.ttf);
+			src: url(fonts/reliable.otf);
 		}
 
 
@@ -91,13 +91,13 @@ $(document).ready(function(){
 		  padding-left: 60px;
 		  padding-right: 60px;
 		  white-space: nowrap;
-		  color: transparent;
-		  background-color: #000;
-		  -webkit-background-clip: text;
-		  -moz-background-clip: text;
-		  background-clip: text;
-		  text-shadow: 0px 2px 5px #555;
 		  font-family: myFirstFont;
+		  background-color: #222;
+		  color: transparent;
+		  text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+		  -webkit-background-clip: text;
+		     -moz-background-clip: text;
+		          background-clip: text;
 
 		}
 
@@ -123,7 +123,7 @@ $(document).ready(function(){
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
   <!--<div ng-include="'public/views/partials/navbar.html'">
 </div>-->
-<nav class="grey" class="navbar-fixed">
+<nav class="grey darken" class="navbar-fixed">
   <div class="nav-wrapper">
     <div href="#/" class="my-brand-logo" >MarketLead.io </div>
     <a href="" src="/images/logos/marketlead_4.png" data-activates="mobile" class="button-collapse">
