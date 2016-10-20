@@ -10,10 +10,60 @@
 .content {
     margin:20px;
 }
+.logodiv {
+	padding-top: 0px;
+	margin-top:0px;
+	background-image: url(images/shards.jpg);
+	background-size: auto 200px;
+}
+.integration {
+	background-color: #aaa;
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+	margin: 50%;
+	box-shadow: 10px 10px 5px #888888;
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+.autoimage {
+	width: 100px;
+	height: 100px;
+	margin: auto;
+	display: block;
+}
 </style>
 
-<div layout="row" layout-align="center center">
-    <img class="responsive-img" src="/images/logos/marketlead_4.png" width="400px" height="auto">
+<div layout="row" layout-align="center center" class="logodiv">
+    <img class="responsive-img" src="/images/logos/marketlead_4.png" width="400px" height="auto"></img>
+</div>
+
+<div>
+
+</div>
+
+<div class="row" style="padding-top: 10px;">
+	<div class="col s12 m4 l3">
+		<div class="integration">
+			<img src="/images/facebook.svg" class="autoimage"></img>
+		</div>
+	</div>
+	<div class="col s12 m4 l3">
+		<div class="integration">
+			<img src="/images/form.svg" class="autoimage"></img>
+		</div>
+	</div>
+	<div class="col s12 m4 l3">
+		<div class="integration">
+			<img src="/images/wechat.svg" class="autoimage"></img>
+		</div>
+	</div>
+	<div class="col s12 m4 l3">
+		<div class="integration">
+			<img src="/images/messenger.svg" class="autoimage"></img>
+		</div>
+	</div>
 </div>
 
 <md-content class="md-subhead"> <ul><li>MarketLead.io is a real time marketing and lead gathering application with multiple integration points with social media and other formats.</li>
