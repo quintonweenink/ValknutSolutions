@@ -38,7 +38,8 @@ module.exports = {
       date_of_birth : "",
       gender : "",
       city : "",
-      email : ""
+      email : "",
+      from : "Facebook Lead"
     }
     for (i = 0; i < lead.length; i++)
     {
