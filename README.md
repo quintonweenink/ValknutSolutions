@@ -1,5 +1,5 @@
-# MarketLead.io
-Insurance profiling from social media
+# MarketLead.io [![Stories in Ready](https://badge.waffle.io/QuintonWeenink/ValknutSolutions.png?label=ready&title=Ready)](http://waffle.io/QuintonWeenink/ValknutSolutions)
+MarketLead.io is a real time marketing and lead gathering application with multiple integration points with social media and other formats. A business can manage and respond to leads and analyse their current customers and audience. We expose and link companies to their future customers in an easy and pluggable manner. 
 
 ## Prerequisites
 You will need the following things properly installed on your computer.
