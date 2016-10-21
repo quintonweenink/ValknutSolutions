@@ -80,10 +80,6 @@ $(document).ready(function(){
 </script>
 
 <style>
-		@font-face {
-			font-family: myFirstFont;
-			src: url(fonts/reliable.otf);
-		}
 
 
 		.my-brand-logo {
@@ -104,11 +100,6 @@ $(document).ready(function(){
 
 		}
 
-		nav{
-			position: fixed;
-			top: 0px;
-			z-index: 30;
-		}
 </style>
 
 
@@ -152,11 +143,8 @@ $(document).ready(function(){
   </div>
 </nav>
 
-<div style="height:80px">
 
-</div>
-
-<div id="main" style="z-index: -1">
+<div id="main" style="z-index: -1;">
   <!-- Injected View's Output-->
   <div ng-view></div>
 
