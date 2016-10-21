@@ -2,6 +2,57 @@
 <p> {{message}} </p>
 
 <style>
+
+p {
+	line-height: 2rem;
+}
+
+.parallax-container {
+	min-height: 380px;
+	line-height: 0;
+	height: auto;
+	color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+	width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+	.parallax-container .section {
+		position: absolute;
+		top: 40%;
+	}
+	#index-banner .section {
+		top: 10%;
+	}
+}
+
+@media only screen and (max-width : 600px) {
+	#index-banner .section {
+		top: 0;
+	}
+}
+
+.icon-block {
+	padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+footer.page-footer {
+	margin: 0;
+}
+.profilepic {
+	width:100px;
+	height:100px;
+	border-radius:20px
+}
+
+.documentationLink {
+	width : 100%;
+	margin-bottom: 10px;
+}
 .profilepic {
     width:100px;
     height:100px;
@@ -35,40 +86,16 @@
 }
 </style>
 
-<div layout="row" layout-align="center center" class="logodiv">
-    <img class="responsive-img" src="/images/logos/marketlead_4.png" width="400px" height="auto"></img>
-</div>
 
-<div>
-
-</div>
-
-<div class="row" style="padding-top: 10px;">
-	<div class="col s12 m4 l3">
-		<div class="integration">
-			<img src="/images/facebook.svg" class="autoimage"></img>
-		</div>
-	</div>
-	<div class="col s12 m4 l3">
-		<div class="integration">
-			<img src="/images/form.svg" class="autoimage"></img>
-		</div>
-	</div>
-	<div class="col s12 m4 l3">
-		<div class="integration">
-			<img src="/images/wechat.svg" class="autoimage"></img>
-		</div>
-	</div>
-	<div class="col s12 m4 l3">
-		<div class="integration">
-			<img src="/images/messenger.svg" class="autoimage"></img>
+<div class="container">
+	<div class="section">
+		<div class="row center">
+			<a href="https://marketlead.herokuapp.com/"><img class="responsive-img" src="../../showcaseHtml/MarketLead.png" style="height:200px"></a><br><br>
+			<h5 class="header col s12 light">MarketLead.io is an automated real time marketing and lead gathering application with multiple integration points with social media and other formats. <br><hr width="60px">A business can manage and respond to leads and analyse their current customers and audience.<br><hr width="60px"> We expose and link companies to their future customers in an easy and pluggable manner.</h5>
 		</div>
 	</div>
 </div>
 
-<md-content class="md-subhead"> <ul><li>MarketLead.io is a real time marketing and lead gathering application with multiple integration points with social media and other formats.</li>
-  <li>A business can manage and respond to leads and analyze their current customers. </li>
-  <li> We expose and link companies to their future customers in an easy and pluggable manner.</li><ul></md-content></br>
 
  <md-tabs md-dynamic-height  md-border-bottom>
      <md-tab label="Team">
@@ -188,3 +215,14 @@
       </md-content>
     </md-tab>
 </div>
+
+<script>
+(function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    $('.parallax').parallax();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+</script>
