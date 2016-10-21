@@ -55,6 +55,11 @@ p {
 footer.page-footer {
   margin: 0;
 }
+.profilepic {
+    width:100px;
+    height:100px;
+    border-radius:20px
+}
 
 .documentationLink {
   width : 100%;
