@@ -7,8 +7,81 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+  <link href="./css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>
+  /* Custom Stylesheet */
+  /**
+   * Use this file to override Materialize files so you can update
+   * the core Materialize files in the future
+   *
+   * Made By MaterializeCSS.com
+   */
+
+  nav ul a,
+  nav .brand-logo {
+    color: #444;
+  }
+
+  p {
+    line-height: 2rem;
+  }
+
+  .button-collapse {
+    color: #26a69a;
+  }
+
+  .parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+  }
+    .parallax-container .section {
+      width: 100%;
+    }
+
+  @media only screen and (max-width : 992px) {
+    .parallax-container .section {
+      position: absolute;
+      top: 40%;
+    }
+    #index-banner .section {
+      top: 10%;
+    }
+  }
+
+  @media only screen and (max-width : 600px) {
+    #index-banner .section {
+      top: 0;
+    }
+  }
+
+  .icon-block {
+    padding: 0 15px;
+  }
+  .icon-block .material-icons {
+    font-size: inherit;
+  }
+
+  footer.page-footer {
+    margin: 0;
+  }
+  .profilepic {
+      width:100px;
+      height:100px;
+      border-radius:20px
+  }
+
+  .documentationLink {
+    width : 100%;
+    margin-bottom: 10px;
+  }
+
+</style>
+
 </head>
 <body>
   <!-- <nav class="white" role="navigation">
@@ -117,28 +190,28 @@
         <div class="col s12 m6 l3" layout="row" layout-align="space-around center">
           <div style="text-align: center;">
               <a href="https://marketlead.herokuapp.com/#/login">
-            <img src="facebook.svg" style="width: 100px;height: 100px;margin: auto;display: block; padding: 15px"></img> </a>
+            <img src="facebook1.png" style="width: 100px;height: 100px;margin: auto;display: block; padding: 15px"></img> </a>
             <b>Facebook Lead Adds</b>
           </div>
         </div>
         <div class="col s12 m6 l3" layout="row" layout-align="space-around center">
           <div style="text-align: center;">
             <a href="https://marketlead.herokuapp.com/#/lead">
-            <img src="form.svg" style="width: 100px;height: 100px;margin: auto;display: block;"></img> </a>
+            <img src="form1.png" style="width: 100px;height: 100px;margin: auto;display: block;"></img> </a>
             <b>Static Form Page</b>
           </div>
         </div>
         <div class="col s12 m6 l3" layout="row" layout-align="space-around center">
           <div style="text-align: center;">
             <a href="https://marketlead.herokuapp.com/#/connect">
-            <img src="wechat.svg" style="width: 100px;height: 100px;margin: auto;display: block; padding: 2px"></img> </a>
+            <img src="wechat1.png" style="width: 100px;height: 100px;margin: auto;display: block; padding: 2px"></img> </a>
             <b>WeChat Messenger</b>
           </div>
         </div>
         <div class="col s12 m6 l3" layout="row" layout-align="space-around center">
           <div style="text-align: center;">
             <a href="https://marketlead.herokuapp.com/#/connect">
-            <img src="messenger.svg" style="width: 100px;height: 100px;margin: auto;display: block; padding: 12px"></img> <a>
+            <img src="messenger1.png" style="width: 100px;height: 100px;margin: auto;display: block; padding: 12px"></img> <a>
             <b>Facebook Messenger</b>
           </div>
         </div>
@@ -325,8 +398,12 @@
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+        <script src="./js/materialize.js"></script>
+        <script src="./js/init.js"></script>
 
       </body>
       </html>
