@@ -65,7 +65,7 @@ module.exports = function(app, passport)
     //Creating the new advertisement
   	var newAdvertisement = advertisementCotroller.createAdvertisement(advertisement, function(id)
     {
-  		fbControllers.getLeadData(value, page.pageAccessToken, id, fbControllers.facebookLeadCallback, fbControllers.userAddedCallback);
+  		fbControllers.getLeadData(value, page.pageAccessToken, id, fbControllers.facebookLeadCallback, fbControllers.userAddedCallback, fbControllers.extractUser);
   	});
   }
 
@@ -100,10 +100,13 @@ module.exports = function(app, passport)
   app.route('/api/leads')
   	.post(function(req, res)
     {
-  		processLead(req.body.entry);
+  		//processLead(req.body.entry);
+      var temp = "";
+      fbControllers.facebookLeadCallback(req.body, temp, 1234, fbControllers.userAddedCallback, fbControllers.extractUser);
 
       //Facebook requires this response in order to stop pinging our
       //server with the new lead
+      console.log(req.body);
   		res.send('{"success" : true}');
   	})
   	.get(function(req, res)
