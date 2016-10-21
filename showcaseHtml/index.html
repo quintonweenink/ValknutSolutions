@@ -9,8 +9,6 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-
-	<link href="./css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<style>
 	/* Custom Stylesheet */
 	/**
@@ -84,15 +82,6 @@
 
 </head>
 <body>
-	<!-- <nav class="white" role="navigation">
-	<div class="nav-wrapper container">
-	<a id="logo-container" href="https://marketlead.herokuapp.com/" class="brand-logo"></a>
-	<a href="https://marketlead.herokuapp.com/" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-</div>
-</nav> -->
-
-
-
 <div id="index-banner" class="parallax-container">
 	<div class="section no-pad-bot">
 		<div class="container">
@@ -405,8 +394,16 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-<script src="./js/materialize.js"></script>
-<script src="./js/init.js"></script>
+<script>
+(function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+    $('.parallax').parallax();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+</script>
 
 </body>
 </html>
