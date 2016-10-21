@@ -100,10 +100,8 @@ module.exports = function(app, passport)
   app.route('/api/leads')
   	.post(function(req, res)
     {
-  		//processLead(req.body.entry);
-      var temp = "";
-      fbControllers.facebookLeadCallback(req.body, temp, 1234, fbControllers.userAddedCallback, fbControllers.extractUser);
-
+  		processLead(req.body.entry);
+    
       //Facebook requires this response in order to stop pinging our
       //server with the new lead
       console.log(req.body);
