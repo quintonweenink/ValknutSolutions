@@ -38,21 +38,24 @@ module.exports = {
       date_of_birth : "",
       gender : "",
       city : "",
-      email : ""
+      email : "",
+      from : "Facebook Lead"
     }
     for (i = 0; i < lead.length; i++)
     {
       user[lead[i].name] = lead[i].values[0];
     }
+
+    console.log("\n\nextraction of user done\n\n");
     return user;
   },
-  facebookLeadCallback : function facebookLeadCallback(res, value, adId, callback){
+  facebookLeadCallback : function facebookLeadCallback(res, value, adId, callback, extractUserCallback){
       if (!res || res.error)
       {
         console.log(!res ? 'error occured':res.error);
         return;
       }
-      var user = this.extractUser(res.field_data);
+      var user = extractUserCallback(res.field_data);
       userController.createUser(user, function(userId){
         leadController.createLead({
           lead_id : '' + value.leadgen_id + '',
@@ -64,14 +67,14 @@ module.exports = {
 
       return res;
   },
-  getLeadData : function getLeadData(value, page_access_token, adId, callback, completeCallback)
+  getLeadData : function getLeadData(value, page_access_token, adId, callback, completeCallback, extractUserCallback)
   {
     //var FB.options({version: auth.fb.version});
     FB.api(
       '/' + value.leadgen_id,
       {access_token : page_access_token},
       function(res){
-        callback(res, value, adId, completeCallback);
+        callback(res, value, adId, completeCallback, extractUserCallback);
       }
     );
   }
