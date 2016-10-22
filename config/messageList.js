@@ -10,7 +10,7 @@ module.exports = {
     },
     0:
     {
-        message:'Hi there,  welcome to the MarketLead.io chat bot. In order to evaluate you we will require some information in order to contact you. Firstly please reply your first name:',
+        message:'Please reply with your last name:',
         validate: validation.isName,
 		normalize: normalize.doNothing
     },

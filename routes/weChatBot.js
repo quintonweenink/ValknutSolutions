@@ -33,14 +33,11 @@ module.exports = function(app, passport){
 
         activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
 
-		var isValid = true;
-
 		//validate here, not the best way but i need to check the messageID
 		if(activeUsers[senderID].messageId != 0)
 			if(!messageList[activeUsers[senderID].messageId-1].validate(content)){
 				activeUsers[senderID].messageId--
 				activeUsers[senderID].email = ''
-				isValid = false;
 			}
 
         if(activeUsers[senderID].email != ''){
@@ -50,7 +47,7 @@ module.exports = function(app, passport){
         }
 
 
-        var str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID], isValid)
+        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
 
         console.log(str)
 

@@ -5,6 +5,7 @@ var fbMessengerController = require('../controllers/fb/messengerController');
 const messageList = require('../config/messageList')
 const emptyUser = require('../config/objects/user')
 const userJSON = JSON.parse(JSON.stringify(emptyUser))
+const xmlMessage = require('../config/xmlMessage').messageFormat
 
 
 describe('Facebook Messenger Test', function(){
@@ -32,6 +33,8 @@ describe('Facebook Messenger Test', function(){
 
 
                 activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+
+				console.log(fbMessengerController.getXMLMessage(2222, "QuintonWeenink", "22-22-1998", activeUsers[senderID], false))
 
                 assert.deepEqual(activeUsers[senderID], intendedUser);
             });

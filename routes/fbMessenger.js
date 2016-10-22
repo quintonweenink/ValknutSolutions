@@ -73,14 +73,11 @@ function receivedMessage(event) {
 
 	activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], messageText)
 
-	var isValid = true;
-
 	//validate here, not the best way but i need to check the messageID
 	if(activeUsers[senderID].messageId != 0)
 		if(!messageList[activeUsers[senderID].messageId-1].validate(messageText)){
 			activeUsers[senderID].messageId--
 			activeUsers[senderID].email = ''
-			isValid = false;
 		}
 
 	if(activeUsers[senderID].email != ''){
@@ -90,7 +87,7 @@ function receivedMessage(event) {
 		delete activeUsers[senderID]
 	}
 
-    var constructedMessage = isValid ? "":"Your reply had incorrect format, try again. " + fbMessengerController.getMessage(senderID, activeUsers[senderID]);
+    let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID]);
 	console.log('Trying to send this message back to facebook: '+ constructedMessage)
 	callSendAPI(constructedMessage)
 
