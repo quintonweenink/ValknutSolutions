@@ -90,7 +90,7 @@ function receivedMessage(event) {
 		delete activeUsers[senderID]
 	}
 
-    let constructedMessage = isValid ? "":"Your reply had incorrect format, try again." + fbMessengerController.getMessage(senderID, activeUsers[senderID]);
+    var constructedMessage = isValid ? "":"Your reply had incorrect format, try again. " + fbMessengerController.getMessage(senderID, activeUsers[senderID]);
 	console.log('Trying to send this message back to facebook: '+ constructedMessage)
 	callSendAPI(constructedMessage)
 

@@ -50,7 +50,7 @@ module.exports = function(app, passport){
         }
 
 
-        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID], isValid)
+        var str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID], isValid)
 
         console.log(str)
 

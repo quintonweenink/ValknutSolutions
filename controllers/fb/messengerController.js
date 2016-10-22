@@ -73,7 +73,7 @@ getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, us
 	else {
 		messageNumber = user.messageId;
 	}
-	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, isValid ? "":"Your reply had incorrect format, try again." + messageList[messageNumber].message)
+	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, isValid ? "":"Your reply had incorrect format, try again. " + messageList[messageNumber].message)
 
   return str;
 }
