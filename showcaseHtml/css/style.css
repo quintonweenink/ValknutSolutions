@@ -65,3 +65,12 @@ footer.page-footer {
   width : 100%;
   margin-bottom: 10px;
 }
+
+.demo-video{
+  text-align: center;
+}
+
+iframe.demo-video{
+  width : 560px;
+  height: 315px;
+}
