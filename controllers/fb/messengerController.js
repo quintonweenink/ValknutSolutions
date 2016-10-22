@@ -70,7 +70,7 @@ module.exports = {
 
 		return messageData;
 	},
-	getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, user) {
+	getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, user, isValid) {
 
 		var messageNumber;
 		if(user === undefined)
@@ -78,7 +78,10 @@ module.exports = {
 		else {
 			messageNumber = user.messageId;
 		}
-		var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber].message)
+		if(isValid)
+			var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber].message)
+		else
+			var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, formatErrorMessage + messageList[messageNumber].message)
 
 		return str;
 	}
