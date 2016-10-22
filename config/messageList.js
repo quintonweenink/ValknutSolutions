@@ -10,49 +10,49 @@ module.exports = {
     },
     0:
     {
-        message:'Please reply with your Name:',
+        message:'Hi there,  welcome to the MarketLead.io chat bot. In order to evaluate you we will require some information in order to contact you. Firstly please reply your first name:',
         validate: validation.isName,
 		normalize: normalize.doNothing
     },
     1:
     {
-        message:'Please reply with your Last name:',
+        message:'Please reply with your last name:',
         validate: validation.isName,
 		normalize: normalize.doNothing
     },
     2:
     {
-        message:'Please reply with your Phone number:',
+        message:'Please reply with your phone number:',
         validate: validation.isPhoneNumber,
 		normalize: normalize.toNoSpace
     },
     3:
     {
-        message:'Please reply with your Marital status:',
+        message:'Please reply with your marital status (single | married):',
         validate: validation.isMarital,
 		normalize: normalize.toLower
     },
     4:
     {
-        message:'Please reply with your Date of birth:',
+        message:'Please reply with your date of birth (dd/mm/yyyy):',
         validate: validation.isDate,
 		normalize: normalize.doNothing
     },
     5:
     {
-        message:'Please reply with your Gender:',
+        message:'Please reply with your gender (male | female):',
         validate: validation.isGender,
 		normalize: normalize.toLower
     },
     6:
     {
-        message:'Please reply with your City:',
+        message:'Please reply with your city:',
         validate: validation.isName,
 		normalize: normalize.toLower
     },
     7:
     {
-        message:'Please reply with your Email:',
+        message:'Please reply with your email:',
         validate: validation.isEmail,
 		normalize: normalize.toLower
     }

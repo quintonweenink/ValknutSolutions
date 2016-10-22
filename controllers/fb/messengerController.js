@@ -65,7 +65,7 @@ getMessage : function getMessage(recipientId, user) {
 
   return messageData;
 },
-getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, user) {
+getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, user, isValid) {
 
 	var messageNumber;
 	if(user === undefined)
@@ -73,7 +73,7 @@ getXMLMessage : function getXMLMessage(recipientId, fromusername, createtime, us
 	else {
 		messageNumber = user.messageId;
 	}
-	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, messageList[messageNumber].message)
+	var str = util.format(xmlMessage, recipientId, fromusername, createtime+1, isValid ? "":"Your reply had incorrect format, try again." + messageList[messageNumber].message)
 
   return str;
 }
