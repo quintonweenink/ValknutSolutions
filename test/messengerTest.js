@@ -9,274 +9,274 @@ const xmlMessage = require('../config/xmlMessage').messageFormat
 
 
 describe('Facebook Messenger Test', function(){
-    var activeUsers = {}
-    var senderID = "SF93bsF576S"
+	var activeUsers = {}
+	var senderID = "SF93bsF576S"
 
-    var intendedUser
+	var intendedUser
 
-      var message
-      describe('addToUser()', function(){
-            it("Returns a valid empty user", function(){
-                message = 'Hi'
+	var message
+	describe('addToUser()', function(){
+		it("Returns a valid empty user", function(){
+			message = 'Hi'
 
-                intendedUser = emptyUser.clone(userJSON)
+			intendedUser = emptyUser.clone(userJSON)
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
 
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the first name in the user", function(){
-                message = 'Quinton'
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the first name in the user", function(){
+			message = 'Quinton'
 
-                intendedUser.first_name = message;
-                intendedUser.messageId++;
+			intendedUser.first_name = message;
+			intendedUser.messageId++;
+
+
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the last name in the user", function(){
+			message = 'Weenink'
 
+			intendedUser.last_name = message;
+			intendedUser.messageId++;
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
 
-				console.log(fbMessengerController.getXMLMessage(2222, "QuintonWeenink", "22-22-1998", activeUsers[senderID], false))
-
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the last name in the user", function(){
-                message = 'Weenink'
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the phone number in the user", function(){
+			message = '071 555 9858'
 
-                intendedUser.last_name = message;
-                intendedUser.messageId++;
+			intendedUser.phone_number = message;
+			intendedUser.messageId++;
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the marital status in the user", function(){
+			message = 'Married'
 
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the phone number in the user", function(){
-                message = '071 555 9858'
+			intendedUser.marital_status = message;
+			intendedUser.messageId++;
 
-                intendedUser.phone_number = message;
-                intendedUser.messageId++;
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the date of birth in the user", function(){
+			message = '08/03/1995'
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the marital status in the user", function(){
-                message = 'Married'
+			intendedUser.date_of_birth = message;
+			intendedUser.messageId++;
 
-                intendedUser.marital_status = message;
-                intendedUser.messageId++;
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the gender in the user", function(){
+			message = 'male'
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the date of birth in the user", function(){
-                message = '08/03/1995'
+			intendedUser.gender = message;
+			intendedUser.messageId++;
 
-                intendedUser.date_of_birth = message;
-                intendedUser.messageId++;
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the city in the user", function(){
+			message = 'Cape Town'
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the gender in the user", function(){
-                message = 'male'
+			intendedUser.city = message;
+			intendedUser.messageId++;
 
-                intendedUser.gender = message;
-                intendedUser.messageId++;
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Places the email in the user", function(){
+			message = 'fake@gmail.com'
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the city in the user", function(){
-                message = 'Cape Town'
+			intendedUser.email = message;
+			intendedUser.messageId++;
 
-                intendedUser.city = message;
-                intendedUser.messageId++;
+			activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
+			assert.deepEqual(activeUsers[senderID], intendedUser);
+		});
+		it("Tests concurrent users", function(){
+			var userSenderID1 = 'othersenderID1'
+			var userSenderID2 = 'othersenderID2'
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Places the email in the user", function(){
-                message = 'fake@gmail.com'
+			activeUsers[userSenderID1] = emptyUser.clone(userJSON)
+			activeUsers[userSenderID2] = emptyUser.clone(userJSON)
 
-                intendedUser.email = message;
-                intendedUser.messageId++;
+			activeUsers[userSenderID1] = fbMessengerController.addToUser(activeUsers[userSenderID1], 'hi')
+			activeUsers.userSenderID2 = fbMessengerController.addToUser(activeUsers[userSenderID2], 'hi there')
 
-                activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], message)
-                assert.deepEqual(activeUsers[senderID], intendedUser);
-            });
-            it("Tests concurrent users", function(){
-                var userSenderID1 = 'othersenderID1'
-                var userSenderID2 = 'othersenderID2'
 
-                activeUsers[userSenderID1] = emptyUser.clone(userJSON)
-                activeUsers[userSenderID2] = emptyUser.clone(userJSON)
+			activeUsers[userSenderID1] = fbMessengerController.addToUser(activeUsers[userSenderID1], 'Quinton')
+			activeUsers[userSenderID2] = fbMessengerController.addToUser(activeUsers[userSenderID2], 'Margo')
 
-                activeUsers[userSenderID1] = fbMessengerController.addToUser(activeUsers[userSenderID1], 'hi')
-                activeUsers.userSenderID2 = fbMessengerController.addToUser(activeUsers[userSenderID2], 'hi there')
+			if(activeUsers[userSenderID1].first_name == activeUsers[userSenderID2].first_name)
+			{
+				var err = {success: false, message: 'No good'}
+				throw err;
+				console.log(err)
+			}
 
+		});
+	});
+	describe('getMessage()', function(){
+		var messageData = {
+			recipient: {
+				id: senderID
+			},
+			message: {
+				text: ''
+			}
+		};
+		intendedUser = emptyUser.clone(userJSON)
 
-                activeUsers[userSenderID1] = fbMessengerController.addToUser(activeUsers[userSenderID1], 'Quinton')
-                activeUsers[userSenderID2] = fbMessengerController.addToUser(activeUsers[userSenderID2], 'Margo')
+		it("Returns the default message if the user is null", function(){
 
-                if(activeUsers[userSenderID1].first_name == activeUsers[userSenderID2].first_name)
-                {
-                    var err = {success: false, message: 'No good'}
-                    throw err;
-                    console.log(err)
-                }
 
-            });
-      });
-      describe('getMessage()', function(){
-            var messageData = {
-          	    recipient: {
-          	      id: senderID
-          	    },
-          	    message: {
-          	      text: ''
-          	    }
-        	};
-            intendedUser = emptyUser.clone(userJSON)
+			var message = messageList[8].message
 
-            it("Returns the default message if the user is null", function(){
-                  var message = messageList[8].message
+			messageData.message.text = message
+			delete activeUsers[senderID]
 
-                  messageData.message.text = message
-                  delete activeUsers[senderID]
+			let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID], true)
 
-                  let constructedMessage = fbMessengerController.getMessage(senderID, activeUsers[senderID])
+			assert.deepEqual(constructedMessage, messageData)
+		});
+		it("Constructs name message", function(){
+			var message = messageList[0].message
 
-                  assert.deepEqual(constructedMessage, messageData)
-            });
-            it("Constructs name message", function(){
-                  var message = messageList[0].message
+			messageData.message.text = message;
+			intendedUser.messageId = 0;
 
-                  messageData.message.text = message;
-                  intendedUser.messageId = 0;
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
 
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs last name message", function(){
+			var message = messageList[1].message
 
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs last name message", function(){
-                  var message = messageList[1].message
+			messageData.message.text = message;
+			intendedUser.messageId = 1;
 
-                  messageData.message.text = message;
-                  intendedUser.messageId = 1;
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
 
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs phone message", function(){
+			var message = messageList[2].message
 
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs phone message", function(){
-                  var message = messageList[2].message
+			messageData.message.text = message;
+			intendedUser.messageId = 2;
 
-                  messageData.message.text = message;
-                  intendedUser.messageId = 2;
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
 
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs marital message", function(){
+			var message = messageList[3].message
 
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs marital message", function(){
-                  var message = messageList[3].message
-
-                  messageData.message.text = message;
-                  intendedUser.messageId = 3;
-
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
-
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs date of birth message", function(){
-                  var message = messageList[4].message
-
-                  messageData.message.text = message;
-                  intendedUser.messageId = 4;
-
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
-
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs gender message", function(){
-                  var message = messageList[5].message
-
-                  messageData.message.text = message;
-                  intendedUser.messageId = 5;
-
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
-
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs city message", function(){
-                  var message = messageList[6].message
-
-                  messageData.message.text = message;
-                  intendedUser.messageId = 6;
-
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
-
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-            it("Constructs email message", function(){
-                  var message = messageList[7].message
-
-                  messageData.message.text = message;
-                  intendedUser.messageId = 7;
-
-                  let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser);
-
-                  assert.deepEqual(constructedMessage, messageData);
-            });
-      });
-      describe('getMessage()', function(){
-            var messageData = {
-          	    recipient: {
-          	      id: senderID
-          	    },
-          	    message: {
-          	      text: ''
-          	    }
-        	};
-            intendedUser = emptyUser.clone(userJSON)
-
-            it("Returns the default message if the user is null", function(){
-                  var message = messageList[8]
-
-                  messageData.message.text = message
-
-                  senderID = 'senderID'
-                  var tousername = 'tousername'
-                  var createtime = 64164164
-
-
-                  let constructedMessage = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
-
-                  //console.log(constructedMessage)
-            });
-      });
-      describe('validate()', function(){
-            var id = 'validateres'
-            it("Test of logic not really a unit test", function(){
-				var messageText = 'hi'
-
-				activeUsers[id] = emptyUser.clone(userJSON)
-				activeUsers[id].messageId++;
-
-                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
-					var error = {success: false, message: 'Should not go in here'}
-                    throw error
-                }
-            });
-			it("isName test with failing name", function(){
-				var messageText = 'hi'
-
-				activeUsers[id] = emptyUser.clone(userJSON)
-				activeUsers[id].messageId++;
-
-                if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
-					var error = {success: false, message: 'Should not go in here'}
-                    throw error
-                }
-            });
-      });
+			messageData.message.text = message;
+			intendedUser.messageId = 3;
+
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
+
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs date of birth message", function(){
+			var message = messageList[4].message
+
+			messageData.message.text = message;
+			intendedUser.messageId = 4;
+
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
+
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs gender message", function(){
+			var message = messageList[5].message
+
+			messageData.message.text = message;
+			intendedUser.messageId = 5;
+
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
+
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs city message", function(){
+			var message = messageList[6].message
+
+			messageData.message.text = message;
+			intendedUser.messageId = 6;
+
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
+
+			assert.deepEqual(constructedMessage, messageData);
+		});
+		it("Constructs email message", function(){
+			var message = messageList[7].message
+
+			messageData.message.text = message;
+			intendedUser.messageId = 7;
+
+			let constructedMessage = fbMessengerController.getMessage(senderID, intendedUser, true);
+
+			assert.deepEqual(constructedMessage, messageData);
+		});
+	});
+	describe('getMessage()', function(){
+		var messageData = {
+			recipient: {
+				id: senderID
+			},
+			message: {
+				text: ''
+			}
+		};
+		intendedUser = emptyUser.clone(userJSON)
+
+		it("Returns the default message if the user is null", function(){
+			var message = messageList[8]
+
+			messageData.message.text = message
+
+			senderID = 'senderID'
+			var tousername = 'tousername'
+			var createtime = 64164164
+
+
+			let constructedMessage = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID], true)
+
+			//console.log(constructedMessage)
+		});
+	});
+	describe('validate()', function(){
+		var id = 'validateres'
+		it("Test of logic not really a unit test", function(){
+			var messageText = 'hi'
+
+			activeUsers[id] = emptyUser.clone(userJSON)
+			activeUsers[id].messageId++;
+
+			if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
+				var error = {success: false, message: 'Should not go in here'}
+				throw error
+			}
+		});
+		it("isName test with failing name", function(){
+			var messageText = 'hi'
+
+			activeUsers[id] = emptyUser.clone(userJSON)
+			activeUsers[id].messageId++;
+
+			if(!messageList[activeUsers[id].messageId - 1].validate(messageText)){
+				var error = {success: false, message: 'Should not go in here'}
+				throw error
+			}
+		});
+	});
 
 });

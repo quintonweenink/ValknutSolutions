@@ -18,47 +18,50 @@ const messageList = require('../config/messageList')
 module.exports = function(app, passport){
 	app.route('/weChatBot/webhook')
 	.post(function(req, res) {
-        console.log('===============message=============')
+		console.log('===============message=============')
 
-        console.log(req.body.xml)
+		console.log(req.body.xml)
 
-        var tousername = req.body.xml.tousername[0]
-        var senderID = req.body.xml.fromusername[0]
-        var msgtype = req.body.xml.msgtype[0]
-        var content = req.body.xml.content[0]
-        var createtime = parseInt(req.body.xml.createtime[0])
+		var tousername = req.body.xml.tousername[0]
+		var senderID = req.body.xml.fromusername[0]
+		var msgtype = req.body.xml.msgtype[0]
+		var content = req.body.xml.content[0]
+		var createtime = parseInt(req.body.xml.createtime[0])
 
 		if(!(typeof activeUsers[senderID] === 'undefined') && !(activeUsers[senderID] === null))
-			content = messageList[activeUsers[senderID].messageId].normalize(content)
+		content = messageList[activeUsers[senderID].messageId].normalize(content)
 
-        activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
+		activeUsers[senderID] = fbMessengerController.addToUser(activeUsers[senderID], content)
+
+		var isValid = true
 
 		//validate here, not the best way but i need to check the messageID
 		if(activeUsers[senderID].messageId != 0)
-			if(!messageList[activeUsers[senderID].messageId-1].validate(content)){
-				activeUsers[senderID].messageId--
-				activeUsers[senderID].email = ''
-			}
+		if(!messageList[activeUsers[senderID].messageId-1].validate(content)){
+			activeUsers[senderID].messageId--
+			activeUsers[senderID].email = ''
+			isValid = false
+		}
 
-        if(activeUsers[senderID].email != ''){
+		if(activeUsers[senderID].email != ''){
 			activeUsers[senderID].from = 'weChat'
-            userController.createUser(activeUsers[senderID])
-            delete activeUsers[senderID]
-        }
+			userController.createUser(activeUsers[senderID])
+			delete activeUsers[senderID]
+		}
 
 
-        let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID])
+		let str = fbMessengerController.getXMLMessage(senderID, tousername, createtime, activeUsers[senderID], isValid)
 
-        console.log(str)
+		console.log(str)
 
 		res.contentType("application/xml")
 
-        res.send(str)
+		res.send(str)
 	})
-    .get(function(req, res) {
-    	console.log(req.query)
-        var echostr = req.param('echostr', null)
-        res.send(echostr)
+	.get(function(req, res) {
+		console.log(req.query)
+		var echostr = req.param('echostr', null)
+		res.send(echostr)
 	});
 
 
