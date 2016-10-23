@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <!-- define angular app -->
@@ -18,6 +19,8 @@
 <!-- Angular material design stylesheet-->
 <link rel="stylesheet" href="public/libs/angular-material/angular-material.min.css"/>
 
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+
 <!-- Custom -->
 <script type="text/javascript" src="js/controllers.js"></script>
 
@@ -33,6 +36,8 @@
 <!--Google Chart for GeoChart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<!-- Moment JS for Date and Locale formatting -->
+<script src="libs/moment/min/moment.min.js"></script>
 
 <!-- Angular controllers -->
 <script type="text/javascript" src="js/AngularConfig.js"></script>
@@ -74,6 +79,29 @@ $(document).ready(function(){
 })
 </script>
 
+<style>
+
+
+		.my-brand-logo {
+		  position: absolute;
+		  display: inline-block;
+		  font-size: 2.1rem;
+		  padding: 0;
+		  padding-left: 60px;
+		  padding-right: 60px;
+		  white-space: nowrap;
+		  font-family: Comfortaa;
+		  background-color: #fff;
+		  color: transparent;
+		  text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+		  -webkit-background-clip: text;
+		     -moz-background-clip: text;
+		          background-clip: text;
+
+		}
+
+</style>
+
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -85,11 +113,10 @@ $(document).ready(function(){
   <script src="js/facebook.js"></script>
 
   <!-- This include does show the navbar, but the small screen action is not performed by the collapse script-->
-  <!--<div ng-include="'public/views/partials/navbar.html'">
-</div>-->
-<nav class="indigo" class="navbar-fixed">
+  <!--<div ng-include="'public/views/partials/navbar.html'">-->
+<nav class="grey darken-4">
   <div class="nav-wrapper">
-    <a href="#/" class="brand-logo" style="padding-left:60px;">MarketLead.io</a>
+    <div href="#/" class="my-brand-logo" ><span style="color: #212121; background-color:#fff; border-radius: 10px; padding-left: 5px; padding-right: 4px; padding-top: 5px; padding-bottom: 0px; margin-right:4px">Market</span>Lead.io </div>
     <a href="" src="/images/logos/marketlead_4.png" data-activates="mobile" class="button-collapse">
 		<i class="material-icons">menu</i>
     </a>
@@ -102,7 +129,6 @@ $(document).ready(function(){
       <li><a href="#login">Login/Signup</a></li>
       <li><a href="#liveGraphs">Live Graphs</a></li>
       <li><a href="#geochart">GeoChart</a></li>
-
     </ul>
     <ul class="side-nav" id="mobile">
       <li><a href="#about">Home</a></li>
@@ -117,7 +143,8 @@ $(document).ready(function(){
   </div>
 </nav>
 
-<div id="main" style="z-index: -1">
+
+<div id="main" style="z-index: -1;">
   <!-- Injected View's Output-->
   <div ng-view></div>
 

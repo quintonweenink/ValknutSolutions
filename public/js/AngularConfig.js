@@ -2,8 +2,16 @@
 
 var InsuranceProfiling = angular.module('InsuranceProfiling', ['ngRoute','chart.js','ngMaterial','ngSanitize']);
 
-InsuranceProfiling.config(function($routeProvider) {
+InsuranceProfiling.config(function($routeProvider,$mdDateLocaleProvider) {
 
+	$mdDateLocaleProvider.formatDate = function(date) {
+	 return date ? moment(date).format('YYYY-MM-DD') : '';
+	};
+
+	$mdDateLocaleProvider.parseDate = function(dateString) {
+	 var m = moment(dateString, 'YYYY-MM-DD', true);
+	 return m.isValid() ? m.toDate() : new Date(NaN);
+	};
 
 	$routeProvider
 	// route for the home page

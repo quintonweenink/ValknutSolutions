@@ -32,7 +32,7 @@
 							  </md-input-container><br/>
 						  </div>
 							<md-input-container class="nomarginplease" flex>
-								<md-button ng-click="postAnalystLogin($http)" class="md-raised md-primary">Login</md-button>
+								<md-button ng-click="postAnalystLogin($http)" class="md-raised md-warn">Login</md-button>
 							</md-input-container>
    			        </md-card-content>
    	      		</md-card>
@@ -58,7 +58,7 @@
 							 </md-input-container>
 						 </div>
 						 <md-input-containerv class="nomarginplease" flex>
-							 <md-button ng-click="postAnalystSignup($http)" class="md-raised md-primary">Sign-up</md-button>
+							 <md-button ng-click="postAnalystSignup($http)" class="md-raised md-warn">Sign-up</md-button>
 						 </md-input-container>
 				 </md-card-content>
 			 </md-card>
@@ -70,12 +70,11 @@
           <md-content  class="md-padding">
               <h1><span class="fa fa-lock"></span> Login page</h1>
       		<p>{{ message }}</p>
-              <p>Login or Register with:</p>
-
-              <a href="#login_form" class="btn btn-default"><span class="fa fa-user"></span> Analyst Login</a>
-              <a href="/auth/facebook" class="btn btn-default"><span class="fa fa-user"></span> Facebook user Login</a>
-              <a href="#signup" class="btn btn-default"><span class="fa fa-user"></span> Static Signup page</a>
-              <a href="#signupLeadPage" class="btn btn-default"><span class="fa fa-user"></span>Signup facebook page</a>
+					    <p id="facebookLoading">Please be patient as Facebook loads</p>
+					    <p id="loginInstructions" style="display: none;">Login to Facebook and choose the page you want the lead ad on</p>
+					    <button onclick="facebookLoginLeads()" id="facebookLoginButtonLeads" class="waves-effect waves-light btn" style="display: none;">Login with Facebook</button>
+					    <button onclick="createLeadForm()" id="createLeadForm" class="waves-effect waves-light btn" style="display: none;">Create lead form</button>
+					    <ul id="pagesList"></ul>
           </md-content>
         </md-tab>
         <md-tab label="Admin">

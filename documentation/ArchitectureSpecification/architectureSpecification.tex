@@ -35,7 +35,7 @@
 
 	\begin{titlepage}
 		\begin{center}
-			\includegraphics[width=10cm]{images/marketlead_3.png}  \\
+			\includegraphics[width=10cm]{images/marketLead.png}  \\
 			[0.5cm]
 			\huge{
 			Architectural Requirements, Architecture Design and Non-Functional Requirements\\
@@ -347,8 +347,8 @@ We expose and link companies to their future customers in an easy and pluggable 
 			\item Resisting attacks: authentication, authorization, minimizing access channels, minimize complexity and enforcing secure defaults
 			\item Detecting attacks: auditing, logging and integrity checking
 			\item Recovering: restore states, dropping
-			\item Hashing of passwords
-			\item Adding secret token to access tokens
+			\item Hashing of passwords : Password hashes are created based on the SHA512 algorithm with  a length 16, random generated salt.
+			\item Adding secret token to access tokens : Front-end tokens are generated based on a secret key word and SHA256 encoding.
 		\end{itemize}
 
 		\subsubsection{Reliability}\label{subsec:reliability}
