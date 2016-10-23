@@ -30,7 +30,7 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 				//$scope.message = res.data.message
 					$scope.users = res.data.users
 				if(!res.data.success) {
-					$scope.openFromLeft(res.data.message)
+					$scope.openFromLeft("Your are not logged in. Please Log in <i class='material-icons'>lock</i>")
 					$location.path("/login")
 				}
 				//$scope.$apply()
@@ -38,20 +38,21 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 	}
 
 
+
 	$scope.openFromLeft = function(message) {
-    	$mdDialog.show(
-      		$mdDialog.alert()
-        	.clickOutsideToClose(true)
-        	.title('Alert')
-        	.textContent(message)
-        	.ariaLabel(message)
-        	.ok('Ok!')
-        	// You can specify either sting with query selector
-        	.openFrom('#left')
-        	// or an element
-        	.closeTo(angular.element(document.querySelector('#right')))
-    		);
-  	};
+		$mdDialog.show(
+			$mdDialog.alert()
+			.clickOutsideToClose(true)
+			.title('Alert')
+			.htmlContent(message)
+			.ariaLabel(message)
+			.ok('Ok!')
+			// You can specify either sting with query selector
+			.openFrom('#left')
+			// or an element
+			.closeTo(angular.element(document.querySelector('#right')))
+		);
+	};
 
 	$scope.customLead = function(user, ev) {
 		$scope.user = user
