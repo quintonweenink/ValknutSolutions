@@ -1,4 +1,4 @@
-InsuranceProfiling.controller('filterController',function($scope, $http, $mdDialog)
+InsuranceProfiling.controller('filterController',function($scope, $http, $mdDialog, $location)
 {
 
 	$scope.cookie = getCookie();

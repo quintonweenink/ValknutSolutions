@@ -1,4 +1,4 @@
-InsuranceProfiling.controller('geoController', function($scope, $http) {
+InsuranceProfiling.controller('geoController', function($scope, $http, $location) {
 
 	$scope.cookie = getCookie();
 

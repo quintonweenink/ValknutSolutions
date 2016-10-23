@@ -1,4 +1,4 @@
-InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast,$mdDialog)
+InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast,$mdDialog, $location)
 {
 	$scope.cookie = getCookie();
 
