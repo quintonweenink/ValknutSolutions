@@ -83,13 +83,18 @@
 	  margin-bottom: 10px;
 	}
 
-	.demo-video{
-	  text-align: center;
+	.videoWrapper {
+		position: relative;
+		padding-bottom: 56.25%; /* 16:9 */
+		padding-top: 25px;
+		height: 0;
 	}
-
-	iframe.demo-video{
-	  width : 560px;
-	  height: 315px;
+	.videoWrapper iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 
 	</style>
@@ -175,9 +180,21 @@
 		<div class="row">
 			<div class="icon-block demo-video">
 				<h2 class="center brown-text"><i class="material-icons">theaters</i></h2>
-				<h5 class="center">Facebook Leads Demo</h5>
-				<iframe class="demo-video" src="https://www.youtube.com/embed/jZnm6VErAQc" frameborder="0" allowfullscreen></iframe>
-				<p>A video to showcase how Facebook Lead Ads work and interact with MarketLead.io</p>
+				<h5 class="center">Integration points</h5>
+				<div class="videoWrapper">
+					<iframe src="https://www.youtube.com/embed/Jk2yCW_18_I" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<p class="center">A video showcasing the integration points that MarketLead.io has and the processing of Leads in the Live user feed</p>
+				<h5 class="center">Facebook lead adds Demo</h5>
+				<div class="videoWrapper">
+					<iframe src="https://www.youtube.com/embed/jZnm6VErAQc" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<p class="center">A video to showcase how Facebook Lead Ads work and interact with MarketLead.io</p>
+				<h5 class="center">Analizing your customers</h5>
+				<div class="videoWrapper">
+					<iframe src="https://www.youtube.com/embed/H_7ol9GkuFg" frameborder="0" allowfullscreen></iframe>
+				</div>
+				<p class="center">A video showcasing the use of MarketLead.io's various analyzing tools to adapt and improve your customer-base</p>
 			</div>
 		</div>
 	</div>
