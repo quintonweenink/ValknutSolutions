@@ -1,5 +1,19 @@
 InsuranceProfiling.controller('LiveGraphController',function($scope, $http, $mdToast,$mdDialog)
 {
+	$scope.cookie = getCookie();
+
+	$scope.updateLiveFeed = function(){
+		$http.get("/api/user?token="+$scope.cookie)
+		.then(function(res){
+				if(!res.data.success) {
+					$location.path("/login")
+				}
+		})
+	}
+
+	$scope.updateLiveFeed()
+
+
 	$scope.message = "";
 	$http.get("/api/graph/SignupsPerMonth/line")
 	.then(function(response){

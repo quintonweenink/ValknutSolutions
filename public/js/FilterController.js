@@ -1,5 +1,20 @@
 InsuranceProfiling.controller('filterController',function($scope, $http, $mdDialog)
 {
+
+	$scope.cookie = getCookie();
+
+	$scope.updateLiveFeed = function(){
+		$http.get("/api/user?token="+$scope.cookie)
+		.then(function(res){
+				if(!res.data.success) {
+					$location.path("/login")
+				}
+		})
+	}
+
+	$scope.updateLiveFeed()
+
+
 	$scope.message = "";
 	$scope.submit = function(){
 		$scope.message = "";

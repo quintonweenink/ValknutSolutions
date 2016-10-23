@@ -1,4 +1,19 @@
 InsuranceProfiling.controller('geoController', function($scope, $http) {
+
+	$scope.cookie = getCookie();
+
+	$scope.updateLiveFeed = function(){
+		$http.get("/api/user?token="+$scope.cookie)
+		.then(function(res){
+				if(!res.data.success) {
+					$location.path("/login")
+				}
+		})
+	}
+
+	$scope.updateLiveFeed()
+
+
 	$scope.message = 'This is the Geo page (passed from controller as message )';
 	var key = 'AIzaSyDQ45U7xOfDtZpgVjhIeIO8h280x9KBYP4';
 	// var key = 'AIzaSyC8QmyT2CZbJUh3YTyQrb2Kcl-yc0nqMBM';

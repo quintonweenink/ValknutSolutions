@@ -30,14 +30,14 @@ InsuranceProfiling.controller('LiveUserFeedController', function($scope, $http, 
 				//$scope.message = res.data.message
 					$scope.users = res.data.users
 				if(!res.data.success) {
-					$scope.openFromLeft("Your are not logged in. Please Log in <i class='material-icons'>lock</i>")
+					//$scope.openFromLeft("Your are not logged in. Please Log in <i class='material-icons'>lock</i>")
 					$location.path("/login")
 				}
 				//$scope.$apply()
 		})
 	}
 
-
+	
 
 	$scope.openFromLeft = function(message) {
 		$mdDialog.show(
